@@ -1,0 +1,29 @@
+@import 'bootstrap';
+@import 'bootstrap-responsive';
+
+
+.dropdown-menu {
+	top:95%;
+}
+
+ul.nav li.dropdown:hover {
+	color: #ffffff;
+	background-color: #111111;
+}
+
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;  
+}
+
+li.nav-item {
+    padding-top: 5px;
+}
+
+body.home {
+	background-color:black;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center;
+	color:white;
+	background-image: asset-url("backgroundBlack.jpg");
+}
