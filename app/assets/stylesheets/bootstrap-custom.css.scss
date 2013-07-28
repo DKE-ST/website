@@ -11,8 +11,11 @@ ul.nav li.dropdown:hover {
 	background-color: #111111;
 }
 
-ul.nav li.dropdown:hover > ul.dropdown-menu{
-    display: block;  
+@media (min-width: 1200px)
+{
+  ul.nav li.dropdown:hover > ul.dropdown-menu{
+      display: block;  
+  }
 }
 
 li.nav-item {
