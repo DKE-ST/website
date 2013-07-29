@@ -23,7 +23,7 @@ module ApplicationHelper
         if (line[0]!="#" && line[0]!="\n")
           ofset = line.index(':')
           if line.index(ENV['REMOTE_USER']).begin(ofset)
-            gtoups << line[0..ofset]
+            groups << line[0..ofset]
           end
         end
       end
