@@ -9,26 +9,7 @@
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , '/' %></li>
-     				<li class="nav-item dropdown"><a>Chapter</a>
-     					<ul class="dropdown-menu" role="menu" aria-labaledby="dLabel">
-     						<li><a href="#TODO">General</a></li>
-					        <li id="pos_sub" class="dropdown-submenu"><a>Positions</a>
-					        	<ul class="dropdown-menu">
-					        		<li><%= link_to 'Beta', '#TODO'%></li>
-									<li><%= link_to 'Kappa', '#TODO'%></li>
-								  	<li><%= link_to 'Sigma', '#TODO'%></li>
-								  	<li><%= link_to 'Zeta', '#TODO'%></li>
-								  	<li><%= link_to 'Epsilon', '#TODO'%></li>
-								  	<li><%= link_to 'Delta', '#TODO'%></li>
-								  	<li><%= link_to 'Upsilon', '#TODO'%></li>
-								  	<li><%= link_to 'Pi', '#TODO'%></li>
-								  	<li><%= link_to 'Gamma', '#TODO'%></li>
-								</ul>
-					        </li>
-					        <li><a href="#TODO">Calendar</a></li>
-					        <li><a href="/'.$dke.'/pages/brothers.php">Brothers</a></li>
-        				</ul>
-     				</li>
+					<%= render 'layouts/navbar/chapter' if in_group('dkebro')%>
      				<li class="nav-item dropdown"><a>Media</a>
      					<ul class="dropdown-menu">
          					<li><%= link_to 'Subsonic' , '#TODO'%></li>
@@ -58,16 +39,8 @@
      				<li class="nav-item"><a href="#TODO">Make a Request</a></li>
      				<li class="nav-item dropdown"><a><%= get_name(ENV['REMOTE_USER'])%></a>
      					<ul class="dropdown-menu">
-     						<li id="broporn_sub" class="dropdown-submenu"><a>Broporn</a>
-     							<ul class="dropdown-menu">
-									<li><%= link_to 'Mollify' , '#TODO'%></li>
-									<li><%= link_to 'SABnzbd' , '#TODO'%></li>
-									<li><%= link_to 'Sickbeard' , '#TODO'%></li>
-									<li><%= link_to 'Usenet Crawler', 'https://www.usenet-crawler.com/'%></li>
-									<li><%= link_to 'Requests' , '#TODO'%></li>
-								</ul>
-     						</li>
-     						<li><%= link_to 'Profile' , '#TODO'%></li>
+     						<%= render 'layouts/navbar/broporn' if in_group("broporn")%>
+     						<%= render 'layouts/navbar/profile' if in_group("dkebro") && ENV['REMOTE_USER']!='dkealum'%>
      					</ul>
      				</li>
      			</ul>
