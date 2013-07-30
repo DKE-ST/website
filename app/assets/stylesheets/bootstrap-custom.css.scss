@@ -22,11 +22,6 @@ li.nav-item {
     padding-top: 5px;
 }
 
-body.home {
-	background-color:black;
-	background-repeat:no-repeat;
-	background-attachment:fixed;
-	background-position:center;
-	color:white;
-	background-image: asset-url("backgroundBlack.jpg");
+body {
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
 }

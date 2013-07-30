@@ -19,10 +19,16 @@ module ApplicationHelper
         end
       end
     end
-    return true if groups.include? group_name
-    return false
+    return groups.include? group_name
   end
   
+  def gen_title(page_title)
+    site_title="DKE Server"
+    if (page_title!="")
+      return "#{site_title} | #{page_title}" 
+    else
+      return site_title
+    end
+  end
   
-
 end

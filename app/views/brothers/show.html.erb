@@ -1,0 +1,69 @@
+<% provide(:title , "Brother Information: #{@brother.full_name}")%>
+
+<div class="row me">
+	<div class="span4">
+		<img class="pic" src="/assets/brothers_img/<%= "#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
+		<h2 class="visible-phone"><%= @brother.full_name%></h2>
+    </div>
+    <div class="span8 hidden-phone" align="left">
+    	<h2><%= @brother.full_name%></h2>
+    	<table>
+    		<tr>
+    			<td style="padding:0px;">
+    				<div class="row">
+    					<div class="span4 mit">
+    						<br><h3>MIT class of <%= @brother_mit.year%></h3>
+    					</div>
+    					<div class="span4 dke">
+    						<br><h3>Pledge class of <%= @brother_dke.p_class%></h3></td>
+    					</div>
+    				</div>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="span12 profile_pg">
+    	<ul class="nav nav-tabs" id="myTab">
+    		<li class="active"><a href="#personal" data-toggle="tab">Personal</a></li>
+    		<li><a href="#mit_info" data-toggle="tab">MIT</a></li>
+    		<li><a href="#dke_info" data-toggle="tab">DKE</a></li>
+    	</ul>
+    	<div class="tab-content">
+    		<div class="tab-pane info active" id="personal">
+    			<div class="row">
+    				<div class="span12">
+    					<% unless @brother.hometown==""%><p><b>Hometown:</b> <%= @brother.hometown%><%end%>
+    					<br><b>Email Address:</b> <%= @brother.uname%>@mit.edu
+    					<% unless @brother.phone==""%><br><b>Phone Number:</b> <%= @brother.phone%><%end%>
+    					<% unless @brother.activites==""%><p><b>Activities:</b> <%= @brother.activities%><%end%>
+    					<% unless @brother.hobbies==""%><br><b>Hobbies:</b> <%= @brother.hobbies%><%end%>
+    					<% unless @brother.quote==""%><p><b>Favorite Quote:</b> <%= @brother.quote%><%end%>
+    					<% unless @brother.movie==""%><br><b>Favorite Movie:</b> <%= @brother.movie%><%end%>
+    					<% unless @brother.pro_team==""%><br><b>Favorite Pro Team:</b> <%= @brother.pro_team%><%end%>
+    					<% unless @brother.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.college_team%><%end%>
+    					<% unless @brother.bio==""%><P><b>Bio:</b>  <%= @brother.bio%><%end%>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane info" id="mit_info">
+				<p><b>Majors:</b>
+       			<br><b>Minors:</b>
+       			<br><b>Concentration:</b>
+				<br><b>Extracurricular Activities:</b>
+       			<br><b>Interests:</b>
+       			<br><b>UROPs:</b>
+       			<br><b>Internships:</b>
+       			<br><b>Favorite MIT Classes:</b>
+      		</div>
+      		<div class="tab-pane info" id="dke_info">
+            	<p><b>Pledge Name:</b>
+       			<br><b>Pledge Project:</b>
+       			<br><b>Big Brother:</b>
+       			<br><b>Little Brothers:</b>
+            	<br><b>Current Positions:</b>
+       			<br><b>Positions Held:</b>
+       			<br><b>Residence:</b>
+      		</div>
+     	</div>
+   </div>
+</div>
