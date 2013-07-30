@@ -19,4 +19,8 @@ class BrothersPersonal < ActiveRecord::Base
     #quote: text
     #hometown: text
     
+    def full_name
+      "#{self.first_name } #{self.last_name}"
+    end
+        
 end
