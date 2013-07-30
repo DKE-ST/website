@@ -46,23 +46,23 @@
 				</div>
 			</div>
 			<div class="tab-pane info" id="mit_info">
-				<p><b>Majors:</b>
-       			<br><b>Minors:</b>
-       			<br><b>Concentration:</b>
-				<br><b>Extracurricular Activities:</b>
-       			<br><b>Interests:</b>
-       			<br><b>UROPs:</b>
-       			<br><b>Internships:</b>
-       			<br><b>Favorite MIT Classes:</b>
+				<% unless @brother_mit.majors==""%><p><b>Majors:</b> <%= @brother_mit.majors%><%end%>
+       			<% unless @brother_mit.minors==""%><br><b>Minors:</b> <%= @brother_mit.minors%><%end%>
+       			<% unless @brother_mit.concentration==""%><br><b>Concentration:</b> <%= @brother_mit.concentration%><%end%>
+				<% unless @brother_mit.extracurriculars==""%><br><b>Extracurricular Activities:</b> <%= @brother_mit.extracurriculars%><%end%>
+       			<% unless @brother_mit.interests==""%><br><b>Interests:</b> <%= @brother_mit.interests%><%end%>
+       			<% unless @brother_mit.urops==""%><br><b>UROPs:</b> <%= @brother_mit.urops%><%end%>
+       			<% unless @brother_mit.internships==""%><br><b>Internships:</b> <%= @brother_mit.internships%><%end%>
+       			<% unless @brother_mit.fav_classes==""%><br><b>Favorite MIT Classes:</b> <%= @brother_mit.fav_classes%><%end%>
       		</div>
       		<div class="tab-pane info" id="dke_info">
-            	<p><b>Pledge Name:</b>
-       			<br><b>Pledge Project:</b>
-       			<br><b>Big Brother:</b>
-       			<br><b>Little Brothers:</b>
-            	<br><b>Current Positions:</b>
-       			<br><b>Positions Held:</b>
-       			<br><b>Residence:</b>
+            	<% unless @brother_dke.pname==""%><p><b>Pledge Name:</b> <%= @brother_dke.pname%><%end%>
+       			<% unless @brother_dke.project==""%><br><b>Pledge Project:</b> <%= @brother_dke.project%><%end%>
+       			<% unless @brother_dke.big==""%><br><b>Big Brother:</b> <%= @brother_dke.big%><%end%>
+       			<% unless @brother_dke.littles==""%><br><b>Little Brothers:</b> <%= @brother_dke.littles%><%end%>
+            	<% unless @brother_dke.cur_pos==""%><br><b>Current Positions:</b> <%= @brother_dke.cur_pos%><%end%>
+       			<% unless @brother_dke.past_pos==""%><br><b>Positions Held:</b> <%= @brother_dke.past_pos%><%end%>
+       			<% unless @brother_dke.residence==""%><br><b>Residence:</b> <%= @brother_dke.residence%><%end%>
       		</div>
      	</div>
    </div>
