@@ -2,7 +2,7 @@
 
 <div class="row me">
 	<div class="span4">
-		<img class="pic" src="/assets/brothers_img/<%= "#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
+		<img class="pic" src="/rails/assets/brothers_img/<%= "#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
 		<h2 class="visible-phone"><%= @brother.full_name%></h2>
     </div>
     <div class="span8 hidden-phone" align="left">
@@ -35,7 +35,7 @@
     					<% unless @brother.hometown==""%><p><b>Hometown:</b> <%= @brother.hometown%><%end%>
     					<br><b>Email Address:</b> <%= @brother.uname%>@mit.edu
     					<% unless @brother.phone==""%><br><b>Phone Number:</b> <%= @brother.phone%><%end%>
-    					<% unless @brother.activites==""%><p><b>Activities:</b> <%= @brother.activities%><%end%>
+    					<% unless @brother.activities==""%><p><b>Activities:</b> <%= @brother.activities%><%end%>
     					<% unless @brother.hobbies==""%><br><b>Hobbies:</b> <%= @brother.hobbies%><%end%>
     					<% unless @brother.quote==""%><p><b>Favorite Quote:</b> <%= @brother.quote%><%end%>
     					<% unless @brother.movie==""%><br><b>Favorite Movie:</b> <%= @brother.movie%><%end%>
