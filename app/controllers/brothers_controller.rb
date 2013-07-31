@@ -2,6 +2,10 @@ class BrothersController < ApplicationController
   def profile
   end
   
+  def index
+    @years = BrothersMit.select("year").distinct
+  end
+  
   def show
     @brother = BrothersPersonal.find_by(uname: params[:id])
     @brother_mit = BrothersMit.find_by(uname: params[:id])

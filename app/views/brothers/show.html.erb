@@ -58,8 +58,8 @@
       		<div class="tab-pane info" id="dke_info">
             	<% unless @brother_dke.pname==""%><p><b>Pledge Name:</b> <%= @brother_dke.pname%><%end%>
        			<% unless @brother_dke.project==""%><br><b>Pledge Project:</b> <%= @brother_dke.project%><%end%>
-       			<% unless @brother_dke.big==""%><br><b>Big Brother:</b> <%= @brother_dke.big%><%end%>
-       			<% unless @brother_dke.littles==""%><br><b>Little Brothers:</b> <%= @brother_dke.littles%><%end%>
+       			<% unless @brother_dke.big==""%><br><b>Big Brother:</b> <%= get_big(@brother_dke.big) %><%end%>
+       			<% unless @brother_dke.littles==""%><br><b>Little Brothers:</b> <%= get_littles(@brother_dke.littles)%><%end%>
             	<% unless @brother_dke.cur_pos==""%><br><b>Current Positions:</b> <%= @brother_dke.cur_pos%><%end%>
        			<% unless @brother_dke.past_pos==""%><br><b>Positions Held:</b> <%= @brother_dke.past_pos%><%end%>
        			<% unless @brother_dke.residence==""%><br><b>Residence:</b> <%= @brother_dke.residence%><%end%>
