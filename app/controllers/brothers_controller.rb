@@ -3,7 +3,16 @@ class BrothersController < ApplicationController
   end
   
   def index
-    @years = BrothersMit.select("year").distinct
+    @brothers= Hash.new
+    class_map = BrothersMit.select("uname, year").order("year DESC")
+    name_map = BrothersPersonal.select("first_name, last_name")
+    class_map.each do |user|
+      @brothers[user.year] = Array.new([]) if !@brothers.include? user.year
+      @brothers[user.year] << [name_map.find_by(uname: user.uname).full_name, user.uname]
+    end
+    @brothers.each do |key, value|
+      value.sort!
+    end
   end
   
   def show
