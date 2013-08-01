@@ -11,13 +11,13 @@ class BrothersController < ApplicationController
       render 'profile'
     end
     if params.include? "brothers_mit"
-      if @brother.update_attributes(brother_mit_params)
+      if @brother_mit.update_attributes(brother_mit_params)
         flash[:success] = "Information updated"
       end
       render 'profile'
     end
     if params.include? "brothers_dke"
-      if @brother.update_attributes(brother_dke_params)
+      if @brother_dke.update_attributes(brother_dke_params)
         flash[:success] = "Information updated"
       end
       render 'profile'
