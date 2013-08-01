@@ -39,7 +39,7 @@ class BrothersController < ApplicationController
       @brother_mit.update_attributes(brother_mit_params) &&
       @brother_dke.update_attributes(brother_dke_params)
       flash[:success] = "Information updated"
-      redirect_to @brother.uname
+      redirect_to "#{brothers_url}/#{@brother.uname}"
     else
       render 'edit'
     end
