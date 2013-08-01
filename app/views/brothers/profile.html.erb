@@ -1,5 +1,7 @@
 <% provide(:title , 'Profile')%>
-
+<%= render_errors(@brother)%>
+<%= render_errors(@brother_mit)%>
+<%= render_errors(@brother_dke)%>
 <div class="row me">
 	<div class="span4">
 		<img class="pic" src="<%="#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
