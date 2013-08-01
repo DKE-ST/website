@@ -4,6 +4,24 @@ class BrothersController < ApplicationController
     @brother = BrothersPersonal.find_by(uname: ENV['REMOTE_USER'])
     @brother_mit = BrothersMit.find_by(uname: ENV['REMOTE_USER'])
     @brother_dke = BrothersDke.find_by(uname: ENV['REMOTE_USER'])
+    if params.include? "brothers_personal"
+      if @brother.update_attributes(brother_personal_params)
+        flash[:success] = "Information updated"
+      end
+      render 'profile'
+    end
+    if params.include? "brothers_mit"
+      if @brother.update_attributes(brother_mit_params)
+        flash[:success] = "Information updated"
+      end
+      render 'profile'
+    end
+    if params.include? "brothers_dke"
+      if @brother.update_attributes(brother_dke_params)
+        flash[:success] = "Information updated"
+      end
+      render 'profile'
+    end
   end
   
   def index

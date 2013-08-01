@@ -74,65 +74,64 @@
 		</div>
 	</div>
 </div>
-<form name="personal" method="post" enctype="multipart/form-data">
-	<div id="editPersonal" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-header">
-      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      		<h3 id="name_year"><?php echo $personal['first_name'] . " " . $personal['last_name'];?></h3>
-     	</div>
-     	<div class="modal-body">
-	      	<p><b>Profile Picture:&nbsp</b><input type="file" name="file" id="file"><br>
-	      	<br><b>Hometown:</b> <?php echo "<input type='text' name='hometown' value='" . $personal['hometown'] . "'>";?>
-	     	<br><b>Phone Number:</b> <?php echo "<input type='text' name='phone' value='" . $personal['phone'] . "'>";?>
-	      	<br><b>Favorite Quote:</b> <?php echo "<input type='text' name='quote' value='" . $personal['quote'] . "'>";?>
-	      	<br><b>Biography:</b> <?php echo "<textarea name='bio' rows='3' style='width:400px'>" . $personal['bio'] . "</textarea>";?>
-     	</div>
-     	<div class="modal-footer">
-      		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      		<button class="btn btn-primary" type="submit" name="tab" value="personal">Save changes</button>
-     	</div>
-    </div>
-</form>
-<form name="mit" method="post" enctype="multipart/form-data">
-	<div id="editMIT" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-header">
-      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      		<h3 id="name_year"><?php echo $personal['first_name'] . " " . $personal['last_name'];?></h3>
-     	</div>
-     	<div class="modal-body">
-      		<br><b>Major:</b> <?php echo "<input type='text' name='majors' value='" . $mit_info['majors'] . "'>";?>
-      		<br><b>Minor:</b> <?php echo "<input type='text' name='minors' value='" . $mit_info['minors'] . "'>";?>
-      		<br><b>Concentration:</b> <?php echo "<input type='text' name='concentration' value='" . $mit_info['concentration'] . "'>";?>
-      		<br><b>Extracurricular Activities:</b> <?php echo "<input type='text' name='extracurriculars' value='" . $mit_info['extracurriculars'] . "'>";?>
-      		<br><b>Interests/Expertise?:</b> <?php echo "<input type='text' name='interests' value='" . $mit_info['interests'] . "'>";?>
-      		<br><b>UROPs:</b> <?php echo "<input type='text' name='urops' value='" . $mit_info['urops'] . "'>";?>
-      		<br><b>Internships:</b> <?php echo "<input type='text' name='internships' value='" . $mit_info['internships'] . "'>";?>
-      		<br><b>Favorite MIT Classes:</b> <?php echo "<input type='text' name='fav_classes' value='" . $mit_info['fav_classes'] . "'>";?>
-     	</div>
-     	<div class="modal-footer">
-      		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      		<button class="btn btn-primary" type="submit" name="tab" value="mit">Save changes</button>
-     	</div>
-	</div>
-</form>
-<form name="dke" method="post" enctype="multipart/form-data">
-	<div id="editDKE" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-header">
-      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      		<h3 id="name_year"><?php echo $personal['first_name'] . " " . $personal['last_name'];?></h3>
-     	</div>
-     	<div class="modal-body">
-      		<br><b>Pledge Name:</b> <?php echo "<input type='text' name='pname' value='" . $dke_info['pname'] . "'>";?>
-      		<br><b>Pledge Project:</b> <?php echo "<input type='text' name='project' value='" . $dke_info['project'] . "'>";?>
-      		<br><b>Big Brother:</b> <?php echo "<input type='text' name='big' value='" . brother::get_name($dke_info['big']) . "'>";?>
-      		<br><b>Little Brother:</b>
-      		<br><b>Current Positions:</b> <?php echo "<input type='text' name='cur_pos' value='" . $dke_info['cur_pos'] . "'>";?>
-      		<br><b>Positions Held:</b> <?php echo "<input type='text' name='past_pos' value='" . $dke_info['past_pos'] . "'>";?>
-      		<br><b>Residence:</b> <?php echo "<input type='text' name='residence' value='" . $dke_info['residence'] . "'>";?>
-     	</div>
-     	<div class="modal-footer">
-      		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      		<button class="btn btn-primary" type="submit" name="tab" value="dke">Save changes</button>
-     	</div>
-    </div>
-</form>
+<div id="editPersonal" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+  		<h3 id="name_year"><%=@brother.full_name%>: Personal</h3>
+ 	</div>
+ 	<%= form_for(@brother, options={url: "/profile"}) do |f|%>
+ 	<div class="modal-body">
+      	Hometown: <%= f.text_field :hometown %><br>
+  		Phone Number: <%= f.text_field :phone %><br>			
+		Favorite Quote: <%= f.text_field :quote %><br>
+		Bio: <%= f.text_area :bio %><br>
+ 	</div>
+ 	<div class="modal-footer">
+  		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  		<%= f.submit "Save Changes", class: "btn btn-primary" %>
+ 	</div>
+ 	<%end%>
+</div>
+<div id="editMIT" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+  		<h3 id="name_year"><%=@brother.full_name%>: MIT</h3>
+ 	</div>
+ 	<%= form_for(@brother_mit, options={url: "/profile"}) do |f_mit|%>
+ 	<div class="modal-body">
+   		Majors: <%= f_mit.text_field :majors%><br>
+   		Minors: <%= f_mit.text_field :minors%><br>
+   		Concentration: <%= f_mit.text_field :concentration%><br>
+		Extracurricular Activities: <%= f_mit.text_field :extracurriculars%><br>
+   		Interests: <%= f_mit.text_field :interests%><br>
+   		UROPs: <%= f_mit.text_field :urops%><br>
+   		Internships: <%= f_mit.text_field :internships%><br>
+   		Favorite MIT Classes: <%= f_mit.text_field :fav_classes%><br>
+ 	</div>
+ 	<div class="modal-footer">
+  		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  		<%= f_mit.submit "Save Changes", class: "btn btn-primary" %>
+ 	</div>
+ 	<%end%>
+</div>
+<div id="editDKE" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+  		<h3 id="name_year"><%=@brother.full_name%>: DKE</h3>
+ 	</div>
+ 	<%= form_for(@brother_dke, options={url: "/profile"}) do |f_dke|%>
+ 	<div class="modal-body">
+   		Pledge Name: <%= f_dke.text_field :pname%><br>
+		Pledge Project: <%= f_dke.text_field :project%><br>
+		Big Brother: <%= get_big(f_dke.text_field :big) %><br>
+		Little Brothers: <%= get_littles(f_dke.text_field :littles)%><br>
+    	Current Positions: <%= f_dke.text_field :cur_pos%><br>
+		Positions Held: <%= f_dke.text_field :past_pos%><br>
+		Residence: <%= f_dke.text_field :residence%><br>
+ 	</div>
+ 	<div class="modal-footer">
+  		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  		<%= f_dke.submit "Save Changes", class: "btn btn-primary" %>
+ 	</div>
+ 	<%end%>
+</div>
