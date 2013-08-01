@@ -1,5 +1,9 @@
 class BrothersController < ApplicationController
   def profile
+    ENV['REMOTE_USER'] = 'wallace4' if !Rails.env.production?
+    @brother = BrothersPersonal.find_by(uname: ENV['REMOTE_USER'])
+    @brother_mit = BrothersMit.find_by(uname: ENV['REMOTE_USER'])
+    @brother_dke = BrothersDke.find_by(uname: ENV['REMOTE_USER'])
   end
   
   def index
@@ -20,4 +24,38 @@ class BrothersController < ApplicationController
     @brother_mit = BrothersMit.find_by(uname: params[:id])
     @brother_dke = BrothersDke.find_by(uname: params[:id])
   end
+  
+  def edit
+    @brother = BrothersPersonal.find_by(uname: params[:id])
+    @brother_mit = BrothersMit.find_by(uname: params[:id])
+    @brother_dke = BrothersDke.find_by(uname: params[:id])
+  end
+  
+  def update
+    @brother = BrothersPersonal.find_by(uname: params[:id])
+    @brother_mit = BrothersMit.find_by(uname: params[:id])
+    @brother_dke = BrothersDke.find_by(uname: params[:id])
+    if @brother.update_attributes(brother_personal_params) &&
+      @brother_mit.update_attributes(brother_mit_params) &&
+      @brother_dke.update_attributes(brother_dke_params)
+      # Handle a successful update.
+    else
+      render 'edit'
+    end
+  end
+  
+  private
+  
+    def brother_personal_params
+      params.require(:brothers_personal).permit(:hometown, :phone, :quote, :bio)
+    end
+    
+    def brother_mit_params
+      params.require(:brothers_mit).permit(:majors, :minors, :concentration, :extracurriculars, :interests, :urops, :internships, :fav_classes)
+    end
+    
+    def brother_dke_params
+      params.require(:brothers_dke).permit(:pname, :project, :big, :littles, :cur_pos, :past_pos, :residence)
+    end
+  
 end

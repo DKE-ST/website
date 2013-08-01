@@ -1,7 +1,6 @@
-RailsSite::Application.routes.draw do
-  
+RailsSite::Application.routes.draw do 
   resources :brothers
-  match '/profile', to: 'brothers#profile' , via: 'get'
+  match '/profile', to: 'brothers#profile' , via: [:get, :patch]
   #Home Page
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,1 +1,138 @@
 <% provide(:title , 'Profile')%>
+
+<div class="row me">
+	<div class="span4">
+		<img class="pic" src="<%="#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
+		<h2 class="visible-phone"><%= @brother.full_name%></h2>
+    </div>
+    <div class="span8 hidden-phone" align="left">
+    	<h2><%= @brother.full_name%></h2>
+    	<table>
+    		<tr>
+    			<td style="padding:0px;">
+    				<div class="row">
+    					<div class="span4 mit">
+    						<br><h3>MIT class of <%= @brother_mit.year%></h3>
+    					</div>
+    					<div class="span4 dke">
+    						<br><h3>Pledge class of <%= @brother_dke.p_class%></h3></td>
+    					</div>
+    				</div>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="span12 profile_pg">
+     	<ul class="nav nav-tabs" id="myTab">
+      		<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+      		<li><a href="#personal" data-toggle="tab">Personal</a></li>
+      		<li><a href="#mit_info" data-toggle="tab">MIT</a></li>
+      		<li><a href="#dke_info" data-toggle="tab">DKE</a></li>
+    	</ul>
+     	<div class="tab-content">
+	      	<div class="tab-pane info active" id="activity">
+	       		<!--#TODO-->
+	      	</div>
+	      	<div class="tab-pane info" id="personal">
+		      	<div class="row">
+		      		<div class="span12">
+		      			<div align="right" class="edit_btn"><button href="#editPersonal" class="btn btn-primary" data-toggle="modal">edit</button></div>
+		             	<p><b>Hometown:</b> <%= @brother.hometown%>
+		    			<br><b>Email Address:</b> <%= @brother.uname%>@mit.edu
+		    			<br><b>Phone Number:</b> <%= @brother.phone%>
+		    			<p><b>Activities:</b> <%= @brother.activities%>
+		    			<br><b>Hobbies:</b> <%= @brother.hobbies%>
+		    			<p><b>Favorite Quote:</b> <%= @brother.quote%>
+		    			<br><b>Favorite Movie:</b> <%= @brother.movie%>
+		    			<br><b>Favorite Pro Team:</b> <%= @brother.pro_team%>
+		    			<br><b>Favorite College Team:</b>  <%= @brother.college_team%>
+		    			<P><b>Bio:</b>  <%= @brother.bio%>
+		      		</div>
+		      	</div>
+			</div>
+	      	<div class="tab-pane info" id="mit_info">
+	       		<div align="right" class="edit_btn"><button href="#editMIT" class="btn btn-primary" data-toggle="modal">edit</button></div>
+	       		<p><b>Majors:</b> <%= @brother_mit.majors%>
+	       		<br><b>Minors:</b> <%= @brother_mit.minors%>
+	       		<br><b>Concentration:</b> <%= @brother_mit.concentration%>
+				<br><b>Extracurricular Activities:</b> <%= @brother_mit.extracurriculars%>
+	       		<br><b>Interests:</b> <%= @brother_mit.interests%>
+	       		<br><b>UROPs:</b> <%= @brother_mit.urops%>
+	       		<br><b>Internships:</b> <%= @brother_mit.internships%>
+	       		<br><b>Favorite MIT Classes:</b> <%= @brother_mit.fav_classes%>
+	      	</div>
+	      	<div class="tab-pane info" id="dke_info">
+	       		<div align="right" class="edit_btn"><button href="#editDKE" class="btn btn-primary" data-toggle="modal">edit</button></div>
+	       		<p><b>Pledge Name:</b> <%= @brother_dke.pname%>
+	   			<br><b>Pledge Project:</b> <%= @brother_dke.project%>
+	   			<br><b>Big Brother:</b> <%= get_big(@brother_dke.big) %>
+	   			<br><b>Little Brothers:</b> <%= get_littles(@brother_dke.littles)%>
+	        	<br><b>Current Positions:</b> <%= @brother_dke.cur_pos%>
+	   			<br><b>Positions Held:</b> <%= @brother_dke.past_pos%>
+	   			<br><b>Residence:</b> <%= @brother_dke.residence%>
+	      	</div>
+		</div>
+	</div>
+</div>
+<form name="personal" method="post" enctype="multipart/form-data">
+	<div id="editPersonal" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-header">
+      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      		<h3 id="name_year"><?php echo $personal['first_name'] . " " . $personal['last_name'];?></h3>
+     	</div>
+     	<div class="modal-body">
+	      	<p><b>Profile Picture:&nbsp</b><input type="file" name="file" id="file"><br>
+	      	<br><b>Hometown:</b> <?php echo "<input type='text' name='hometown' value='" . $personal['hometown'] . "'>";?>
+	     	<br><b>Phone Number:</b> <?php echo "<input type='text' name='phone' value='" . $personal['phone'] . "'>";?>
+	      	<br><b>Favorite Quote:</b> <?php echo "<input type='text' name='quote' value='" . $personal['quote'] . "'>";?>
+	      	<br><b>Biography:</b> <?php echo "<textarea name='bio' rows='3' style='width:400px'>" . $personal['bio'] . "</textarea>";?>
+     	</div>
+     	<div class="modal-footer">
+      		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      		<button class="btn btn-primary" type="submit" name="tab" value="personal">Save changes</button>
+     	</div>
+    </div>
+</form>
+<form name="mit" method="post" enctype="multipart/form-data">
+	<div id="editMIT" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-header">
+      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      		<h3 id="name_year"><?php echo $personal['first_name'] . " " . $personal['last_name'];?></h3>
+     	</div>
+     	<div class="modal-body">
+      		<br><b>Major:</b> <?php echo "<input type='text' name='majors' value='" . $mit_info['majors'] . "'>";?>
+      		<br><b>Minor:</b> <?php echo "<input type='text' name='minors' value='" . $mit_info['minors'] . "'>";?>
+      		<br><b>Concentration:</b> <?php echo "<input type='text' name='concentration' value='" . $mit_info['concentration'] . "'>";?>
+      		<br><b>Extracurricular Activities:</b> <?php echo "<input type='text' name='extracurriculars' value='" . $mit_info['extracurriculars'] . "'>";?>
+      		<br><b>Interests/Expertise?:</b> <?php echo "<input type='text' name='interests' value='" . $mit_info['interests'] . "'>";?>
+      		<br><b>UROPs:</b> <?php echo "<input type='text' name='urops' value='" . $mit_info['urops'] . "'>";?>
+      		<br><b>Internships:</b> <?php echo "<input type='text' name='internships' value='" . $mit_info['internships'] . "'>";?>
+      		<br><b>Favorite MIT Classes:</b> <?php echo "<input type='text' name='fav_classes' value='" . $mit_info['fav_classes'] . "'>";?>
+     	</div>
+     	<div class="modal-footer">
+      		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      		<button class="btn btn-primary" type="submit" name="tab" value="mit">Save changes</button>
+     	</div>
+	</div>
+</form>
+<form name="dke" method="post" enctype="multipart/form-data">
+	<div id="editDKE" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-header">
+      		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      		<h3 id="name_year"><?php echo $personal['first_name'] . " " . $personal['last_name'];?></h3>
+     	</div>
+     	<div class="modal-body">
+      		<br><b>Pledge Name:</b> <?php echo "<input type='text' name='pname' value='" . $dke_info['pname'] . "'>";?>
+      		<br><b>Pledge Project:</b> <?php echo "<input type='text' name='project' value='" . $dke_info['project'] . "'>";?>
+      		<br><b>Big Brother:</b> <?php echo "<input type='text' name='big' value='" . brother::get_name($dke_info['big']) . "'>";?>
+      		<br><b>Little Brother:</b>
+      		<br><b>Current Positions:</b> <?php echo "<input type='text' name='cur_pos' value='" . $dke_info['cur_pos'] . "'>";?>
+      		<br><b>Positions Held:</b> <?php echo "<input type='text' name='past_pos' value='" . $dke_info['past_pos'] . "'>";?>
+      		<br><b>Residence:</b> <?php echo "<input type='text' name='residence' value='" . $dke_info['residence'] . "'>";?>
+     	</div>
+     	<div class="modal-footer">
+      		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      		<button class="btn btn-primary" type="submit" name="tab" value="dke">Save changes</button>
+     	</div>
+    </div>
+</form>

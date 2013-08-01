@@ -1,0 +1,70 @@
+<% provide(:title , "Edit Brother Information: #{@brother.full_name}")%>
+
+<div class="row me">
+	<div class="span4">
+		<img class="pic" src="<%="#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
+		<h2 class="visible-phone"><%= @brother.full_name%></h2>
+    </div>
+    <div class="span8 hidden-phone" align="left">
+    	<h2><%= @brother.full_name%></h2>
+    	<table>
+    		<tr>
+    			<td style="padding:0px;">
+    				<div class="row">
+    					<div class="span4 mit">
+    						<br><h3>MIT class of <%= @brother_mit.year%></h3>
+    					</div>
+    					<div class="span4 dke">
+    						<br><h3>Pledge class of <%= @brother_dke.p_class%></h3></td>
+    					</div>
+    				</div>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="span12 profile_pg">
+    	<%= form_for(@brother, options={url: "#{brother_path}#update"}) do |f|%>
+	  	<div class="row edit">
+	  		<div class="span4">
+	  			<center><u><h3>Personal</h3></u></center>
+	  			<%= render_errors(@brother)%>
+	  			Hometown: <%= f.text_field :hometown %><br>
+	  			Phone Number: <%= f.text_field :phone %><br>			
+			    Favorite Quote: <%= f.text_field :quote %><br>
+			    Bio: <%= f.text_area :bio %><br>
+	  		</div>
+	      	<div class="span4">
+	      		<center><u><h3>MIT</h3></u></center>
+	      		<%= fields_for @brother_mit do |f_mit|%>
+	      		<%= render_errors(@brother_mit)%>
+	       		Majors: <%= f_mit.text_field :majors%><br>
+	       		Minors: <%= f_mit.text_field :minors%><br>
+	       		Concentration: <%= f_mit.text_field :concentration%><br>
+				Extracurricular Activities: <%= f_mit.text_field :extracurriculars%><br>
+	       		Interests: <%= f_mit.text_field :interests%><br>
+	       		UROPs: <%= f_mit.text_field :urops%><br>
+	       		Internships: <%= f_mit.text_field :internships%><br>
+	       		Favorite MIT Classes: <%= f_mit.text_field :fav_classes%><br>
+	       		<%end%>
+	      	</div>
+	      	<div class="span4">
+	      		<center><u><h3>DKE</h3></u></center>
+	      		<%= fields_for @brother_dke do |f_dke|%>
+	      		<%= render_errors(@brother_dke)%>
+	       		Pledge Name: <%= f_dke.text_field :pname%><br>
+	   			Pledge Project: <%= f_dke.text_field :project%><br>
+	   			Big Brother: <%= get_big(f_dke.text_field :big) %><br>
+	   			Little Brothers: <%= get_littles(f_dke.text_field :littles)%><br>
+	        	Current Positions: <%= f_dke.text_field :cur_pos%><br>
+	   			Positions Held: <%= f_dke.text_field :past_pos%><br>
+	   			Residence: <%= f_dke.text_field :residence%><br>
+	   			<%end%>
+	      	</div>
+	      	<div class='span10'></div>
+			<div class="span2">
+				 <%= f.submit "Save Changes", class: "btn btn-primary" %>
+			</div>
+			<%end%>
+		</div>
+	</div>
+</div>
