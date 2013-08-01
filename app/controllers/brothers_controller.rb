@@ -38,7 +38,8 @@ class BrothersController < ApplicationController
     if @brother.update_attributes(brother_personal_params) &&
       @brother_mit.update_attributes(brother_mit_params) &&
       @brother_dke.update_attributes(brother_dke_params)
-      # Handle a successful update.
+      flash[:success] = "Information updated"
+      redirect_to @brother.uname
     else
       render 'edit'
     end
