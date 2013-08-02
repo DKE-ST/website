@@ -75,16 +75,17 @@ class BrothersController < ApplicationController
     end
     
     def brother_dke_params
-      set_big(params[:brothers_dke][:big])
+      params[:brothers_dke][:big] = set_big(params[:brothers_dke][:big])
       params.require(:brothers_dke).permit(:pname, :project, :big, :littles, :cur_pos, :past_pos, :residence)
     end
     
     def set_big(big_name)
       begin
-        big_name = BrothersPersonal.select('uname','first_name','last_name').find_by(first_name: 'Justin', last_name: "Wallace").uname
+        name_parts=big_name.split
+        return BrothersPersonal.select('uname','first_name','last_name').find_by(first_name: name_parts[0], last_name: name_parts[1]).uname
       rescue
+        return big_name
       end
-      return nil
     end
   
 end
