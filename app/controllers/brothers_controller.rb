@@ -66,6 +66,10 @@ class BrothersController < ApplicationController
     end
   end
   
+  def usrmgmt
+    
+  end
+  
   private
   
   def upload(full_name)
@@ -109,6 +113,13 @@ class BrothersController < ApplicationController
         end
       end
       return output.join(",")
+    end
+    
+    def get_user_groups
+      File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
+      #File.open('/etc/apache2/dke_users.groups').each_line do |line|
+        
+      end
     end
   
 end

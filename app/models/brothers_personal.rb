@@ -9,7 +9,7 @@ class BrothersPersonal < ActiveRecord::Base
     validates :first_name, presence: true
     #phone: string
     VALID_PHONE_NUM = /(^$|[\d]{10})/
-    validates :phone, format: {with: VALID_PHONE_NUM}
+    validates :phone, format: {with: VALID_PHONE_NUM}, length: { maximum: 10 }
     #bio: text
     #activities: text (depricated:replaced by BrothersMit.extracurriculars)
     #hobbies: text (depricated:replaced by BrothersMit.interests)

@@ -6,6 +6,10 @@ gem 'rails', '4.0.0'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 
+#used for creating mit student users
+gem 'net-ldap'
+gem 'activeldap'
+
 group :development, :test do
 gem 'rspec-rails', '2.13.1'
 end
