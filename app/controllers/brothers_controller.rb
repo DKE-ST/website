@@ -1,4 +1,5 @@
 class BrothersController < ApplicationController
+  
   def profile
     ENV['REMOTE_USER'] = 'wallace4' if !Rails.env.production?
     @brother = BrothersPersonal.find_by(uname: ENV['REMOTE_USER'])
@@ -74,6 +75,7 @@ class BrothersController < ApplicationController
     end
     
     def brother_dke_params
+      set_big(params[:brothers_dke][:big])
       params.require(:brothers_dke).permit(:pname, :project, :big, :littles, :cur_pos, :past_pos, :residence)
     end
   
