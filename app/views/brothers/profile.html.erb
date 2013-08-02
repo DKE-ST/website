@@ -83,6 +83,7 @@
  	</div>
  	<%= form_for(@brother, options={url: "profile"}) do |f|%>
  	<div class="modal-body">
+ 		Profile Picture:<%= f.file_field :picture%><br>
       	Hometown: <%= f.text_field :hometown %><br>
   		Phone Number: <%= f.text_field :phone %><br>			
 		Favorite Quote: <%= f.text_field :quote %><br>
