@@ -125,7 +125,9 @@
  	<div class="modal-body">
    		Pledge Name: <%= f_dke.text_field :pname%><br>
 		Pledge Project: <%= f_dke.text_field :project%><br>
+		<% @brother_dke.big = uname_to_name(@brother_dke.big)%>
 		Big Brother: <%= get_big(f_dke.text_field :big) %><br>
+		<% @brother_dke.littles = uname_to_name(@brother_dke.littles)%>
 		Little Brothers: <%= get_littles(f_dke.text_field :littles)%><br>
     	Current Positions: <%= f_dke.text_field :cur_pos%><br>
 		Positions Held: <%= f_dke.text_field :past_pos%><br>

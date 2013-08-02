@@ -1,5 +1,17 @@
 module BrothersHelper
   
+  def uname_to_name(unames)
+    output = Array.new([])
+    unames.split(',').each do |uname|
+      begin
+        output << BrothersPersonal.select('uname','first_name','last_name').find_by(uname: uname).full_name
+      rescue
+        output << uname
+      end
+    end
+    return output.join(", ")
+  end
+  
   def render_errors(user)
     provide(@user = user)
     return (render "shared/error_messages").html_safe

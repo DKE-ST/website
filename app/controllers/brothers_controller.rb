@@ -76,6 +76,7 @@ class BrothersController < ApplicationController
     
     def brother_dke_params
       params[:brothers_dke][:big] = set_big(params[:brothers_dke][:big])
+      params[:brothers_dke][:littles] = set_little(params[:brothers_dke][:littles])
       params.require(:brothers_dke).permit(:pname, :project, :big, :littles, :cur_pos, :past_pos, :residence)
     end
     
@@ -86,6 +87,19 @@ class BrothersController < ApplicationController
       rescue
         return big_name
       end
+    end
+    
+    def set_little(little_names)
+      output= Array.new([])
+      little_names.split(", ").each do |name| 
+        begin
+          name_parts=name.split
+          output << BrothersPersonal.select('uname','first_name','last_name').find_by(first_name: name_parts[0], last_name: name_parts[1]).uname
+        rescue
+          output << name
+        end
+      end
+      return output.join(",")
     end
   
 end
