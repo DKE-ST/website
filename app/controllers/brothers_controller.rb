@@ -55,6 +55,7 @@ class BrothersController < ApplicationController
     @brother = BrothersPersonal.find_by(uname: params[:id])
     @brother_mit = BrothersMit.find_by(uname: params[:id])
     @brother_dke = BrothersDke.find_by(uname: params[:id])
+    upload(@brother.full_name.sub(" ","_").downcase) if params.require(:brothers_personal).include? "picture"
     if @brother.update_attributes(brother_personal_params) &&
       @brother_mit.update_attributes(brother_mit_params) &&
       @brother_dke.update_attributes(brother_dke_params)
