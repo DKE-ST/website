@@ -6,7 +6,7 @@ class BrothersController < ApplicationController
     @brother_mit = BrothersMit.find_by(uname: ENV['REMOTE_USER'])
     @brother_dke = BrothersDke.find_by(uname: ENV['REMOTE_USER'])
     if params.include? "brothers_personal"
-      upload(@brother.full_name) if params.require(:brothers_personal).include? "picture"
+      upload(@brother.full_name.sub(" ","_").downcase) if params.require(:brothers_personal).include? "picture"
       if @brother.update_attributes(brother_personal_params)
         flash[:success] = "Information updated"
       end
@@ -69,8 +69,8 @@ class BrothersController < ApplicationController
   
   def upload(full_name)
     uploaded_io=params[:brothers_personal][:picture]
-    File.open(Rails.root.join("public", "assets", "brothers_img", "#{full_name}.jpg"), "w") do |file|
-      file.write(upladed_io.read)
+    File.open(Rails.root.join("public", "assets", "brothers_img", "#{full_name}.jpg"), "wb") do |file|
+      file.write(uploaded_io.read)
     end
   end
   
