@@ -4,7 +4,7 @@
 <%= render_errors(@brother_dke)%>
 <div class="row me">
 	<div class="span4">
-		<img class="pic" src="<%="#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
+		<%= image_tag("#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}.jpg", :class => "pic") %>
 		<h2 class="visible-phone"><%= @brother.full_name%></h2>
     </div>
     <div class="span8 hidden-phone" align="left">
