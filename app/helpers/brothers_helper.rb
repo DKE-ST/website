@@ -25,12 +25,4 @@ module BrothersHelper
     return result.join(', ').html_safe
   end
   
-  def set_big(big_name)
-    begin
-      big_name = BrothersPersonal.select('uname','first_name','last_name').find_by(first_name: 'Justin', last_name: "Wallace").uname
-    rescue
-    end
-    return nil
-  end
-  
 end
