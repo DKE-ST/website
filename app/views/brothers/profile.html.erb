@@ -1,23 +1,27 @@
 <% provide(:title , 'Profile')%>
-<%= render_errors(@brother)%>
-<%= render_errors(@brother_mit)%>
-<%= render_errors(@brother_dke)%>
+
 <div class="row me">
 	<div class="span4">
-		<%= image_tag("#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}.jpg", :class => "pic") %>
-		<h2 class="visible-phone"><%= @brother.full_name%></h2>
+		<%= image_tag(@brother.pic_path(root_path), :class => "pic") %>
+		<span class="visible-phone">
+			<h2><%= @brother.personal.full_name%></h2>
+			<%= link_to "Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary pull-right"%>
+		</span>
     </div>
     <div class="span8 hidden-phone" align="left">
-    	<h2><%= @brother.full_name%></h2>
+    	<h2>
+    		<%= @brother.personal.full_name%>
+    		<%= link_to "Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary btn-edit pull-right"%>
+    	</h2>
     	<table>
     		<tr>
     			<td style="padding:0px;">
     				<div class="row">
     					<div class="span4 mit">
-    						<br><h3>MIT class of <%= @brother_mit.year%></h3>
+    						<br><h3>MIT class of <%= @brother.mit.year%></h3>
     					</div>
     					<div class="span4 dke">
-    						<br><h3>Pledge class of <%= @brother_dke.p_class%></h3></td>
+    						<br><h3>Pledge class of <%= @brother.dke.p_class%></h3></td>
     					</div>
     				</div>
     			</td>
@@ -38,105 +42,38 @@
 	      	<div class="tab-pane info" id="personal">
 		      	<div class="row">
 		      		<div class="span12">
-		      			<div align="right" class="edit_btn"><button href="#editPersonal" class="btn btn-primary" data-toggle="modal">edit</button></div>
-		             	<p><b>Hometown:</b> <%= @brother.hometown%>
-		    			<br><b>Email Address:</b> <%= @brother.uname%>@mit.edu
-		    			<br><b>Phone Number:</b> <%= @brother.phone%>
-		    			<p><b>Activities:</b> <%= @brother.activities%>
-		    			<br><b>Hobbies:</b> <%= @brother.hobbies%>
-		    			<p><b>Favorite Quote:</b> <%= @brother.quote%>
-		    			<br><b>Favorite Movie:</b> <%= @brother.movie%>
-		    			<br><b>Favorite Pro Team:</b> <%= @brother.pro_team%>
-		    			<br><b>Favorite College Team:</b>  <%= @brother.college_team%>
-		    			<P><b>Bio:</b>  <%= @brother.bio%>
+		      			<p><b>Hometown:</b> <%= @brother.personal.hometown%>
+		    			<br><b>Email Address:</b> <%= @brother.personal.uname%>@mit.edu
+		    			<br><b>Phone Number:</b> <%= @brother.personal.phone%>
+		    			<p><b>Activities:</b> <%= @brother.personal.activities%>
+		    			<br><b>Hobbies:</b> <%= @brother.personal.hobbies%>
+		    			<p><b>Favorite Quote:</b> <%= @brother.personal.quote%>
+		    			<br><b>Favorite Movie:</b> <%= @brother.personal.movie%>
+		    			<br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%>
+		    			<br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%>
+		    			<P><b>Bio:</b>  <%= @brother.personal.bio%>
 		      		</div>
 		      	</div>
 			</div>
 	      	<div class="tab-pane info" id="mit_info">
-	       		<div align="right" class="edit_btn"><button href="#editMIT" class="btn btn-primary" data-toggle="modal">edit</button></div>
-	       		<p><b>Majors:</b> <%= @brother_mit.majors%>
-	       		<br><b>Minors:</b> <%= @brother_mit.minors%>
-	       		<br><b>Concentration:</b> <%= @brother_mit.concentration%>
-				<br><b>Extracurricular Activities:</b> <%= @brother_mit.extracurriculars%>
-	       		<br><b>Interests:</b> <%= @brother_mit.interests%>
-	       		<br><b>UROPs:</b> <%= @brother_mit.urops%>
-	       		<br><b>Internships:</b> <%= @brother_mit.internships%>
-	       		<br><b>Favorite MIT Classes:</b> <%= @brother_mit.fav_classes%>
+	       		<p><b>Majors:</b> <%= @brother.mit.majors%>
+	       		<br><b>Minors:</b> <%= @brother.mit.minors%>
+	       		<br><b>Concentration:</b> <%= @brother.mit.concentration%>
+				<br><b>Extracurricular Activities:</b> <%= @brother.mit.extracurriculars%>
+	       		<br><b>Interests:</b> <%= @brother.mit.interests%>
+	       		<br><b>UROPs:</b> <%= @brother.mit.urops%>
+	       		<br><b>Internships:</b> <%= @brother.mit.internships%>
+	       		<br><b>Favorite MIT Classes:</b> <%= @brother.mit.fav_classes%>
 	      	</div>
 	      	<div class="tab-pane info" id="dke_info">
-	       		<div align="right" class="edit_btn"><button href="#editDKE" class="btn btn-primary" data-toggle="modal">edit</button></div>
-	       		<p><b>Pledge Name:</b> <%= @brother_dke.pname%>
-	   			<br><b>Pledge Project:</b> <%= @brother_dke.project%>
-	   			<br><b>Big Brother:</b> <%= get_big(@brother_dke.big) %>
-	   			<br><b>Little Brothers:</b> <%= get_littles(@brother_dke.littles)%>
-	        	<br><b>Current Positions:</b> <%= @brother_dke.cur_pos%>
-	   			<br><b>Positions Held:</b> <%= @brother_dke.past_pos%>
-	   			<br><b>Residence:</b> <%= @brother_dke.residence%>
+	       		<p><b>Pledge Name:</b> <%= @brother.dke.pname%>
+	   			<br><b>Pledge Project:</b> <%= @brother.dke.project%>
+	   			<br><b>Big Brother:</b> <%= get_big(@brother.dke.big) %>
+	   			<br><b>Little Brothers:</b> <%= get_littles(@brother.dke.littles)%>
+	        	<br><b>Current Positions:</b> <%= @brother.dke.cur_pos%>
+	   			<br><b>Positions Held:</b> <%= @brother.dke.past_pos%>
+	   			<br><b>Residence:</b> <%= @brother.dke.residence%>
 	      	</div>
 		</div>
 	</div>
-</div>
-<div id="editPersonal" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-  		<h3 id="name_year"><%=@brother.full_name%>: Personal</h3>
- 	</div>
- 	<%= form_for(@brother, options={url: "profile"}) do |f|%>
- 	<div class="modal-body">
- 		Profile Picture:<%= f.file_field :picture%><br>
-      	Hometown: <%= f.text_field :hometown %><br>
-  		Phone Number: <%= f.text_field :phone %><br>			
-		Favorite Quote: <%= f.text_field :quote %><br>
-		Bio: <%= f.text_area :bio %><br>
- 	</div>
- 	<div class="modal-footer">
-  		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  		<%= f.submit "Save Changes", class: "btn btn-primary" %>
- 	</div>
- 	<%end%>
-</div>
-<div id="editMIT" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-  		<h3 id="name_year"><%=@brother.full_name%>: MIT</h3>
- 	</div>
- 	<%= form_for(@brother_mit, options={url: "profile"}) do |f_mit|%>
- 	<div class="modal-body">
-   		Majors: <%= f_mit.text_field :majors%><br>
-   		Minors: <%= f_mit.text_field :minors%><br>
-   		Concentration: <%= f_mit.text_field :concentration%><br>
-		Extracurricular Activities: <%= f_mit.text_field :extracurriculars%><br>
-   		Interests: <%= f_mit.text_field :interests%><br>
-   		UROPs: <%= f_mit.text_field :urops%><br>
-   		Internships: <%= f_mit.text_field :internships%><br>
-   		Favorite MIT Classes: <%= f_mit.text_field :fav_classes%><br>
- 	</div>
- 	<div class="modal-footer">
-  		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  		<%= f_mit.submit "Save Changes", class: "btn btn-primary" %>
- 	</div>
- 	<%end%>
-</div>
-<div id="editDKE" class="modal hide fade editor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-header">
-  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-  		<h3 id="name_year"><%=@brother.full_name%>: DKE</h3>
- 	</div>
- 	<%= form_for(@brother_dke, options={url: "profile"}) do |f_dke|%>
- 	<div class="modal-body">
-   		Pledge Name: <%= f_dke.text_field :pname%><br>
-		Pledge Project: <%= f_dke.text_field :project%><br>
-		<% @brother_dke.big = uname_to_name(@brother_dke.big)%>
-		Big Brother: <%= get_big(f_dke.text_field :big) %><br>
-		<% @brother_dke.littles = uname_to_name(@brother_dke.littles)%>
-		Little Brothers: <%= get_littles(f_dke.text_field :littles)%><br>
-    	Current Positions: <%= f_dke.text_field :cur_pos%><br>
-		Positions Held: <%= f_dke.text_field :past_pos%><br>
-		Residence: <%= f_dke.text_field :residence%><br>
- 	</div>
- 	<div class="modal-footer">
-  		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  		<%= f_dke.submit "Save Changes", class: "btn btn-primary" %>
- 	</div>
- 	<%end%>
 </div>

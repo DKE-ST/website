@@ -1,21 +1,27 @@
-<% provide(:title , "Brother Information: #{@brother.full_name}")%>
+<% provide(:title , "Brother Information: #{@brother.personal.full_name}")%>
 
 <div class="row me">
 	<div class="span4">
-		<img class="pic" src="<%="#{root_path}assets/brothers_img/#{@brother.first_name.downcase}_#{@brother.last_name.downcase}" %>.jpg"/>
-		<h2 class="visible-phone"><%= @brother.full_name%></h2>
+		<img class="pic" src="<%= @brother.pic_path(root_path) %>"/>
+		<span class="visible-phone">
+			<h2><%= @brother.personal.full_name%></h2>
+			<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary pull-right") if ApacheGroups.in_group("broporn")%>
+		</span>
     </div>
     <div class="span8 hidden-phone" align="left">
-    	<h2><%= @brother.full_name%></h2>
+    	<h2>
+    		<%= @brother.personal.full_name%>
+    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary btn-edit pull-right") if ApacheGroups.in_group("broporn")%>
+    	</h2>
     	<table>
     		<tr>
     			<td style="padding:0px;">
     				<div class="row">
     					<div class="span4 mit">
-    						<br><h3>MIT class of <%= @brother_mit.year%></h3>
+    						<br><h3>MIT class of <%= @brother.mit.year%></h3>
     					</div>
     					<div class="span4 dke">
-    						<br><h3>Pledge class of <%= @brother_dke.p_class%></h3></td>
+    						<br><h3>Pledge class of <%= @brother.dke.p_class%></h3></td>
     					</div>
     				</div>
     			</td>
@@ -32,37 +38,37 @@
     		<div class="tab-pane info active" id="personal">
     			<div class="row">
     				<div class="span12">
-    					<% unless @brother.hometown==""%><p><b>Hometown:</b> <%= @brother.hometown%><%end%>
-    					<br><b>Email Address:</b> <%= @brother.uname%>@mit.edu
-    					<% unless @brother.phone==""%><br><b>Phone Number:</b> <%= @brother.phone%><%end%>
-    					<% unless @brother.activities==""%><p><b>Activities:</b> <%= @brother.activities%><%end%>
-    					<% unless @brother.hobbies==""%><br><b>Hobbies:</b> <%= @brother.hobbies%><%end%>
-    					<% unless @brother.quote==""%><p><b>Favorite Quote:</b> <%= @brother.quote%><%end%>
-    					<% unless @brother.movie==""%><br><b>Favorite Movie:</b> <%= @brother.movie%><%end%>
-    					<% unless @brother.pro_team==""%><br><b>Favorite Pro Team:</b> <%= @brother.pro_team%><%end%>
-    					<% unless @brother.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.college_team%><%end%>
-    					<% unless @brother.bio==""%><P><b>Bio:</b>  <%= @brother.bio%><%end%>
+    					<% unless @brother.personal.hometown==""%><p><b>Hometown:</b> <%= @brother.personal.hometown%><%end%>
+    					<br><b>Email Address:</b> <%= @brother.personal.uname%>@mit.edu
+    					<% unless @brother.personal.phone==""%><br><b>Phone Number:</b> <%= @brother.personal.phone%><%end%>
+    					<% unless @brother.personal.activities==""%><p><b>Activities:</b> <%= @brother.personal.activities%><%end%>
+    					<% unless @brother.personal.hobbies==""%><br><b>Hobbies:</b> <%= @brother.personal.hobbies%><%end%>
+    					<% unless @brother.personal.quote==""%><p><b>Favorite Quote:</b> <%= @brother.personal.quote%><%end%>
+    					<% unless @brother.personal.movie==""%><br><b>Favorite Movie:</b> <%= @brother.personal.movie%><%end%>
+    					<% unless @brother.personal.pro_team==""%><br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%><%end%>
+    					<% unless @brother.personal.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%><%end%>
+    					<% unless @brother.personal.bio==""%><P><b>Bio:</b>  <%= @brother.personal.bio%><%end%>
 					</div>
 				</div>
 			</div>
 			<div class="tab-pane info" id="mit_info">
-				<% unless @brother_mit.majors==""%><p><b>Majors:</b> <%= @brother_mit.majors%><%end%>
-       			<% unless @brother_mit.minors==""%><br><b>Minors:</b> <%= @brother_mit.minors%><%end%>
-       			<% unless @brother_mit.concentration==""%><br><b>Concentration:</b> <%= @brother_mit.concentration%><%end%>
-				<% unless @brother_mit.extracurriculars==""%><br><b>Extracurricular Activities:</b> <%= @brother_mit.extracurriculars%><%end%>
-       			<% unless @brother_mit.interests==""%><br><b>Interests:</b> <%= @brother_mit.interests%><%end%>
-       			<% unless @brother_mit.urops==""%><br><b>UROPs:</b> <%= @brother_mit.urops%><%end%>
-       			<% unless @brother_mit.internships==""%><br><b>Internships:</b> <%= @brother_mit.internships%><%end%>
-       			<% unless @brother_mit.fav_classes==""%><br><b>Favorite MIT Classes:</b> <%= @brother_mit.fav_classes%><%end%>
+				<% unless @brother.mit.majors==""%><p><b>Majors:</b> <%= @brother.mit.majors%><%end%>
+       			<% unless @brother.mit.minors==""%><br><b>Minors:</b> <%= @brother.mit.minors%><%end%>
+       			<% unless @brother.mit.concentration==""%><br><b>Concentration:</b> <%= @brother.mit.concentration%><%end%>
+				<% unless @brother.mit.extracurriculars==""%><br><b>Extracurricular Activities:</b> <%= @brother.mit.extracurriculars%><%end%>
+       			<% unless @brother.mit.interests==""%><br><b>Interests:</b> <%= @brother.mit.interests%><%end%>
+       			<% unless @brother.mit.urops==""%><br><b>UROPs:</b> <%= @brother.mit.urops%><%end%>
+       			<% unless @brother.mit.internships==""%><br><b>Internships:</b> <%= @brother.mit.internships%><%end%>
+       			<% unless @brother.mit.fav_classes==""%><br><b>Favorite MIT Classes:</b> <%= @brother.mit.fav_classes%><%end%>
       		</div>
       		<div class="tab-pane info" id="dke_info">
-            	<% unless @brother_dke.pname==""%><p><b>Pledge Name:</b> <%= @brother_dke.pname%><%end%>
-       			<% unless @brother_dke.project==""%><br><b>Pledge Project:</b> <%= @brother_dke.project%><%end%>
-       			<% unless @brother_dke.big==""%><br><b>Big Brother:</b> <%= get_big(@brother_dke.big) %><%end%>
-       			<% unless @brother_dke.littles==""%><br><b>Little Brothers:</b> <%= get_littles(@brother_dke.littles)%><%end%>
-            	<% unless @brother_dke.cur_pos==""%><br><b>Current Positions:</b> <%= @brother_dke.cur_pos%><%end%>
-       			<% unless @brother_dke.past_pos==""%><br><b>Positions Held:</b> <%= @brother_dke.past_pos%><%end%>
-       			<% unless @brother_dke.residence==""%><br><b>Residence:</b> <%= @brother_dke.residence%><%end%>
+            	<% unless @brother.dke.pname==""%><p><b>Pledge Name:</b> <%= @brother.dke.pname%><%end%>
+       			<% unless @brother.dke.project==""%><br><b>Pledge Project:</b> <%= @brother.dke.project%><%end%>
+       			<% unless @brother.dke.big==""%><br><b>Big Brother:</b> <%= get_big(@brother.dke.big) %><%end%>
+       			<% unless @brother.dke.littles==""%><br><b>Little Brothers:</b> <%= get_littles(@brother.dke.littles)%><%end%>
+            	<% unless @brother.dke.cur_pos==""%><br><b>Current Positions:</b> <%= @brother.dke.cur_pos%><%end%>
+       			<% unless @brother.dke.past_pos==""%><br><b>Positions Held:</b> <%= @brother.dke.past_pos%><%end%>
+       			<% unless @brother.dke.residence==""%><br><b>Residence:</b> <%= @brother.dke.residence%><%end%>
       		</div>
      	</div>
    </div>

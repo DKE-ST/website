@@ -25,13 +25,6 @@ div.info
   text-align:left;
 }
 
-.editor
-{
-  background-color: white;
-  color:black;
-  padding-left:15px;
-}
-
 div.mit
 {
    text-align:center;
@@ -52,12 +45,22 @@ div.dke
    background-image: asset-url("dke_crest.gif");
    background-size:80%;
 }
+
+.edit {
+  text-align:left;
+  textarea {
+    width:90%;
+    height:100px;
+  }
+}
+
+.btn-edit {
+  font-weight:normal;
+  margin-right: 20px;
+}
+
 @media (min-width: 768px)
 {
- div.edit_btn
- {
-  margin-bottom:-30px;
- }
  div.me
  {
    background-color: rgba(7, 7, 7, 0.75);
@@ -99,12 +102,4 @@ div.dke
    margin-top:10px;
    border-radius:10px;
  }
-}
-
-.edit {
-  text-align:left;
-  textarea {
-    width:90%;
-    height:100px;
-  }
 }
