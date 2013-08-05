@@ -1,0 +1,16 @@
+development:
+  host: ldap-too.mit.edu
+  port: 389
+  base: dc=mit,dc=edu
+
+test:
+  host: ldap-too.mit.edu
+  port: 389
+  base: dc=mit,dc=edu
+
+production:
+  host: ldap-too.mit.edu
+  port: 389
+  base: dc=mit,dc=edu
+  method: :tls
+
