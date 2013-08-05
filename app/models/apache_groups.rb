@@ -19,8 +19,7 @@ class ApacheGroups
   
   def self.groups(uname)
     groups=Array([])
-    File.open('/etc/apache2/dke_users.groups').each_line do |line|
-    #File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
+    File.open(group_path).each_line do |line|
       if (line =~/^\w+:\w+/)
         ofset = line.index(':')
         user_list = line[ofset..-1]
@@ -35,8 +34,7 @@ class ApacheGroups
   def self.read
     groups = {"dkebro" => Hash.new, "dkepledge" => Hash.new}
     desc = ""
-    File.open('/etc/apache2/dke_users.groups').each_line do |line|
-    #File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
+    File.open(group_path).each_line do |line|
       if line =~ /#dke(\d{4}|alum)/
         desc = line.match(/(\d{4}|alum)/).to_s
       elsif line =~ /dkebro/
@@ -50,6 +48,13 @@ class ApacheGroups
     groups["dkebro"].except!("alum")
     groups["broporn"].delete("broporn")
     return groups
+  end
+  
+ private
+ 
+  def self.group_path
+    return '/home/justin/webDKE/dke_users.groups' unless Rails.env.production?
+    return '/etc/apache2/dke_users.groups'
   end
   
 end
