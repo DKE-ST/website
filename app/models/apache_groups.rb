@@ -19,7 +19,8 @@ class ApacheGroups
   
   def self.groups(uname)
     groups=Array([])
-    File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
+    File.open('/etc/apache2/dke_users.groups').each_line do |line|
+    #File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
       if (line =~/^\w+:\w+/)
         ofset = line.index(':')
         user_list = line[ofset..-1]
@@ -34,8 +35,8 @@ class ApacheGroups
   def self.read
     groups = {"dkebro" => Hash.new, "dkepledge" => Hash.new}
     desc = ""
-    #File.open('/etc/apache2/dke_users.groups').each_line do |line|
-    File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
+    File.open('/etc/apache2/dke_users.groups').each_line do |line|
+    #File.open('/home/justin/webDKE/dke_users.groups').each_line do |line|
       if line =~ /#dke(\d{4}|alum)/
         desc = line.match(/(\d{4}|alum)/).to_s
       elsif line =~ /dkebro/
