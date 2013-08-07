@@ -1,6 +1,7 @@
 <% provide(:title , "User Management - Add User")%>
 
 <h2>Add User</h2>
+<%= render_errors(@user)%>
 <%= render_errors(@user.personal)%>
 <%= render_errors(@user.mit)%>
 <%= render_errors(@user.dke)%>
@@ -26,7 +27,7 @@
       		<br>Pledge Class:
       		<br><%= f.text_field :p_class%>
       	</div>
-      	<br>Password:<br><%= f.password_field :pswd1%>
+      	<br>Password:<br><%= f.password_field :password%>
       	<br>Confirmation:<br><%= f.password_field :pswd2%>	
       </div>
 

@@ -3,8 +3,8 @@ class Users
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
-  attr_accessor :uname , :first_name, :last_name, :mit_class, :p_class, :student, :group, :pswd1, :pswd2
-  validates :pswd1, presence: true, format: {with: /\A\S+\z/}, length: { minimum: 8 }
+  attr_accessor :uname , :first_name, :last_name, :mit_class, :p_class, :student, :group, :password, :pswd2
+  validates :password, presence: true, format: {with: /\A\S+\z/}, length: { minimum: 8 }
   def initialize(attributes = {})
     if attributes.class == ActionController::Parameters || attributes.class == Hash
       attributes.each do |name, value|
@@ -21,12 +21,13 @@ class Users
   
   def create
     year = nil
-    password = nil
+    pswd = nil
+    return "#{uname} already exists" if Apache.read.to_s.include? uname
     if !student?
-      puts valid?
-      return "Password #{errors.messages[:pswd1].join(', ')}" unless valid?
-      return "Passwords do not match" unless pswd1 == pswd2
-      password = pswd1
+      return "#{uname} is not a valid kerberos" if student=="1"
+      return "" unless valid?
+      return "Passwords do not match" unless password == pswd2
+      pswd = password
     end
     if group != "dkeaffil"
       if student?
@@ -44,7 +45,7 @@ class Users
       mit.save
       dke.save
     end
-    return Apache.add(uname, group, mit_class, password)
+    return Apache.add(uname, group, mit_class, pswd)
   end
   
   def update(params)
@@ -52,12 +53,21 @@ class Users
        mit.update_attributes(brother_mit_params(params)) && 
        dke.update_attributes(brother_dke_params(params))
       if params[:new_pwd]=="1"
-        Apache.password(personal.uname, params[:password])
+        password=params[:password]
+        Apache.password(personal.uname, password) if valid?
+        return valid?
       end
       return true
     else
       return false
     end          
+  end
+  
+  def destroy
+    personal.destroy if personal
+    mit.destroy if mit
+    dke.destroy if dke
+    Apache.rm(uname)
   end
   
   def personal

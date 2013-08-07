@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   def index
+    @affiliates = Apache.read["dkeaffil"] if Apache.read.include? "dkeaffil"
     @brothers= Hash.new
     class_map = BrothersDke.select("uname, p_class").order("p_class DESC")
     name_map = BrothersPersonal.select("first_name, last_name")
@@ -46,9 +47,7 @@ class UsersController < ApplicationController
   
   def destroy
     @user = Users.new(params[:id])
-    @user.personal.destroy if @user.personal
-    @user.mit.destroy if @user.mit
-    @user.dke.destroy if @user.dke
+    @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
   end

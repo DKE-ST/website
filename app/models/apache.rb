@@ -40,7 +40,19 @@ class Apache
   end
   
   def self.rm(uname)
-    
+    apache_users = read
+    if apache_users.to_s.include? uname
+      apache_users.each do | group , subsec |
+        if subsec.class == Array
+          subsec.delete(uname)
+        else
+          subsec.each do | year , names |
+            names.delete(uname)
+          end
+        end
+      end
+      return write(apache_users)
+    end
   end
   
  private
@@ -51,7 +63,7 @@ class Apache
   end
   
   def self.read
-    groups = {"dkebro" => Hash.new, "dkepledge" => Hash.new}
+    groups = {"dkebro" => Hash.new, "dkepledge" => Hash.new, "dkeaffil" => Array.new([])}
     desc = ""
     File.open(group_path).each_line do |line|
       if line =~ /#dke(\d{4}|alum)/
@@ -80,10 +92,9 @@ class Apache
         end
       end      
     end
-    puts apache_string
-    #File.open(group_path , "w") do |file|
-    #  file.write(apache_string)
-    #end
+    File.open(group_path , "w") do |file|
+      file.write(apache_string)
+    end
+    return nil
   end
-  
 end
