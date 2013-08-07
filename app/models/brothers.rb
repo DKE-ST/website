@@ -54,8 +54,8 @@ class Brothers
   end
   
   def brother_dke_params(params)
-    params[:brothers_dke][:big] = set_big(params[:brothers_dke][:big])
-    params[:brothers_dke][:littles] = set_little(params[:brothers_dke][:littles])
+    params[:brothers_dke][:big] = set_big(params[:brothers_dke][:big]) if params[:brothers_dke][:big]
+    params[:brothers_dke][:littles] = set_little(params[:brothers_dke][:littles]) if params[:brothers_dke][:littles]
     params.require(:brothers_dke).permit(:pname, :project, :big, :littles, :cur_pos, :past_pos, :residence)
   end
   

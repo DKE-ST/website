@@ -1,4 +1,10 @@
 module ApplicationHelper
+  
+  def render_errors(user)
+    return nil if user.nil?
+    provide(@target = user)
+    return (render "shared/error_messages").html_safe
+  end
 
   def get_name(username)
     username = 'wallace4' if !Rails.env.production?  

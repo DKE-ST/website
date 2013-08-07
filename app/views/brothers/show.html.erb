@@ -5,13 +5,13 @@
 		<img class="pic" src="<%= @brother.pic_path(root_path) %>"/>
 		<span class="visible-phone">
 			<h2><%= @brother.personal.full_name%></h2>
-			<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary pull-right") if ApacheGroups.in_group("broporn")%>
+			<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary pull-right") if Apache.in_group("broporn")%>
 		</span>
     </div>
     <div class="span8 hidden-phone" align="left">
     	<h2>
     		<%= @brother.personal.full_name%>
-    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary btn-edit pull-right") if ApacheGroups.in_group("broporn")%>
+    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary btn-edit pull-right") if Apache.in_group("broporn")%>
     	</h2>
     	<table>
     		<tr>

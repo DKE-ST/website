@@ -9,7 +9,7 @@
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
-					<%= render 'layouts/navbar/chapter' if ApacheGroups.in_group('dkebro')%>
+					<%= render 'layouts/navbar/chapter' if Apache.in_group('dkebro')%>
      				<li class="nav-item dropdown"><a>Media</a>
      					<ul class="dropdown-menu">
          					<li><%= link_to 'Subsonic' , '/subsonic'%></li>
@@ -39,9 +39,9 @@
      				<li class="nav-item"><a href="#TODO">Make a Request</a></li>
      				<li class="nav-item dropdown"><a><%= get_name(ENV['REMOTE_USER'])%></a>
      					<ul class="dropdown-menu">
-     						<%= render 'layouts/navbar/brochicken' if ApacheGroups.in_group("brochicken")%>
-     						<%= render 'layouts/navbar/broporn' if ApacheGroups.in_group("broporn")%>
-     						<%= render 'layouts/navbar/profile' if ApacheGroups.in_group("dkebro") && ENV['REMOTE_USER']!='dkealum'%>
+     						<%= render 'layouts/navbar/brochicken' if Apache.in_group("brochicken")%>
+     						<%= render 'layouts/navbar/broporn' if Apache.in_group("broporn")%>
+     						<%= render 'layouts/navbar/profile' if Apache.in_group("dkebro") && ENV['REMOTE_USER']!='dkealum'%>
      					</ul>
      				</li>
      			</ul>

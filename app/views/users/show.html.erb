@@ -1,0 +1,37 @@
+<% provide(:title , "User Management - #{@user.personal.full_name}")%>
+
+<h2>Edit User</h2>
+<%= render_errors(@user)%>
+<%= render_errors(@user.personal)%>
+<%= render_errors(@user.mit)%>
+<%= render_errors(@user.dke)%>
+
+<div class="row">
+	<div class="span6 offset3">
+    <%= form_for(@user.personal, options={url: "#{user_path}#update"}) do |f| %>
+      Username:
+      <br><%= f.text_field :uname%>
+      <br>Mit Student: <%= (@user.student?)?"yes":"no"%>
+      <br>Primary Group: <%= {"dkebro"=>"Brother","dkepledge"=>"Pledge","dkeaffil"=>"Affiliate"}[@user.group]%>
+	  <br><br>First Name:
+	  <br><%= f.text_field :first_name%>
+	  <br>Last Name:
+	  <br><%= f.text_field :last_name%>
+	  <br>Mit Class:
+	  <%= fields_for @user.mit do |f_mit|%>
+	  <br><%= f_mit.text_field :year%>
+	  <%end%>
+	  <br>Pledge Class:
+	  <%= fields_for @user.dke do |f_dke|%>
+	  <br><%= f_dke.text_field :p_class%>
+	  <%end%>
+	  <% if !@user.student?%>
+	  <br>Change Password?:
+	  <br><%= radio_button_tag :new_pwd, 1%>Yes
+      <br><%= radio_button_tag :new_pwd, 0, checked: "checked"%>No
+	  <br>Password:<br><%= password_field_tag :password%>	
+	  <%end%>
+      <br><%= f.submit "Update User", class: "btn btn-primary" %>
+    <% end %>
+   </div>
+</div>

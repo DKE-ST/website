@@ -1,10 +1,5 @@
 module BrothersHelper
   
-  def render_errors(user)
-    provide(@user = user)
-    return (render "shared/error_messages").html_safe
-  end
-  
   def get_big(big_name)
     big = BrothersPersonal.select('uname','first_name','last_name').find_by(uname: big_name)
     return link_to(big.full_name , "#{brothers_path}/#{big_name}") if big
