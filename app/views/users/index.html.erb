@@ -35,7 +35,7 @@
 					  	<td><%= Users.new(usr).student?%></td>
 					  	<td>
 					  		<%= link_to("Edit" , "#{users_path}/#{usr}" , :class => "btn")%>
-					  		<%= link_to("Delete" , "#{users_path}/#{usr}" , method: :delete, data: { confirm: "Are you sure you would like to delete this user from all databases?" }, :class => "btn")%>
+					  		<%= link_to("Delete" , "#{users_path}/#{usr}" , method: :delete, data: { confirm: "Are you sure you would like to delete #{usr}?" }, :class => "btn")%>
 					  	</td>
 					  </tr>
 					  <%end%>
@@ -63,8 +63,16 @@
 					  		<td><%= @user.mit.year%></td>
 					  		<td><%= @user.admin?%></td>
 					  		<td>
-					  			<%= link_to("Edit" , "#{users_path}/#{@user.uname}" , :class => "btn")%>
-					  			<%= link_to("Delete" , "#{users_path}/#{@user.uname}" , method: :delete, data: { confirm: "Are you sure you would like to delete this user from all databases?" }, :class => "btn")%>
+					  		  <%= form_tag "#{users_path}/#{uname}#update", method: :patch, class: "no-padding" do%>
+					  			<%= link_to("Edit" , "#{users_path}/#{uname}" , :class => "btn")%>
+					  			<%= link_to("Delete" , "#{users_path}/#{uname}" , method: :delete, data: { confirm: "Are you sure you would like to delete #{uname} from all databases?" }, :class => "btn")%>
+					  			<% if Apache.exists(uname)%>
+					  				<%= link_to("Remove Access" , "#{users_path}/#{uname}#update", method: :patch, data: { confirm: "Are you sure you would like remove server access for #{uname}?" }, :class => "btn")%>
+					  			<%else%>
+					  				<%= submit_tag("Give Access",  :class => "btn")%>
+					  				<%= password_field_tag :password, nil , :class => "pswd-field" unless @user.student?%>
+					  			<%end%>
+					  		  <%end%>
 					  		</td>
 					  	</tr>
 					  <%end%>

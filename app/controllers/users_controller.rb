@@ -35,7 +35,27 @@ class UsersController < ApplicationController
 
   def update
     @user = Users.new(params[:id])
-    if @user.group != "dkeaffil"
+    #use if no params used to grant/remove server acess
+    if params[:users].nil?
+      if Apache.exists(@user.uname)
+        Apache.rm(@user.uname)
+        flash[:success] = "#{@user.uname}: server access removed"
+      else
+        if params[:password].nil?
+          flash[:success] = "#{@user.uname}: given server access"
+          Apache.add(@user.uname, "dkebro", @user.dke.p_class.to_s)
+        else
+          @user.password = params[:password]
+          unless @user.valid?
+            flash[:fail] = @user.errors.full_messages.join(", ")
+          else
+            Apache.add(@user.uname, "dkebro", @user.dke.p_class.to_s, @user.password)
+            flash[:success] = "#{@user.uname}: given server access"
+          end
+        end
+      end
+      redirect_to users_url
+    elsif @user.group != "dkeaffil"
       if @user.update(params)
         flash[:success] = "Information updated"
         redirect_to users_url

@@ -15,7 +15,7 @@
       <br><%= f.radio_button :student, 1, checked: "checked"%>Yes
       <br><%= f.radio_button :student, 0%>No
       <b><br>Primary Group:
-      <br><%= f.select :group, options_for_select([["Brother","dkebro"],["Pledge","dkepledge"],["Affiliate","dkeaffil"]])%>
+      <br><%= f.select :group, options_for_select([["Brother","dkebro"],["Pledge","dkepledge"],["Affiliate","dkeaffil"]], selected: @user.group)%>
       <div id="pwd_box">
       	<div id="brother_box">
       		First Name:

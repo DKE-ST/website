@@ -1,9 +1,5 @@
 class Apache
   
-  def self.password(uname, password)
-    puts `echo htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}`
-  end
-  
   def self.in_group(group_name)
     ENV['REMOTE_USER'] = "wallace4" unless Rails.env.production?
     return Apache.groups(ENV['REMOTE_USER']).include? group_name
@@ -27,6 +23,14 @@ class Apache
     return groups
   end
   
+  def self.password(uname, password)
+    puts `echo htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}`
+  end
+  
+  def self.rmpswd(uname)
+    puts `echo htpasswd -bD /etc/apache2/dke_users.passwd #{uname}`
+  end
+  
   def self.add(uname, group, year = nil, paswd = nil)
     apache_users = read
     return "#{uname} already exists" if apache_users[group].to_s.split(/\W+/).include? uname
@@ -45,7 +49,7 @@ class Apache
         apache_users[group] = [uname]
       end
     end
-    puts "Result: #{apache_users}"
+    #puts "Result: #{apache_users}"
     password(uname, paswd) if paswd
     return write(apache_users)
   end
@@ -65,7 +69,7 @@ class Apache
         end
       end
     end
-    puts "Result: #{apache_users}"
+    #puts "Result: #{apache_users}"
     return write(apache_users)
   end
   

@@ -66,7 +66,7 @@ class Users
     end
     if new_uname
       Apache.rm(self.uname)
-      Apache.add(new_uname, group, mit.year.to_s)
+      Apache.add(new_uname, group, dke.p_class.to_s)
       self.uname = new_uname
     end
     if params[:admin] != admin?
@@ -81,8 +81,9 @@ class Users
       end
     end
     if params[:new_pwd]=="1"
-      password=params[:password]
-      Apache.password(personal.uname, password) if valid?
+      self.password=params[:password]
+      Apache.password(self.uname, self.password) if valid?
+      Apache.add(self.uname, "dkebro", dke.p_class.to_s) unless Apache.exists(self.uname)
       return false unless valid?
     end
     return true
@@ -112,6 +113,7 @@ class Users
     mit.destroy if mit
     dke.destroy if dke
     Apache.rm(uname)
+    Apache.rmpswd(uname)
   end
   
   def personal

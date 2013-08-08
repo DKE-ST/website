@@ -16,6 +16,8 @@
       <br>Mit Student: <%= (@user.student?)?"yes":"no"%>
       <br>Primary Group: <%= {"dkebro"=>"Brother","dkepledge"=>"Pledge","dkeaffil"=>"Affiliate"}[@user.group]%>
       <% unless @user.group=="dkeaffil"%>
+        <br>Admin:
+        <br><%= select_tag :admin, options_for_select([["None",nil],["Broporn","broporn"],["Brochicken","brochicken"]], selected: @user.admin?)%>
 		<br><br>First Name:
 		<%= fields_for @user.personal do |f_personal|%>
 		  <br><%= f_personal.text_field :first_name%>
