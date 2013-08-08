@@ -9,6 +9,10 @@ class Apache
     return Apache.groups(ENV['REMOTE_USER']).include? group_name
   end
   
+  def self.exists(uname)
+    return self.read.to_s.split(/\W+/).include? uname
+  end
+  
   def self.groups(uname)
     groups=Array([])
     File.open(group_path).each_line do |line|
@@ -25,7 +29,7 @@ class Apache
   
   def self.add(uname, group, year = nil, paswd = nil)
     apache_users = read
-    return "#{uname} already exists" if apache_users.to_s.include? uname
+    return "#{uname} already exists" if apache_users[group].to_s.split(/\W+/).include? uname
     if group == "dkeaffil"
       apache_users["dkeaffil"] << uname
     elsif group =~ /dke(bro|pledge)/ && year
@@ -34,15 +38,24 @@ class Apache
       else
         apache_users[group][year] = [uname]
       end
+    else
+      if apache_users[group]
+        apache_users[group] << uname 
+      else
+        apache_users[group] = [uname]
+      end
     end
+    puts "Result: #{apache_users}"
     password(uname, paswd) if paswd
     return write(apache_users)
   end
   
-  def self.rm(uname)
+  def self.rm(uname, group = nil)
     apache_users = read
-    if apache_users.to_s.include? uname
-      apache_users.each do | group , subsec |
+    if group
+      apache_users[group].delete(uname) if apache_users[group].include? uname
+    elsif apache_users.to_s.split(/\W+/).include? uname
+      apache_users.each do | tmp , subsec |
         if subsec.class == Array
           subsec.delete(uname)
         else
@@ -51,8 +64,9 @@ class Apache
           end
         end
       end
-      return write(apache_users)
     end
+    puts "Result: #{apache_users}"
+    return write(apache_users)
   end
   
  private

@@ -22,7 +22,7 @@ class Users
   def create
     year = nil
     pswd = nil
-    return "#{uname} already exists" if Apache.read.to_s.include? uname
+    return "#{uname} already exists" if Apache.read.to_s.split(/\W+/).include? uname
     if !student?
       return "#{uname} is not a valid kerberos" if student=="1"
       return "" unless valid?
@@ -49,18 +49,62 @@ class Users
   end
   
   def update(params)
+    if params[:users][:uname] != uname
+      if Apache.exists(params[:users][:uname])
+        #check for duplicate usernames first!
+        errors.add(:uname,"#{params[:users][:uname]} already exists")
+        return false
+      else
+        new_uname = params[:users][:uname]
+      end
+    end
     if personal.update_attributes(brother_personal_params(params)) && 
        mit.update_attributes(brother_mit_params(params)) && 
        dke.update_attributes(brother_dke_params(params))
-      if params[:new_pwd]=="1"
-        password=params[:password]
-        Apache.password(personal.uname, password) if valid?
-        return valid?
-      end
-      return true
     else
       return false
-    end          
+    end
+    if new_uname
+      Apache.rm(self.uname)
+      Apache.add(new_uname, group, mit.year.to_s)
+      self.uname = new_uname
+    end
+    if params[:admin] != admin?
+      puts self.uname
+      puts admin?
+      puts params[:admin]
+      Apache.rm(self.uname, "brochicken") unless params[:admin]=="brochicken"
+      Apache.rm(self.uname, "broporn") if params[:admin].empty?
+      if params[:admin]!=admin?
+        Apache.add(self.uname, "brochicken") if params[:admin]=="brochicken"
+        Apache.add(self.uname, "broporn") if params[:admin] =~ /bro(porn|chicken)/
+      end
+    end
+    if params[:new_pwd]=="1"
+      password=params[:password]
+      Apache.password(personal.uname, password) if valid?
+      return false unless valid?
+    end
+    return true
+  end
+  
+  def update_afil(params)
+    if params[:users][:uname] != uname
+      if Apache.exists(params[:users][:uname])
+        #check for duplicate usernames first!
+        errors.add(:uname,"#{params[:users][:uname]} already exists")
+        return false
+      else
+        Apache.rm(uname)
+        Apache.add(params[:users][:uname], group)
+      end
+    end
+    if params[:new_pwd]=="1"
+      password=params[:password]
+      Apache.password(self.uname, password) if valid?
+      return false unless valid?
+    end
+    return true
   end
   
   def destroy

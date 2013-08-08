@@ -42,6 +42,13 @@ class UsersController < ApplicationController
       else
         render "show"
       end
+    else
+      if @user.update_afil(params)
+        flash[:success] = "Information updated"
+        redirect_to users_url
+      else
+        render "show"
+      end
     end
   end
   
