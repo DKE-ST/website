@@ -155,16 +155,17 @@ class Users
  private
  
   def brother_personal_params(params)
+    params[:brothers_personal][:uname] = params[:users][:uname]
     params.require(:brothers_personal).permit(:uname)
   end
   
   def brother_mit_params(params)
-    params[:brothers_mit][:uname] = params[:brothers_personal][:uname]
+    params[:brothers_mit][:uname] = params[:users][:uname]
     params.require(:brothers_mit).permit(:uname, :year)
   end
   
   def brother_dke_params(params)
-    params[:brothers_dke][:uname] = params[:brothers_personal][:uname]
+    params[:brothers_dke][:uname] = params[:users][:uname]
     params.require(:brothers_dke).permit(:uname, :p_class, :cur_pos, :past_pos)
   end
   

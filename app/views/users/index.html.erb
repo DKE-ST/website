@@ -34,7 +34,7 @@
 					  	<td><%= Apache.groups(usr)[0]%></td>
 					  	<td><%= Users.new(usr).student?%></td>
 					  	<td>
-					  		<%= link_to("Edit" , "#{users_path}" , :class => "btn")%>
+					  		<%= link_to("Edit" , "#{users_path}/#{usr}" , :class => "btn")%>
 					  		<%= link_to("Delete" , "#{users_path}/#{usr}" , method: :delete, data: { confirm: "Are you sure you would like to delete this user from all databases?" }, :class => "btn")%>
 					  	</td>
 					  </tr>
