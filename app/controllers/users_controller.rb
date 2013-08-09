@@ -4,10 +4,9 @@ class UsersController < ApplicationController
     @affiliates = Apache.read["dkeaffil"] if Apache.read.include? "dkeaffil"
     @brothers= Hash.new
     class_map = BrothersDke.select("uname, p_class").order("p_class DESC")
-    name_map = BrothersPersonal.select("first_name, last_name")
     class_map.each do |user|
       @brothers[user.p_class] = Array.new([]) if !@brothers.include? user.p_class
-      @brothers[user.p_class] << [name_map.find_by(uname: user.uname).full_name, user.uname]
+      @brothers[user.p_class] << [BrothersPersonal.find_by(uname: user.uname).full_name, user.uname]
     end
     @brothers.each do |key, value|
       value.sort!
@@ -16,6 +15,16 @@ class UsersController < ApplicationController
   
   def new
     @user = Users.new
+  end
+  
+  def positions
+    Apache.update_positions(params) unless params["beta"].nil?
+    @positions = Apache.read.except("dkebro", "dkepledge", "dkeaffil", "broporn", "brochicken")
+    @brothers = Array.new([])
+    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
+      @brothers << [brother.full_name, brother.uname]
+    end
+    @brothers.sort!
   end
   
   def show
