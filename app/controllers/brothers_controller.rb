@@ -18,7 +18,7 @@ class BrothersController < ApplicationController
   end
   
   def profile
-    ENV['REMOTE_USER'] = 'wallace4' if !Rails.env.production?
+    #ENV['REMOTE_USER'] = 'wallace4' if !Rails.env.production?
     @brother = Brothers.new(ENV['REMOTE_USER'])
   end
   

@@ -1,7 +1,7 @@
 class Apache
   
   def self.in_group(group_name)
-    ENV['REMOTE_USER'] = "wallace4" unless Rails.env.production?
+    #ENV['REMOTE_USER'] = "wallace4" unless Rails.env.production?
     return Apache.groups(ENV['REMOTE_USER']).include? group_name
   end
   

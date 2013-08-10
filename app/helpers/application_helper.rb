@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def get_name(username)
-    username = 'wallace4' if !Rails.env.production?  
+    #username = 'wallace4' if !Rails.env.production?  
     tmp = BrothersPersonal.find_by( uname: username)
     return tmp.full_name if tmp
     return username
