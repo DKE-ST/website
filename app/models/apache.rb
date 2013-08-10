@@ -88,6 +88,7 @@ class Apache
       end
     end
     #puts "Result: #{apache_users}"
+    rmpswd(uname)
     return write(apache_users)
   end
   

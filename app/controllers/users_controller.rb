@@ -76,7 +76,7 @@ class UsersController < ApplicationController
     #use if no params used to grant/remove server acess
     if params[:users].nil?
       if Apache.exists(@user.uname)
-        Apache.rm(@user.uname)
+        Apache.rm(@user.uname)       
         flash[:success] = "#{@user.uname}: server access removed"
       else
         if params[:password].nil?
