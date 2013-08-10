@@ -2,7 +2,7 @@ class Apache
   
   def self.in_group(group_name)
     #ENV['REMOTE_USER'] = "wallace4" unless Rails.env.production?
-    return Apache.groups(ENV['REMOTE_USER']).include? group_name
+    return Apache.groups(request.env['REMOTE_USER']).include? group_name
   end
   
   def self.exists(uname)
@@ -95,8 +95,8 @@ class Apache
  private
  
   def self.group_path
-    return '/etc/apache2/dke_users.groups' if Rails.env.production?
-    return '/home/justin/phpSite/dke_users.groups'
+    return '/etc/apache2/dke_users.groups'# if Rails.env.production?
+    #return '/home/justin/phpSite/dke_users.groups'
   end
   
   def self.read

@@ -37,11 +37,11 @@
      			</ul>
      			<ul class="nav pull-right">
      				<li class="nav-item"><a href="#TODO">Make a Request</a></li>
-     				<li class="nav-item dropdown"><a><%= get_name(ENV['REMOTE_USER'])%></a>
+     				<li class="nav-item dropdown"><a><%= get_name(request.env['REMOTE_USER'])%></a>
      					<ul class="dropdown-menu">
      						<%= render 'layouts/navbar/brochicken' if Apache.in_group("brochicken")%>
      						<%= render 'layouts/navbar/broporn' if Apache.in_group("broporn")%>
-     						<%= render 'layouts/navbar/profile' if Apache.in_group("dkebro") && ENV['REMOTE_USER']!='dkealum'%>
+     						<%= render 'layouts/navbar/profile' if Apache.in_group("dkebro") && request.env['REMOTE_USER']!='dkealum'%>
      					</ul>
      				</li>
      			</ul>
