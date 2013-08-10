@@ -24,11 +24,11 @@ class Apache
   end
   
   def self.password(uname, password)
-    `htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}`
+    system("htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}")
   end
   
   def self.rmpswd(uname)
-    `htpasswd -bD /etc/apache2/dke_users.passwd #{uname}`
+    system("htpasswd -bD /etc/apache2/dke_users.passwd #{uname}")
   end
   
   def self.update_positions(params)
