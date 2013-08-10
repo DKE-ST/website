@@ -18,8 +18,7 @@ class BrothersController < ApplicationController
   end
   
   def profile
-    #ENV['REMOTE_USER'] = 'wallace4' if !Rails.env.production?
-    @brother = Brothers.new(ENV['REMOTE_USER'])
+    @brother = Brothers.new(@me.uname)
   end
   
   def edit
@@ -31,7 +30,7 @@ class BrothersController < ApplicationController
     #@brother.update_attributes(params)
     if @brother.update_attributes(params)
       flash[:success] = "Information updated"
-      if ENV['REMOTE_USER'] == @brother.uname
+      if @me.uname == @brother.uname
         redirect_to profile_url
       else
         redirect_to "#{brothers_url}/#{@brother.uname}"
