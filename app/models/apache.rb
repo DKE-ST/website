@@ -1,8 +1,14 @@
 class Apache
   
-  def self.in_group(group_name)
+  attr_accessor :uname
+  
+  def initialize(uname)
+    self.uname = uname
+  end
+  
+  def in_group(group_name)
     #ENV['REMOTE_USER'] = "wallace4" unless Rails.env.production?
-    return Apache.groups(request.env['REMOTE_USER']).include? group_name
+    return Apache.groups(self.uname).include? group_name
   end
   
   def self.exists(uname)
@@ -24,11 +30,11 @@ class Apache
   end
   
   def self.password(uname, password)
-    system("htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}")
+    system("htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}") if ENV["SERVER_NAME"] == "bruiser.mit.edu"
   end
   
   def self.rmpswd(uname)
-    system("htpasswd -D /etc/apache2/dke_users.passwd #{uname}")
+    system("htpasswd -D /etc/apache2/dke_users.passwd #{uname}") if ENV["SERVER_NAME"] == "bruiser.mit.edu"
   end
   
   def self.update_positions(params)
@@ -95,8 +101,8 @@ class Apache
  private
  
   def self.group_path
-    return '/etc/apache2/dke_users.groups'# if Rails.env.production?
-    #return '/home/justin/phpSite/dke_users.groups'
+    return '/etc/apache2/dke_users.groups' if ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    return '/home/justin/phpSite/dke_users.groups'
   end
   
   def self.read

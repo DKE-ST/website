@@ -1,3 +1,5 @@
+<% provide @me = Apache.new(request.env['REMOTE_USER'])%>
+<% provide @me = Apache.new("wallace4") unless false%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,7 +18,7 @@
 			<%= yield %>
 			<footer>
 				<%= debug(params) if Rails.env.development? %>
-				<%= request.env%>
+				<%= request.env if Rails.env.development?%>
 			</footer>
 		</div>
 	</body>
