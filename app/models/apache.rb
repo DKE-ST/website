@@ -88,7 +88,7 @@ class Apache
       end
     end
     #puts "Result: #{apache_users}"
-    rmpswd(uname)
+    rmpswd(uname) if group.nil?
     return write(apache_users)
   end
   
@@ -96,7 +96,7 @@ class Apache
  
   def self.group_path
     return '/etc/apache2/dke_users.groups' if Rails.env.production?
-    return '/home/justin/webDKE/dke_users.groups'
+    return '/home/justin/phpSite/dke_users.groups'
   end
   
   def self.read
