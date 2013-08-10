@@ -24,11 +24,11 @@ class Apache
   end
   
   def self.password(uname, password)
-    puts `echo htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}`
+    `htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}`
   end
   
   def self.rmpswd(uname)
-    puts `echo htpasswd -bD /etc/apache2/dke_users.passwd #{uname}`
+    `htpasswd -bD /etc/apache2/dke_users.passwd #{uname}`
   end
   
   def self.update_positions(params)
@@ -94,8 +94,8 @@ class Apache
  private
  
   def self.group_path
-    return '/home/justin/webDKE/dke_users.groups' unless Rails.env.production?
-    return '/etc/apache2/dke_users.groups'
+    return '/etc/apache2/dke_users.groups' if Rails.env.production?
+    return '/home/justin/webDKE/dke_users.groups'
   end
   
   def self.read
