@@ -19,6 +19,19 @@ class Users
     end
   end
   
+  def self.add_class(new_members)
+    new_members.each do | uname, info |
+      pledge = Users.new
+      pledge.set_personal(uname, info["first_name"], info["last_name"])
+      pledge.personal.save
+      pledge.set_mit(uname, info["year"])
+      pledge.mit.save
+      pledge.set_dke(uname, Date.current.year+4)
+      pledge.dke.save
+      Apache.add(uname, "dkepledge", info["year"])
+    end
+  end
+  
   def create
     year = nil
     pswd = nil
@@ -33,6 +46,7 @@ class Users
       if student?
         set_personal(uname, ldap.givenName, ldap.sn)
         set_mit(uname, ldap.year)
+        mit_class = ldap.year
       elsif student=="0"
         set_personal(uname, first_name, last_name)
         set_mit(uname, mit_class)
@@ -155,8 +169,6 @@ class Users
   end
   
   ######helper functions############
-  
- private
   
   def set_personal(uname,first,last)
     personal.uname = uname

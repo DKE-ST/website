@@ -49,6 +49,7 @@ class Apache
   end
   
   def self.add(uname, group, year = nil, paswd = nil)
+    year = year.to_s
     apache_users = read
     return "#{uname} already exists" if apache_users[group].to_s.split(/\W+/).include? uname
     if group == "dkeaffil"

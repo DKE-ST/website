@@ -30,6 +30,35 @@ class UsersController < ApplicationController
   def show
     @user = Users.new(params[:id])
   end
+  
+  def add_pledges
+    #puts params[:pledges]
+    @pledges = Hash.from_xml(params[:pledges])["hash"] unless params[:pledges].blank?
+    if params[:commit] == "commit"
+      Users.add_class(@pledges)
+      redirect_to users_url
+      return
+    end
+    #puts "Test:#{@pledges.to_s}"
+    #puts @pledges.blank?
+    @pledges = Hash.new if @pledges.blank?
+    if params["remove"]
+      @pledges.delete(params["remove"])
+    elsif !params[:kerberos].blank?
+      tmp_user = Users.new(params[:kerberos])
+      if tmp_user.personal
+        flash[:fail] = "#{tmp_user.uname} already exist in databases"
+      elsif tmp_user.ldap
+        pledge ={"first_name" => tmp_user.ldap.givenName}
+        pledge["last_name"] = tmp_user.ldap.sn
+        pledge["year"] = tmp_user.ldap.year
+        @pledges[tmp_user.uname] = pledge
+      else
+        flash[:fail] = "#{tmp_user.uname} does not exist"
+      end
+    end
+    render "add_pledges"
+  end
 
   def create
     @user = Users.new(params[:users])
