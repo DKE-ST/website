@@ -28,7 +28,7 @@ class Apache
   end
   
   def self.rmpswd(uname)
-    system("htpasswd -bD /etc/apache2/dke_users.passwd #{uname}")
+    system("htpasswd -D /etc/apache2/dke_users.passwd #{uname}")
   end
   
   def self.update_positions(params)
