@@ -1,5 +1,5 @@
 <% provide @me = Apache.new(request.env['REMOTE_USER'])%>
-<% provide @me = Apache.new("wallace4") unless false%>
+<% provide @me = Apache.new("wallace4") unless ENV["SERVER_NAME"] == "bruiser.mit.edu"%>
 <!DOCTYPE html>
 <html>
 	<head>
