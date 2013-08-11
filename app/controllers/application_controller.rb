@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   
   def set_user
     @me = Apache.new(request.env['REMOTE_USER'])
-    @me = Apache.new(params[:uname]) if request.env["REMOTE_ADDR"] == "18.233.0.47"
     @me = Apache.new("wallace4") unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
   end
   
