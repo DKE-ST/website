@@ -1,3 +1,4 @@
+<% provide @media_root = "/dke/media"%>
 <header class="navbar navbar-inverse navbar-fixed-top">
 	<nav class="navbar-inner">
     	<div class="container">
@@ -13,16 +14,16 @@
      				<li class="nav-item dropdown"><a>Media</a>
      					<ul class="dropdown-menu">
          					<li><%= link_to 'Subsonic' , '/subsonic'%></li>
-         					<li id="media_sub" class="dropdown-submenu"><%= link_to 'Downloadables' , '/dke'%>
+         					<li id="media_sub" class="dropdown-submenu"><%= link_to 'Downloadables' , @media_root%>
          						<ul class="dropdown-menu">
-									<li><%= link_to 'Books' , '#TODO'%></li>
-									<li><%= link_to 'Comics' , '#TODO'%></li>
-									<li><%= link_to 'Games' , '#TODO'%></li>
-									<li><%= link_to 'Music' , '#TODO'%></li>
-									<li><%= link_to 'Pictures' , '#TODO'%></li>
-									<li><%= link_to 'Software' , '#TODO'%></li>
-									<li><%= link_to 'Video' , '#TODO'%></li>
-									<li><%= link_to 'Misc' , '#TODO'%></li>
+									<li><%= link_to 'Books' , "#{@media_root}/Books"%></li>
+									<li><%= link_to 'Comics' , "#{@media_root}/Comics"%></li>
+									<li><%= link_to 'Games' , "#{@media_root}/Games"%></li>
+									<li><%= link_to 'Music' , "#{@media_root}/Music"%></li>
+									<li><%= link_to 'Pictures' , "#{@media_root}/Pictures"%></li>
+									<li><%= link_to 'Software' , "#{@media_root}/Software"%></li>
+									<li><%= link_to 'Video' , "#{@media_root}/Video"%></li>
+									<li><%= link_to 'Misc' , "#{@media_root}/Misc"%></li>
 								</ul>
          					</li>
         				</ul>
@@ -30,7 +31,7 @@
        				<li class="nav-item dropdown"><a>Academics</a>
 						<ul class="dropdown-menu">
 							<li><a href="#TODO">Add a Bible</a></li>
-							<li><a href="/dke/media/Bibles">Bibles</a></li>
+							<li><%= link_to 'Bibles' , "#{@media_root}/Bibles"%></li>
 						</ul>
 					</li>
 					<li style="padding-top:3px;"><a><input placeholder="search"></a></li>
