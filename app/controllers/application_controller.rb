@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   def set_user
     @me = Apache.new(request.env['REMOTE_USER'])
-    @me = Apache.new("wallace4") unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    @me = Apache.new("wallace4") #unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
   end
   
 end
