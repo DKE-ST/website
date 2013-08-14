@@ -43,6 +43,9 @@
      						<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
      						<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
      						<%= render 'layouts/navbar/profile' if @me.in_group("dkebro") && request.env['REMOTE_USER']!='dkealum'%>
+     						<% if true %>
+     							<%= link_to "Change Passowrd", "#TODO"%>
+     						<%end%>
      					</ul>
      				</li>
      			</ul>
