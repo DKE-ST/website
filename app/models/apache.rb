@@ -18,8 +18,8 @@ class Apache
     return true unless ENV["SERVER_NAME"] == "bruiser.mit.edu" 
     File.open('/etc/apache2/dke_users.passwd').each_line do |line|
       return true if line.include? self.uname
-      return false
     end
+    return false
   end
   
   def self.groups(uname)
