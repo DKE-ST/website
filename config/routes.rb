@@ -4,7 +4,8 @@ RailsSite::Application.routes.draw do
   match '/profile', to: 'brothers#profile' , via: :get
   match '/position_management', to: 'users#positions' , via: [:get, :post]
   match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
-  
+  match '/ch_pwd' , to: 'users#ch_pwd' , via: [:get, :patch]
+ 
   match 'php_header', to: 'static_pages#php_header', via: :get
   #Home Page
   root 'static_pages#home'

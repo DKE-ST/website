@@ -14,6 +14,14 @@ class Apache
     return self.read.to_s.split(/\W+/).include? uname
   end
   
+  def pwd?
+    return true unless ENV["SERVER_NAME"] == "bruiser.mit.edu" 
+    File.open('/etc/apache2/dke_users.passwd').each_line do |line|
+      return true if line.include? self.uname
+      return false
+    end
+  end
+  
   def self.groups(uname)
     groups=Array([])
     File.open(group_path).each_line do |line|
@@ -124,7 +132,7 @@ class Apache
   end
   
   def self.write(apache_users)
-    apache_string = "#dkealum\r\ndkebro:dkealum\r\n"
+    apache_string = "#dkealum\r\ndkebro:dke_alum\r\n"
     apache_users.each do | group , subsection |
       if subsection.class == Array
         apache_string += "#{group}:#{subsection.join(' ')}\r\n"
