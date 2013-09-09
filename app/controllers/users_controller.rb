@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :auth_user
+  skip_before_action :auth_user, only: [:ch_pwd]
+  before_action :has_pwd, only: [:ch_pwd]
   
   def ch_pwd
     @user = Users.new
@@ -138,5 +141,21 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
+  end
+  
+  private
+  
+  def auth_user
+    unless @me.in_group("brochicken")
+      flash[:error] = "You do not have acess to this page"
+      redirect_to root_url
+    end
+  end
+  
+  def has_pwd
+    unless @me.pwd?
+      flash[:error] = "Your password is set through your kerberos"
+      redirect_to root_url
+    end
   end
 end

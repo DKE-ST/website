@@ -1,5 +1,6 @@
 class BrothersController < ApplicationController
-    
+  before_action :correct_user, only: [:edit, :update]
+  
   def index
     @brothers= Hash.new
     class_map = BrothersMit.select("uname, year").order("year DESC")
@@ -38,5 +39,14 @@ class BrothersController < ApplicationController
     else
       render 'edit'
     end
-  end 
+  end
+  
+  private
+  
+  def correct_user
+    unless @me.in_group("broporn") || params[:id]==@me.uname
+      flash[:error] = "You do not have acess to this page"
+      redirect_to root_url
+    end
+  end
 end
