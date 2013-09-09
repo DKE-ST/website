@@ -115,8 +115,8 @@ class Users
       end
     end
     if params[:new_pwd]=="1"
-      password=params[:password]
-      Apache.password(self.uname, password) if valid?
+      self.password=params[:password]
+      Apache.password(self.uname, self.password) if valid?
       return false unless valid?
     end
     return true
