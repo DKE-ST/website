@@ -10,7 +10,7 @@
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
-					<%= render 'layouts/navbar/chapter' if @me.in_group('dkebro')%>
+					<%= render 'layouts/navbar/chapter' if @me.brother? %>
      				<li class="nav-item dropdown"><a>Media</a>
      					<ul class="dropdown-menu">
          					<li><%= link_to 'Subsonic' , '/subsonic'%></li>
@@ -42,7 +42,7 @@
      					<ul class="dropdown-menu">
      						<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
      						<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
-     						<%= render 'layouts/navbar/profile' if @me.in_group("dkebro") && request.env['REMOTE_USER']!='dkealum'%>
+     						<%= render 'layouts/navbar/profile' if @me.brother? && request.env['REMOTE_USER']!='dkealum'%>
      						<% if @me.pwd?  && request.env['REMOTE_USER']!='dkealum'%>
      							<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
      						<%end%>

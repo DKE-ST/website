@@ -10,6 +10,10 @@ class Apache
     return Apache.groups(self.uname).include? group_name
   end
   
+  def brother?
+    return in_group("dkebro") || in_group("dkepledge")
+  end
+  
   def self.exists(uname)
     return self.read.to_s.split(/\W+/).include? uname
   end
