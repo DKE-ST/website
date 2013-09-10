@@ -11,10 +11,13 @@ ul.nav li.dropdown:hover {
 	background-color: #111111;
 }
 
-@media (min-width: 1200px)
+@media (min-width: 979px)
 {
   ul.nav li.dropdown:hover > ul.dropdown-menu{
-      display: block;  
+    display: block;  
+  }
+  body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
   }
 }
 
@@ -22,6 +25,4 @@ li.nav-item {
     padding-top: 5px;
 }
 
-body {
-  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-}
+
