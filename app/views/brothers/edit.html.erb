@@ -48,6 +48,7 @@
 	       		Favorite MIT Classes: <%= f_mit.text_field :fav_classes%><br>
 	       		<%end%>
 	      	</div>
+		<% if @me.in_group("dkebro") %>
 	      	<div class="span4">
 	      		<center><u><h3>DKE</h3></u></center>
 	      		<%= fields_for @brother.dke do |f_dke|%>
@@ -63,6 +64,7 @@
 	   			Residence: <%= f_dke.text_field :residence%><br>
 	   			<%end%>
 	      	</div>
+		<% end %>
 	      	<div class='span10'></div>
 			<div class="span2">
 				 <%= f.submit "Save Changes", class: "btn btn-primary" %>
