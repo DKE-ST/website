@@ -13,7 +13,7 @@ ul.nav li.dropdown:hover {
 
 @media (min-width: 979px)
 {
-  ul.nav li.dropdown:hover > ul.dropdown-menu{
+  ul.nav li.hover:hover > ul.dropdown-menu{
     display: block;  
   }
   body {
@@ -23,6 +23,10 @@ ul.nav li.dropdown:hover {
 
 li.nav-item {
     padding-top: 5px;
+}
+
+li.login {
+  color: #000000;
 }
 
 

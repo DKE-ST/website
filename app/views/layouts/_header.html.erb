@@ -11,7 +11,7 @@
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
 					<%= render 'layouts/navbar/chapter' if @me.brother? %>
-     				<li class="nav-item dropdown">
+     				<li class="nav-item dropdown hover">
      					<a class="visible-desktop">Media</a>
 						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Media</a>
      					<ul class="dropdown-menu">
@@ -30,7 +30,7 @@
          					</li>
         				</ul>
        				</li>
-       				<li class="nav-item dropdown">
+       				<li class="nav-item dropdown hover">
        					<a class="visible-desktop">Academics</a>
 						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Academics</a>
 						<ul class="dropdown-menu">
@@ -43,22 +43,31 @@
      			</ul>
      			<ul class="nav pull-right">
      				<!--<li class="nav-item"><a href="#TODO">Make a Request</a></li>-->
-     				<li class="nav-item dropdown">
-     					<% if @me.uname%>
-	     					<a class="visible-desktop"><%= get_name(@me.uname)%></a>
-							<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me.uname)%></a>
-	     					<ul class="dropdown-menu">
-	     						<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
-	     						<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
-	     						<%= render 'layouts/navbar/profile' if @me.brother? && request.env['REMOTE_USER']!='dkealum'%>
-	     						<% if @me.pwd?  && request.env['REMOTE_USER']!='dkealum'%>
-	     							<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
-	     						<%end%>
-	     					</ul>
-     					<% else%>
-     						<%= link_to "Login", login_path%>
-     					<% end%>
+     			   <% if @me.uname%>
+     				<li class="nav-item dropdown hover">
+     					<a class="visible-desktop"><%= get_name(@me.uname)%></a>
+						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me.uname)%></a>
+     					<ul class="dropdown-menu">
+     						<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
+     						<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
+     						<%= render 'layouts/navbar/profile' if @me.brother? && request.env['REMOTE_USER']!='dkealum'%>
+     						<% if @me.pwd?  && request.env['REMOTE_USER']!='dkealum'%>
+     							<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
+     						<%end%>
+     					</ul>
+     			   <% else%>
+     			   	<li class="nav-item dropdown">
+     			   		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+     			   		<ul class="dropdown-menu">
+     			   			<%= form_tag("#{root_url}login", method: "post") do%>
+     			   				<input style="margin-top: 8px" name="httpd_username" type="text" placeholder="Username" />
+                   				<input style="margin-top: 8px" name="httpd_password" type="password" placeholder="Passsword" />
+                   				<input class="btn" name="commit" type="submit" value="Login" />
+                   			<% end%>                   			
+     					</ul>
+     			   <% end%>
      				</li>
+     				
      			</ul>
      		</div>
     	</div>

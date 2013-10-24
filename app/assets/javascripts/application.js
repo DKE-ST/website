@@ -15,3 +15,8 @@
 //= require bootstrap
 //= require turbolinks
 //=require_tree .
+
+$('.dropdown-toggle').dropdown();
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+ });
