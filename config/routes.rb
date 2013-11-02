@@ -6,7 +6,8 @@ RailsSite::Application.routes.draw do
   match '/position_management', to: 'users#positions' , via: [:get, :post]
   match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
   match '/ch_pwd' , to: 'users#ch_pwd' , via: [:get, :patch]
-  match '/login' , to: 'static_pages#home' , via: [:post, :get]
+  match '/login' , to: 'static_pages#home' , via: [:post]
+  match '/success' , to: 'static_pages#home' , via: [:get]
  
   match 'php_header', to: 'static_pages#php_header', via: :get
   #Home Page
