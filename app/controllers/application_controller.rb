@@ -6,8 +6,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_user
   
   def set_user
-    @me = Apache.new(request.env['REMOTE_USER'])
-    #@me = Apache.new("wallace4") unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    unless session[:uname]
+      session[:uname] = request.env['REMOTE_USER']
+      #session[:uname] = "wallace4" unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    end
+    @me = Apache.new(session[:uname])
   end
   
 end
