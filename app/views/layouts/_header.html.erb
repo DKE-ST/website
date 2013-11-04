@@ -10,7 +10,8 @@
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
-					<%= render 'layouts/navbar/chapter' if @me.brother? %>
+					<%= render 'layouts/navbar/chapter'%>
+					<% if @me.uname%>
      				<li class="nav-item dropdown hover">
      					<a class="visible-desktop">Media</a>
 						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Media</a>
@@ -39,6 +40,7 @@
 						</ul>
 					</li>
 					<li class="nav-item"><%= link_to 'Wiki' , "/wiki" %></li>
+					<% end %>
 					<!--<li style="padding-top:3px;"><a><input placeholder="search"></a></li>-->
      			</ul>
      			<ul class="nav pull-right">
