@@ -10,67 +10,37 @@
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
-					<%= render 'layouts/navbar/chapter'%>
+     				<%= render 'layouts/navbar/public' unless @me.uname%>
+     				<%= render 'layouts/navbar/private' if @me.uname%>
+     			</ul>
+				<ul class="nav pull-right">
 					<% if @me.uname%>
-     				<li class="nav-item dropdown hover">
-     					<a class="visible-desktop">Media</a>
-						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Media</a>
-     					<ul class="dropdown-menu">
-         					<li><%= link_to 'Subsonic' , '/subsonic'%></li>
-         					<li id="media_sub" class="dropdown-submenu"><%= link_to 'Downloadables' , @media_root%>
-         						<ul class="dropdown-menu">
-									<li><%= link_to 'Books' , "#{@media_root}/Books"%></li>
-									<li><%= link_to 'Comics' , "#{@media_root}/Comics"%></li>
-									<li><%= link_to 'Games' , "#{@media_root}/Games"%></li>
-									<li><%= link_to 'Music' , "#{@media_root}/Music"%></li>
-									<li><%= link_to 'Pictures' , "#{@media_root}/Pictures"%></li>
-									<li><%= link_to 'Software' , "#{@media_root}/Software"%></li>
-									<li><%= link_to 'Video' , "#{@media_root}/Video"%></li>
-									<li><%= link_to 'Misc' , "#{@media_root}/Misc"%></li>
-								</ul>
-         					</li>
-        				</ul>
-       				</li>
-       				<li class="nav-item dropdown hover">
-       					<a class="visible-desktop">Academics</a>
-						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Academics</a>
+					<!--<li class="nav-item"><a href="#TODO">Make a Request</a></li>-->
+					<li class="nav-item dropdown hover">
+						<a class="visible-desktop"><%= get_name(@me.uname)%></a>
+						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me.uname)%></a>
 						<ul class="dropdown-menu">
-							<li><a href="#TODO">Add a Bible</a></li>
-							<li><%= link_to 'Bibles' , "#{@media_root}/Bibles"%></li>
+							<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
+							<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
+							<%= render 'layouts/navbar/profile' if @me.brother? && request.env['REMOTE_USER']!='dkealum'%>
+							<% if @me.pwd?  && request.env['REMOTE_USER']!='dkealum'%>
+								<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
+							<%end%>
+							<li><%= link_to 'Logout' , "#{root_url}logout"%></li>
 						</ul>
 					</li>
-					<li class="nav-item"><%= link_to 'Wiki' , "/wiki" %></li>
-					<% end %>
-					<!--<li style="padding-top:3px;"><a><input placeholder="search"></a></li>-->
-     			</ul>
-     			<ul class="nav pull-right">
-     				<!--<li class="nav-item"><a href="#TODO">Make a Request</a></li>-->
-     			   <% if @me.uname%>
-     				<li class="nav-item dropdown hover">
-     					<a class="visible-desktop"><%= get_name(@me.uname)%></a>
-						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me.uname)%></a>
-     					<ul class="dropdown-menu">
-     						<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
-     						<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
-     						<%= render 'layouts/navbar/profile' if @me.brother? && request.env['REMOTE_USER']!='dkealum'%>
-     						<% if @me.pwd?  && request.env['REMOTE_USER']!='dkealum'%>
-     							<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
-     						<%end%>
-     						<li><%= link_to 'Logout' , "#{root_url}logout"%></li>
-     					</ul>
-     			   <% else%>
-     			   	<li class="nav-item dropdown">
-     			   		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
-     			   		<ul class="dropdown-menu">
-     			   			<%= form_tag("#{root_url}login", method: "post") do%>
-     			   				<input style="margin-top: 8px" name="httpd_username" type="text" placeholder="Username" />
-                   				<input style="margin-top: 8px" name="httpd_password" type="password" placeholder="Passsword" />
-                   				<input class="btn" name="login" type="submit" value="Login" />
-                   			<% end%>                   			
-     					</ul>
-     			   <% end%>
-     				</li>
-     				
+					<% else %>
+				   	<li class="nav-item dropdown">
+				   		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+				   		<ul class="dropdown-menu">
+				   			<%= form_tag("#{root_url}login", method: "post") do%>
+				   				<input style="margin-top: 8px" name="httpd_username" type="text" placeholder="Username" />
+				   				<input style="margin-top: 8px" name="httpd_password" type="password" placeholder="Passsword" />
+				   				<input class="btn" name="login" type="submit" value="Login" />
+				   			<% end%>                   			
+						</ul>
+					</li>
+					<% end%>
      			</ul>
      		</div>
     	</div>
