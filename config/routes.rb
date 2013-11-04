@@ -1,4 +1,16 @@
 RailsSite::Application.routes.draw do 
+  
+  #Home Page
+  root 'static_pages#home'
+  
+  #Used for authenticating users
+  match '/login' , to: 'static_pages#home' , via: [:post]
+  match '/success' , to: 'static_pages#success' , via: [:get]
+  match '/loggedout' , to: 'static_pages#loggedout' , via: [:get]
+  
+  #Used for pages in lambda
+  match 'php_header', to: 'static_pages#php_header', via: :get
+  
   resources :brothers
   resources :users
   
@@ -6,12 +18,7 @@ RailsSite::Application.routes.draw do
   match '/position_management', to: 'users#positions' , via: [:get, :post]
   match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
   match '/ch_pwd' , to: 'users#ch_pwd' , via: [:get, :patch]
-  match '/login' , to: 'static_pages#home' , via: [:post]
-  match '/success' , to: 'static_pages#home' , via: [:get]
- 
-  match 'php_header', to: 'static_pages#php_header', via: :get
-  #Home Page
-  root 'static_pages#home'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
