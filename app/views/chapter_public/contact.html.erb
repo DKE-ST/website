@@ -1,0 +1,41 @@
+<% provide(:title , 'Contact Information')%>
+
+<div class="row">
+	<div class="span12" align="left">
+		<h3>Contacting DKE</h3>
+	</div>	
+	<div class="span 6" align="center">
+		<p><b>President:</b> <%= "#{@officers['Beta'][:full_name]} '#{@officers['Beta'][:year]}"%>
+		<br><b>Contact For:</b> Major issues; Issues Relevant to entire house
+		<br><%= link_to "#{@officers['Beta'][:uname]}@mit.edu", "mailto:#{@officers['Beta'][:uname]}@mit.edu"%>
+		
+		<p><b>Risk Manager:</b> <%= "#{@officers['Sigma'][:full_name]} '#{@officers['Sigma'][:year]}"%>
+		<br><b>Contact For:</b> Any serious issues or anything pertaining to risk
+		<br><%= link_to "#{@officers['Sigma'][:uname]}@mit.edu", "mailto:#{@officers['Sigma'][:uname]}@mit.edu"%>
+		
+		<p><b>Social Chair</b> <%= "#{@officers['Delta'][:full_name]} '#{@officers['Delta'][:year]}"%>
+		<br><b>Contact For:</b> Social event planning
+		<br><%= link_to "#{@officers['Delta'][:uname]}@mit.edu", "mailto:#{@officers['Delta'][:uname]}@mit.edu"%>
+		
+		<p><b>Webmaster:</b> <%= "#{@officers['Beta'][:full_name]} '#{@officers['Beta'][:year]}"%>
+		<br><b>Contact For:</b> Issues pertaining to the website
+		<br><%= link_to "#{@officers['Beta'][:uname]}@mit.edu", "mailto:#{@officers['Beta'][:uname]}@mit.edu"%>
+	</div>
+	<div class="span 6" align="center">
+		<p><b>Treasurer:</b> <%= "#{@officers['Kappa'][:full_name]} '#{@officers['Kappa'][:year]}"%>
+		<br><b>Contact For:</b> Financial issues
+		<br><%= link_to "#{@officers['Kappa'][:uname]}@mit.edu", "mailto:#{@officers['Kappa'][:uname]}@mit.edu"%>
+		
+		<p><b>House Manager:</b> <%= "#{@officers['Zeta'][:full_name]} '#{@officers['Zeta'][:year]}"%>
+		<br><b>Contact For:</b> Issues pertaining to upkeep of the house
+		<br><%= link_to "#{@officers['Zeta'][:uname]}@mit.edu", "mailto:#{@officers['Zeta'][:uname]}@mit.edu"%>
+		
+		<p><b>Community Service Chair:</b> <%= "#{@officers['Upsilon'][:full_name]} '#{@officers['Upsilon'][:year]}"%>
+		<br><b>Contact For:</b> Community service events
+		<br><%= link_to "#{@officers['Upsilon'][:uname]}@mit.edu", "mailto:#{@officers['Upsilon'][:uname]}@mit.edu"%>
+		
+		<p><b>Summer House Manager:</b> <%= "#{@officers['Zeta'][:full_name]} '#{@officers['Zeta'][:year]}"%>
+		<br><b>Contact For:</b> Summer Housing
+		<br><%= link_to "#{@officers['Zeta'][:uname]}@mit.edu", "mailto:#{@officers['Zeta'][:uname]}@mit.edu"%>
+	</div>
+</div>

@@ -14,7 +14,11 @@ module ApplicationHelper
   end
   
   def gen_title(page_title)
-    site_title="DKE Server"
+    if @me.uname
+      site_title="DKE Server"
+    else
+      site_title="Delta Kappa Epsilon - Sigma Tau"
+    end
     if (page_title!="")
       return "#{site_title} | #{page_title}" 
     else
