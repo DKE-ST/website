@@ -46,7 +46,7 @@ class BrothersController < ApplicationController
   def correct_user
     unless @me.in_group("broporn") || params[:id]==@me.uname
       flash[:error] = "You do not have acess to this page"
-      redirect_to root_url
+      redirect_to brother_url
     end
   end
 end
