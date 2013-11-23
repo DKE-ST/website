@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use mysql as the database for Active Record
-gem 'mysql2'
-
 #used for creating mit student users
 gem 'net-ldap'
 gem 'activeldap'
+
+# Use mysql as the database for Active Record
+gem 'mysql2'
 
 group :development, :test do
 gem 'rspec-rails', '2.13.1'
@@ -20,7 +20,7 @@ group :test do
 end
 
 #Twitter Bootstrap
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 2.3.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
