@@ -1,0 +1,17 @@
+<% provide(:title , "Edit #{@content.pname}")%>
+
+<div class="row">
+    <div class="span12">
+    	<%= form_for(@content, options={url: "#{chapter_public_path}#update"}) do |f|%>
+	  	<%= render_errors(@content)%>	
+		Title: <%= f.text_field :title %><br>
+		Content: <%= f.text_area :content %><br>
+	</div>
+  	<div class='span10'></div>
+	<div class="span2">
+		 <%= f.submit "Save Changes", class: "btn btn-primary" %>
+	</div>
+	<%end%>
+		</div>
+	</div>
+</div>
