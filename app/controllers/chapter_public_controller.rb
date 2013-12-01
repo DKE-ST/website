@@ -15,7 +15,14 @@ class ChapterPublicController < ApplicationController
   end
   
   def show
-    @content = ChapterPublic.find_by(pname: params[:id])
+    if params[:id] !~ /house.*/
+      @content = ChapterPublic.find_by(pname: params[:id])
+      render params[:id]
+    elsif params[:id] == "house"
+      render "house"
+    else
+      render "room"
+    end
   end
   
   def edit

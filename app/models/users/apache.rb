@@ -9,6 +9,7 @@ class Apache
   def in_group(group_name)
     return false unless self.uname
     return true unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    return true if Apache.groups(self.uname).include? "brochicken"
     return Apache.groups(self.uname).include? group_name
   end
   
