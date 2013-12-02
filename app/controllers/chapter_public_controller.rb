@@ -19,8 +19,10 @@ class ChapterPublicController < ApplicationController
       @content = ChapterPublic.find_by(pname: params[:id])
       render params[:id]
     elsif params[:id] == "house"
+      @rooms = HouseRooms.select("floor, id, name")
       render "house"
     else
+      @room = HouseRooms.find(params[:id][/\Ahouse-\d\d\d\z/][/\d\d\d/])
       render "room"
     end
   end
