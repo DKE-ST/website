@@ -13,3 +13,20 @@
   width: 90%;
   outline: none;
 }
+
+div.house
+{
+   background-color: rgba(0, 0, 65, 1);
+   color:white;
+   border-radius:10px;
+   //text-shadow: 2px 2px #333;
+   font-size:115%;
+   text-align:center;
+   padding-top:10px;
+   padding-bottom:10px; 
+}
+
+img.floorplan
+{
+  min-width:400px;
+}

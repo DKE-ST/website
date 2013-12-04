@@ -4,5 +4,4 @@ class HouseRooms < ActiveRecord::Base
   validates :floor, presence: true
   validates :name, presence: true
   validates :capacity, presence: true
-  validates :occupant0, presence: true
 end
