@@ -1,5 +1,17 @@
 module BrothersHelper
   
+  def get_room(brother)
+      for i in 0..3
+        room = HouseRooms.find_by "occupant#{i} = ?", brother.uname
+        break if room
+      end
+      if room
+        return link_to(room.name, "#{root_url}house-#{room.id}")
+      else
+        return brother.residence
+      end
+  end
+  
   def get_big(big_name)
     big = BrothersPersonal.select('uname','first_name','last_name').find_by(uname: big_name)
     return link_to(big.full_name , "#{brothers_path}/#{big_name}") if big
