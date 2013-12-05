@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
   end
   
   def success
+    session[:expires] = Time.now
     session[:uname] = request.env['REMOTE_USER']
     session[:uname] = "wallace4" unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
     redirect_to root_url
