@@ -39,8 +39,8 @@
     			<div class="row">
     				<div class="span12">
     					<% unless @brother.personal.hometown==""%><p><b>Hometown:</b> <%= @brother.personal.hometown%><%end%>
-    					<br><b>Email Address:</b> <%= @brother.personal.uname%>@mit.edu
-    					<% unless @brother.personal.phone==""%><br><b>Phone Number:</b> <%= @brother.personal.phone%><%end%>
+    					<!--<% unless @brother.personal== "" || !@me.brother?%><br><b>Email Address:</b> <%= @brother.personal%><%end%>-->
+    					<% unless @brother.personal.phone=="" || !@me.brother?%><br><b>Phone Number:</b> <%= @brother.personal.phone%><%end%>
     					<% unless @brother.personal.activities==""%><p><b>Activities:</b> <%= @brother.personal.activities%><%end%>
     					<% unless @brother.personal.hobbies==""%><br><b>Hobbies:</b> <%= @brother.personal.hobbies%><%end%>
     					<% unless @brother.personal.quote==""%><p><b>Favorite Quote:</b> <%= @brother.personal.quote%><%end%>
@@ -62,7 +62,7 @@
        			<% unless @brother.mit.fav_classes==""%><br><b>Favorite MIT Classes:</b> <%= @brother.mit.fav_classes%><%end%>
       		</div>
       		<div class="tab-pane info" id="dke_info">
-            	<% unless @brother.dke.pname==""%><p><b>Pledge Name:</b> <%= @brother.dke.pname%><%end%>
+            	<% unless @brother.dke.pname=="" || !@me.brother?%><p><b>Pledge Name:</b> <%= @brother.dke.pname%><%end%>
        			<% unless @brother.dke.project==""%><br><b>Pledge Project:</b> <%= @brother.dke.project%><%end%>
        			<% unless @brother.dke.big==""%><br><b>Big Brother:</b> <%= get_big(@brother.dke.big) %><%end%>
        			<% unless @brother.dke.littles==""%><br><b>Little Brothers:</b> <%= get_littles(@brother.dke.littles)%><%end%>

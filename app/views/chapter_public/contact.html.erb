@@ -1,10 +1,10 @@
 <% provide(:title , 'Contact Information')%>
 
-<div class="row">
+<div class="row house">
 	<div class="span12" align="left">
 		<h3>Contacting DKE</h3>
 	</div>	
-	<div class="span 6" align="center">
+	<div class="span6" align="center">
 		<p><b>President:</b> <%= "#{@officers['Beta'][:full_name]} '#{@officers['Beta'][:year]}"%>
 		<br><b>Contact For:</b> Major issues; Issues Relevant to entire house
 		<br><%= link_to "#{@officers['Beta'][:uname]}@mit.edu", "mailto:#{@officers['Beta'][:uname]}@mit.edu"%>
@@ -21,7 +21,7 @@
 		<br><b>Contact For:</b> Issues pertaining to the website
 		<br><%= link_to "#{@officers['Beta'][:uname]}@mit.edu", "mailto:#{@officers['Beta'][:uname]}@mit.edu"%>
 	</div>
-	<div class="span 6" align="center">
+	<div class="span6" align="center">
 		<p><b>Treasurer:</b> <%= "#{@officers['Kappa'][:full_name]} '#{@officers['Kappa'][:year]}"%>
 		<br><b>Contact For:</b> Financial issues
 		<br><%= link_to "#{@officers['Kappa'][:uname]}@mit.edu", "mailto:#{@officers['Kappa'][:uname]}@mit.edu"%>
