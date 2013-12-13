@@ -2,11 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body.home {
-  //background-color:black;
-  background-repeat:no-repeat;
-  background-attachment:fixed;
-  background-position:center;
-  color:white;
-  background-image: asset-url("backgroundBlack.jpg");
+h1.title
+{
+  font-size:400%;
+  color:gold;
+}
+
+h2.title
+{
+  font-size:375%;
+  color:gold;
 }
