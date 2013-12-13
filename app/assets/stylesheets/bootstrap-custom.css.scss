@@ -1,6 +1,25 @@
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 
+
+//-------------------------------------------------------------------------------------
+div.row
+{
+   background-color: rgba(0, 0, 65, 1);
+   color:white;
+   border-radius:10px;
+   //text-shadow: 2px 2px #333;
+   font-size:115%;
+   padding-top:10px;
+   padding-bottom:10px; 
+}
+//-------------------------------------------------------------------------------------
+div.pad_right
+{ 
+  margin-right:10px;
+  text-align: left;
+}
+
 .dropdown-menu {
 	top:95%;
 }

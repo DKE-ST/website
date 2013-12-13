@@ -18,17 +18,17 @@ class Brothers
   end
   
   def personal
-    @personal = BrothersPersonal.find_by(uname: self.uname) unless @personal
+    @personal = BrothersPersonal.find_by(uname: self.uname)# unless @personal
     return @personal
   end
   
   def mit
-    @mit = BrothersMit.find_by(uname: self.uname) unless @mit
+    @mit = BrothersMit.find_by(uname: self.uname)# unless @mit
     return @mit
   end
   
   def dke
-    @dke = BrothersDke.find_by(uname: self.uname) unless @dke
+    @dke = BrothersDke.find_by(uname: self.uname)# unless @dke
     return @dke
   end
   
