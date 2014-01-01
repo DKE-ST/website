@@ -8,7 +8,6 @@ class Apache
   
   def in_group(group_name)
     return false unless self.uname
-    return true unless ENV["SERVER_NAME"] == "bruiser.mit.edu"
     return true if Apache.groups(self.uname).include? "brochicken"
     return Apache.groups(self.uname).include? group_name
   end
@@ -22,8 +21,7 @@ class Apache
   end
   
   def pwd?
-    return true unless ENV["SERVER_NAME"] == "bruiser.mit.edu" 
-    File.open('/etc/apache2/dke_users.passwd').each_line do |line|
+    File.open("#{Apache.dke_path}/dke_users.passwd").each_line do |line|
       return true if line.include? self.uname
     end
     return false
@@ -31,7 +29,7 @@ class Apache
   
   def self.groups(uname)
     groups=Array([])
-    File.open(group_path).each_line do |line|
+    File.open("#{dke_path}/dke_users.groups").each_line do |line|
       if (line =~/^\w+:\w+/)
         ofset = line.index(':')
         user_list = line[ofset..-1]
@@ -44,11 +42,11 @@ class Apache
   end
   
   def self.password(uname, password)
-    system("htpasswd -b /etc/apache2/dke_users.passwd #{uname} #{password}") if ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    system("htpasswd -b #{Apache.dke_path}/dke_users.passwd #{uname} #{password}")
   end
   
   def self.rmpswd(uname)
-    system("htpasswd -D /etc/apache2/dke_users.passwd #{uname}") if ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    system("htpasswd -D #{Apache.dke_path}/dke_users.passwd #{uname}")
   end
   
   def self.update_positions(params)
@@ -114,15 +112,15 @@ class Apache
   
  private
  
-  def self.group_path
-    return '/etc/apache2/dke_users.groups' if ENV["SERVER_NAME"] == "bruiser.mit.edu"
-    return '/home/justin/phpSite/dke_users.groups'
+  def self.dke_path
+    return '/etc/apache2' if ENV["SERVER_NAME"] == "bruiser.mit.edu"
+    return "/home/wallace4/rails_site/config"
   end
   
   def self.read
     groups = {"dkebro" => Hash.new, "dkepledge" => Hash.new, "dkeaffil" => Array.new([])}
     desc = ""
-    File.open(group_path).each_line do |line|
+    File.open("#{dke_path}/dke_users.groups").each_line do |line|
       if line =~ /#dke(\d{4}|alum)/
         desc = line.match(/(\d{4}|alum)/).to_s
       elsif line =~ /dkebro/
@@ -149,7 +147,7 @@ class Apache
         end
       end      
     end
-    File.open(group_path , "w") do |file|
+    File.open("#{dke_path}/dke_users.groups" , "w") do |file|
       file.write(apache_string)
     end
     return nil
