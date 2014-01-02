@@ -43,16 +43,6 @@ class UsersController < ApplicationController
     @user = Users.new
   end
   
-  def positions
-    Apache.update_positions(params) unless params["beta"].nil?
-    @positions = Apache.read.except("dkebro", "dkepledge", "dkeaffil", "broporn", "brochicken")
-    @brothers = Array.new([])
-    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
-      @brothers << [brother.full_name, brother.uname]
-    end
-    @brothers.sort!
-  end
-  
   def show
     @user = Users.new(params[:id])
   end

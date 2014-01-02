@@ -7,29 +7,14 @@ class BrothersDke < ActiveRecord::Base
     #project: text
     #big: text
     #littles: text
-    #cur_pos: text
     #past_pos: text
     #residence: text
     #p_class: integer
     VALID_YEAR = /[\d]{4}/
     validates :p_class, presence: true, format: {with: VALID_YEAR}
     
-    def add_current_pos(position)
-      tmp = self.cur_pos.split(", ")
-      tmp << position.capitalize
-      tmp.sort!
-      self.cur_pos = tmp.join(", ")
-      #puts self.cur_pos
-      self.save
-    end
-    
-    def rm_current_pos(position)
-      tmp = self.cur_pos.split(", ")
-      tmp.delete(position.capitalize)
-      tmp.sort!
-      self.cur_pos = tmp.join(", ")
-      #puts self.cur_pos
-      self.save
+    def cur_pos
+      return Positions.get_current(self.uname)
     end
     
     def add_past_pos(position)
@@ -45,7 +30,6 @@ class BrothersDke < ActiveRecord::Base
       tmp << "#{position.capitalize} (#{time_stamp})"
       tmp.sort!
       self.past_pos = tmp.join(", ")
-      puts self.cur_pos
       self.save
     end
 end

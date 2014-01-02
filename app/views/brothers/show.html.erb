@@ -36,20 +36,16 @@
     	</ul>
     	<div class="tab-content">
     		<div class="tab-pane info active" id="personal">
-    			<div class="row">
-    				<div class="span12">
-    					<% unless @brother.personal.hometown==""%><p><b>Hometown:</b> <%= @brother.personal.hometown%><%end%>
-    					<!--<% unless @brother.personal== "" || !@me.brother?%><br><b>Email Address:</b> <%= @brother.personal%><%end%>-->
-    					<% unless @brother.personal.phone=="" || !@me.brother?%><br><b>Phone Number:</b> <%= @brother.personal.phone%><%end%>
-    					<% unless @brother.personal.activities==""%><p><b>Activities:</b> <%= @brother.personal.activities%><%end%>
-    					<% unless @brother.personal.hobbies==""%><br><b>Hobbies:</b> <%= @brother.personal.hobbies%><%end%>
-    					<% unless @brother.personal.quote==""%><p><b>Favorite Quote:</b> <%= @brother.personal.quote%><%end%>
-    					<% unless @brother.personal.movie==""%><br><b>Favorite Movie:</b> <%= @brother.personal.movie%><%end%>
-    					<% unless @brother.personal.pro_team==""%><br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%><%end%>
-    					<% unless @brother.personal.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%><%end%>
-    					<% unless @brother.personal.bio==""%><P><b>Bio:</b>  <%= @brother.personal.bio%><%end%>
-					</div>
-				</div>
+				<% unless @brother.personal.hometown==""%><p><b>Hometown:</b> <%= @brother.personal.hometown%><%end%>
+				<!--<% unless @brother.personal== "" || !@me.brother?%><br><b>Email Address:</b> <%= @brother.personal%><%end%>-->
+				<% unless @brother.personal.phone=="" || !@me.brother?%><br><b>Phone Number:</b> <%= @brother.personal.phone%><%end%>
+				<% unless @brother.personal.activities==""%><p><b>Activities:</b> <%= @brother.personal.activities%><%end%>
+				<% unless @brother.personal.hobbies==""%><br><b>Hobbies:</b> <%= @brother.personal.hobbies%><%end%>
+				<% unless @brother.personal.quote==""%><p><b>Favorite Quote:</b> <%= @brother.personal.quote%><%end%>
+				<% unless @brother.personal.movie==""%><br><b>Favorite Movie:</b> <%= @brother.personal.movie%><%end%>
+				<% unless @brother.personal.pro_team==""%><br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%><%end%>
+				<% unless @brother.personal.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%><%end%>
+				<% unless @brother.personal.bio==""%><P><b>Bio:</b>  <%= @brother.personal.bio%><%end%>
 			</div>
 			<div class="tab-pane info" id="mit_info">
 				<% unless @brother.mit.majors==""%><p><b>Majors:</b> <%= @brother.mit.majors%><%end%>
@@ -66,7 +62,7 @@
        			<% unless @brother.dke.project==""%><br><b>Pledge Project:</b> <%= @brother.dke.project%><%end%>
        			<% unless @brother.dke.big==""%><br><b>Big Brother:</b> <%= get_big(@brother.dke.big) %><%end%>
        			<% unless @brother.dke.littles==""%><br><b>Little Brothers:</b> <%= get_littles(@brother.dke.littles)%><%end%>
-            	<% unless @brother.dke.cur_pos==""%><br><b>Current Positions:</b> <%= @brother.dke.cur_pos%><%end%>
+            	<% unless @brother.dke.cur_pos ==""%><br><b>Current Positions:</b> <%= @brother.dke.cur_pos%><%end%>
        			<% unless @brother.dke.past_pos==""%><br><b>Positions Held:</b> <%= @brother.dke.past_pos%><%end%>
        			<% unless get_room(@brother.dke)==""%><br><b>Residence:</b> <%= get_room(@brother.dke)%><%end%>
       		</div>

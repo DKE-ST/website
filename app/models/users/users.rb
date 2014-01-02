@@ -131,21 +131,22 @@ class Users
   end
   
   def personal
-    @personal = BrothersPersonal.find_by(uname: self.uname) unless @personal
+    @personal = BrothersPersonal.find_by(uname: self.uname)# unless @personal
     return @personal
   end
   
   def mit
-    @mit = BrothersMit.find_by(uname: self.uname) unless @mit
+    @mit = BrothersMit.find_by(uname: self.uname)# unless @mit
     return @mit
   end
   
   def dke
-    @dke = BrothersDke.find_by(uname: self.uname) unless @dke
+    @dke = BrothersDke.find_by(uname: self.uname)# unless @dke
     return @dke
   end
   
   def ldap
+    return nil if true
     return @ldap if @ldap
     return nil unless @ldap.nil?
     begin
@@ -204,7 +205,6 @@ class Users
     dke.project = ""
     dke.big = ""
     dke.littles = ""
-    dke.cur_pos = ""
     dke.past_pos = ""
     dke.residence = ""
     dke.p_class = p_class
@@ -224,7 +224,7 @@ class Users
   
   def brother_dke_params(params)
     params[:brothers_dke][:uname] = params[:users][:uname]
-    params.require(:brothers_dke).permit(:uname, :p_class, :cur_pos, :past_pos)
+    params.require(:brothers_dke).permit(:uname, :p_class, :past_pos)
   end
   
 end

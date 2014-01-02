@@ -4,12 +4,12 @@ class ChapterPublicController < ApplicationController
   
   def contact
     @officers = Hash.new
-    position_map =  BrothersDke.select("cur_pos, uname")
-    position_map.each do |position|
-      unless position.cur_pos == ""
-        name = BrothersPersonal.find_by(uname: position.uname).full_name
-        year = BrothersMit.find_by(uname: position.uname).year.to_s[2..3]
-        @officers[position.cur_pos] = {uname: position.uname, full_name: name, year: year}
+    position_map =  Positions.select("position, name, uname, contact, disp")
+    position_map.each do |pos|
+      if pos.disp
+        name = BrothersPersonal.find_by(uname: pos.uname).full_name
+        year = BrothersMit.find_by(uname: pos.uname).year.to_s[2..3]
+        @officers[pos.position] = {uname: pos.uname, full_name: name, year: year, contact: pos.contact, name: pos.name}
       end
     end
   end
