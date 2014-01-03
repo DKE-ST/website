@@ -17,19 +17,14 @@ class BrothersDke < ActiveRecord::Base
       return Positions.get_current(self.uname)
     end
     
-    def add_past_pos(position)
-      if position == "kappa"
-        time_stamp = "#{Date.current.year-2}-#{Date.current.year}"
-      elsif position =~ /(beta|sigma)/
-        time_stamp = "#{Date.current.year-1}-#{Date.current.year}"
-      else
-        season = (Date.current.month>7 && Date.current.month < 12)?"Spring":"Fall"
-        time_stamp = "#{season} #{Date.current.year}"
-      end
-      tmp = self.past_pos.split(", ")
-      tmp << "#{position.capitalize} (#{time_stamp})"
-      tmp.sort!
-      self.past_pos = tmp.join(", ")
-      self.save
+    def self.add_past_pos(uname, position, start, finish)
+      content =  "#{position} (#{start.strftime('%b %-d, %Y')} - #{finish.strftime('%b %-d, %Y')})"
+      puts content
+      brother = BrothersDke.find_by(uname: uname)
+      tmp = brother.past_pos.split(", ")
+      tmp << content
+      brother.past_pos = tmp.join(", ")
+      puts brother.past_pos
+      brother.save
     end
 end

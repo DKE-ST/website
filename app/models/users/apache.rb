@@ -49,22 +49,6 @@ class Apache
     system("htpasswd -D #{Apache.dke_path}/dke_users.passwd #{uname}")
   end
   
-  def self.update_positions(params)
-    apache_users = read
-    apache_users.each do | position , officer |
-      unless params[position].nil?
-        if officer[0] != params[position]
-          apache_users[position] = [params[position]]
-          old_officer = BrothersDke.find_by(uname: officer[0])
-          old_officer.add_past_pos(position)
-          old_officer.rm_current_pos(position)
-          new_officer = BrothersDke.find_by(uname: params[position])
-          new_officer.add_current_pos(position)
-        end
-      end
-    end
-    write(apache_users)
-  end
   
   def self.add(uname, group, year = nil, paswd = nil)
     year = year.to_s

@@ -18,9 +18,9 @@ class Positions < ActiveRecord::Base
     pos = Positions.find_by(position: position)
     pos.uname = uname
     if pos.uname_changed?
-      #Code to update past & current positions
-      pos.start_date = Date.today
-      pos.save
+      BrothersDke.add_past_pos(pos.uname_was, position, pos.start_date, Date.today)
+      #pos.start_date = Date.today
+      #pos.save
     end
   end
   

@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_user
   
   def set_user
+    BrothersPersonal
+    BrothersMit
+    BrothersDke
+    MitStudents
     @me = Apache.new(session[:uname])
   end
   
