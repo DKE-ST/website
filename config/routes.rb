@@ -2,7 +2,7 @@ RailsSite::Application.routes.draw do
   
   #Home Page
   root 'static_pages#home'
-  #Public site routesss
+  #Public site routes
   match '/contact', to: 'chapter_public#contact' , via: :get
   #Private site routes 
   match '/profile', to: 'brothers#profile' , via: :get
