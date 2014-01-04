@@ -8,6 +8,9 @@ RailsSite::Application.routes.draw do
   match '/profile', to: 'brothers#profile' , via: :get
   match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
   match '/ch_pwd' , to: 'users#ch_pwd' , via: [:get, :patch]
+  #Positions controller
+  match 'positions/updatem' , to: 'positions#mass_edit', via: :get
+  match 'positions/updatem' , to: 'positions#mass_update', via: :post
   #Used for authenticating users
   match '/login' , to: 'static_pages#home' , via: [:post]
   match '/success' , to: 'static_pages#success' , via: [:get]

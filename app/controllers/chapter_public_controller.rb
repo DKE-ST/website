@@ -27,20 +27,6 @@ class ChapterPublicController < ApplicationController
     end
   end
   
-  def edit
-    @content = ChapterPublic.find_by(pname: params[:id])
-  end
-  
-  def update
-    @content = ChapterPublic.find_by(pname: params[:id])
-    if @content.update_attributes(params.require(:chapter_public).permit(:title, :pname, :content))
-      flash[:success] = "Information updated"
-      redirect_to chapter_public_url
-    else
-      render 'edit'
-    end
-  end
-  
   private
   
   def correct_user

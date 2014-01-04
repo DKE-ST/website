@@ -1,8 +1,13 @@
 <% provide(:title , 'Chapter Officers')%>
 
-<div class="row me">
+<div class="row">
 	<div class="span12" align="left">
-		<h3>Contacting DKE</h3>
+		<h3>
+			Chapter Officers
+			<div class="btn-group pull-right">
+				<%= link_to "Update Officers" , "#{positions_updatem_path}"  , :class => "btn"%>
+			</div>
+		</h3>
 	</div>	
 	<% @officers.each do |pos, info|%>
 	  <div class="span6" align="center">

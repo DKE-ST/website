@@ -1,0 +1,16 @@
+<% provide(:title , 'Chapter Officers - Update')%>
+
+<div class="row">
+	<div class="span12" align="left">
+		<h3>Update Chapter Officers</h3>
+	</div>
+	<div class="span8" align="right">
+	<%= form_tag positions_updatem_url, method: :post do%>
+	  <% @officers.each do |pos|%>
+	    <br><%= pos.name%>:
+	  	<%= select_tag( "officers[#{pos.position}]", options_for_select(@brothers, selected: pos.uname))%>
+	  <%end%>
+	  <br><%= submit_tag "Update Positions", class: "btn btn-primary"%>
+	<%end%>
+	</div>
+</div>	

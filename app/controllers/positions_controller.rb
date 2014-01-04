@@ -1,4 +1,4 @@
-class PositionsController < ApplicationController
+class PositionsController < AuthController
   
   def index
     @officers = Hash.new
@@ -10,4 +10,21 @@ class PositionsController < ApplicationController
     end
   end
   
+  def mass_edit
+    @officers = Positions.select("position, name, uname")
+    @brothers = Array.new([])
+    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
+      @brothers << [brother.full_name, brother.uname]
+    end
+    @brothers.sort!
+  end
+  
+  def mass_update
+    params.require("officers").each do |position, officer|
+      Positions.update_position(position, officer)
+    end
+    flash[:success] = "Officers updated"
+    redirect_to positions_url
+  end
+    
 end

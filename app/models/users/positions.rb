@@ -18,9 +18,9 @@ class Positions < ActiveRecord::Base
     pos = Positions.find_by(position: position)
     pos.uname = uname
     if pos.uname_changed?
-      BrothersDke.add_past_pos(pos.uname_was, position, pos.start_date, Date.today)
-      #pos.start_date = Date.today
-      #pos.save
+      BrothersDke.add_past_pos(pos.uname_was, pos.name, pos.start_date, Date.today)
+      pos.start_date = Date.today
+      pos.save
     end
   end
   
