@@ -3,15 +3,9 @@ class Positions < ActiveRecord::Base
   validates :position, presence: true, uniqueness: { case_sensitive: false }
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   
-  def initialize(position, name, uname=nil, start_date=Date.today)
-    super()
-    self.position = position
-    self.name = name
-    if uname
-      self.uname = uname
-      self.start_date = start_date
-    end
-    self.save
+  def initialize(params = {})
+    super(params)
+    self.start_date = Date.today
   end
   
   def self.update_position(position, uname)

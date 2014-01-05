@@ -6,14 +6,17 @@
 			Chapter Officers
 			<div class="btn-group pull-right">
 				<%= link_to "Update Officers" , "#{positions_updatem_path}"  , :class => "btn"%>
+				<%= link_to "Add Position" , "#{new_position_path}"  , :class => "btn"%>
 			</div>
 		</h3>
 	</div>	
 	<% @officers.each do |pos, info|%>
 	  <div class="span6" align="center">
-		<p><b><%= info[:name]%>:</b> <%= "#{info[:full_name]} '#{info[:year]}"%>
-		<br><b>Contact For:</b> <%= info[:contact]%>
-		<br><%= link_to "#{info[:uname]}@mit.edu", "mailto:#{info[:uname]}@mit.edu"%>
+		<p><b><%= link_to info[:name], "#{positions_path}/#{pos}/edit"%>:</b> <%= "#{info[:full_name]} '#{info[:year]}"%>
+		<% if info[:disp]%>
+			<br><b>Contact For:</b> <%= info[:contact]%>
+		<% end%>
+		<br>_____________________________________________________
 	  </div>
 	<%end%>
 </div>
