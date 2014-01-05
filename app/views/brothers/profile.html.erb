@@ -37,22 +37,27 @@
     	</ul>
      	<div class="tab-content">
 	      	<div class="tab-pane info active" id="activity">
+      			<div class="span2" align="right">
+		      		<h4>Points Breakdown</h4>
+		      		<% @points.attribute_names.each do |type|%>
+		      		  <%= print_type(type, @points[type])%>
+		      		<% end%>
+		      		Total : <%= @points.total%>
+      			</div>
 	       		<!--#TODO-->
 	      	</div>
 	      	<div class="tab-pane info" id="personal">
-		      	<div class="row">
-		      		<div class="span12">
-		      			<p><b>Hometown:</b> <%= @brother.personal.hometown%>
-		    			<br><b>Email Address:</b> <%= @brother.personal.uname%>@mit.edu
-		    			<br><b>Phone Number:</b> <%= @brother.personal.phone%>
-		    			<p><b>Activities:</b> <%= @brother.personal.activities%>
-		    			<br><b>Hobbies:</b> <%= @brother.personal.hobbies%>
-		    			<p><b>Favorite Quote:</b> <%= @brother.personal.quote%>
-		    			<br><b>Favorite Movie:</b> <%= @brother.personal.movie%>
-		    			<br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%>
-		    			<br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%>
-		    			<P><b>Bio:</b>  <%= @brother.personal.bio%>
-		      		</div>
+		      	<div class="span12">
+	      			<p><b>Hometown:</b> <%= @brother.personal.hometown%>
+	    			<br><b>Email Address:</b> <%= @brother.personal.uname%>@mit.edu
+	    			<br><b>Phone Number:</b> <%= @brother.personal.phone%>
+	    			<p><b>Activities:</b> <%= @brother.personal.activities%>
+	    			<br><b>Hobbies:</b> <%= @brother.personal.hobbies%>
+	    			<p><b>Favorite Quote:</b> <%= @brother.personal.quote%>
+	    			<br><b>Favorite Movie:</b> <%= @brother.personal.movie%>
+	    			<br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%>
+	    			<br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%>
+	    			<P><b>Bio:</b>  <%= @brother.personal.bio%>
 		      	</div>
 			</div>
 	      	<div class="tab-pane info" id="mit_info">

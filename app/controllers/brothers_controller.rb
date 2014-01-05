@@ -20,6 +20,7 @@ class BrothersController < ApplicationController
   
   def profile
     @brother = Brothers.new(@me.uname)
+    @points = HousePoints.find(@me.uname)
   end
   
   def edit
