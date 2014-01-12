@@ -1,4 +1,5 @@
-class BrothersController < ApplicationController
+class BrothersController < AuthController
+  skip_before_filter :logged_in, only: [:index, :show]
   before_action :correct_user, only: [:edit, :update]
   
   def index

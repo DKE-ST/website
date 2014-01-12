@@ -1,6 +1,5 @@
-class ChapterPublicController < ApplicationController
-  
-  before_action :correct_user, only: [:edit, :update]
+class ChapterPublicController < AuthController
+  skip_before_filter :logged_in, only: [:contact, :show]
   
   def contact
     @officers = Hash.new

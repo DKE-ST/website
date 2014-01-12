@@ -35,7 +35,7 @@
     		<li><a href="#dke_info" data-toggle="tab">DKE</a></li>
     	</ul>
     	<div class="tab-content">
-    		<div class="tab-pane info active" id="personal">
+    		<div class="tab-pane info span11 active" id="personal">
 				<% unless @brother.personal.hometown==""%><p><b>Hometown:</b> <%= @brother.personal.hometown%><%end%>
 				<!--<% unless @brother.personal== "" || !@me.brother?%><br><b>Email Address:</b> <%= @brother.personal%><%end%>-->
 				<% unless @brother.personal.phone=="" || !@me.brother?%><br><b>Phone Number:</b> <%= @brother.personal.phone%><%end%>
@@ -47,7 +47,7 @@
 				<% unless @brother.personal.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%><%end%>
 				<% unless @brother.personal.bio==""%><P><b>Bio:</b>  <%= @brother.personal.bio%><%end%>
 			</div>
-			<div class="tab-pane info" id="mit_info">
+			<div class="tab-pane info span11" id="mit_info">
 				<% unless @brother.mit.majors==""%><p><b>Majors:</b> <%= @brother.mit.majors%><%end%>
        			<% unless @brother.mit.minors==""%><br><b>Minors:</b> <%= @brother.mit.minors%><%end%>
        			<% unless @brother.mit.concentration==""%><br><b>Concentration:</b> <%= @brother.mit.concentration%><%end%>
@@ -57,7 +57,7 @@
        			<% unless @brother.mit.internships==""%><br><b>Internships:</b> <%= @brother.mit.internships%><%end%>
        			<% unless @brother.mit.fav_classes==""%><br><b>Favorite MIT Classes:</b> <%= @brother.mit.fav_classes%><%end%>
       		</div>
-      		<div class="tab-pane info" id="dke_info">
+      		<div class="tab-pane info span11" id="dke_info">
             	<% unless @brother.dke.pname=="" || !@me.brother?%><p><b>Pledge Name:</b> <%= @brother.dke.pname%><%end%>
        			<% unless @brother.dke.project==""%><br><b>Pledge Project:</b> <%= @brother.dke.project%><%end%>
        			<% unless @brother.dke.big==""%><br><b>Big Brother:</b> <%= get_big(@brother.dke.big) %><%end%>
