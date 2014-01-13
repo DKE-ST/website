@@ -1,0 +1,27 @@
+<% provide(:title , "Chapter Officers - #{@officer.name}")%>
+
+<div class="row">
+	<div class="span12" align="left">
+		<h3><%= @officer.name%> Points Breakdown</h3>
+		<table class="table table-striped table-hover table-condensed">
+			<thead><tr>
+				<th>Name</th>
+				<th>Pledge Class</th>
+				<th>Points Fall</th>
+				<th>Points Spring</th>
+				<th></th>
+			</tr></thead>
+			<tbody>
+			  <% @brothers.each do | usr |%>
+			  <tr>
+				<td><%= usr[:name]%></td>
+				<td><%= usr[:p_class]%></td>
+			  	<td><%= usr[:fall]%></td>
+			  	<td><%= usr[:spring]%></td>
+			  	<td></td>
+			  </tr>
+			  <%end%>
+			</tbody>
+		</table>
+	</div>
+</div>

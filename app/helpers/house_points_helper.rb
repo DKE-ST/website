@@ -1,0 +1,2 @@
+module HousePointsHelper
+end
