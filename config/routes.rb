@@ -21,6 +21,7 @@ RailsSite::Application.routes.draw do
   resources :brothers
   resources :users
   resources :positions
+  resources :house_points, :path => '/points'
   resources :chapter_public, :path => '/'
   
   # The priority is based upon order of creation: first created -> highest priority.
