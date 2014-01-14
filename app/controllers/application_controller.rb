@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     BrothersMit
     BrothersDke
     MitStudents
-    @me = Apache.new(session[:uname])
+    @me = CurrentUser.new(session[:uname])
   end
   
 end

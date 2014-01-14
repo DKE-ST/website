@@ -1,30 +1,7 @@
 class Apache
   
-  attr_accessor :uname
-  
-  def initialize(uname)
-    self.uname = uname
-  end
-  
-  def in_group(group_name)
-    return false unless self.uname
-    return true if Apache.groups(self.uname).include? "brochicken"
-    return Apache.groups(self.uname).include? group_name
-  end
-  
-  def brother?
-    return in_group("dkebro") || in_group("dkepledge")
-  end
-  
   def self.exists(uname)
     return self.read.to_s.split(/\W+/).include? uname
-  end
-  
-  def pwd?
-    File.open("#{Apache.dke_path}/dke_users.passwd").each_line do |line|
-      return true if line.include? self.uname
-    end
-    return false
   end
   
   def self.groups(uname)
