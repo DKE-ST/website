@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 31, 2013 at 07:17 AM
--- Server version: 5.5.31
--- PHP Version: 5.5.7-1+sury.org~precise+1
+-- Generation Time: Jan 14, 2014 at 06:55 PM
+-- Server version: 5.5.34
+-- PHP Version: 5.3.10-1ubuntu3.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -72,7 +72,7 @@ INSERT INTO `brothers_dke` (`id`, `uname`, `pname`, `project`, `big`, `littles`,
 (25, 'josephdr', '', '', '', '', '', '', '', 2014),
 (26, 'gillund', '', '', '', '', '', '', '', 2014),
 (27, 'jlaux', '', '', '', '', 'Sigma', '', '', 2014),
-(28, 'hgould', '', '', '', '', 'Upsilon', 'Upsilon (Spring 2013) ', '', 2014),
+(28, 'hgould', '', '', '', '', 'Upsilon', '', '', 2014),
 (29, 'rfried16', '', '', '', '', '', '', '', 2014),
 (30, 'pjupe', 'Smiley', '', '', '', '', '', '', 2012),
 (31, 'rmancuso', '', '', '', '', '', '', '', 2009),
@@ -348,6 +348,88 @@ INSERT INTO `chapter_public` (`id`, `pname`, `user`, `title`, `content`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `house_points`
+--
+
+CREATE TABLE IF NOT EXISTS `house_points` (
+  `uname` varchar(8) NOT NULL,
+  `beta_f` int(11) NOT NULL DEFAULT '0',
+  `beta_s` int(11) NOT NULL DEFAULT '0',
+  `sigma_f` int(11) NOT NULL DEFAULT '0',
+  `sigma_s` int(11) NOT NULL DEFAULT '0',
+  `zeta_f` int(11) NOT NULL DEFAULT '0',
+  `zeta_s` int(11) NOT NULL DEFAULT '0',
+  `epsilon_f` int(11) NOT NULL DEFAULT '0',
+  `epsilon_s` int(11) NOT NULL DEFAULT '0',
+  `delta_f` int(11) NOT NULL DEFAULT '0',
+  `delta_s` int(11) NOT NULL DEFAULT '0',
+  `gamma_f` int(11) NOT NULL DEFAULT '0',
+  `gamma_s` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uname`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `house_points`
+--
+
+INSERT INTO `house_points` (`uname`, `beta_f`, `beta_s`, `sigma_f`, `sigma_s`, `zeta_f`, `zeta_s`, `epsilon_f`, `epsilon_s`, `delta_f`, `delta_s`, `gamma_f`, `gamma_s`) VALUES
+('acboesch', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('andresw', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('asnoakes', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('atitus', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('bcope', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('bengreen', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('bj1992', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('bradgold', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('bwalcher', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('cameronw', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('cargenti', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('chrissan', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('csparano', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('ctk1994', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('dhoule', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('djbattag', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('dvaughn', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('ehuppert', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('eklinkha', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('esparrs', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('evaten', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('ghegg', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('gillund', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('halloran', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('herbanek', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('hgould', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jbalchun', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jcampion', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jhanley', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jismith', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jlara', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jlaux', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('jmcunnin', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('josephdr', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('kvnkusch', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('laithm', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('lindsaym', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('lvbanner', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('mhildner', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('mtiovino', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('nanaya', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('nmagu', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('phillipm', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('pjmaster', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('rfried16', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('rhys34', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('rkarnish', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('sethstud', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('tellis', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('toolman7', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('wallace4', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('warnera', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+('wwaste', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `house_rooms`
 --
 
@@ -399,6 +481,62 @@ INSERT INTO `house_rooms` (`id`, `floor`, `name`, `capacity`, `occupant0`, `occu
 (509, 5, 'Ocean', 4, 'warnera', 'tellis', 'asnoakes', ''),
 (510, 5, '5th Back Single', 1, 'wallace4', '', '', ''),
 (601, 6, 'Roof', 0, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `positions`
+--
+
+CREATE TABLE IF NOT EXISTS `positions` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `position` text NOT NULL,
+  `name` text NOT NULL,
+  `uname` varchar(8) NOT NULL,
+  `start_date` date NOT NULL,
+  `disp` tinyint(1) NOT NULL DEFAULT '0',
+  `contact` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`id`, `position`, `name`, `uname`, `start_date`, `disp`, `contact`) VALUES
+(1, 'beta', 'President', 'wallace4', '2013-02-03', 1, 'Major issues; Issues Relevant to entire house'),
+(2, 'sigma', 'Vice President & Risk Manager', 'jlaux', '2013-02-03', 1, 'Any serious issues or anything pertaining to risk'),
+(3, 'kappa', 'Treasurer', 'halloran', '2013-02-03', 1, 'Financial issues '),
+(4, 'zeta', 'House Manager', 'jmcunnin', '2013-09-15', 1, 'Issues pertaining to upkeep of the house '),
+(5, 'epsilon', 'House Steward', 'nmagu', '2013-09-15', 0, ''),
+(6, 'delta', 'Social Chair', 'lvbanner', '2013-09-15', 1, 'Social event planning '),
+(7, 'psi', 'Rush Chair', 'wwaste', '2013-02-03', 0, ''),
+(8, 'pi', 'New Member Educator', 'wwaste', '2013-09-15', 0, ''),
+(9, 'upsilon', 'Community Service Chair', 'hgould', '2013-02-03', 1, 'Community service events '),
+(10, 'gamma', 'Assistant to the Pi', 'warnera', '2014-01-04', 0, ''),
+(11, 'broweb', 'Webmaster', 'wallace4', '2014-01-04', 1, 'Issues pertaining to the website'),
+(12, 'zeta_s', 'Summer House Manager', '', '2014-01-05', 1, 'Summer housing');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE IF NOT EXISTS `settings` (
+  `name` varchar(11) NOT NULL,
+  `val` int(11) NOT NULL,
+  `desc` text,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`name`, `val`, `desc`) VALUES
+('debug', 1, NULL),
+('server', 0, '0 - Local, Server Development Mode\r\n1 - Server Main');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

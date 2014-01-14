@@ -74,8 +74,8 @@ class Apache
  private
  
   def self.dke_path
-    return '/etc/apache2' if ENV["SERVER_NAME"] == "bruiser.mit.edu"
-    return "/home/wallace4/rails_site/config"
+    return '/etc/apache2' if Settings.find("server")==1
+    return "#{Dir.pwd}/config"
   end
   
   def self.read
