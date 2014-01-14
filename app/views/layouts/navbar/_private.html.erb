@@ -2,11 +2,20 @@
 	<a class="visible-desktop">Chapter</a>
 	<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Chapter</a>
 	<ul class="dropdown-menu" role="menu" aria-labaledby="dLabel">
+	  <% if @me.brother?%>
 		<li id="gen_sub" class="dropdown-submenu"><a>General</a>
 			<ul class="dropdown-menu">
 				<%= render 'layouts/navbar/public'%>
 			</ul>
 		</li>
+		<% @me.positions.each do | pos |%>
+		  <li id="gen_sub" class="dropdown-submenu"><a><%= pos.name%></a>
+			<ul class="dropdown-menu">
+				<li><%= link_to "Update Points" , "#{house_points_path}/#{pos.position}"%></li>
+		  	</ul>
+		  </li>
+		<% end%>
+		<li><%= link_to "Points Breakdown", house_points_path%></li>
         <!--<li id="pos_sub" class="dropdown-submenu"><a>Positions</a>
         	<ul class="dropdown-menu">
         		<li><%= link_to 'Beta', '#TODO'%></li>
@@ -21,6 +30,9 @@
 			</ul>
         </li>
         <li><a href="#TODO">Calendar</a></li>-->
+	  <% else%>
+		<%= render 'layouts/navbar/public'%>
+	  <% end%>
 	</ul>
 </li>
 <li class="nav-item dropdown hover">
