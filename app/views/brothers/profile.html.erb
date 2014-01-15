@@ -40,7 +40,7 @@
       			<div class="span2 offset9" align="right">
 		      		<h4>Points Breakdown</h4>
 		      		<% @points.attribute_names.each do |type|%>
-		      		  <%= print_type(type, @points[type])%>
+		      		  <%= print_field(type, @points[type])%>
 		      		<% end%>
 		      		Total : <%= @points.total%>
       			</div>

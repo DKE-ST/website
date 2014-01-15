@@ -12,7 +12,7 @@ module BrothersHelper
       end
   end
   
-  def print_type(type, val)
+  def print_field(type, val)
     if type =~ /\S+_[sf]/
       tmp = type.gsub("_s", " Spring").gsub("_f", " Fall")
       return "#{tmp.humanize}: #{val}<br>".html_safe
