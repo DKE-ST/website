@@ -29,7 +29,7 @@ class CurrentUser
   def pwd?
     return true if adm_acess?
     File.open("#{Apache.dke_path}/dke_users.passwd").each_line do |line|
-      return true if line.include? self.uname && self.uname != 'dkealum'
+      return true if line.include?(self.uname) && self.uname != 'dkealum'
     end
     return false
   end
