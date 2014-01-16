@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_action :auth_user, only: [:settings, :update_settings]
+  
   def home
   end
   
@@ -6,12 +8,21 @@ class StaticPagesController < ApplicationController
   end
   
   def settings
-    if @me.in_group("brockicken")
-      @settings = Settings.select("*")
-    else
-      flash[:error] = "You do not have acess to this page"
-      redirect_to root_url
+    @settings = {}
+    @settings["debug"] = {db: Settings.find("debug"), options: [["Enabled",1],["Disabled",0]]}
+    @settings["server"] = {db: Settings.find("server"), options: [["Production",0],["Development",1],["Local",2]]}
+  end
+  
+  def update_settings
+    config = params.require(:settings).permit(:debug, :server)
+    puts config
+    config.each do | name, val |
+      tmp = Settings.find(name)
+      tmp.val = val
+      tmp.save if tmp.val_changed?
     end
+    settings
+    render "settings"
   end
   
   def success
@@ -24,5 +35,14 @@ class StaticPagesController < ApplicationController
   def loggedout
     session[:uname] = nil
     redirect_to root_url
+  end
+  
+ private
+ 
+ def auth_user
+    unless @me.in_group("brochicken")
+      flash[:error] = "You do not have acess to this page"
+      redirect_to root_url
+    end
   end
 end

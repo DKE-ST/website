@@ -1,0 +1,16 @@
+<% provide(:title , "Site Settings")%>
+
+
+<div class="row">
+	<div class="span12" align="left">
+		<h1>Change Password</h1>
+		<%= form_tag settings_url, method: :patch do %>
+		  <% @settings.each do | name, info |%>
+			<%= name.humanize%> Mode:
+			<%= select_tag("settings[#{name}]", options_for_select(info[:options], selected: info[:db].val))%>
+			<br>
+		  <% end%>
+			<br><%= submit_tag "Save Settings", class: "btn btn-primary" %>
+		<%end%>
+	</div>
+</div>
