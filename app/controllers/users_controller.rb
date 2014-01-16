@@ -5,24 +5,19 @@ class UsersController < ApplicationController
   
   def ch_pwd
     @user = Users.new
-    unless params['commit'].nil?
-      fail = Array.new([])
-      if params['password1']!=params['password2']
-        fail << "Passwords do not match"
-      end
-      if params['password1'].length < 8
-        fail << "Passwords must be at least 8 characters"
-      end
-      if params['password1'].length =~ /\s/
-        fail <<  "Passwords must cannot contain white space characters"
-      end
-      unless fail.empty?
-        flash[:fail] = fail.join('<br>').html_safe
-      else
-        Apache.password(@me.uname,params['password1'])
-        flash[:success] = "Password Changed Sucessfully"
-        redirect_to root_path
-      end
+  end
+  
+  def update_pwd
+    fail = Array.new([])
+    fail << "Passwords do not match" if params['password1']!=params['password2']
+    fail << "Passwords must be at least 8 characters" if params['password1'].length < 8
+    fail <<  "Passwords must cannot contain white space characters" if params['password1'].length =~ /\s/
+    unless fail.empty?
+      flash[:fail] = fail.join('<br>').html_safe
+    else
+      Apache.password(@me.uname,params['password1'])
+      flash[:success] = "Password Changed Sucessfully"
+      redirect_to root_path
     end
   end
   

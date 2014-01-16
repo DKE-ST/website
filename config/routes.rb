@@ -7,14 +7,16 @@ RailsSite::Application.routes.draw do
   #Private site routes 
   match '/profile', to: 'brothers#profile' , via: :get
   match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
-  match '/ch_pwd' , to: 'users#ch_pwd' , via: [:get, :patch]
+  match '/ch_pwd' , to: 'users#ch_pwd' , via: :get
+  match '/ch_pwd' , to: 'users#update_pwd' , via: :patch
+  match '/settings', to: 'static_pages#settings', via: :get
   #Positions controller
   match 'positions/updatem' , to: 'positions#mass_edit', via: :get
   match 'positions/updatem' , to: 'positions#mass_update', via: :post
   #Used for authenticating users
-  match '/login' , to: 'static_pages#home' , via: [:post]
-  match '/success' , to: 'static_pages#success' , via: [:get]
-  match '/loggedout' , to: 'static_pages#loggedout' , via: [:get]
+  match '/login' , to: 'static_pages#home' , via: :post
+  match '/success' , to: 'static_pages#success' , via: :get
+  match '/loggedout' , to: 'static_pages#loggedout' , via: :get
   #Used for pages in lambda
   match '/php_header', to: 'static_pages#php_header', via: :get
   
