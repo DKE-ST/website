@@ -5,6 +5,7 @@ class Users
   
   attr_accessor :uname , :first_name, :last_name, :mit_class, :p_class, :student, :group, :password, :pswd2
   validates :password, presence: true, format: {with: /\A\S+\z/}, length: { minimum: 8 }
+  
   def initialize(attributes = {})
     if attributes.class == ActionController::Parameters || attributes.class == Hash
       attributes.each do |name, value|
@@ -16,19 +17,6 @@ class Users
     else
       self.uname = attributes
       self.group = Apache.groups(uname)[0]
-    end
-  end
-  
-  def self.add_class(new_members)
-    new_members.each do | uname, info |
-      pledge = Users.new
-      pledge.set_personal(uname, info["first_name"], info["last_name"])
-      pledge.personal.save
-      pledge.set_mit(uname, info["year"])
-      pledge.mit.save
-      pledge.set_dke(uname, Date.current.year+4)
-      pledge.dke.save
-      Apache.add(uname, "dkepledge", info["year"])
     end
   end
   
@@ -210,7 +198,24 @@ class Users
     dke.p_class = p_class
   end
   
+  def self.add_class(new_members)
+    new_members.each do | uname, info |
+      pledge = Users.new
+      pledge.set_personal(uname, info["first_name"], info["last_name"])
+      pledge.personal.save
+      pledge.set_mit(uname, info["year"])
+      pledge.mit.save
+      pledge.set_dke(uname, Users.cur_p_class)
+      pledge.dke.save
+      Apache.add(uname, "dkepledge", info["year"])
+    end
+  end
+  
  private
+ 
+ def self.cur_p_class
+   return Date.current.year + 3 + ((Date.current.month > 7)?1:0)
+ end
  
   def brother_personal_params(params)
     params[:brothers_personal][:uname] = params[:users][:uname]

@@ -1,7 +1,7 @@
 <% provide(:title , "Add Pledge Class")%>
 
 <div class="row">
-	<h2>Pledge Class of <%= Date.current.year+4%></h2>
+	<h2>Pledge Class of <%= Users.cur_p_class%></h2>
 	<div class="span6 offset3">
 	  <%= form_tag add_pledges_url, method: :post do%>
 		<%= text_field_tag :kerberos%>

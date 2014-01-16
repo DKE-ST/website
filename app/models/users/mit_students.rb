@@ -7,7 +7,7 @@ class MitStudents < ActiveLdap::Base
   
   def year
     if self.mitDirStudentYear
-      Date.current.year + 4 - self.mitDirStudentYear.to_i + (1 if Date.current.month > 5)
+      Date.current.year + 4 - self.mitDirStudentYear.to_i + ((Date.current.month > 7)?1:0)
     else
       nil
     end

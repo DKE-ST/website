@@ -1,25 +1,7 @@
 class UsersController < ApplicationController
   before_action :auth_user
-  skip_before_action :auth_user, only: [:ch_pwd]
-  before_action :has_pwd, only: [:ch_pwd]
-  
-  def ch_pwd
-    @user = Users.new
-  end
-  
-  def update_pwd
-    fail = Array.new([])
-    fail << "Passwords do not match" if params['password1']!=params['password2']
-    fail << "Passwords must be at least 8 characters" if params['password1'].length < 8
-    fail <<  "Passwords must cannot contain white space characters" if params['password1'].length =~ /\s/
-    unless fail.empty?
-      flash[:fail] = fail.join('<br>').html_safe
-    else
-      Apache.password(@me.uname,params['password1'])
-      flash[:success] = "Password Changed Sucessfully"
-      redirect_to root_path
-    end
-  end
+  skip_before_action :auth_user, only: [:ch_pwd, :update_pwd]
+  before_action :has_pwd, only: [:ch_pwd, :update_pwd]
   
   def index
     @affiliates = Apache.read["dkeaffil"] if Apache.read.include? "dkeaffil"
@@ -126,6 +108,24 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
+  end
+  
+  def ch_pwd
+    @user = Users.new
+  end
+  
+  def update_pwd
+    fail = Array.new([])
+    fail << "Passwords do not match" if params['password1']!=params['password2']
+    fail << "Passwords must be at least 8 characters" if params['password1'].length < 8
+    fail <<  "Passwords must cannot contain white space characters" if params['password1'].length =~ /\s/
+    unless fail.empty?
+      flash[:fail] = fail.join('<br>').html_safe
+    else
+      Apache.password(@me.uname,params['password1'])
+      flash[:success] = "Password Changed Sucessfully"
+      redirect_to root_path
+    end
   end
   
   private
