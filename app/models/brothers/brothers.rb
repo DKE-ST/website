@@ -35,7 +35,7 @@ class Brothers
     return "#{root_path}assets/brothers_img/#{personal.first_name.downcase}_#{personal.last_name.downcase}.jpg"
   end
   
- private
+ #private
  
   def upload(params)
     uploaded_io=params[:brothers_personal][:picture]
@@ -59,10 +59,27 @@ class Brothers
   end
   
   def set_big(big_name)
-    begin
-      name_parts=big_name.split
-      return BrothersPersonal.select('uname','first_name','last_name').find_by(first_name: name_parts[0], last_name: name_parts[1]).uname
-    rescue
+    name_parts=big_name.split
+    if BrothersPersonal.exists?(first_name: name_parts[0], last_name: name_parts[1])
+      big_uname = BrothersPersonal.find_by(first_name: name_parts[0], last_name: name_parts[1]).uname
+    elsif BrothersDke.exists?(uname: big_name)
+      big_uname = big_name
+    end
+    if big_uname
+      big = BrothersDke.find_by(uname: big_uname)
+      littles = big.littles.split(",")
+      if littles.index(self.personal.full_name)
+        ind = littles.index(self.personal.full_name)
+        littles[ind] = self.uname
+        big.littles = littles.join(",")
+        big.save
+      elsif littles.index(self.uname).nil?
+        littles << self.uname
+        big.littles = littles.join(",")
+        big.save
+      end
+      return big_uname
+    else
       return big_name
     end
   end
@@ -70,10 +87,20 @@ class Brothers
   def set_little(little_names)
     output= Array.new([])
     little_names.split(", ").each do |name| 
-      begin
-        name_parts=name.split
-        output << BrothersPersonal.select('uname','first_name','last_name').find_by(first_name: name_parts[0], last_name: name_parts[1]).uname
-      rescue
+      name_parts=name.split
+      if BrothersPersonal.exists?(first_name: name_parts[0], last_name: name_parts[1])
+        little_uname = BrothersPersonal.find_by(first_name: name_parts[0], last_name: name_parts[1]).uname
+      elsif BrothersDke.exists?(uname: name)
+        little_uname = name
+      end
+      if little_uname
+        little = BrothersDke.find_by(uname: little_uname)
+        if little.big.nil? || little.big.empty? || little.big == self.personal.full_name
+          little.big = self.uname
+          little.save
+        end
+        output << little_uname
+      else
         output << name
       end
     end
