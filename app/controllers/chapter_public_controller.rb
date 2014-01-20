@@ -18,8 +18,10 @@ class ChapterPublicController < AuthController
       @content = ChapterPublic.find_by(pname: params[:id])
       render params[:id]
     elsif params[:id] == "house"
-      @rooms = HouseRooms.select("floor, id, name")
       render "house"
+    elsif params[:id] == "house-tour"
+      @rooms = HouseRooms.select("floor, id, name")
+      render "house_tour"
     else
       @room = HouseRooms.find(params[:id][/\Ahouse-\d\d\d\z/][/\d\d\d/])
       render "room"

@@ -1,0 +1,72 @@
+<% provide(:title , "The House - Tour")%>
+
+<div class="row house">
+	<h2>Tour the House</h2>
+	<center>Click on a room to learn more about it</center>
+	<div class="span6 floor">
+		<%= image_tag("house_img/1stfloorlabel.gif", :alt => "")%><br>
+		<%= image_tag("house_img/1stfloor.jpg", :class => "floorplan", :usemap => "#FirstFloor", :border => "0")%>
+		<map name=FirstFloor id="FirstFloor">
+			<area shape="poly" coords="0,0,163,1,163,131,89,131,89,105,34,105,34,42,0,42" href="house-102" alt="View Kitchen" />
+			<area shape="rect" coords="235,0,324,49" href="house-104" alt="View First Single" />
+			<area shape="poly" coords="163,0,235,0,235,49,360,49,360,122,235,122,235,150,163,150" href="house-105" alt="View Front Entry" />
+			<area shape="rect" coords="235,122,399,170" href="house-106" alt="View Bar" />
+		</map>
+	</div>
+	<div class="span6 floor">
+		<%= image_tag("house_img/2ndfloorlabel.gif", :alt => "")%><br>
+		<%= image_tag("house_img/2ndfloor.jpg", :class => "floorplan", :usemap => "#SecondFloor", :border => "0")%>
+		<map name="SecondFloor" id="SecondFloor">
+			<area shape="rect" coords="88,102,399,170" href="house-201" alt="View Living Room" />
+			<area shape="rect" coords="0,102,88,170" href="house-202" alt="View Library" />
+			<area shape="poly" coords="0,0,88,0,88,102,36,102,36,40,0,40" href="house-205" alt="View Pantry" />
+			<area shape="rect" coords="88,0,291,102" href="house-206" alt="View Dining Room" />
+			<area shape="rect" coords="291,0,399,42" href="house-207" alt="View RA Single" />
+		</map>
+	</div>
+	<div class="span6 floor">
+		<%= image_tag("house_img/3rdfloorlabel.gif", :alt => "")%><br>
+		<%= image_tag("house_img/3rdfloor.jpg", :class => "floorplan", :usemap => "#ThirdFloor", :border => "0")%>
+		<map name="ThirdFloor" id="ThirdFloor">
+			<area shape="rect" coords="291,102,399,170" href="house-301" alt="View Third Stair Front" />
+			<area shape="rect" coords="228,102,291,170" href="house-302" alt="View Third Stair Back" />
+			<area shape="rect" coords="147,102,228,170" href="house-303" alt="View Third Single" />
+			<area shape="rect" coords="91,102,147,170" href="house-304" alt="View Saturn Back" />
+			<area shape="rect" coords="0,102,91,170" href="house-305" alt="View Saturn Front" />
+			<area shape="poly" coords="0,0,164,0,164,75,36,75,36,39,0,39" href="house-309" alt="View Third Pit" />
+			<area shape="rect" coords="164,0,337,75" href="house-311" alt="View Panda" />
+		</map>
+	</div>
+	<div class="span6 floor">
+		<%= image_tag("house_img/4thfloorlabel.gif", :alt => "")%><br>
+		<%= image_tag("house_img/4thfloor.jpg", :class => "floorplan", :usemap => "#FourthFloor", :border => "0")%>
+		<map name="FourthFloor" id="FourthFloor">
+			<area shape="rect" coords="291,102,399,170" href="house-401" alt="View Fourth Stair Front" />
+			<area shape="rect" coords="228,102,291,170" href="house-402" alt="View Fourth Stair Back" />
+			<area shape="rect" coords="147,102,228,170" href="house-403" alt="View Fourth Single" />
+			<area shape="rect" coords="91,102,147,170" href="house-404" alt="View Sunset Back" />
+			<area shape="rect" coords="0,102,91,170" href="house-405" alt="View Sunset Front" />
+			<area shape="poly" coords="0,0,164,0,164,75,36,75,36,39,0,39" href="house-409" alt="View Fourth Pit" />
+			<area shape="rect" coords="164,0,337,75" href="house-411" alt="View Carport" />
+		</map>
+	</div>
+	<div class="span6 floor">
+		<%= image_tag("house_img/5thfloorlabel.gif", :alt => "")%><br>
+		<%= image_tag("house_img/5thfloor.jpg", :class => "floorplan", :usemap => "#FifthFloor", :border => "0")%>
+		<map name="FifthFloor" id="FifthFloor">
+			<area shape="rect" coords="0,162,399,184" href="house-500" alt="View Balcony" />
+			<area shape="rect" coords="236,102,399,162" href="house-501" alt="View Fifth Stair" />
+			<area shape="rect" coords="152,102,236,162" href="house-503" alt="View President's Single" />
+			<area shape="rect" coords="0,102,152,162" href="house-505" alt="View Jungle" />		
+			<area shape="poly" coords="0,0,196,0,196,28,240,28,240,75,36,75,36,40,0,40" href="house-509" alt="View Ocean" />
+			<area shape="poly" coords="196,0,337,0,337,75,240,75,240,28,196,28" href="house-510" alt="View Fifth Back Single" />	
+		</map>
+	</div>
+	<div class="span6 floor">
+		<%= image_tag("house_img/rooflabel.gif", :alt => "")%><br>
+		<%= image_tag("house_img/roof.jpg", :class => "floorplan", :usemap => "#Roof", :border => "0")%>
+		<map name="Roof" id="Roof">
+			<area shape="rect" coords="0,0,399,141" href="house-601" alt="View Roofdeck" />
+		</map>
+	</div>
+</div>
