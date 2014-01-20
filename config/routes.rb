@@ -1,8 +1,10 @@
 RailsSite::Application.routes.draw do 
   
   #Home Page
-  root 'static_pages#home'
+  root 'chapter_public#home'
   #Public site routes
+  match '/about', to: 'chapter_public#about' , via: :get
+  match '/letter', to: 'chapter_public#president_letter' , via: :get
   match '/contact', to: 'chapter_public#contact' , via: :get
   #Private site routes 
   match '/profile', to: 'brothers#profile' , via: :get
@@ -24,8 +26,9 @@ RailsSite::Application.routes.draw do
   resources :brothers
   resources :users
   resources :positions
+  resources :house_rooms, :path => '/house'
   resources :house_points, :path => '/points'
-  resources :chapter_public, :path => '/'
+  resources :chapter_public, :path => '/idk_yet'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

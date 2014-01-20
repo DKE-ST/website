@@ -1,8 +1,5 @@
-class StaticPagesController < ApplicationController
+class StaticPagesController < AuthController
   before_action :auth_user, only: [:settings, :update_settings]
-  
-  def home
-  end
   
   def php_header
   end

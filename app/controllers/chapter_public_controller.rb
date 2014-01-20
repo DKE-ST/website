@@ -1,5 +1,14 @@
-class ChapterPublicController < AuthController
-  skip_before_filter :logged_in, only: [:contact, :show]
+class ChapterPublicController < ApplicationController
+  
+  def home
+  end
+  
+  def about
+  end
+  
+  def president_letter
+    @content = ChapterPublic.find_by(pname: "letter")
+  end
   
   def contact
     @officers = Hash.new
@@ -10,21 +19,6 @@ class ChapterPublicController < AuthController
         year = BrothersMit.find_by(uname: pos.uname).year.to_s[2..3]
         @officers[pos.position] = {uname: pos.uname, full_name: name, year: year, contact: pos.contact, name: pos.name}
       end
-    end
-  end
-  
-  def show
-    if params[:id] !~ /house.*/
-      @content = ChapterPublic.find_by(pname: params[:id])
-      render params[:id]
-    elsif params[:id] == "house"
-      render "house"
-    elsif params[:id] == "house-tour"
-      @rooms = HouseRooms.select("floor, id, name")
-      render "house_tour"
-    else
-      @room = HouseRooms.find(params[:id][/\Ahouse-\d\d\d\z/][/\d\d\d/])
-      render "room"
     end
   end
   
