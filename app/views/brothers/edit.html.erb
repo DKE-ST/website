@@ -22,36 +22,36 @@
     		</tr>
     	</table>
     </div>
-    <div class="span12 profile_pg">
-    	<%= form_for(@brother.personal, options={url: "#{brother_path}#update"}) do |f|%>
-	  	<div class="row edit">
-	  		<div class="span4">
-	  			<center><u><h3>Personal</h3></u></center>
-	  			<%= render_errors(@brother.personal)%>
-	  			Profile Picture:<%= f.file_field :picture%><br>
-	  			Hometown: <%= f.text_field :hometown %><br>
-	  			Phone Number: <%= f.text_field :phone %><br>			
-			    Favorite Quote: <%= f.text_field :quote %><br>
-			    Bio: <%= f.text_area :bio %><br>
-	  		</div>
-	      	<div class="span4">
-	      		<center><u><h3>MIT</h3></u></center>
-	      		<%= fields_for @brother.mit do |f_mit|%>
-	      		<%= render_errors(@brother.mit)%>
-	       		Majors: <%= f_mit.text_field :majors%><br>
-	       		Minors: <%= f_mit.text_field :minors%><br>
-	       		Concentration: <%= f_mit.text_field :concentration%><br>
-				Extracurricular Activities: <%= f_mit.text_field :extracurriculars%><br>
-	       		Interests: <%= f_mit.text_field :interests%><br>
-	       		UROPs: <%= f_mit.text_field :urops%><br>
-	       		Internships: <%= f_mit.text_field :internships%><br>
-	       		Favorite MIT Classes: <%= f_mit.text_field :fav_classes%><br>
-	       		<%end%>
-	      	</div>
-		<% if @me.in_group("dkebro") %>
-	      	<div class="span4">
-	      		<center><u><h3>DKE</h3></u></center>
-	      		<%= fields_for @brother.dke do |f_dke|%>
+    <div class="span12"></div>
+	<%= form_for(@brother.personal, options={url: "#{brother_path}#update"}) do |f|%>
+  	<div class="edit">
+  		<div class="span4">
+  			<center><u><h3>Personal</h3></u></center>
+  			<%= render_errors(@brother.personal)%>
+  			Profile Picture:<%= f.file_field :picture%><br>
+  			Hometown: <%= f.text_field :hometown %><br>
+  			Phone Number: <%= f.text_field :phone %><br>			
+		    Favorite Quote: <%= f.text_field :quote %><br>
+		    Bio: <%= f.text_area :bio %><br>
+  		</div>
+      	<div class="span4">
+      		<center><u><h3>MIT</h3></u></center>
+      		<%= fields_for @brother.mit do |f_mit|%>
+      		<%= render_errors(@brother.mit)%>
+       		Majors: <%= f_mit.text_field :majors%><br>
+       		Minors: <%= f_mit.text_field :minors%><br>
+       		Concentration: <%= f_mit.text_field :concentration%><br>
+			Extracurricular Activities: <%= f_mit.text_field :extracurriculars%><br>
+       		Interests: <%= f_mit.text_field :interests%><br>
+       		UROPs: <%= f_mit.text_field :urops%><br>
+       		Internships: <%= f_mit.text_field :internships%><br>
+       		Favorite MIT Classes: <%= f_mit.text_field :fav_classes%><br>
+       		<%end%>
+      	</div>
+	  <% if @me.in_group("dkebro") %>
+      	<div class="span4">
+      		<center><u><h3>DKE</h3></u></center>
+      		<%= fields_for @brother.dke do |f_dke|%>
 	      		<%= render_errors(@brother.dke)%>
 	       		Pledge Name: <%= f_dke.text_field :pname%><br>
 	   			Pledge Project: <%= f_dke.text_field :project%><br>
@@ -61,14 +61,13 @@
 	   			Little Brothers: <%= get_littles(f_dke.text_field :littles)%><br>
 	   			Positions Held: <%= f_dke.text_field :past_pos%><br>
 	   			Residence: <%= f_dke.text_field :residence%><br>
-	   			<%end%>
-	      	</div>
-		<% end %>
-	      	<div class='span10'></div>
-			<div class="span2">
-				 <%= f.submit "Save Changes", class: "btn btn-primary" %>
-			</div>
-			<%end%>
+   	  		<%end%>
+    	</div>
+	  <% end %>
+    	<div class='span10'></div>
+		<div class="span2">
+			 <%= f.submit "Save Changes", class: "btn btn-primary" %>
 		</div>
 	</div>
+	<%end%>
 </div>
