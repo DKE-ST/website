@@ -1,4 +1,4 @@
-class StaticPagesController < AuthController
+class StaticPagesController < ApplicationController
   before_action :auth_user, only: [:settings, :update_settings]
   
   def php_header

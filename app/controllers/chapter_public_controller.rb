@@ -22,6 +22,36 @@ class ChapterPublicController < ApplicationController
     end
   end
   
+  def summer_app
+    @boarder = SummerApp.new
+  end
+  
+  def submit_app
+    info = params.require(:summer_app).permit(:first_name, :last_name, :email, :phone, :school, :year, :dke_brother, :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :q9, :q10, :room_pref, :finding, :lived_before, :car)
+    @boarder = SummerApp.new(info)
+    @boarder.date = Date.current
+    if @boarder.valid?
+      @boarder.save
+    else
+      render "summer_app"
+    end
+  end
+  
+  def index
+    @boarders = SummerApp.select("ID, first_name, last_name, email, school, year, dke_brother")
+  end
+  
+  def show
+    @boarder = SummerApp.find(params[:id])
+  end
+  
+  def destroy
+    @boarder = SummerApp.find(params[:id])
+    @boarder.destroy
+    flash[:success] = "Application has been destroyed."
+    redirect_to chapter_public_index_path
+  end
+  
   private
   
   def correct_user
