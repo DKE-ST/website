@@ -16,6 +16,9 @@
 		  </li>
 		<% end%>
 		<li><%= link_to "Points Breakdown", house_points_path%></li>
+		<% if @me.is?("s_zeta")%>
+			<li><%= link_to "Summer Housing Applications", chapter_public_index_path%></li>
+		<% end%>
         <!--<li id="pos_sub" class="dropdown-submenu"><a>Positions</a>
         	<ul class="dropdown-menu">
         		<li><%= link_to 'Beta', '#TODO'%></li>

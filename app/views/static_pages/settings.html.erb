@@ -3,7 +3,7 @@
 
 <div class="row">
 	<div class="span12" align="left">
-		<h1>Change Password</h1>
+		<h1>Site Settings</h1>
 		<%= form_tag settings_url, method: :patch do %>
 		  <% @settings.each do | name, info |%>
 			<%= name.humanize%> Mode:

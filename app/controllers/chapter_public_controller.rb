@@ -1,4 +1,5 @@
 class ChapterPublicController < ApplicationController
+  before_action :correct_user , only: [:index, :show, :destroy]
   
   def home
   end
@@ -55,10 +56,9 @@ class ChapterPublicController < ApplicationController
   private
   
   def correct_user
-    
-    unless @me.in_group(ChapterPublic.find_by(pname: params[:id]).user)
+    unless @me.is?("s_zeta")
       flash[:error] = "You do not have acess to this page"
-      redirect_to chapter_public_url
+      redirect_to root_url
     end
   end
   

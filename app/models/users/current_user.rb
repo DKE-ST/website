@@ -11,6 +11,11 @@ class CurrentUser
     return Apache.groups(self.uname).include? group_name
   end
   
+  def is?(position)
+    return true if Settings.debug? && Apache.groups(self.uname).include?("brochicken")
+    return Positions.exists?(uname: self.uname, position: position)==1
+  end
+  
   def positions
     point_pos = ["beta", "sigma", "zeta", "epsilon", "delta", "gamma"]
     pos_list = Positions.where(position: point_pos)
