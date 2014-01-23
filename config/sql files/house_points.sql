@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 04, 2014 at 01:41 PM
+-- Generation Time: Jan 03, 2014 at 09:52 PM
 -- Server version: 5.5.34
 -- PHP Version: 5.3.10-1ubuntu3.9
 
@@ -26,23 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `house_points`
 --
 
-CREATE TABLE IF NOT EXISTS `house_points` (
-  `uname` varchar(8) NOT NULL,
-  `beta_f` int(11) NOT NULL DEFAULT '0',
-  `beta_s` int(11) NOT NULL DEFAULT '0',
-  `sigma_f` int(11) NOT NULL DEFAULT '0',
-  `sigma_s` int(11) NOT NULL DEFAULT '0',
-  `zeta_f` int(11) NOT NULL DEFAULT '0',
-  `zeta_s` int(11) NOT NULL DEFAULT '0',
-  `epsilon_f` int(11) NOT NULL DEFAULT '0',
-  `epsilon_s` int(11) NOT NULL DEFAULT '0',
-  `delta_f` int(11) NOT NULL DEFAULT '0',
-  `delta_s` int(11) NOT NULL DEFAULT '0',
-  `gamma_f` int(11) NOT NULL DEFAULT '0',
-  `gamma_s` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`uname`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `house_points`;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE IF NOT EXISTS `house_points` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `uname` varchar(8) NOT NULL,
+  `position` text NOT NULL,
+  `value` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `start_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
