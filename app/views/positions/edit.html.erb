@@ -4,19 +4,22 @@
 	<div class="span12" align="left">
 		<h3>Edit Position</h3>
 	</div>
-	<div class="span6 offset4" align="left">
+	<div class="span6 offset4" align="left" style="font-weight:bold;">
 	  <%= render_errors(@officer)%>
 	  <%= form_for(@officer, options={url: "#{position_path}#update"}) do |pos| %>
 		Position: <%= pos.text_field :position%><br>
 		Position Name: <%= pos.text_field :name%><br>
 		Current Holder: <%= pos.select( :uname, options_for_select(@brothers, selected: @officer.uname))%><br>
+		Exec: 
+		  <%= pos.radio_button( :exec, 1, checked: ("checked" if @officer.exec))%>Yes
+		  <%= pos.radio_button( :exec, 0, checked: ("checked" unless @officer.exec))%>No<br>
 		Display on contacts Page: 
 		  <%= pos.radio_button( :disp, 1, checked: ("checked" if @officer.disp))%>Yes
 		  <%= pos.radio_button( :disp, 0, checked: ("checked" unless @officer.disp))%>No<br><br>
 		Contact For: <%= pos.text_field :contact%><br>
 		
 		<%= pos.submit "Save Changes", class: "btn btn-primary" %>
-		<% unless @exec.include? @officer.position%>
+		<% unless @officer.exec%>
 		  <%= link_to("Delete Position" , position_path , method: :delete, data: { confirm: "Are you sure you would like to delete #{@officer.name}?" }, :class => "btn")%>
 	  	<%end%>
 	  <%end%>

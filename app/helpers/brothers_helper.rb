@@ -12,13 +12,6 @@ module BrothersHelper
       end
   end
   
-  def print_field(type, val)
-    if type =~ /\S+_[sf]/
-      tmp = type.gsub("_s", " Spring").gsub("_f", " Fall")
-      return "#{tmp.humanize}: #{val}<br>".html_safe
-    end
-  end
-  
   def get_big(big_name)
     big = BrothersPersonal.select('uname','first_name','last_name').find_by(uname: big_name)
     return link_to(big.full_name , "#{brothers_path}/#{big_name}") if big

@@ -25,4 +25,12 @@ class Positions < ActiveRecord::Base
     end
     return res.join(", ")
   end
+  
+  def self.exec_positions
+    positions = []
+    Positions.where(exec: 1).each do | pos |
+      positions << pos.position
+    end
+    return positions
+  end
 end

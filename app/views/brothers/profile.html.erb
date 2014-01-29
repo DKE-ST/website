@@ -37,12 +37,27 @@
     	</ul>
      	<div class="tab-content">
 	      	<div class="tab-pane info active" id="activity">
-      			<div class="span2 offset9" align="right">
-		      		<h4>Points Breakdown</h4>
-		      		<% @points.attribute_names.each do |type|%>
-		      		  <%= print_field(type, @points[type])%>
-		      		<% end%>
-		      		Total : <%= @points.total%>
+      			<div class="span4"><!--align="right">-->
+		      	  <h4>Points Breakdown</h4>
+		      	  <div class="accordian" id="accordian_points">
+		      	  <% @brother.points.each do | type, entries|%>
+		      	    <div class="accordian-group">
+		      	      <div class="accordian-heading">
+		      	      	<a class="accordian-toggle" data-toggle="collapse" data-parent=<%= "accordian_points"%> href=<%="#collapse_#{type}"%>>
+		      	      		<%= "#{type.humanize}:#{entries[:val]}"%><br>
+		      	      	</a>
+		      	      </div>
+		      	      <div id=<%="collapse_#{type}"%> class="accordian-body collapse">
+		      	      	<div class="accordian-inner">
+		      	      	  <% entries[:full].each do | entry | %>
+		      	      		<%= "#{entry.value} : #{entry.comment}"%><br>
+		      	      	  <% end%>
+		      	      	</div>
+		      	      </div>
+		      		</div>
+		      	  <% end%>
+		      	  Total:<%= @brother.points_total%>
+		      	  </div>
       			</div>
 	       		<!--#TODO-->
 	      	</div>

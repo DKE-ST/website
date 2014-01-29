@@ -31,6 +31,15 @@ class Brothers
     return @dke
   end
   
+  def points
+    @points = HousePoints.get_point_breakdown(self.uname) unless @points
+    return @points
+  end
+  
+  def points_total
+    return HousePoints.total_points(self.uname)
+  end
+  
   def pic_path(root_path)
     return "#{root_path}assets/brothers_img/#{personal.first_name.downcase}_#{personal.last_name.downcase}.jpg"
   end

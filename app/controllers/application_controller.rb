@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     BrothersMit
     BrothersDke
     MitStudents
+    HousePoints
     @me = CurrentUser.new(session[:uname])
   end
   

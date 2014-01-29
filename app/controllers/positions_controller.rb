@@ -23,7 +23,6 @@ class PositionsController < AuthController
   end
   
   def edit
-    @exec = exec
     @brothers = Array.new([])
     BrothersPersonal.select("uname","first_name, last_name").each do |brother|
       @brothers << [brother.full_name, brother.uname]
@@ -34,7 +33,7 @@ class PositionsController < AuthController
   end
   
   def create
-    position = params.require(:positions).permit(:position, :name, :uname, :disp, :contact)
+    position = exec_params
     @officer = Positions.new(position)
     if (position[:disp]=="1" && position[:contact].empty?) || !@officer.valid?
       @brothers = Array.new([])
@@ -55,8 +54,7 @@ class PositionsController < AuthController
   end
   
   def update
-    @exec = exec
-    position = params.require(:positions).permit(:position, :name, :uname, :disp, :contact)
+    position = exec_params
     @officer = Positions.find_by(position: params[:id])
     @brothers = Array.new([])
     BrothersPersonal.select("uname","first_name, last_name").each do |brother|
@@ -98,12 +96,11 @@ class PositionsController < AuthController
     flash[:success] = "Officers updated"
     redirect_to positions_url
   end
-
+  
  private
  
- def exec
-   return ["beta", "sigma", "kappa", "zeta", "epsilon", "delta", "pi", "psi"]
+ def exec_params
+   return params.require(:positions).permit(:position, :name, :uname, :disp, :contact, :exec)
  end
-
   
 end
