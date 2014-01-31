@@ -44,7 +44,7 @@ class Brothers
     return "#{root_path}assets/brothers_img/#{personal.first_name.downcase}_#{personal.last_name.downcase}.jpg"
   end
   
- #private
+ private
  
   def upload(params)
     uploaded_io=params[:brothers_personal][:picture]
