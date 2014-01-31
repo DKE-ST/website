@@ -7,4 +7,10 @@ module HousePointsHelper
     end
   end
   
+  def delete_text(usr, entry)
+    output = "Are you sure you want to delete this entry?\n"
+    output += "*#{usr[:name]}: #{entry.value} ~ #{entry.comment}" 
+    return output
+  end
+  
 end

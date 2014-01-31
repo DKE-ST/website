@@ -1,24 +1,35 @@
-<% provide(:title , "Chapter Officers - #{@officer.name}")%>
+<% provide(:title , "Points Breakdown - #{@officer.name}")%>
 
 <div class="row">
 	<div class="span12" align="left">
-		<h3><%= @officer.name%> Points Breakdown</h3>
+		<h3>Points Breakdown - <%= @officer.name%></h3>
 		<table class="table table-striped table-hover table-condensed">
 			<thead><tr>
-				<th>Name</th>
-				<th>Pledge Class</th>
-				<th>Points Fall</th>
-				<th>Points Spring</th>
-				<th></th>
+			  	<th>Name</th>
+			  	<th>Pledge Class</th>
+			  	<th><%= "#{@officer.position.humanize} Total"%></th>
+			  	<th>Entries</th>
+			  	<th></th>
 			</tr></thead>
 			<tbody>
-			  <% @brothers.each do | usr |%>
+			  <% @pts_breakdown.each do | usr |%>
 			  <tr>
 				<td><%= usr[:name]%></td>
-				<td><%= usr[:p_class]%></td>
-			  	<td><%= usr[:fall]%></td>
-			  	<td><%= usr[:spring]%></td>
-			  	<td></td>
+				<td><%= usr[:year]%></td>
+				<td><%= usr[:points][:val]%></td>
+				<td><table>
+				<% usr[:points][:full].each do |entry|%>
+				  <tr>
+					<td><%= "#{entry.value} : #{entry.comment}"%></td>
+					<td><%= link_to "Edit", "#{entry.id}/edit" , :class => "pull-right"%></td>
+					<td>
+						<%= link_to("Delete" , "#{entry.id}" , method: :delete, 
+						data: { confirm: delete_text(usr, entry) }, :class => "pull-right")%>
+					</td>
+				  </tr>
+				<% end%>
+				</table></td>
+				<td><%= link_to "Award Points", "new", :class => "btn"%></td>
 			  </tr>
 			  <%end%>
 			</tbody>
