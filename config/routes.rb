@@ -8,6 +8,12 @@ RailsSite::Application.routes.draw do
   match '/contact', to: 'chapter_public#contact' , via: :get
   match '/summer_housing', to: 'chapter_public#summer_app' , via: :get
   match '/summer_housing', to: 'chapter_public#submit_app' , via: :post
+  
+  #Used for authenticating users
+  match '/login' , to: 'static_pages#home' , via: :post
+  match '/success' , to: 'static_pages#success' , via: :get
+  match '/loggedout' , to: 'static_pages#loggedout' , via: :get
+  
   #Private site routes 
   match '/profile', to: 'brothers#profile' , via: :get
   match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
@@ -20,10 +26,7 @@ RailsSite::Application.routes.draw do
   #Positions controller
   match 'positions/updatem' , to: 'positions#mass_edit', via: :get
   match 'positions/updatem' , to: 'positions#mass_update', via: :post
-  #Used for authenticating users
-  match '/login' , to: 'static_pages#home' , via: :post
-  match '/success' , to: 'static_pages#success' , via: :get
-  match '/loggedout' , to: 'static_pages#loggedout' , via: :get
+  
   #Used for pages in lambda
   match '/php_header', to: 'static_pages#php_header', via: :get
   

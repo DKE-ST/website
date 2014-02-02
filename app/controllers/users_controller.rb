@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AuthController
   before_action :auth_user
   skip_before_action :auth_user, only: [:ch_pwd, :update_pwd]
   before_action :has_pwd, only: [:ch_pwd, :update_pwd]
