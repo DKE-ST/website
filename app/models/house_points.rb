@@ -56,7 +56,7 @@ class HousePoints < ActiveRecord::Base
   end
   
   def self.total_points(uname)
-    total = 0
+    total = 100
     HousePoints.get_points(uname).each do | point_given |
       total += point_given.value
     end
