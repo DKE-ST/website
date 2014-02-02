@@ -13,22 +13,12 @@ class PositionsController < AuthController
   end
   
   def new
-    @brothers = Array.new([])
-    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
-      @brothers << [brother.full_name, brother.uname]
-    end
-    @brothers << ["",""]
-    @brothers.sort!
+    @brothers = Brothers.brother_list
     @officer = Positions.new
   end
   
   def edit
-    @brothers = Array.new([])
-    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
-      @brothers << [brother.full_name, brother.uname]
-    end
-    @brothers << ["",""]
-    @brothers.sort!
+    @brothers = Brothers.brother_list
     @officer = Positions.find_by(position: params[:id])
   end
   
@@ -36,12 +26,7 @@ class PositionsController < AuthController
     position = exec_params
     @officer = Positions.new(position)
     if (position[:disp]=="1" && position[:contact].empty?) || !@officer.valid?
-      @brothers = Array.new([])
-      BrothersPersonal.select("uname","first_name, last_name").each do |brother|
-        @brothers << [brother.full_name, brother.uname]
-      end
-      @brothers << ["",""]
-      @brothers.sort!
+      @brothers = brother_list
       if @officer.valid?
         flash[:fail] = "Contact For: field is required to display on contact page"
       end
@@ -56,12 +41,7 @@ class PositionsController < AuthController
   def update
     position = exec_params
     @officer = Positions.find_by(position: params[:id])
-    @brothers = Array.new([])
-    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
-      @brothers << [brother.full_name, brother.uname]
-    end
-    @brothers << ["",""]
-    @brothers.sort!
+    @brothers = Brothers.brother_list
     if position[:disp]=="1" && position[:contact].empty?
       flash[:fail] = "Contact For: field is required to display on contact page"
       render "edit"
@@ -82,11 +62,7 @@ class PositionsController < AuthController
   
   def mass_edit
     @officers = Positions.select("position, name, uname")
-    @brothers = Array.new([])
-    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
-      @brothers << [brother.full_name, brother.uname]
-    end
-    @brothers.sort!
+    @brothers = Brothers.brother_list
   end
   
   def mass_update

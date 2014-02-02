@@ -26,9 +26,9 @@ class Positions < ActiveRecord::Base
     return res.join(", ")
   end
   
-  def self.exec_positions
+  def self.positions_awarding
     positions = []
-    Positions.where(exec: 1).each do | pos |
+    Positions.where(award_points: 1).each do | pos |
       positions << pos.position
     end
     return positions

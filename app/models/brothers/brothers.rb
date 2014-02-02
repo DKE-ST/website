@@ -5,6 +5,16 @@ class Brothers
   
   attr_accessor :uname
   
+  def self.brother_list
+    brothers = Array.new([])
+    BrothersPersonal.select("uname","first_name, last_name").each do |brother|
+      brothers << [brother.full_name, brother.uname]
+    end
+    brothers << ["",""]
+    brothers.sort!
+    return brothers
+  end
+  
   def initialize(uname)
     self.uname = uname
   end

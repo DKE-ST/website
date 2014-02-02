@@ -37,7 +37,7 @@ class HousePoints < ActiveRecord::Base
   
   def self.get_point_breakdown(uname)
     points = {}
-    Positions.exec_positions.each do | pos |
+    Positions.positions_awarding.each do | pos |
       points[pos] = {val: 0, full: []}
     end
     HousePoints.get_points(uname).each do | point_given |
