@@ -1,0 +1,18 @@
+<% provide(:title , "New Point Award")%>
+
+<div class="row">
+	<div class="sNew Point Award"%></h3>
+	</div>
+	<div class="span6" align="left" style="font-weight:bold;">
+	  <%= render_errors(@entry)%>
+	  <%= form_for(@entry, options={url: "#{house_points_path}#create"}) do |pos| %>
+		
+		Name: <%= pos.select( :uname, options_for_select(@brothers, selected: @entry.uname))%><br>
+		Given By: <%= pos.select( :position, options_for_select(@positions, selected: @entry.position))%><br>
+		Points: <%= pos.text_field :value %><br>
+		Comment/Reason: <%= pos.text_field :comment %><br>
+		
+		<%= pos.submit "Create Entry", class: "btn btn-primary" %>
+	  <%end%>
+	</div>
+</div>

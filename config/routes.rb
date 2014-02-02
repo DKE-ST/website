@@ -15,6 +15,8 @@ RailsSite::Application.routes.draw do
   match '/ch_pwd' , to: 'users#update_pwd' , via: :patch
   match '/settings', to: 'static_pages#settings', via: :get
   match '/settings', to: 'static_pages#update_settings', via: :patch
+  match '/points/:id/new/:uname', to: 'house_points#new', via: :get
+  match '/points/:id/new/', to: 'house_points#new', via: :get
   #Positions controller
   match 'positions/updatem' , to: 'positions#mass_edit', via: :get
   match 'positions/updatem' , to: 'positions#mass_update', via: :post

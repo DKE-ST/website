@@ -24,12 +24,12 @@
 					<td><%= link_to "Edit", "#{entry.id}/edit" , :class => "pull-right"%></td>
 					<td>
 						<%= link_to("Delete" , "#{entry.id}" , method: :delete, 
-						data: { confirm: delete_text(usr, entry) }, :class => "pull-right")%>
+						data: { confirm: delete_text(usr[:name], entry) }, :class => "pull-right")%>
 					</td>
 				  </tr>
 				<% end%>
 				</table></td>
-				<td><%= link_to "Award Points", "new", :class => "btn"%></td>
+				<td><%= link_to "Award Points", "#{@officer.position}/new/#{usr[:uname]}", :class => "btn"%></td>
 			  </tr>
 			  <%end%>
 			</tbody>

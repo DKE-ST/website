@@ -5,7 +5,11 @@ class HousePoints < ActiveRecord::Base
   #position: text
   #value: integer
   #comment: text
-  #start_date: date
+  #date: date
+  
+  validates :uname, length: { maximum: 8 }
+  validates :value, presence: true
+  validates :comment, presence: true
   
   def self.get_active
     brothers = HousePoints.in_house

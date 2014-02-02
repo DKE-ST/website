@@ -1,6 +1,7 @@
 class HousePointsController < AuthController
   before_action :correct_officer, only: :show
   before_action :correct_officer_id, only: [:edit,:destroy,:update]
+  before_action :can_award_points, only: [:new,:create]
   
   def index
     @award_pos = Positions.positions_awarding
@@ -31,9 +32,60 @@ class HousePointsController < AuthController
     @pts_breakdown.sort_by!{ |a| [a[:year], a[:name]]}
   end
   
+  def new
+    @entry = HousePoints.new
+    @entry.uname = params[:uname] if params[:uname]
+    @entry.position = params[:id] if params[:id]
+    @brothers = Brothers.brother_list
+    @positions = []
+    Positions.positions_awarding.each do | pos|
+      if @me.is?(pos)
+        @positions << [pos.humanize, pos]
+      end
+    end
+  end
+  
+  def create
+    @entry = HousePoints.new(house_points_params)
+    @entry.date = Date.current
+    if @entry.valid?
+      @entry.save
+      flash[:success] = "Entry has been created"
+      redirect_to "#{house_points_path}/#{@entry.position}"
+    else
+      @brothers = Brothers.brother_list
+      @positions = []
+      Positions.positions_awarding.each do | pos|
+        if @me.is?(pos)
+          @positions << [pos.humanize, pos]
+        end
+      end
+      render "new"
+    end
+  end
+  
   def edit
     @entry = HousePoints.find(params[:id])
     @name = BrothersPersonal.find_by(uname: @entry.uname).full_name
+    @brothers = Brothers.brother_list
+  end
+  
+  def update
+    @entry = HousePoints.find(params[:id])
+    point_params = house_points_params
+    @entry.uname = point_params[:uname]
+    @entry.value = point_params[:value]
+    @entry.comment = point_params[:comment]
+    if @entry.valid?
+      @entry.date = Date.current
+      @entry.save
+      flash[:success] = "Entry has been updated"
+      redirect_to "#{house_points_path}/#{@entry.position}"
+    else
+      @name = BrothersPersonal.find_by(uname: @entry.uname).full_name
+      @brothers = Brothers.brother_list
+      render "edit"
+    end
   end
   
   def destroy
@@ -45,6 +97,28 @@ class HousePointsController < AuthController
   
  private
  
+  def house_points_params
+    return params.require(:house_points).permit(:uname,:position,:value,:comment)
+  end
+ 
+ def can_award_points
+   if params[:id] && !@me.is?(params[:id])
+      flash[:error] = "You do not have acess to this page"
+      redirect_to house_points_path
+    end
+   pass = false
+   Positions.positions_awarding.each do | pos |
+     if @me.is?(pos)
+       pass = true
+       break
+     end
+   end
+   unless pass
+     flash[:error] = "You do not have acess to this page"
+     redirect_to house_points_path
+   end
+ end
+  
   def correct_officer
     unless @me.is?(params[:id])
       flash[:error] = "You do not have acess to this page"
