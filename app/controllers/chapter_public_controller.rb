@@ -25,6 +25,7 @@ class ChapterPublicController < ApplicationController
   
   def summer_app
     @boarder = SummerApp.new
+    @chapter_roles = ChapterPublic.gen_chapter_roles
   end
   
   def submit_app
@@ -34,6 +35,7 @@ class ChapterPublicController < ApplicationController
     if @boarder.valid?
       @boarder.save
     else
+      @chapter_roles = ChapterPublic.gen_chapter_roles
       render "summer_app"
     end
   end

@@ -40,7 +40,7 @@
   		  </tr>
   		  <tr>
   		    <td>If you are a brother of DKE, please select your chapter:</td>
-  		    <td><%= app.select( :dke_brother, options_for_select(["I am not a brother"]))%></td>
+  		    <td><%= app.select( :dke_brother, options_for_select(@chapter_roles))%></td>
   		  </tr>
   		  <tr>
   		    <td>What kind of work are you going to be doing this summer, and where is the company located?</td>
