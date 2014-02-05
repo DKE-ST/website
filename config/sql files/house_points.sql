@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `house_points` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uname` varchar(8) NOT NULL,
   `position` text NOT NULL,
-  `value` int(11) NOT NULL,
+  `value` float NOT NULL,
   `comment` text NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`)
