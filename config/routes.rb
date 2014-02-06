@@ -23,6 +23,8 @@ RailsSite::Application.routes.draw do
   match '/settings', to: 'static_pages#update_settings', via: :patch
   match '/points/:id/new/:uname', to: 'house_points#new', via: :get
   match '/points/:id/new/', to: 'house_points#new', via: :get
+  match '/e_sheet' , to: 'epsilon#e_sheet' , via: :get
+  match '/e_sheet' , to: 'epsilon#sign_up' , via: :patch
   #Positions controller
   match 'positions/updatem' , to: 'positions#mass_edit', via: :get
   match 'positions/updatem' , to: 'positions#mass_update', via: :post
@@ -33,8 +35,9 @@ RailsSite::Application.routes.draw do
   resources :brothers
   resources :users
   resources :positions
-  resources :house_rooms, :path => '/house'
+  resources :e_sheet, :path => '/somewhere'
   resources :house_points, :path => '/points'
+  resources :house_rooms, :path => '/house'
   resources :chapter_public, :path => '/summer'
   
   # The priority is based upon order of creation: first created -> highest priority.

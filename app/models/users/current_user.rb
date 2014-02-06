@@ -31,6 +31,10 @@ class CurrentUser
     return in_group("dkepledge") ||  in_group("dkebro")
   end
   
+  def meal_plan?
+    return BrothersDke.exists?(uname: self.uname, meal_plan: 1)?true:false
+  end
+  
   def pwd?
     return true if adm_acess?
     File.open("#{Apache.dke_path}/dke_users.passwd").each_line do |line|
