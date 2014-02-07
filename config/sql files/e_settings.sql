@@ -48,7 +48,7 @@ INSERT INTO `settings` (`name`, `val`, `desc`) VALUES
 ('lunch_0', '11:30AM', 'Time of First lunch'),
 ('lunch_1', '12:15PM', 'Time of Second lunch'),
 ('lunch_2', '1:15PM', 'Time of Third lunch'),
-('lunch_wknd', '12:00PM', 'Time of Lunch on weekend'),
+('lunch_wknd', '12:00PM', 'Time of Lunch on weekend');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
