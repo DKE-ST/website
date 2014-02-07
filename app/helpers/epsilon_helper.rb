@@ -17,7 +17,7 @@ module EpsilonHelper
   def get_server(server, e_type, date)
     key = (date.wday<6)?e_type:"lunch_wknd" if e_type =~ /lunch/
     key = (date.wday<6)?"dinner_wkdy":"dinner_wknd" if e_type =~ /dinner/
-    time = Time.now + 300 < Time.parse(Settings.find(key).val, date)
+    time = Time.now - 900 < Time.parse(Settings.find(key).val, date)
     if server.empty?
       return "Meal Missed" unless time
       return button_tag("Sign Up" , name: "meal[sign_up]" , value: e_type)

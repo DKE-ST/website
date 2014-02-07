@@ -35,7 +35,7 @@ RailsSite::Application.routes.draw do
   resources :brothers
   resources :users
   resources :positions
-  resources :e_sheet, :path => '/somewhere'
+  resources :e_sheet, :path => '/epsilon'
   resources :house_points, :path => '/points'
   resources :house_rooms, :path => '/house'
   resources :chapter_public, :path => '/summer'
