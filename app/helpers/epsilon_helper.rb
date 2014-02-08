@@ -20,11 +20,11 @@ module EpsilonHelper
     time = Time.now - 900 < Time.parse(Settings.find(key).val, date)
     if server.empty?
       return "Meal Missed" unless time
-      return button_tag("Sign Up" , name: "meal[sign_up]" , value: e_type)
+      return button_tag("Sign Up" , name: "meal[action]" , value: "add")
     else 
       name = BrothersPersonal.find_by(uname: server).full_name
       return name unless time && server == @me.uname
-      drop = button_tag("Drop" , name: "meal[drop]" , value: e_type)
+      drop = button_tag("Drop" , name: "meal[action]" , value: "drop")
       return "#{name} #{drop}".html_safe
     end
   end

@@ -17,8 +17,7 @@ class CurrentUser
   end
   
   def positions
-    point_pos = ["beta", "sigma", "zeta", "epsilon", "delta", "gamma"]
-    pos_list = Positions.where(position: point_pos)
+    pos_list = Positions.where(award_points: 1)
     return pos_list if adm_acess?
     return pos_list.where(uname: self.uname)
   end

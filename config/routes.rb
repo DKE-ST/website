@@ -25,6 +25,8 @@ RailsSite::Application.routes.draw do
   match '/points/:id/new/', to: 'house_points#new', via: :get
   match '/e_sheet' , to: 'epsilon#e_sheet' , via: :get
   match '/e_sheet' , to: 'epsilon#sign_up' , via: :patch
+  match '/meal_plan' , to: 'epsilon#meal_plan' , via: :get
+  match '/meal_plan' , to: 'epsilon#meal_plan_update' , via: :patch
   
   #Positions controller
   match 'positions/updatem' , to: 'positions#mass_edit', via: :get

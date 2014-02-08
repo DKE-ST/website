@@ -8,6 +8,13 @@
 				<%= render 'layouts/navbar/public'%>
 			</ul>
 		</li>
+		<% if @me.is? "kappa" %>
+		  <li id="gen_sub" class="dropdown-submenu"><a>Treasurer</a>
+			<ul class="dropdown-menu">
+				<li><%= link_to "Meal Plan Management" , meal_plan_path%></li>
+		  	</ul>
+		  </li>
+		<% end %>
 		<% @me.positions.each do | pos |%>
 		  <li id="gen_sub" class="dropdown-submenu"><a><%= pos.name%></a>
 			<ul class="dropdown-menu">
