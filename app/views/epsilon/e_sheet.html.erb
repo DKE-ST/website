@@ -8,17 +8,17 @@
 		<% @week_meals.each do |day , meals|%>
 		  <tr>
 			<td style='vertical-align:middle'><%= day.strftime("%A")%></td>
-			<td style='vertical-align:middle'>
-			  <% meals.each do | meal |%>
-				<%= "</td><td style='vertical-align:middle'>".html_safe if meal.e_type == "dinner_0"%>
+			<% meals.each do | int_meals |%>
+			 <td style='vertical-align:middle'>
+			  <% int_meals.each do | meal |%>
 				<%= form_tag(e_sheet_path, :class => "e_sheet", method: :patch) do%>
-				  <%= hidden_field_tag( "meal[date]", day)%>
-				  <%= hidden_field_tag( "meal[time]", meal.e_type)%>
-				  <%= get_meal_time(meal.e_type, meal.date)%>
-				  <%= get_server(meal.uname, meal.e_type, meal.date)%>
+				  <%= hidden_field_tag( "meal[id]", meal.id)%>
+				  <%= "#{meal.e_type.humanize} #{meal.time} ::"%>
+				  <%= get_server(meal.uname, meal.time, meal.date)%>
 				<% end %>
 			  <%end%>
-			</td>
+			 </td>
+			<% end %>
 		  </tr>
 		<% end%>
 	  </tbody>
