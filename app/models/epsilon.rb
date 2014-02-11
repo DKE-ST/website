@@ -2,7 +2,9 @@ class Epsilon < ActiveRecord::Base
   self.table_name = "e_sheets"
   #id: integer
   #date: date
+  validates :date,  format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}
   #time: string
+  validates :time,  format: {with: /\A([1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}
   #e_type: string
   #uname: string
   #value: float
