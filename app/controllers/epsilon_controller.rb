@@ -4,14 +4,43 @@ class EpsilonController < AuthController
   before_action :on_meal_plan, only: [:e_sheet, :sign_up]
   before_action :kappa, only: [:meal_plan, :meal_plan_update]
   
+  def new
+    @element = Epsilon.new(date: Date.current)
+    @brothers = Brothers.brother_list
+  end
+  
+  def new_meal
+    @element = Epsilon.new(date: Date.current)
+    @brothers = Brothers.brother_list
+  end
+  
+  def create
+    @element = Epsilon.new(update_params)
+    if @element.e_type.nil?
+      @element.e_type="entry"
+      @element.time = Time.current.strftime("%I:%M%p")
+    end
+    if @element.valid?
+      @element.save
+      flash[:success] = "#{@element.e_type.humanize} Created"
+      redirect_to epsilon_index_path
+    else
+      @brothers = Brothers.brother_list
+      pg = (@element.e_type=="entry")?"new":"new_meal"
+      render pg
+    end
+  end
+  
   def index
     @meals = Epsilon.get_all_meals
+    @entries = Epsilon.get_others
   end
   
   def show
     @element = Epsilon.find(params[:id])
     @brothers = Brothers.brother_list
-    render "edit_meal"
+    pg = (@element.e_type=="entry")?"edit_other":"edit_meal"
+      render pg
   end
   
   def update

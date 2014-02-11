@@ -2,9 +2,9 @@ class Epsilon < ActiveRecord::Base
   self.table_name = "e_sheets"
   #id: integer
   #date: date
-  validates :date,  format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}
+  validates :date, format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}
   #time: string
-  validates :time,  format: {with: /\A([1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}
+  validates :time, format: {with: /\A(0?[1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}
   #e_type: string
   #uname: string
   #value: float
@@ -54,7 +54,7 @@ class Epsilon < ActiveRecord::Base
   
   def self.get_all_meals
     meals = []
-    working = Epsilon.except(e_type: "other")
+    working = Epsilon.except(e_type: "entry")
     week = working.minimum("date")
     week -= week.days_to_week_start
     max = working.maximum("date")
@@ -64,6 +64,10 @@ class Epsilon < ActiveRecord::Base
     end
     meals.sort_by!{ |a| [max-a[0]]}
     return meals
+  end
+  
+  def self.get_others
+    return Epsilon.where(e_type: "entry").order(:date)
   end
   
 end

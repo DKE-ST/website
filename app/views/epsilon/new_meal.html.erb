@@ -1,21 +1,19 @@
-<% provide(:title , "E Management")%>
+<% provide(:title , "E Management - New Meal")%>
 
 <div class="row">
   <div class="span12" align="left">
-  	<h2>Meal Management</h2>
+  	<h2>Meal Management - New Meal</h2>
   </div>
   <div class="span12">
   	<%= render_errors(@element)%>
-  	<%= form_for(@element, options={url: "#{epsilon_path}#update"}) do |f|%>
+  	<%= form_for(@element, options={url: "#{epsilon_index_path}#create"}) do |f|%>
   	  Date: <%= f.text_field :date%><br>
   	  Meal Type: <%= f.select( :e_type, options_for_select([["Lunch","lunch"],["Dinner","dinner"]], selected: @element.e_type))%><br>
   	  Time: <%= f.text_field :time%><br>
   	  Server: <%= f.select( :uname, options_for_select(@brothers, selected: @element.uname))%><br>
   	  E Value: <%= f.text_field :value%><br>
   	  Comment: <%= f.text_area :comment%><br>
-  	  <%= f.submit("Save Changes" , :class => "btn")%>
-  	  <%= link_to("Delete Meal" , epsilon_path , method: :delete,
-  	  data: { confirm: "Are you sure you would like to delete this meal?" }, :class => "btn")%>
+  	  <%= f.submit("Add Meal", :class => "btn")%>
   	<% end %>
   </div>
 </div>

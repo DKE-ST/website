@@ -14,6 +14,13 @@ module EpsilonHelper
     end
   end
   
+  def disp_other(entry, path)
+    name = BrothersPersonal.find_by(uname: entry.uname).full_name
+    main = link_to "#{name} :: #{entry.value}" , "#{path}/#{entry.id}"
+    cmt = "&nbsp;&nbsp;-- #{entry.comment}"
+    return "#{main}<br>#{cmt}".html_safe
+  end
+  
   def disp_meal(meal)
     pt1 = "#{meal.e_type.humanize} #{meal.time} ::"
     key = (meal.date.wday<6)?(meal.e_type):"lunch_wknd" if meal.e_type =~ /lunch/
