@@ -1,5 +1,6 @@
 class ChapterPublicController < ApplicationController
-  before_action :correct_user , only: [:index, :show, :destroy]
+  before_action :correct_user , only: [:destroy]
+  before_action :pledge , only: [:index, :show]
   
   def home
   end
@@ -59,6 +60,13 @@ class ChapterPublicController < ApplicationController
   
   def correct_user
     unless @me.is?("s_zeta")
+      flash[:error] = "You do not have acess to this page"
+      redirect_to root_url
+    end
+  end
+  
+  def pledge
+    unless @me.pledge?
       flash[:error] = "You do not have acess to this page"
       redirect_to root_url
     end
