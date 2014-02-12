@@ -37,7 +37,8 @@
     	</ul>
      	<div class="tab-content">
 	      	<div class="tab-pane info active" id="activity">
-      			<div class="span4"><!--align="right">-->
+      			<div class="span4">
+      			 <% if @me.brother? %>
 		      	  <h4>Points Breakdown</h4>
 		      	  <div class="accordian" id="accordian_points">
 		      	  <% @brother.points.each do | type, entries|%>
@@ -58,6 +59,7 @@
 		      	  <% end%>
 		      	  Total:<%= @brother.points_total%>
 		      	  </div>
+		      	 <%end%>
       			</div>
 	       		<!--#TODO-->
 	      	</div>

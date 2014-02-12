@@ -23,7 +23,10 @@
 						<ul class="dropdown-menu">
 							<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
 							<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
-							<%= render 'layouts/navbar/profile' if @me.brother? && request.env['REMOTE_USER']!='dkealum'%>
+							<% if @me.uname == "wsty"%>
+							  <li><%= link_to "E Sheet" , "bslink"%></li>
+							<% end %>
+							<%= render 'layouts/navbar/profile' if @me.pledge? && request.env['REMOTE_USER']!='dkealum'%>
 							<% if @me.pwd? %>
 								<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
 							<%end%>
