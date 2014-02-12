@@ -18,6 +18,7 @@
 		<% @me.positions.each do | pos |%>
 		  <li id="gen_sub" class="dropdown-submenu"><a><%= pos.name%></a>
 			<ul class="dropdown-menu">
+				<li><%= link_to "E Controller", epsilon_index_path if pos.position == "epsilon"%></li>
 				<li><%= link_to "Award Points" , "#{house_points_path}/#{pos.position}/new"%></li>
 				<li><%= link_to "Update Points" , "#{house_points_path}/#{pos.position}"%></li>
 		  	</ul>
