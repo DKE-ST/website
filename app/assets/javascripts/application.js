@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require fixedHeader.js
 //=require_tree .
+
+
 
 $('.dropdown-toggle').dropdown();
     $('.dropdown-menu').find('form').click(function (e) {
