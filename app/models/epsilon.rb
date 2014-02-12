@@ -54,7 +54,7 @@ class Epsilon < ActiveRecord::Base
   
   def self.get_all_meals
     meals = []
-    working = Epsilon.except(e_type: "entry")
+    working = Epsilon.where("e_type != ?","entry")
     week = working.minimum("date")
     week -= week.days_to_week_start
     max = working.maximum("date")
@@ -64,6 +64,22 @@ class Epsilon < ActiveRecord::Base
     end
     meals.sort_by!{ |a| [max-a[0]]}
     return meals
+  end
+  
+  def self.get_e_count
+    needed = Settings.find("e_count").val.to_i
+    mon = Date.current - Date.current.days_to_week_start
+    e_count = []
+    Brothers.meal_plan_list.each do | brother |
+      tot = 0
+      Epsilon.where("uname = ? AND date < ?", brother[1], mon).each do | e |
+        puts e.value
+        tot += e.value
+      end
+      rem = Settings.find("e_count").val.to_i - tot
+      e_count << [brother[0], brother[1], tot, [rem,0].max]
+    end
+    return e_count
   end
   
   def self.get_others

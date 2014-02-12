@@ -1,7 +1,26 @@
 <% provide(:title , "E Management")%>
 
 <div class="row">
-  <div class="span6" align="left">
+  <div class="span4" align="left">
+  	<h2>E Count</h2>
+  	<table class="table table-striped table-hover table-condensed">
+  	  <thead>
+  	  	<th>Name</th>
+  	  	<th>Current E Count</th>
+  	  	<th>E's Ramining</th>
+  	  </thead>
+	  <tbody>
+		<% @e_count.each do | user |%>
+		  <tr>
+			<td><%= user[0]%></td>
+			<td><%= user[2]%></td>
+			<td><%= user[3]%></td>
+		  </tr>
+		<% end%>
+	  </tbody>
+	</table>
+  </div>
+  <div class="span4" align="left">
   	<h2>
   	  Meal Management
   	  <%= link_to "Add Meal" , epsilon_new_meal_path , :class => "btn pull-right"%>
@@ -32,7 +51,7 @@
 	  </table>
   	<% end %>
   </div>
-  <div class="span6">
+  <div class="span4">
   	<h2>
   	  E Management
   	  <%= link_to "New Entry" , new_epsilon_path , :class => "btn pull-right"%>

@@ -1,9 +1,10 @@
 <% provide(:title , "E Sheet")%>
 
 <div class="row">
-  <div class="span6" align="left">
+  <div class="span8" align="left">
   	<h3>E Sheet</h3>
 	<table class="table table-striped table-hover table-condensed">
+	  <thead></thead>
 	  <tbody>
 		<% @week_meals.each do |day , meals|%>
 		  <tr>
@@ -24,8 +25,23 @@
 	  </tbody>
 	</table>
   </div>
-  <div class="span6">
+  <div class="span4">
   	<h3>E Count</h3>
-  	#TODO
+  	<table class="table table-striped table-hover table-condensed">
+  	  <thead>
+  	  	<th>Name</th>
+  	  	<th>Current E Count</th>
+  	  	<th>E's Ramining</th>
+  	  </thead>
+	  <tbody>
+		<% @e_count.each do | user |%>
+		  <tr>
+			<td><%= user[0]%></td>
+			<td><%= user[2]%></td>
+			<td><%= user[3]%></td>
+		  </tr>
+		<% end%>
+	  </tbody>
+	</table>
   </div>
 </div>

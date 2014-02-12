@@ -6,12 +6,12 @@ class EpsilonController < AuthController
   
   def new
     @element = Epsilon.new(date: Date.current)
-    @brothers = Brothers.brother_list
+    @brothers = Brothers.meal_plan_drop
   end
   
   def new_meal
     @element = Epsilon.new(date: Date.current)
-    @brothers = Brothers.brother_list
+    @brothers = Brothers.meal_plan_drop
   end
   
   def create
@@ -25,7 +25,7 @@ class EpsilonController < AuthController
       flash[:success] = "#{@element.e_type.humanize} Created"
       redirect_to epsilon_index_path
     else
-      @brothers = Brothers.brother_list
+      @brothers = Brothers.meal_plan_drop
       pg = (@element.e_type=="entry")?"new":"new_meal"
       render pg
     end
@@ -34,11 +34,12 @@ class EpsilonController < AuthController
   def index
     @meals = Epsilon.get_all_meals
     @entries = Epsilon.get_others
+    @e_count = Epsilon.get_e_count
   end
   
   def show
     @element = Epsilon.find(params[:id])
-    @brothers = Brothers.brother_list
+    @brothers = Brothers.meal_plan_drop
     pg = (@element.e_type=="entry")?"edit_other":"edit_meal"
       render pg
   end
@@ -48,7 +49,7 @@ class EpsilonController < AuthController
     if @element.update_attributes(update_params)
       redirect_to epsilon_index_path
     else
-      @brothers = Brothers.brother_list
+      @brothers = Brothers.meal_plan_drop
       render "edit_meal"
     end
   end
@@ -86,6 +87,7 @@ class EpsilonController < AuthController
 
   def e_sheet
     @week_meals = Epsilon.get_week
+    @e_count = Epsilon.get_e_count
   end
   
   def sign_up
@@ -102,6 +104,7 @@ class EpsilonController < AuthController
       meal.save
     end
     @week_meals = Epsilon.get_week
+    @e_count = Epsilon.get_e_count
     render "e_sheet"
   end
   
