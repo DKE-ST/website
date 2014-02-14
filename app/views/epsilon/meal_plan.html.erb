@@ -6,6 +6,11 @@
   </div>
   <div class="span">
    <%= form_tag(meal_plan_path, method: :patch) do%>
+    Add Alum:
+    <%= select_tag("added", options_for_select(@alums))%>
+    <%= submit_tag("Add")%>
+   <% end %>
+   <%= form_tag(meal_plan_path, method: :patch) do%>
   	<table class="table table-striped table-condensed">
   	 <thead>
   	  <tr>

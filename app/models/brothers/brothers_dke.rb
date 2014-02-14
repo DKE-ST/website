@@ -17,16 +17,6 @@ class BrothersDke < ActiveRecord::Base
       return Positions.get_current(self.uname)
     end
     
-    def self.get_on_meal_plan
-      brothers = []
-      BrothersDke.select("uname, p_class, meal_plan").where(meal_plan: 1).each do | bro |
-        name = BrothersPersonal.find_by(uname: bro.uname).full_name
-        brothers << {uname: bro.uname, name: name, p_class: bro.p_class}
-      end
-      brothers.sort_by!{ |a| [a[:p_class], a[:name]]}
-      return brothers
-    end
-    
     def self.add_past_pos(uname, position, start, finish)
       content =  "#{position} (#{start.strftime('%b %-d, %Y')} - #{finish.strftime('%b %-d, %Y')})"
       puts content

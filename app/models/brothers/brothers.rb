@@ -15,23 +15,6 @@ class Brothers
     return brothers
   end
   
-  def self.meal_plan_drop
-    tmp = Brothers.meal_plan_list
-    tmp << ["",""]
-    tmp.sort!
-    return tmp
-  end
-  
-  def self.meal_plan_list
-    brothers = Array.new([])
-    BrothersDke.where(meal_plan: 1).each do | user |
-    brother = BrothersPersonal.find_by(uname: user.uname)
-      brothers << [brother.full_name, brother.uname]
-    end
-    brothers.sort!
-    return brothers
-  end
-  
   def initialize(uname)
     self.uname = uname
   end

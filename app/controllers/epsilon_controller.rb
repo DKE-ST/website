@@ -7,12 +7,12 @@ class EpsilonController < AuthController
   
   def new
     @element = Epsilon.new(date: Date.current)
-    @brothers = Brothers.meal_plan_drop
+    @brothers = Epsilon.meal_plan_drop
   end
   
   def new_meal
     @element = Epsilon.new(date: Date.current)
-    @brothers = Brothers.meal_plan_drop
+    @brothers = Epsilon.meal_plan_drop
   end
   
   def create
@@ -26,7 +26,7 @@ class EpsilonController < AuthController
       flash[:success] = "#{@element.e_type.humanize} Created"
       redirect_to epsilon_index_path
     else
-      @brothers = Brothers.meal_plan_drop
+      @brothers = Epsilon.meal_plan_drop
       pg = (@element.e_type=="entry")?"new":"new_meal"
       render pg
     end
@@ -40,7 +40,7 @@ class EpsilonController < AuthController
   
   def show
     @element = Epsilon.find(params[:id])
-    @brothers = Brothers.meal_plan_drop
+    @brothers = Epsilon.meal_plan_drop
     pg = (@element.e_type=="entry")?"edit_other":"edit_meal"
       render pg
   end
@@ -50,7 +50,7 @@ class EpsilonController < AuthController
     if @element.update_attributes(update_params)
       redirect_to epsilon_index_path
     else
-      @brothers = Brothers.meal_plan_drop
+      @brothers = Epsilon.meal_plan_drop
       render "edit_meal"
     end
   end
@@ -65,6 +65,7 @@ class EpsilonController < AuthController
   ##############Meal Plan View for Kappa ##############
   
   def meal_plan
+    @alums = Epsilon.get_off_meal_plan
     bros = HousePoints.get_active
     BrothersDke.where(meal_plan: 1).each do | brother |
       bros << brother.uname unless bros.index(brother.uname)
@@ -82,8 +83,13 @@ class EpsilonController < AuthController
   end
   
   def meal_plan_update
-    tmp = BrothersDke.find_by(uname: meal_plan_params[1])
-    tmp.meal_plan = (meal_plan_params[0]=="add")
+    if add_alum_params[:commit]
+      tmp = BrothersDke.find_by(uname: add_alum_params[:added])
+      tmp.meal_plan = 1
+    else
+      tmp = BrothersDke.find_by(uname: meal_plan_params[1])
+      tmp.meal_plan = (meal_plan_params[0]=="add")
+    end
     tmp.save
     redirect_to meal_plan_path
   end
@@ -137,6 +143,10 @@ class EpsilonController < AuthController
  
   def sign_up_params
     params.require(:meal).permit(:id,:action)
+  end
+  
+  def add_alum_params
+    return params.permit(:commit, :added)
   end
   
   def meal_plan_params

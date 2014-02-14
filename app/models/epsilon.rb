@@ -86,4 +86,42 @@ class Epsilon < ActiveRecord::Base
     return Epsilon.where(e_type: "entry").order(:date)
   end
   
+  ########Getting users on meal plan ####################
+  def self.get_on_meal_plan
+    brothers = []
+    BrothersDke.select("uname, p_class, meal_plan").where(meal_plan: 1).each do | bro |
+      name = BrothersPersonal.find_by(uname: bro.uname).full_name
+      brothers << {uname: bro.uname, name: name, p_class: bro.p_class}
+    end
+    brothers.sort_by!{ |a| [a[:p_class], a[:name]]}
+    return brothers
+  end
+    
+  def self.meal_plan_list
+    brothers = Array.new([])
+    BrothersDke.where(meal_plan: 1).each do | user |
+    brother = BrothersPersonal.find_by(uname: user.uname)
+      brothers << [brother.full_name, brother.uname]
+    end
+    brothers.sort!
+    return brothers
+  end
+  
+  def self.meal_plan_drop
+    tmp = Epsilon.meal_plan_list
+    tmp << ["",""]
+    tmp.sort!
+    return tmp
+  end
+  
+  def self.get_off_meal_plan
+    brothers = []
+    BrothersDke.select("uname, p_class, meal_plan").where("meal_plan = 0 AND p_class < ?", 2014).each do | bro |
+      brother = BrothersPersonal.find_by(uname: bro.uname)
+      brothers << [brother.full_name, brother.uname]
+    end
+    brothers.sort!
+    return brothers
+  end
+  
 end
