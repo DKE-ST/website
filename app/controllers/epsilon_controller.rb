@@ -1,6 +1,7 @@
 class EpsilonController < AuthController
   before_action :epsilon
-  skip_before_filter :epsilon, only: [:e_sheet, :sign_up, :meal_plan, :meal_plan_update]
+  skip_before_filter :epsilon, only: [:e_sheet, :sign_up, :meal_plan, :meal_plan_update, :dan]
+  skip_before_filter :logged_in, only: :dan
   before_action :on_meal_plan, only: [:e_sheet, :sign_up]
   before_action :kappa, only: [:meal_plan, :meal_plan_update]
   
@@ -61,6 +62,8 @@ class EpsilonController < AuthController
     redirect_to epsilon_index_path
   end
   
+  ##############Meal Plan View for Kappa ##############
+  
   def meal_plan
     bros = HousePoints.get_active
     BrothersDke.where(meal_plan: 1).each do | brother |
@@ -84,7 +87,16 @@ class EpsilonController < AuthController
     tmp.save
     redirect_to meal_plan_path
   end
-
+  
+  ##############Dan's View ################
+  
+  def dan
+    @week_meals = Epsilon.get_week
+    @e_count = Epsilon.get_e_count
+  end
+  
+  ##############E Sheet ##################
+  
   def e_sheet
     @week_meals = Epsilon.get_week
     @e_count = Epsilon.get_e_count
@@ -116,6 +128,8 @@ class EpsilonController < AuthController
     raise "Unknow meal time"
   end
   
+  ############Parameter Filters #################
+  
   def update_params
     return params.require(:epsilon).permit(:date,:e_type, :time, :uname, :value, :comment)
   end 
@@ -130,6 +144,8 @@ class EpsilonController < AuthController
       return [action, uname]
     end
   end
+  
+  ##########User Validation Funcitons #################
   
   def on_meal_plan
     unless @me.meal_plan?

@@ -1,5 +1,14 @@
 module EpsilonHelper
   
+  def get_serv(server, time, date)
+    if server.empty?
+      time = Time.now - 900 < Time.parse(time, date)
+      return "Meal Missed" unless time
+    else 
+      return BrothersPersonal.find_by(uname: server).full_name
+    end
+  end
+  
   def get_server(server, time, date)
     if server.empty?
       time = Time.now - 900 < Time.parse(time, date)

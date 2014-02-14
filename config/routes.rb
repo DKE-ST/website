@@ -41,6 +41,7 @@ RailsSite::Application.routes.draw do
   match '/e_sheet' , to: 'epsilon#sign_up' , via: :patch
   match '/meal_plan' , to: 'epsilon#meal_plan' , via: :get
   match '/meal_plan' , to: 'epsilon#meal_plan_update' , via: :patch
+  match '/wsty' , to: 'epsilon#dan' , via: :get
   resources :epsilon
   
   #Positions controller
