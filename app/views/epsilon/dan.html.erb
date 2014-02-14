@@ -12,11 +12,8 @@
 			<% meals.each do | int_meals |%>
 			 <td style='vertical-align:middle'>
 			  <% int_meals.each do | meal |%>
-				<%= form_tag(e_sheet_path, :class => "e_sheet", method: :patch) do%>
-				  <%= hidden_field_tag( "meal[id]", meal.id)%>
-				  <%= "#{meal.e_type.humanize} #{meal.time} ::"%>
-				  <%= get_serv(meal.uname, meal.time, meal.date)%>
-				<% end %>
+				<%= "#{meal.e_type.humanize} #{meal.time} ::"%>
+				<%= get_serv(meal.uname, meal.time, meal.date)%>
 			  <%end%>
 			 </td>
 			<% end %>
