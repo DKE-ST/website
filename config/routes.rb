@@ -36,6 +36,7 @@ RailsSite::Application.routes.draw do
   match '/points/:id/new/', to: 'house_points#new', via: :get
   resources :house_points, :path => '/points'
   
+  match '/epsilon/new_count', to: 'epsilon#update_count', via: :patch
   match '/epsilon/new_meal' , to: 'epsilon#new_meal' , via: :get
   match '/e_sheet' , to: 'epsilon#e_sheet' , via: :get
   match '/e_sheet' , to: 'epsilon#sign_up' , via: :patch

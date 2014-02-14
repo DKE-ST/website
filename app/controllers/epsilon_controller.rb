@@ -33,6 +33,7 @@ class EpsilonController < AuthController
   end
   
   def index
+    @threshold = Epsilon.e_count
     @meals = Epsilon.get_all_meals
     @entries = Epsilon.get_others
     @e_count = Epsilon.get_e_count
@@ -59,6 +60,19 @@ class EpsilonController < AuthController
     @element = Epsilon.find(params[:id])
     @element.destroy
     flash[:success] = "Meal Deleted"
+    redirect_to epsilon_index_path
+  end
+  
+  def update_count
+    e_val = params.require(:e_count)
+    if e_val =~ /\A\d+.?\d*\z/
+      tmp = Settings.find("e_count")
+      tmp.val = e_val
+      tmp.save
+      flash[:success] = "E Count updated"
+    else
+      flash[:error] = "E's Needed is not a number"
+    end
     redirect_to epsilon_index_path
   end
   

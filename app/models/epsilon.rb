@@ -23,12 +23,6 @@ class Epsilon < ActiveRecord::Base
           lunch.value = Settings.find("dlunch_wkdy").val.to_f
           lunch.save
         end
-      else
-        lunch = Epsilon.new(date: start_date + i)
-        lunch.time = Settings.find("lunch_wknd").val
-        lunch.e_type = "lunch"
-        lunch.value = Settings.find("dlunch_wknd").val.to_f
-        lunch.save
       end
       for j in 0..((i<5)?1:0)
         dinner = Epsilon.new(date: start_date + i)
@@ -84,6 +78,10 @@ class Epsilon < ActiveRecord::Base
   
   def self.get_others
     return Epsilon.where(e_type: "entry").order(:date)
+  end
+  
+  def self.e_count
+    return Settings.find("e_count").val.to_i
   end
   
   ########Getting users on meal plan ####################
