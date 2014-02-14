@@ -70,7 +70,7 @@ class Epsilon < ActiveRecord::Base
     needed = Settings.find("e_count").val.to_i
     mon = Date.current - Date.current.days_to_week_start
     e_count = []
-    Brothers.meal_plan_list.each do | brother |
+    Epsilon.meal_plan_list.each do | brother |
       tot = 0
       Epsilon.where("uname = ? AND date < ?", brother[1], mon).each do | e |
         puts e.value
