@@ -12,7 +12,7 @@ class Epsilon < ActiveRecord::Base
   #comment: text
   
   def self.new_week(start_date = Date.current)
-    start_date += 7 - start_date.days_to_week_start
+    start_date -= start_date.days_to_week_start
     return false if Epsilon.exists?(date: start_date)
     for i in 0..5
       if i < 5
@@ -37,6 +37,7 @@ class Epsilon < ActiveRecord::Base
   
   def self.get_week(date = Date.current)
     date -= date.days_to_week_start
+    puts Epsilon.new_week(date)
     meals = {}
     for i in 0..5
       day = (date+i)
