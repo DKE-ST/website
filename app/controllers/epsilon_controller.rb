@@ -33,8 +33,8 @@ class EpsilonController < AuthController
   end
   
   def index
-    @threshold = Epsilon.e_count
     @meals = Epsilon.get_all_meals
+    @threshold = Epsilon.e_count
     @entries = Epsilon.get_others
     @e_count = Epsilon.get_e_count
   end

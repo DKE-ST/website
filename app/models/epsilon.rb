@@ -13,7 +13,9 @@ class Epsilon < ActiveRecord::Base
   
   def self.new_week(start_date = Date.current)
     start_date -= start_date.days_to_week_start
-    return false if Epsilon.exists?(date: start_date)
+    for dt in start_date..start_date+5
+      return false if Epsilon.exists?(e_type: ["lunch","dinner"], date: dt)
+    end
     for i in 0..5
       if i < 5
         for j in 0..2
@@ -37,7 +39,7 @@ class Epsilon < ActiveRecord::Base
   
   def self.get_week(date = Date.current)
     date -= date.days_to_week_start
-    puts Epsilon.new_week(date)
+    Epsilon.new_week(date)
     meals = {}
     for i in 0..5
       day = (date+i)
@@ -48,6 +50,7 @@ class Epsilon < ActiveRecord::Base
   end
   
   def self.get_all_meals
+    Epsilon.new_week(Date.current)
     meals = []
     working = Epsilon.where("e_type != ?","entry")
     week = working.minimum("date")
