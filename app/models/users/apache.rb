@@ -74,7 +74,7 @@ class Apache
  private
  
   def self.dke_path
-    return '/etc/apache2' if Settings.find("server")==0
+    return '/etc/apache2' if Settings.find("server").val.to_i==0
     return "#{Dir.pwd}/config"
   end
   
