@@ -15,6 +15,21 @@ class EpsilonController < AuthController
     @brothers = Epsilon.meal_plan_drop
   end
   
+  def new_week
+    if Epsilon.new_week
+      flash[:success] = "New Week Added"
+    else
+      flash[:error] = "Meals already exist for this week"
+    end
+    redirect_to epsilon_index_path
+  end
+  
+  def new_semester
+    #Epsilon.destroy_all
+    flash[:error] = "Feature is under development. Contact Justin to reset the database."
+    redirect_to epsilon_index_path
+  end
+  
   def create
     @element = Epsilon.new(update_params)
     if @element.e_type.nil?
