@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2014 at 07:04 AM
+-- Generation Time: Feb 17, 2014 at 02:50 PM
 -- Server version: 5.5.35
 -- PHP Version: 5.3.10-1ubuntu3.9
 
@@ -41,14 +41,12 @@ INSERT INTO `settings` (`name`, `val`, `desc`) VALUES
 ('dinner_wkdy', '6:00PM', 'Time of Dinner during the week'),
 ('dinner_wknd', '6:00PM', 'Time of Dinner during the week'),
 ('dlunch_wkdy', '1', 'Default E value for a lunch served during the week'),
-('dlunch_wknd', '1', 'Default E value for a lunch served on saturday'),
 ('d_din_wkdy', '1.5', 'Defualt E value for a dinner served during the week'),
 ('d_din_wknd', '3', 'Default E value for a dinner served on saturday'),
-('e_count', '14', 'E Count for the Semester'),
+('e_count', '16', 'E Count for the Semester'),
 ('lunch_0', '11:30AM', 'Time of First lunch'),
 ('lunch_1', '12:15PM', 'Time of Second lunch'),
-('lunch_2', '1:15PM', 'Time of Third lunch'),
-('lunch_wknd', '12:00PM', 'Time of Lunch on weekend');
+('lunch_2', '1:15PM', 'Time of Third lunch');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
