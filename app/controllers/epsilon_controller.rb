@@ -16,7 +16,8 @@ class EpsilonController < AuthController
   end
   
   def new_week
-    if Epsilon.new_week
+    res = Epsilon.new_week
+    if res
       flash[:success] = "New Week Added"
     else
       flash[:error] = "Meals already exist for this week"
