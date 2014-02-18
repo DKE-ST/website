@@ -16,7 +16,7 @@ class EpsilonController < AuthController
   end
   
   def new_week
-    res = Epsilon.new_week
+    res = Epsilon.new_week(Date.current+2)
     if res
       flash[:success] = "New Week Added"
     else
