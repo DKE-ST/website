@@ -5,7 +5,8 @@
   	<h2>
   	  E Count
   	  <%= link_to("New Semester" , epsilon_new_semester_path , method: :patch,
-  	  data: { confirm: "Are you sure you like to delete all entries? \n NOTE: This action can NOT be undone." }, :class => "btn pull-right")%>
+  	  data: { confirm: "Are you sure you like to delete all entries? \n NOTE: This action can NOT be undone." },
+  	   :class => "btn pull-right")%>
   	</h2>
   	<%= form_tag(epsilon_new_count_path,  method: :patch) do%>
   	  E's Needed:<%= text_field_tag("e_count",  @threshold, :class => "input-small")%>
@@ -35,7 +36,7 @@
   	  <%= link_to "Add Week" , epsilon_new_week_path , method: :patch, :class => "btn"%>
   	</h2>
   	<% @meals.each do | week , breakdown |%>
-  	  <h3>Week of <%= week.strftime("%B %e %Y")%></h3>
+  	  <h3>Week of <%= week.strftime("%B %e, %Y")%></h3>
   	  <table class="table table-striped table-hover table-condensed">
 	   <tbody>
 		<% breakdown.each do |day , meals|%>
