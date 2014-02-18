@@ -13,7 +13,7 @@
 			 <td style='vertical-align:middle'>
 			  <% int_meals.each do | meal |%>
 				<%= "#{meal.e_type.humanize} #{meal.time} ::"%>
-				<%= get_serv(meal.uname, meal.time, meal.date)%>
+				<%= get_serv(meal.uname, meal.time, meal.date)%><br>
 			  <%end%>
 			 </td>
 			<% end %>
