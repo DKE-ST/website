@@ -23,7 +23,7 @@
 						<ul class="dropdown-menu">
 							<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
 							<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
-							<% if @me.uname == "wsty"%>
+							<% if @me.uname == "westy"%>
 							  <li><%= link_to "E Sheet" , wsty_path%></li>
 							<% end %>
 							<%= render 'layouts/navbar/profile' if @me.pledge? && request.env['REMOTE_USER']!='dkealum'%>

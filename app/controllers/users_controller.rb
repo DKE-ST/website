@@ -1,6 +1,7 @@
 class UsersController < AuthController
   before_action :auth_user
   skip_before_action :auth_user, only: [:ch_pwd, :update_pwd]
+  skip_before_action :logged_in, only: [:ch_pwd, :update_pwd]
   before_action :has_pwd, only: [:ch_pwd, :update_pwd]
   
   def index
@@ -138,7 +139,10 @@ class UsersController < AuthController
   end
   
   def has_pwd
-    unless @me.pwd?
+    if @me.uname.nil?
+      flash[:error] = "You do not have acess to this page"
+      redirect_to root_url
+    elsif !@me.pwd?
       flash[:error] = "Your password is set through your kerberos"
       redirect_to root_url
     end
