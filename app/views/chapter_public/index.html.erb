@@ -17,7 +17,7 @@
 				<tr>
 				  <td><%= link_to "#{boarder.first_name} #{boarder.last_name}", "#{chapter_public_index_path}/#{boarder.ID}"%></td>
 				  <td><%= boarder.school%></td>
-				  <td><%= boarder.year%></td>
+				  <td><%= ["Other", "Freshmen", "Sophomore", "Junior", "Senior"][boarder.year]%></td>
 				  <td><%= boarder.email%></td>
 				  <td><%= boarder.dke_brother%></td>
 				  <% if @me.is?("s_zeta")%>
