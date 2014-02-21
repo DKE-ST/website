@@ -26,8 +26,8 @@ class EpsilonController < AuthController
   end
   
   def new_semester
-    #Epsilon.destroy_all
-    flash[:error] = "Feature is under development. Contact Justin to reset the database."
+    EpsilonBackup.backup_e_data
+    flash[:success] = "E data reset.  Previous Data stored in e_history."
     redirect_to epsilon_index_path
   end
   
