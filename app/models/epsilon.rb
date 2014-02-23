@@ -77,6 +77,7 @@ class Epsilon < ActiveRecord::Base
       rem = Settings.find("e_count").val.to_i - tot
       e_count << [brother[0], brother[1], tot, [rem,0].max]
     end
+    e_count.sort_by!{ |a| [1-a[3], a[1]]}
     return e_count
   end
   
