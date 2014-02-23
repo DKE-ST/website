@@ -11,7 +11,7 @@ class Epsilon < ActiveRecord::Base
   validates :value, numericality: true
   #comment: text
   
-  def self.new_week(start_date = Date.current)
+  def self.new_week(start_date = Date.current+2)
     start_date -= start_date.days_to_week_start
     for dt in start_date..start_date+5
       return false if Epsilon.exists?(e_type: ["lunch","dinner"], date: dt)
@@ -37,7 +37,7 @@ class Epsilon < ActiveRecord::Base
     return true
   end
   
-  def self.get_week(date = Date.current)
+  def self.get_week(date = Date.current+1)
     date -= date.days_to_week_start
     meals = {}
     for i in 0..5

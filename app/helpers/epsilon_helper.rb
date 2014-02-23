@@ -1,5 +1,10 @@
 module EpsilonHelper
   
+  def get_e_week
+    day = Date.current + 1
+    return day - day.days_to_week_start
+  end
+  
   def get_serv(server, time, date)
     if server.empty?
       time = Time.now - 900 < Time.parse(time, date)
