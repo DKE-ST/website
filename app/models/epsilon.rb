@@ -65,7 +65,8 @@ class Epsilon < ActiveRecord::Base
   
   def self.get_e_count
     needed = Settings.find("e_count").val.to_i
-    mon = Date.current - Date.current.days_to_week_start
+    day = Date.current + 1
+    mon = day - day.days_to_week_start
     e_count = []
     Epsilon.meal_plan_list.each do | brother |
       tot = 0
