@@ -49,6 +49,7 @@ class EpsilonController < AuthController
   end
   
   def index
+    @menu = EpsilonMenu.select("*")
     @meals = Epsilon.get_all_meals
     @threshold = Epsilon.e_count
     @entries = Epsilon.get_others
@@ -92,6 +93,16 @@ class EpsilonController < AuthController
     redirect_to epsilon_index_path
   end
   
+  def update_menu
+    params.require(:menu).each do | day , entries |
+      tmp = EpsilonMenu.find(day)
+      tmp.lunch = entries[:lunch]
+      tmp.dinner = entries[:dinner]
+      tmp.save
+    end
+    redirect_to epsilon_index_path
+  end
+  
   ##############Meal Plan View for Kappa ##############
   
   def meal_plan
@@ -127,6 +138,7 @@ class EpsilonController < AuthController
   ##############Dan's View ################
   
   def dan
+    @menu = EpsilonMenu.select("*")
     @week_meals = Epsilon.get_week
     @e_count = Epsilon.get_e_count
   end
@@ -134,6 +146,7 @@ class EpsilonController < AuthController
   ##############E Sheet ##################
   
   def e_sheet
+    @menu = EpsilonMenu.select("*")
     @week_meals = Epsilon.get_week
     @e_count = Epsilon.get_e_count
   end
@@ -159,6 +172,7 @@ class EpsilonController < AuthController
     end
     @week_meals = Epsilon.get_week
     @e_count = Epsilon.get_e_count
+    @menu = EpsilonMenu.select("*")
     render "e_sheet"
   end
   

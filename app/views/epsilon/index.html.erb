@@ -61,6 +61,19 @@
 	  </table>
   	<% end %>
   </div>
+  <div class="span4" align="left">
+  	<h2>Menu</h2>
+  	<%= form_tag(epsilon_menu_update_path,  method: :patch) do%>
+	  	<% @menu.each do | day |%>
+	  	  <h4><%= day.day.humanize%></h4>
+	  	  <%= fields_for("menu[#{day.id}]", day) do |f|%>
+	  	    Lunch: <%= f.text_field :lunch%><br>
+	  	    Dinner: <%= f.text_field :dinner%><br>
+	  	  <% end %>
+	  	<% end %>
+	  	<br><%= submit_tag("Update", :class => "btn")%>
+  	<% end %>  
+  </div>
   <div class="span4">
   	<h2>
   	  E Management

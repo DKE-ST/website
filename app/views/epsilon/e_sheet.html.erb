@@ -25,6 +25,18 @@
 		<% end%>
 	  </tbody>
 	</table>
+	<h2>Menu</h2>
+	<table class="table table-striped">
+	  <tbody>
+	  	<% @menu.each do | day |%>
+	  	  <tr>
+	  	  	<td><h4><%= day.day.humanize%></h4></td>
+	  	  	<td><%= "Lunch: #{day.lunch}" unless day.lunch.empty?%></td>
+	  	  	<td><%= "Dinner: #{day.dinner}" unless day.dinner.empty?%></td>
+	  	  </tr>
+	  	<% end %>
+	  </tbody>
+	</table>
   </div>
   <div class="span4">
   	<h3>E Count</h3>
