@@ -142,8 +142,14 @@ class EpsilonController < AuthController
     delay = [-900,300]
     ind = (sign_up_params[:action]=="add")?0:1
     meal = Epsilon.find(sign_up_params[:id])
-    if ind==1 && meal.uname != @me.uname
+    if ind==1 && meal.uname.empty?
+      flash[:error] = "No one is signed up for this meal"
+    elsif ind==1 && meal.uname != @me.uname
       flash[:error] = "You cannot unsign up another brother"
+    elsif ind==0 && meal.uname == @me.uname
+      flash[:error] = "You already signed up to serve this meal"
+    elsif ind==0 && !meal.uname.empty?
+      flash[:error] = "Another brother has already signed up"
     elsif Time.now + delay[ind] > Time.parse(meal.time, meal.date)
       flash[:error] = "It is too late to sign up to serve this meal.  Please Contact the Epsilon" if ind==0
       flash[:error] = "It is too late to unsign up to serve this meal.  Please Contact the Epsilon" if ind==1
