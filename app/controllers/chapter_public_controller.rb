@@ -59,7 +59,7 @@ class ChapterPublicController < ApplicationController
   private
   
   def correct_user
-    unless @me.is?("s_zeta")
+    unless @me.is?("s_psi")
       flash[:error] = "You do not have acess to this page"
       redirect_to root_url
     end
