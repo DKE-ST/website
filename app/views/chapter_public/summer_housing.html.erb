@@ -1,0 +1,15 @@
+<% provide(:title , 'DKE Summer Housing')%>
+
+<div class="row">
+	<div class="span12" align="left">
+		<h1>DKE Summer Housing</h1>
+	</div>
+	<div class="span5" align="center">
+		<%= image_tag("dke_house.jpg", :alt => "")%>
+		<br><br>
+		<h2><%= link_to "Apply for DKE Summer Housing" , summer_app_path%></h2>
+	</div>
+	<div class="span7" align="left">
+		<%= @content.content.gsub("\n","<br>").html_safe%>
+	</div>
+</div>

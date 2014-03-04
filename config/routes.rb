@@ -18,8 +18,9 @@ RailsSite::Application.routes.draw do
   match '/about', to: 'chapter_public#about' , via: :get
   match '/letter', to: 'chapter_public#president_letter' , via: :get
   match '/contact', to: 'chapter_public#contact' , via: :get
-  match '/summer_housing', to: 'chapter_public#summer_app' , via: :get
-  match '/summer_housing', to: 'chapter_public#submit_app' , via: :post
+  match '/summer_housing', to: 'chapter_public#summer_housing' , via: :get
+  match '/summer_app', to: 'chapter_public#summer_app' , via: :get
+  match '/summer_app', to: 'chapter_public#submit_app' , via: :post
   resources :chapter_public, :path => '/summer'
   
   resources :house_rooms, :path => '/house'

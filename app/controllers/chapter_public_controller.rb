@@ -24,6 +24,10 @@ class ChapterPublicController < ApplicationController
     end
   end
   
+  def summer_housing
+    @content = ChapterPublic.find_by(pname: "s_letter")
+  end
+  
   def summer_app
     @boarder = SummerApp.new
     @chapter_roles = ChapterPublic.gen_chapter_roles
