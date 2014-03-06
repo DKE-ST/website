@@ -56,6 +56,7 @@ RailsSite::Application.routes.draw do
   
   #Bibles Controller
   match 'add_bible' , to: 'bibles#add_bible' , via: :get
+  match 'add_bible' , to: 'bibles#new_bible' , via: :post
   resources :bibles
   
   # The priority is based upon order of creation: first created -> highest priority.
