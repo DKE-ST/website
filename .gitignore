@@ -5,6 +5,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore misc tmp bible files
+/db/bibles/*
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
