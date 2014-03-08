@@ -17,6 +17,7 @@ class Bible
     end
   end
   
+  ###### Creates a new Bible ######
   
   def create(new_bible)
     if new_bible[:material].nil?
@@ -46,6 +47,7 @@ class Bible
     end
   end
   
+  ###### Used to recursively remove unneeded top level directories ######
   def rm_redundant_dir(dir_name)
     entries = Dir.entries(dir_name)
     entries.delete(".")
@@ -63,14 +65,16 @@ class Bible
     end
   end
   
-  def print_structure(dir_name, spacer = "")
+  
+  ######Prints file structure tree for a bible ######
+  def self.print_structure(dir_name, spacer = "-- ")
     out = ""
     Dir.foreach(dir_name) do | file |
-      unless file =~ /\A([.]{1,2})\z/
+      unless file =~ /\A[.].*\z/
         out += "#{spacer}#{file}<br>"
         puts "#{spacer}#{file}"
         if File.directory?("#{dir_name}/#{file}")
-          out += print_structure("#{dir_name}/#{file}", spacer + "+")
+          out += Bible.print_structure("#{dir_name}/#{file}", spacer + "-- ")
         end
       end
     end
