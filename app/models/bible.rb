@@ -20,16 +20,18 @@ class Bible
   ###### Creates a new Bible ######
   
   def create(new_bible)
+    puts new_bible[:material].content_type !=~ /\Aapplication\/(zip|octet-stream)\z/
+    puts new_bible[:material].content_type
     if new_bible[:material].nil?
       self.errors[:base] << "No file was uploaded"
       return false
-    elsif new_bible[:material].content_type != "application/zip"
-      self.errors[:base] << "Incorrect File Type"
+    elsif !(new_bible[:material].content_type =~ /(zip|octet-stream)/)
+      self.errors[:base] << "Incorrect File Type.  Please upload a .zip file"
       return false
     else
       
       Dir.chdir(Bible.tmp_loc)
-      `mkdir #{self.uname}` unless File.directory?(self.uname)
+      `mkdir "#{self.uname}"` unless File.directory?(self.uname)
       Dir.chdir(self.uname)
       
       uploaded_io=new_bible[:material]
@@ -37,10 +39,10 @@ class Bible
         file.write(uploaded_io.read)
       end
       
-      `rm -rf #{self.class_num}` if File.directory?(self.class_num)
-      `mkdir #{self.class_num}`
-      `unzip #{self.class_num}.zip -d #{self.class_num}/"#{self.semester} #{self.year}"`
-      `rm #{self.class_num}.zip`
+      `rm -rf "#{self.class_num}"` if File.directory?(self.class_num)
+      `mkdir "#{self.class_num}"`
+      `unzip "#{self.class_num}.zip" -d "#{self.class_num}/#{self.semester} #{self.year}"`
+      `rm "#{self.class_num}.zip"`
       rm_redundant_dir("#{self.class_num}/#{self.semester} #{self.year}")
       Dir.chdir(Rails.root.to_s)
       return true
@@ -52,8 +54,7 @@ class Bible
     entries = Dir.entries(dir_name)
     entries.delete(".")
     entries.delete("..")
-    print dir_name
-    print entries
+    `rm -rf "#{dir_name}/__MACOSX"` if entries.delete("__MACOSX")
     if entries.length == 1 && File.directory?("#{dir_name}/#{entries[0]}")
       Dir.foreach("#{dir_name}/#{entries[0]}") do | file |
         unless file =~ /\A([.]{1,2})\z/
@@ -63,6 +64,10 @@ class Bible
       Dir.rmdir("#{dir_name}/#{entries[0]}")
       rm_redundant_dir(dir_name)
     end
+  end
+  
+  def self.get_new_bibles
+    
   end
   
   

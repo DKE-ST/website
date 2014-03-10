@@ -1,8 +1,7 @@
 class BiblesController < AuthController
   
   def index
-    @structure = "16.07: Fall 2008<br>"
-    @structure += Bible.print_structure("#{Bible.tmp_loc}/#{@me.uname}/16.07/Fall 2008")
+    @structure = Bible.get_new_bibles
   end
   
   ###### Used for users uploading bibles  ######
