@@ -66,8 +66,18 @@ class Bible
     end
   end
   
+  ######Prints out a list of bibles waiting to be confiremd ######
   def self.get_new_bibles
-    
+    out = []
+    Dir.entries(Bible.tmp_loc).reject{|entry| entry =~ /\A([.]{1,2})\z/}.each do | user |
+      Dir.entries("#{Bible.tmp_loc}/#{user}").reject{|entry| entry =~ /\A([.]{1,2})\z/}.each do | class_num |
+        Dir.entries("#{Bible.tmp_loc}/#{user}/#{class_num}").reject{|entry| entry =~ /\A([.]{1,2})\z/}.each do | semester |
+          link = "#{class_num}-#{semester}-#{user}".gsub(".","_")
+          out << [class_num,semester,user,link]
+        end
+      end
+    end
+    return out
   end
   
   
@@ -89,6 +99,7 @@ class Bible
  private
  
   def self.tmp_loc
+    return "/lambda/samba_share/Bibles/Downloads" if Settings.mode?(0)
     return Rails.root.join("db/bibles").to_s
   end
   

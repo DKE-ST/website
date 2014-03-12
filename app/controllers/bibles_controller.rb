@@ -1,9 +1,5 @@
 class BiblesController < AuthController
   
-  def index
-    @structure = Bible.get_new_bibles
-  end
-  
   ###### Used for users uploading bibles  ######
   
   def add_bible
