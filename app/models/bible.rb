@@ -31,19 +31,20 @@ class Bible
     else
       
       Dir.chdir(Bible.tmp_loc)
-      `mkdir "#{self.uname}"` unless File.directory?(self.uname)
-      Dir.chdir(self.uname)
+      `mkdir "#{self.class_num}"` unless File.directory?(self.class_num)
+      Dir.chdir(self.class_num)
       
       uploaded_io=new_bible[:material]
       File.open("#{self.class_num}.zip", "wb") do |file|
         file.write(uploaded_io.read)
       end
       
-      `rm -rf "#{self.class_num}"` if File.directory?(self.class_num)
-      `mkdir "#{self.class_num}"`
-      `unzip "#{self.class_num}.zip" -d "#{self.class_num}/#{self.semester} #{self.year}"`
+      dir_name = "#{self.semester} #{self.year}_#{self.uname}"
+      `rm -rf "#{dir_name}"` if File.directory?(dir_name)
+      `mkdir "#{dir_name}"`
+      `unzip "#{self.class_num}.zip" -d "#{dir_name}"`
       `rm "#{self.class_num}.zip"`
-      rm_redundant_dir("#{self.class_num}/#{self.semester} #{self.year}")
+      rm_redundant_dir(dir_name)
       Dir.chdir(Rails.root.to_s)
       return true
     end
@@ -99,7 +100,7 @@ class Bible
  private
  
   def self.tmp_loc
-    return "/lambda/samba_share/Bibles/Downloads" if Settings.mode?(0)
+    return "/lambda/samba_share/Bibles/Added Recently" if Settings.mode?(0)
     return Rails.root.join("db/bibles").to_s
   end
   
