@@ -54,6 +54,12 @@ RailsSite::Application.routes.draw do
   match 'positions/updatem' , to: 'positions#mass_update', via: :post
   resources :positions
   
+  #Bibles Controller
+  match 'add_bible' , to: 'bibles#add_bible' , via: :get
+  match 'add_bible' , to: 'bibles#new_bible' , via: :post
+  match 'upload_bible' , to: 'bibles#upload_bible' , via: :post
+  resources :bibles
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
