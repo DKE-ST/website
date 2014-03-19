@@ -3,7 +3,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+#Bundle used for parsing web pages
 gem 'nokogiri'
+
+#Bundle used for document editing
+gem 'ckeditor'
 
 #used for creating mit student users
 gem 'net-ldap'
