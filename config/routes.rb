@@ -1,5 +1,4 @@
 RailsSite::Application.routes.draw do 
-  
   #Home Page
   root 'chapter_public#home'
   
@@ -14,11 +13,9 @@ RailsSite::Application.routes.draw do
   match '/settings', to: 'static_pages#settings', via: :get
   match '/settings', to: 'static_pages#update_settings', via: :patch
   
-  
-  match '/about', to: 'chapter_public#about' , via: :get
-  match '/letter', to: 'chapter_public#president_letter' , via: :get
+  mount Ckeditor::Engine => '/ckeditor'
   match '/contact', to: 'chapter_public#contact' , via: :get
-  
+  resources :chapter_public, :path => '/'
   
   match '/summer_housing', to: 'summer_housing#summer_housing' , via: :get
   match '/summer_app', to: 'summer_housing#summer_app' , via: :get

@@ -15,6 +15,8 @@
 //= require bootstrap
 //= require turbolinks
 //= require fixedHeader.js
+//= require ckeditor/override
+//= require ckeditor/init
 //=require_tree .
 
 

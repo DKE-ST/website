@@ -15,13 +15,13 @@
 			<tbody>
 			  <% @boarders.each do | boarder |%>
 				<tr>
-				  <td><%= link_to "#{boarder.first_name} #{boarder.last_name}", "#{chapter_public_index_path}/#{boarder.ID}"%></td>
+				  <td><%= link_to "#{boarder.first_name} #{boarder.last_name}", "#{summer_housing_index_path}/#{boarder.ID}"%></td>
 				  <td><%= boarder.school%></td>
 				  <td><%= ["Other", "Freshmen", "Sophomore", "Junior", "Senior"][boarder.year]%></td>
 				  <td><%= boarder.email%></td>
 				  <td><%= boarder.dke_brother%></td>
 				  <% if @me.is?("s_psi")%>
-				    <td><%= link_to("Delete" , "#{chapter_public_index_path}/#{boarder.ID}" , method: :delete, 
+				    <td><%= link_to("Delete" , "#{summer_housing_index_path}/#{boarder.ID}" , method: :delete, 
 				  	  data: { confirm: "Are you sure you would like to delete this application?" }, :class => "btn")%></td>
 				  <% end %>
 				</tr>

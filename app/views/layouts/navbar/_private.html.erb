@@ -30,7 +30,7 @@
 		<% if @me.brother?%>
 		  <li><%= link_to "Points Breakdown", house_points_path%></li>
 		<% end %>
-		<li><%= link_to "Summer Housing Applications", chapter_public_index_path%></li>
+		<li><%= link_to "Summer Housing Applications", summer_housing_index_path%></li>
         <!--<li><a href="#TODO">Calendar</a></li>-->
 	  <% else%>
 		<%= render 'layouts/navbar/public'%>

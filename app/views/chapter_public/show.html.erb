@@ -6,6 +6,6 @@
 			<%= @content.title%>
 			<%= link_to("Edit" , "#{chapter_public_path}/edit" , :class => "btn btn-primary pull-right") if @me.in_group(@content.user)%>
 		</h2>
-		<p><%= @content.content.gsub("\n","<br>").html_safe%></p>
+		<p><%= @content.content.html_safe%></p>
 	</div>	
 </div>

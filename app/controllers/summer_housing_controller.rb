@@ -55,5 +55,3 @@ class SummerHousingController < ApplicationController
   end
   
 end
-  
-end

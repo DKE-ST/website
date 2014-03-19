@@ -8,6 +8,7 @@ gem 'nokogiri'
 
 #Bundle used for document editing
 gem 'ckeditor'
+gem 'paperclip'
 
 #used for creating mit student users
 gem 'net-ldap'

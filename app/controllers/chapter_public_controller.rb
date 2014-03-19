@@ -3,11 +3,21 @@ class ChapterPublicController < ApplicationController
   def home
   end
   
-  def about
+  def show
+    @content = ChapterPublic.find_by(pname: params[:id])
   end
   
-  def president_letter
-    @content = ChapterPublic.find_by(pname: "letter")
+  def edit
+    @content = ChapterPublic.find_by(pname: params[:id])
+  end
+  
+  def update
+    @content = ChapterPublic.find_by(pname: params[:id])
+    if @content.update(update_page_params)
+      redirect_to "#{chapter_public_index_path}#{params[:id]}"
+    else
+      render "edit"
+    end
   end
   
   def contact
@@ -20,6 +30,12 @@ class ChapterPublicController < ApplicationController
         @officers[pos.position] = {uname: pos.uname, full_name: name, year: year, contact: pos.contact, name: pos.name}
       end
     end
+  end
+  
+ private
+ 
+  def update_page_params
+    params.require(:chapter_public).permit(:title,:content)
   end
 
 end
