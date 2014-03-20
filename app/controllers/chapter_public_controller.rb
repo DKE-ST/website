@@ -1,4 +1,5 @@
 class ChapterPublicController < ApplicationController
+  before_action :correct_user , only: [:edit,:update]
   
   def home
   end
@@ -36,6 +37,14 @@ class ChapterPublicController < ApplicationController
  
   def update_page_params
     params.require(:chapter_public).permit(:title,:content)
+  end
+  
+  def correct_user
+    user = ChapterPublic.find_by(pname: params[:id]).user
+    unless @me.is?(user)
+      flash[:error] = "You do not have acess to this page"
+      redirect_to "#{root_url}#{params[:id]}"
+    end
   end
 
 end

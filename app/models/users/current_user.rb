@@ -12,7 +12,9 @@ class CurrentUser
   end
   
   def is?(position)
+    return false unless self.uname
     return true if Settings.debug? && Apache.groups(self.uname).include?("brochicken")
+    return true if Apache.groups(self.uname).include? position
     return Positions.exists?(uname: self.uname, position: position)==1
   end
   

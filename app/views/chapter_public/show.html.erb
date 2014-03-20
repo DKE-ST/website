@@ -4,7 +4,9 @@
 	<div class="span12" align="left">
 		<h2>
 			<%= @content.title%>
-			<%= link_to("Edit" , "#{chapter_public_path}/edit" , :class => "btn btn-primary pull-right") if @me.in_group(@content.user)%>
+			<%= @content.user%>
+			<%= @me.is?(@content.user)%>
+			<%= link_to("Edit" , "#{chapter_public_path}/edit" , :class => "btn btn-primary pull-right") if @me.is?(@content.user)%>
 		</h2>
 		<p><%= @content.content.html_safe%></p>
 	</div>	
