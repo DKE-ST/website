@@ -23,6 +23,8 @@ module RailsSite
     # config.i18n.default_locale = :de
     
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     config.autoload_paths += ['app/models/brothers','app/models/users']
   end
