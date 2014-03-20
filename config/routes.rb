@@ -13,9 +13,6 @@ RailsSite::Application.routes.draw do
   match '/settings', to: 'static_pages#settings', via: :get
   match '/settings', to: 'static_pages#update_settings', via: :patch
   
-  mount Ckeditor::Engine => '/ckeditor'
-  match '/contact', to: 'chapter_public#contact' , via: :get
-  resources :chapter_public, :path => '/'
   
   match '/summer_housing', to: 'summer_housing#summer_housing' , via: :get
   match '/summer_app', to: 'summer_housing#summer_app' , via: :get
@@ -58,6 +55,10 @@ RailsSite::Application.routes.draw do
   match 'add_bible' , to: 'bibles#new_bible' , via: :post
   match 'upload_bible' , to: 'bibles#upload_bible' , via: :post
   resources :bibles
+  
+  mount Ckeditor::Engine => '/ckeditor'
+  match '/contact', to: 'chapter_public#contact' , via: :get
+  resources :chapter_public, :path => '/'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
