@@ -5,20 +5,21 @@
 		<h3>Summer Housing Applicants</h3>
 		<table class="table table-striped table-hover">
 			<thead><tr>
-				<th>Name</th>
-				<th>School</th>
+				<th><%= link_to("Date Applied" , summer_housing_index_path(sorting: "date",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
+				<th><%= link_to("Name" , summer_housing_index_path(sorting: "last_name",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
+				<th><%= link_to("School" , summer_housing_index_path(sorting: "school",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
 				<th>Year</th>
 				<th>Email</th>
 				<th>Brother</th>
 				<% if @me.is?("s_psi")%>
 					<th>Emailed</th>
 					<th></th>
-					<th></th>
 				<%end%>
 			</tr></thead>
 			<tbody>
 			  <% @boarders.each do | boarder |%>
 				<tr>
+				  <td><%= boarder.date%></td>
 				  <td><%= link_to "#{boarder.first_name} #{boarder.last_name}", "#{summer_housing_index_path}/#{boarder.ID}"%></td>
 				  <td><%= boarder.school%></td>
 				  <td><%= ["Other", "Freshmen", "Sophomore", "Junior", "Senior"][boarder.year]%></td>
@@ -26,9 +27,7 @@
 				  <td><%= boarder.dke_brother%></td>
 				  <% if @me.is?("s_psi")%>
 				  	<td>
-				  	  <%= (boarder.emailed)?"Yes":"No"%>
-				  	</td>
-				  	<td>
+				  	  <%= (boarder.emailed)?"Yes":"No"%>&nbsp;
 				  	  <%= link_to("Toggle Emailed" , "#{summer_housing_index_path}/#{boarder.ID}" , method: :update, :class => "btn")%>
 				  	</td>
 				  	<td>
