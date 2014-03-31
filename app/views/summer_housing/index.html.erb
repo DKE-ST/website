@@ -24,7 +24,7 @@
 				  <td><%= boarder.email%></td>
 				  <td><%= boarder.dke_brother%></td>
 				  <% if @me.is?("s_psi")%>
-				  	<td>
+				  	<td style="text-align:center">
 				  	  <%= (boarder.emailed)?"Yes":"No"%>&nbsp;
 				  	  <%= link_to("Toggle Emailed" , "#{summer_housing_index_path}/#{boarder.ID}" , method: :update, :class => "btn")%>
 				  	</td>
