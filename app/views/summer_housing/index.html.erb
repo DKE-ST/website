@@ -10,7 +10,11 @@
 				<th>Year</th>
 				<th>Email</th>
 				<th>Brother</th>
-				<th></th>
+				<% if @me.is?("s_psi")%>
+					<th>Emailed</th>
+					<th></th>
+					<th></th>
+				<%end%>
 			</tr></thead>
 			<tbody>
 			  <% @boarders.each do | boarder |%>
@@ -21,8 +25,16 @@
 				  <td><%= boarder.email%></td>
 				  <td><%= boarder.dke_brother%></td>
 				  <% if @me.is?("s_psi")%>
-				    <td><%= link_to("Delete" , "#{summer_housing_index_path}/#{boarder.ID}" , method: :delete, 
-				  	  data: { confirm: "Are you sure you would like to delete this application?" }, :class => "btn")%></td>
+				  	<td>
+				  	  <%= (boarder.emailed)?"Yes":"No"%>
+				  	</td>
+				  	<td>
+				  	  <%= link_to("Toggle Emailed" , "#{summer_housing_index_path}/#{boarder.ID}" , method: :update, :class => "btn")%>
+				  	</td>
+				  	<td>
+				      <%= link_to("Delete" , "#{summer_housing_index_path}/#{boarder.ID}" , method: :delete, 
+				  	  data: { confirm: "Are you sure you would like to delete this application?" }, :class => "btn")%>
+				  	</td>
 				  <% end %>
 				</tr>
 			  <% end%>

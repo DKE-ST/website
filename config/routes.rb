@@ -17,6 +17,7 @@ RailsSite::Application.routes.draw do
   match '/summer_housing', to: 'summer_housing#summer_housing' , via: :get
   match '/summer_app', to: 'summer_housing#summer_app' , via: :get
   match '/summer_app', to: 'summer_housing#submit_app' , via: :post
+  match '/summer/:id' , to: 'summer_housing#emailed', via: :post
   resources :summer_housing, :path => '/summer'
   
   resources :house_rooms, :path => '/house'

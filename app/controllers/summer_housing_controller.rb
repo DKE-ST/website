@@ -24,18 +24,27 @@ class SummerHousingController < ApplicationController
   end
   
   def index
-    @boarders = SummerApp.select("ID, first_name, last_name, email, school, year, dke_brother")
+    @boarders = SummerApp.select("ID, first_name, last_name, email, school, year, dke_brother, emailed, date")
+    @boarders = @boarders.order(emailed: :asc, school: :asc, date: :asc)
   end
   
   def show
     @boarder = SummerApp.find(params[:id])
   end
   
+  def emailed
+    @boarder = SummerApp.find(params[:id])
+    @boarder.emailed = !@boarder.emailed
+    @boarder.save
+    flash[:success] = "Boarder had been updated."
+    redirect_to summer_housing_index_path
+  end
+  
   def destroy
     @boarder = SummerApp.find(params[:id])
     @boarder.destroy
     flash[:success] = "Application has been destroyed."
-    redirect_to chapter_public_index_path
+    redirect_to summer_housing_index_path
   end
   
   private
