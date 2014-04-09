@@ -26,7 +26,7 @@ class SummerHousingController < ApplicationController
   def index
     @boarders = SummerApp.select("ID, first_name, last_name, email, school, year, dke_brother, emailed, date")
     if params[:sorting].nil?
-      @boarders = @boarders.order(emailed: :asc, date: :asc)
+      @boarders = @boarders.order(emailed: :asc, date: :desc)
     else
       @boarders = @boarders.order("#{params[:sorting]} #{params[:asc]}")
     end
