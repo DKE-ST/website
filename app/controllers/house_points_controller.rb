@@ -11,11 +11,16 @@ class HousePointsController < AuthController
       brother = {uname: bro_uname}
       brother[:name] = tmp.personal.full_name
       brother[:year] = tmp.dke.p_class
+      tmp_year = tmp.dke.p_class - (Date.current.year + 1)
+      if tmp.mit.year - Date.current.year == 0
+        tmp_year = -1
+      end
+      brother[:y_order] = (tmp_year + 2 * [0,tmp_year].min).abs 
       brother[:total] = HousePoints.total_points(bro_uname)
       brother[:points] = HousePoints.get_point_breakdown(bro_uname)
       @pts_breakdown << brother      
     end
-    @pts_breakdown.sort_by!{ |a| [a[:year], a[:name]]}
+    @pts_breakdown.sort_by!{ |a| [a[:y_order], 0-a[:total], a[:name]]}
   end
   
   def show
