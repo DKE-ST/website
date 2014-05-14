@@ -5,7 +5,7 @@ class Bible
   
   attr_accessor :class_num, :year, :semester, :uname
   
-  validates :class_num, presence: true
+  validates :class_num, presence: true , format: {with: /\A\w+(.\w+)?\z/}
   validates :year, presence: true , format: {with: /[\d]+/} , length: {minimum: 4, maximum: 4}
   validates :semester, presence: true , format: {with: /Fall|IAP|Spring/}
   
