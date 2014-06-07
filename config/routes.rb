@@ -1,66 +1,4 @@
-RailsSite::Application.routes.draw do 
-  #Home Page
-  root 'chapter_public#home'
-  
-  ###STATIC PAGE CONTROLLER###
-  #Used for pages in lambda
-  match '/php_header', to: 'static_pages#php_header', via: :get
-  #Used for authenticating users
-  match '/login' , to: 'static_pages#home' , via: :post
-  match '/success' , to: 'static_pages#success' , via: :get
-  match '/loggedout' , to: 'static_pages#loggedout' , via: :get
-  #Brochicken Settings Menu
-  match '/settings', to: 'static_pages#settings', via: :get
-  match '/settings', to: 'static_pages#update_settings', via: :patch
-  
-  
-  match '/summer_housing', to: 'summer_housing#summer_housing' , via: :get
-  match '/summer_app', to: 'summer_housing#summer_app' , via: :get
-  match '/summer_app', to: 'summer_housing#submit_app' , via: :post
-  match '/summer/:id' , to: 'summer_housing#emailed', via: :post
-  resources :summer_housing, :path => '/summer'
-  
-  resources :house_rooms, :path => '/house'
-  
-  match '/profile', to: 'brothers#profile' , via: :get
-  resources :brothers
-  
-  match '/add_pledges', to: 'users#add_pledges' , via: [:get, :post]
-  match '/ch_pwd' , to: 'users#ch_pwd' , via: :get
-  match '/ch_pwd' , to: 'users#update_pwd' , via: :patch
-  resources :users
-  
-  match '/points/:id/new/:uname', to: 'house_points#new', via: :get
-  match '/points/:id/new/', to: 'house_points#new', via: :get
-  resources :house_points, :path => '/points'
-  
-  match '/epsilon/new_count', to: 'epsilon#update_count', via: :patch
-  match '/epsilon/new_week' , to: 'epsilon#new_week' , via: :patch
-  match '/epsilon/new_semester' , to: 'epsilon#new_semester' , via: :patch
-  match '/epsilon/menu_update' , to: 'epsilon#update_menu' , via: :patch
-  match '/epsilon/new_meal' , to: 'epsilon#new_meal' , via: :get
-  match '/e_sheet' , to: 'epsilon#e_sheet' , via: :get
-  match '/e_sheet' , to: 'epsilon#sign_up' , via: :patch
-  match '/meal_plan' , to: 'epsilon#meal_plan' , via: :get
-  match '/meal_plan' , to: 'epsilon#meal_plan_update' , via: :patch
-  match '/wsty' , to: 'epsilon#dan' , via: :get
-  resources :epsilon
-  
-  #Positions controller
-  match 'positions/updatem' , to: 'positions#mass_edit', via: :get
-  match 'positions/updatem' , to: 'positions#mass_update', via: :post
-  resources :positions
-  
-  #Bibles Controller
-  match 'add_bible' , to: 'bibles#add_bible' , via: :get
-  match 'add_bible' , to: 'bibles#new_bible' , via: :post
-  match 'upload_bible' , to: 'bibles#upload_bible' , via: :post
-  resources :bibles
-  
-  mount Ckeditor::Engine => '/ckeditor'
-  match '/contact', to: 'chapter_public#contact' , via: :get
-  resources :chapter_public, :path => '/'
-  
+TestSite::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -101,7 +39,7 @@ RailsSite::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

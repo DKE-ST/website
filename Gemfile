@@ -1,36 +1,13 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.5'
 
-#Bundle used for parsing web pages
-gem 'nokogiri'
-
-#Bundle used for document editing
-gem 'ckeditor'
-gem 'paperclip'
-
-#used for creating mit student users
-gem 'net-ldap'
-gem 'activeldap'
-
-# Use mysql as the database for Active Record
-gem 'mysql2'
-
-group :development, :test do
-gem 'rspec-rails', '2.13.1'
-end
-
-group :test do
-  gem 'selenium-webdriver', '2.0.0'
-  gem 'capybara', '2.1.0'
-end
-
-#Twitter Bootstrap
-gem 'bootstrap-sass', '~> 2.2.2'
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.2'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -56,7 +33,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'

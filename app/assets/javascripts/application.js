@@ -12,16 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require turbolinks
-//= require fixedHeader.js
-//= require ckeditor/override
-//= require ckeditor/init
-//=require_tree .
-
-
-
-$('.dropdown-toggle').dropdown();
-    $('.dropdown-menu').find('form').click(function (e) {
-        e.stopPropagation();
- });
+//= require_tree .
