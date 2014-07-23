@@ -13,4 +13,16 @@ class User < ActiveRecord::Base
     return self.create_shadow(uname: self.uname, passwd: passwd)
   end
   
+  def mit_ldap
+    #return nil if true
+    return @ldap if @ldap
+    return nil unless @ldap.nil?
+    begin
+      @ldap = User::MitLdap.find(uname)
+      return @ldap
+    rescue
+      @ldap = false
+      return nil
+    end
+  end
 end
