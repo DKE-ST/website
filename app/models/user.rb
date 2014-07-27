@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :shadow
+  has_one :brother
   #id      int(11) 
   #uname   varchar(8)
   #group   varchar(9)

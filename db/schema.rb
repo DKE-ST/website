@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722025005) do
+ActiveRecord::Schema.define(version: 20140727172641) do
+
+  create_table "user_brothers", force: true do |t|
+    t.integer  "user_id"
+    t.text     "first_name"
+    t.text     "last_name"
+    t.string   "phone",        limit: 10
+    t.text     "email"
+    t.text     "bio"
+    t.text     "activities"
+    t.text     "hobbies"
+    t.text     "pro_team"
+    t.text     "college_team"
+    t.text     "movie"
+    t.text     "quote"
+    t.text     "hometown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_shadows", primary_key: "uname", force: true do |t|
     t.integer  "user_id"
