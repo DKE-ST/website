@@ -11,7 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727172641) do
+ActiveRecord::Schema.define(version: 20140807160437) do
+
+  create_table "transfers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_brother_dke_infos", force: true do |t|
+    t.integer  "brother_id"
+    t.text     "p_name"
+    t.text     "project"
+    t.integer  "big_id"
+    t.integer  "residence_id"
+    t.integer  "p_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_brother_mit_infos", force: true do |t|
+    t.integer  "brother_id"
+    t.text     "majors"
+    t.text     "minors"
+    t.text     "concentration"
+    t.text     "extracurriculars"
+    t.text     "interests"
+    t.text     "urops"
+    t.text     "internships"
+    t.text     "fav_classes"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_brothers", force: true do |t|
     t.integer  "user_id"

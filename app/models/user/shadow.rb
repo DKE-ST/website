@@ -1,7 +1,7 @@
 class User::Shadow < ActiveRecord::Base
   belongs_to :user
   #uname   varchar(8)
-  #id auth_users reference
+  #user_id int(11)
   #passwd  text
   
   def ch_passwd(password)

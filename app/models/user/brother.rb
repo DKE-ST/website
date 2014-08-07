@@ -1,5 +1,7 @@
 class User::Brother < ActiveRecord::Base
   belongs_to :user
+  has_one :mit_info
+  has_one :dke_info
   #id  int(11)
   #user_id   int(11)
   #first_name  text
