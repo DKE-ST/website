@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807160437) do
+ActiveRecord::Schema.define(version: 20140807204912) do
+
+  create_table "chapter_positions", force: true do |t|
+    t.string   "name"
+    t.text     "title"
+    t.integer  "dke_info_id"
+    t.datetime "start_date"
+    t.boolean  "disp"
+    t.text     "contact"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chapter_public_pages", force: true do |t|
+    t.string   "pname"
+    t.integer  "position_id"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chapter_residences", force: true do |t|
+    t.string   "name"
+    t.integer  "floor"
+    t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "transfers", force: true do |t|
     t.datetime "created_at"
@@ -22,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140807160437) do
     t.integer  "brother_id"
     t.text     "p_name"
     t.text     "project"
+    t.text     "past_pos"
     t.integer  "big_id"
     t.integer  "residence_id"
     t.integer  "p_class"
