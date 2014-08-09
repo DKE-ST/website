@@ -10,6 +10,9 @@ gem 'mysql2'
 gem 'net-ldap'
 gem 'activeldap'
 
+#Twitter Bootstrap
+gem 'bootstrap-sass', '~> 2.2.2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 

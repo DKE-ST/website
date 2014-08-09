@@ -1,4 +1,12 @@
 DKESite::Application.routes.draw do
+  #Home Page
+  root 'chapter/public_pages#home'
+  
+  #Used for authenticating users
+  match '/login' , to: 'chapter/public_pages#home' , via: :post
+  match '/success' , to: 'application#success' , via: :get
+  match '/loggedout' , to: 'application#loggedout' , via: :get
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

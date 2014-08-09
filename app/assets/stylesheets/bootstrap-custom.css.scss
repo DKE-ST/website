@@ -1,0 +1,194 @@
+@import 'bootstrap';
+@import 'bootstrap-responsive';
+
+div.FixedHeader_Cloned th,
+div.FixedHeader_Cloned td {
+  background-color: rgb(0, 0, 65) !important;
+  color: white !important;
+  font-size:115%;
+  
+}
+
+a,
+a:hover {
+    color: rgb(255, 215, 0);
+}
+
+//-------------------------------------------------------------------------------------
+div.row
+{
+   background-color: rgba(0, 0, 65, 1);
+   color:white;
+   border-radius:10px;
+   //text-shadow: 2px 2px #333;
+   font-size:115%;
+   padding-top:10px;
+   padding-bottom:10px; 
+}
+//-------------------------------------------------------------------------------------
+div.pad_right
+{ 
+  margin-right:10px;
+  text-align: left;
+}
+
+.dropdown-menu {
+	top:95%;
+}
+
+ul.nav li.dropdown:hover {
+	color: #ffffff;
+	background-color: #000050;
+}
+
+@media (min-width: 979px)
+{
+  ul.nav li.hover:hover > ul.dropdown-menu{
+    display: block;  
+  }
+  body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+  }
+}
+
+li.nav-item {
+    padding-top: 5px;
+}
+
+li.login {
+  color: #000000;
+}
+
+body {
+  background-color:#770F17
+}
+
+.navbar-dke .navbar-inner {
+  background-color: #000080;
+  background-image: -moz-linear-gradient(top, #000080, #000050);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000080), to(#000050));
+  background-image: -webkit-linear-gradient(top, #000080, #000050);
+  background-image: -o-linear-gradient(top, #000080, #000050);
+  background-image: linear-gradient(to bottom, #000080, #000050);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF222222', endColorstr='#FF000050', GradientType=0);
+  border-color: #FFFFFF; }
+.navbar-dke .brand,
+.navbar-dke .nav > li > a {
+  color: #FFD700;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); }
+  .navbar-dke .brand:hover, .navbar-dke .brand:focus,
+  .navbar-dke .nav > li > a:hover,
+  .navbar-dke .nav > li > a:focus {
+    color: #FFD700; }
+.navbar-dke .brand {
+  color: #FFD700; }
+.navbar-dke .navbar-text {
+  color: #FFD700; }
+.navbar-dke .nav > li > a:focus,
+.navbar-dke .nav > li > a:hover {
+  background-color: transparent;
+  color: #FFD700; }
+.navbar-dke .nav .active > a,
+.navbar-dke .nav .active > a:hover,
+.navbar-dke .nav .active > a:focus {
+  color: #FFD700;
+  background-color: #000050; }
+.navbar-dke .navbar-link {
+  color: #FFD700; }
+  .navbar-dke .navbar-link:hover, .navbar-dke .navbar-link:focus {
+    color:  #FFD700; }
+.navbar-dke .divider-vertical {
+  border-left-color: #000050;
+  border-right-color: #222222; }
+.navbar-dke .nav li.dropdown.open > .dropdown-toggle,
+.navbar-dke .nav li.dropdown.active > .dropdown-toggle,
+.navbar-dke .nav li.dropdown.open.active > .dropdown-toggle {
+  background-color: #000050;
+  color:  #FFD700; }
+.navbar-dke .nav li.dropdown > a:hover .caret,
+.navbar-dke .nav li.dropdown > a:focus .caret {
+  border-top-color:  #FFD700;
+  color: #FFD700; }
+.navbar-dke .nav li.dropdown > .dropdown-toggle .caret {
+  border-top-color: #FFD700;
+  border-bottom-color: #FFD700; }
+.navbar-dke .nav li.dropdown.open > .dropdown-toggle .caret,
+.navbar-dke .nav li.dropdown.active > .dropdown-toggle .caret,
+.navbar-dke .nav li.dropdown.open.active > .dropdown-toggle .caret {
+  border-top-color:  #FFD700;
+  border-bottom-color:  #FFD700; }
+.navbar-dke .navbar-search .search-query {
+  color:  #FFD700;
+  background-color: #515151;
+  border-color: #000050;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none; }
+  .navbar-dke .navbar-search .search-query:-moz-placeholder {
+    color: #cccccc; }
+  .navbar-dke .navbar-search .search-query:-ms-input-placeholder {
+    color: #cccccc; }
+  .navbar-dke .navbar-search .search-query::-webkit-input-placeholder {
+    color: #cccccc; }
+  .navbar-dke .navbar-search .search-query:focus, .navbar-dke .navbar-search .search-query.focused {
+    padding: 5px 15px;
+    color: #333333;
+    text-shadow: 0 1px 0 white;
+    background-color:  #FFD700;
+    border: 0;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    outline: 0; }
+.navbar-dke .btn-navbar {
+  color:  #FFD700;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #0e0e0e;
+  background-image: -moz-linear-gradient(top, #151515, #040404);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#151515), to(#040404));
+  background-image: -webkit-linear-gradient(top, #151515, #040404);
+  background-image: -o-linear-gradient(top, #151515, #040404);
+  background-image: linear-gradient(to bottom, #151515, #040404);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF151515', endColorstr='#FF040404', GradientType=0);
+  border-color: #040404 #040404 black;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #040404;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); }
+  .navbar-dke .btn-navbar:hover, .navbar-dke .btn-navbar:focus, .navbar-dke .btn-navbar:active, .navbar-dke .btn-navbar.active, .navbar-dke .btn-navbar.disabled, .navbar-dke .btn-navbar[disabled] {
+    color:  #FFD700;
+    background-color: #040404;
+    *background-color: black; }
+  .navbar-dke .btn-navbar:active, .navbar-dke .btn-navbar.active {
+    background-color: black \9; }
+    
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #770F17; }
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #770F17; }
+  
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+    color: #FFD700;
+    background-color: #770F17;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    background-color: rgb(0, 0, 65);
+}
+
+div.profile_pg {
+    text-align: center;
+    margin-right: 1.5%;
+    margin-left: 1.5%;
+    background-color: #770F17;
+}
