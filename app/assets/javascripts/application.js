@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require fixedHeader.js
+//= require ckeditor/init
 //= require_tree .
 
 $('.dropdown-toggle').dropdown();

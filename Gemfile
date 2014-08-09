@@ -10,6 +10,10 @@ gem 'mysql2'
 gem 'net-ldap'
 gem 'activeldap'
 
+#Bundle used for document editing
+gem 'ckeditor'
+gem 'paperclip'
+
 #Twitter Bootstrap
 gem 'bootstrap-sass', '~> 2.2.2'
 

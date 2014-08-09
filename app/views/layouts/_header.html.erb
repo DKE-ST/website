@@ -29,8 +29,8 @@
 					<% else %>
 					<li class="nav-item"><a href="/request">Make a Request</a></li>
 					<li class="nav-item dropdown hover">
-						<a class="visible-desktop"><%= get_name(@me)%></a>
-						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me)%></a>
+						<a class="visible-desktop"><%= get_name()%></a>
+						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name()%></a>
 						<ul class="dropdown-menu">
 							<li><%= link_to 'Logout' , "#{root_url}logout"%></li>
 						</ul>

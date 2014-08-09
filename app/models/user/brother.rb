@@ -19,6 +19,7 @@ class User::Brother < ActiveRecord::Base
   #created_at  datetime
   #updated_at  datetime
   
+  #Returns full name from brother information
   def full_name
     return "#{self.first_name} #{self.last_name}"
   end
