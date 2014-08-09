@@ -8,8 +8,7 @@
 	  <div class="span6" align="center">
 		<p><b><%= info[:name]%>:</b> <%= "#{info[:full_name]} '#{info[:year]}"%>
 		<br><b>Contact For:</b> <%= info[:contact]%>
-		<br><%= link_to("#{info[:uname]}@mit.edu", "mailto:#{info[:uname]}@mit.edu") unless pos == "s_psi"%>
-		<%= link_to("dkesummerhousing@gmail.com", "mailto:dkesummerhousing@gmail.com") if pos == "s_psi"%>
+		<br><%= link_to(info[:email], "mailto:#{info[:email]}")%>
 	  </div>
 	<%end%>
 </div>
