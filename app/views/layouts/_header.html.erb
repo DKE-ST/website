@@ -27,23 +27,14 @@
 						</ul>
 					</li>
 					<% else %>
-					<!--<li class="nav-item"><a href="/request">Make a Request</a></li>
+					<li class="nav-item"><a href="/request">Make a Request</a></li>
 					<li class="nav-item dropdown hover">
-						<a class="visible-desktop"><%= get_name(@me.uname)%></a>
-						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me.uname)%></a>
+						<a class="visible-desktop"><%= get_name(@me)%></a>
+						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name(@me)%></a>
 						<ul class="dropdown-menu">
-							<%= render 'layouts/navbar/brochicken' if @me.in_group("brochicken")%>
-							<%= render 'layouts/navbar/broporn' if @me.in_group("broporn")%>
-							<% if @me.uname == "westy"%>
-							  <li><%= link_to "E Sheet" , wsty_path%></li>
-							<% end %>
-							<%= render 'layouts/navbar/profile' if @me.pledge? && request.env['REMOTE_USER']!='dkealum'%>
-							<% if @me.pwd? %>
-								<li><%= link_to "Change Passowrd", ch_pwd_path%></li>
-							<%end%>
 							<li><%= link_to 'Logout' , "#{root_url}logout"%></li>
 						</ul>
-					</li>-->
+					</li>
 					<% end %>
      			</ul>
      		</div>

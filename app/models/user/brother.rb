@@ -17,5 +17,9 @@ class User::Brother < ActiveRecord::Base
   #quote   text
   #hometown  text
   #created_at  datetime
-  #updated_at  datetime  
+  #updated_at  datetime
+  
+  def full_name
+    return "#{self.first_name} #{self.last_name}"
+  end
 end
