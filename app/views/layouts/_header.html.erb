@@ -11,11 +11,11 @@
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
      				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
-     				<%= render 'layouts/navbar/public' if @me.nil?%>
-     				<%= render 'layouts/navbar/private' unless @me.nil?%>
+     				<%= render 'layouts/navbar/public' unless @me.valid_user?%>
+     				<%= render 'layouts/navbar/private' if @me.valid_user?%>
      			</ul>
 				<ul class="nav pull-right">
-					<% if @me.nil?%>
+					<% if !@me.valid_user?%>
 				   	<li class="nav-item dropdown">
 				   		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
 				   		<ul class="dropdown-menu">

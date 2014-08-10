@@ -2,7 +2,7 @@
 	<a class="visible-desktop">Chapter</a>
 	<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#">Chapter</a>
 	<ul class="dropdown-menu" role="menu" aria-labaledby="dLabel">
-	  <% if @me%>
+	  <% if @me.group? "dkepledge"%>
 		<li id="gen_sub" class="dropdown-submenu"><a>General</a>
 			<ul class="dropdown-menu">
 				<%= render 'layouts/navbar/public'%>
@@ -64,5 +64,5 @@
 		<li><%= link_to 'Bibles' , "#{@media_root}/Bibles"%></li>
 	</ul>
 </li>
-<li class="nav-item"><%= link_to 'Wiki' , "/wiki" if @me%></li>
+<li class="nav-item"><%= link_to 'Wiki' , "/wiki" if @me.group? "dkebro"%></li>
 <!--<li style="padding-top:3px;"><a><input placeholder="search"></a></li>-->

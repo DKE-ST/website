@@ -28,7 +28,7 @@ class Chapter::PublicPagesController < ApplicationController
  private
  
   def update_page_params
-    params.require(:chapter_public).permit(:title,:content)
+    params.require(:chapter_public_page).permit(:title,:content)
   end
   
   def correct_user

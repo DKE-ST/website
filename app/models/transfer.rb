@@ -14,7 +14,7 @@ class Transfer < ActiveRecord::Base
   def self.personal
     self.table_name = "brothers_personal"
     Transfer.select("*").each do | usr |
-      x = User.new(uname: usr.uname, group: "dkealum")
+      x = User.new(uname: usr.uname, group: "dkebro")
       x.save
       attrs = usr.attributes
       attrs.delete("id")
@@ -81,7 +81,11 @@ class Transfer < ActiveRecord::Base
     Transfer.select("*").each do | pg |
       attrs = {pname: pg.pname, title: pg.title, content: pg.content}
       page = Chapter::PublicPage.new(attrs)
-      page.position = Chapter::Position.find_by(name: pg.user)
+      if pg.user != "broporn"
+        page.position = Chapter::Position.find_by(name: pg.user)
+      else
+        page.position = Chapter::Position.find_by(name: "broweb")
+      end
       page.save
     end
   end

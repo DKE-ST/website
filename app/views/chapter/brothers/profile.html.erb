@@ -1,0 +1,99 @@
+<% provide(:title , 'Profile')%>
+
+<div class="row me">
+	<div class="span4">
+		<%= image_tag(@brother.pic_path(root_path), :class => "pic") %>
+		<span class="visible-phone">
+			<h2><%= @brother.personal.full_name%></h2>
+			<%= link_to "Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary pull-right"%>
+		</span>
+    </div>
+    <div class="span8 hidden-phone" align="left">
+    	<h2>
+    		<%= @brother.personal.full_name%>
+    		<%= link_to "Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary btn-edit pull-right"%>
+    	</h2>
+    	<table>
+    		<tr>
+    			<td style="padding:0px;">
+    				<div class="row">
+    					<div class="span4 mit">
+    						<br><h3>MIT class of <%= @brother.mit.year%></h3>
+    					</div>
+    					<div class="span4 dke">
+    						<br><h3>Pledge class of <%= @brother.dke.p_class%></h3></td>
+    					</div>
+    				</div>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="span12 profile_pg">
+     	<ul class="nav nav-tabs" id="myTab">
+      		<li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+      		<li><a href="#personal" data-toggle="tab">Personal</a></li>
+      		<li><a href="#mit_info" data-toggle="tab">MIT</a></li>
+      		<li><a href="#dke_info" data-toggle="tab">DKE</a></li>
+    	</ul>
+     	<div class="tab-content">
+	      	<div class="tab-pane info active" id="activity">
+      			<div class="span4">
+      			 <% if @me.brother? %>
+		      	  <h4>Points Breakdown</h4>
+		      	  <div class="accordian" id="accordian_points">
+		      	  <% @brother.points.each do | type, entries|%>
+		      	    <div class="accordian-group">
+		      	      <div class="accordian-heading">
+		      	      	<a class="accordian-toggle" data-toggle="collapse" data-parent=<%= "accordian_points"%> href=<%="#collapse_#{type}"%>>
+		      	      		<%= "#{type.humanize}:#{entries[:val]}"%><br>
+		      	      	</a>
+		      	      </div>
+		      	      <div id=<%="collapse_#{type}"%> class="accordian-body collapse">
+		      	      	<div class="accordian-inner">
+		      	      	  <% entries[:full].each do | entry | %>
+		      	      		<%= "#{entry.value} : #{entry.comment}"%><br>
+		      	      	  <% end%>
+		      	      	</div>
+		      	      </div>
+		      		</div>
+		      	  <% end%>
+		      	  Total:<%= @brother.points_total%>
+		      	  </div>
+		      	 <%end%>
+      			</div>
+	       		<!--#TODO-->
+	      	</div>
+	      	<div class="tab-pane info span12" id="personal">
+      			<p><b>Hometown:</b> <%= @brother.personal.hometown%>
+    			<br><b>Email Address:</b> <%= @brother.personal.uname%>@mit.edu
+    			<br><b>Phone Number:</b> <%= @brother.personal.phone%>
+    			<p><b>Activities:</b> <%= @brother.personal.activities%>
+    			<br><b>Hobbies:</b> <%= @brother.personal.hobbies%>
+    			<p><b>Favorite Quote:</b> <%= @brother.personal.quote%>
+    			<br><b>Favorite Movie:</b> <%= @brother.personal.movie%>
+    			<br><b>Favorite Pro Team:</b> <%= @brother.personal.pro_team%>
+    			<br><b>Favorite College Team:</b>  <%= @brother.personal.college_team%>
+    			<P><b>Bio:</b>  <%= @brother.personal.bio%>
+			</div>
+	      	<div class="tab-pane info span12" id="mit_info">
+	       		<p><b>Majors:</b> <%= @brother.mit.majors%>
+	       		<br><b>Minors:</b> <%= @brother.mit.minors%>
+	       		<br><b>Concentration:</b> <%= @brother.mit.concentration%>
+				<br><b>Extracurricular Activities:</b> <%= @brother.mit.extracurriculars%>
+	       		<br><b>Interests:</b> <%= @brother.mit.interests%>
+	       		<br><b>UROPs:</b> <%= @brother.mit.urops%>
+	       		<br><b>Internships:</b> <%= @brother.mit.internships%>
+	       		<br><b>Favorite MIT Classes:</b> <%= @brother.mit.fav_classes%>
+	      	</div>
+	      	<div class="tab-pane info span12" id="dke_info">
+	       		<p><b>Pledge Name:</b> <%= @brother.dke.pname%>
+	   			<br><b>Pledge Project:</b> <%= @brother.dke.project%>
+	   			<br><b>Big Brother:</b> <%= get_big(@brother.dke.big) %>
+	   			<br><b>Little Brothers:</b> <%= get_littles(@brother.dke.littles)%>
+	        	<br><b>Current Positions:</b> <%= @brother.dke.cur_pos%>
+	   			<br><b>Positions Held:</b> <%= @brother.dke.past_pos%>
+	   			<br><b>Residence:</b> <%= @brother.dke.residence%>
+	      	</div>
+		</div>
+	</div>
+</div>

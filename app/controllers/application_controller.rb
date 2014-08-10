@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   #Stores user associated with a session cookie for use in other pages and controllers
   def authenticate
-    @me = User.find_by(uname: session[:uname])
+    @me = CurrentUser.find_by(uname: session[:uname])
     return true
   end
   
