@@ -13,6 +13,19 @@ class CurrentUser < User
     return !self.uname.nil?
   end
   
+  #Returns bool whether brother_id matches id
+  def is_brother?(id)
+    return false if self.brother.nil?
+    return self.brother.id == id
+  end
+  
+  #Returns whether user meets admin group requirement
+  def admin?(level)
+    return false if self.chicken.nil?
+    list = ["broporn", "brochicken"]
+    return list.index(self.chicken) >= list.index(level)
+  end
+  
   #Returns whether user meets group requirement
   def group?(group)
     return false if self.group.nil?

@@ -5,13 +5,13 @@
 		<img class="pic" src="<%= @brother.pic_path(root_path) %>"/>
 		<span class="visible-phone">
 			<h2><%= @brother.full_name%></h2>
-			<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary pull-right") if false%>
+			<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary pull-right") if @me.admin?("broporn")%>
 		</span>
     </div>
     <div class="span8 hidden-phone" align="left">
     	<h2>
     		<%= @brother.full_name%>
-    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.uname}/edit" , :class => "btn btn-primary btn-edit pull-right") if false%>
+    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary btn-edit pull-right") if @me.admin?("broporn")%>
     	</h2>
     	<table>
     		<tr>
@@ -60,9 +60,11 @@
       		<div class="tab-pane info span11" id="dke_info">
             	<% unless @brother.dke_info.p_name=="" || !@me.group?("dkebro")%><p><b>Pledge Name:</b> <%= @brother.dke_info.p_name%><%end%>
        			<% unless @brother.dke_info.project==""%><br><b>Pledge Project:</b> <%= @brother.dke_info.project%><%end%>
-       			<% unless @brother.dke_info.big.nil?%><br><b>Big Brother:</b> <%= get_big(@brother.dke_info.big) %><%end%>
-       			<% unless @brother.dke_info.littles.length == 0 %><br><b>Little Brothers:</b> <%= get_littles(@brother.dke_info.littles)%><%end%>
+       			<% unless @brother.dke_info.big.nil?%><br><b>Big Brother:</b> <%= big_link(@brother.dke_info.big) %><%end%>
+       			<% unless @brother.dke_info.littles.length == 0 %><br><b>Little Brothers:</b> <%= little_links(@brother.dke_info.littles)%><%end%>
+       			<% unless @brother.dke_info.positions.length == 0 %><br><b>Current Positions:</b> <%= get_positions(@brother.dke_info.positions)%><%end%>
        			<% unless @brother.dke_info.past_pos==""%><br><b>Positions Held:</b> <%= @brother.dke_info.past_pos%><%end%>
+       			<% unless @brother.dke_info.residence.nil?%><br><b>Residence:</b> <%= room_link(@brother.dke_info.residence) %><%end%>
       		</div>
      	</div>
    </div>

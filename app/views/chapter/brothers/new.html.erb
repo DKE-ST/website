@@ -1,29 +1,9 @@
-<% provide(:title , "Edit Brother Information: #{@brother.full_name}")%>
+<% provide(:title , "Add Brother")%>
 
 <div class="row me">
-	<div class="span4">
-		<img class="pic" src="<%= @brother.pic_path(root_path)%>"/>
-		<h2 class="visible-phone"><%= @brother.full_name%></h2>
-    </div>
-    <div class="span8 hidden-phone" align="left">
-    	<h2><%= @brother.full_name%></h2>
-    	<table>
-    		<tr>
-    			<td style="padding:0px;">
-    				<div class="row">
-    					<div class="span4 mit">
-    						<br><h3>MIT class of <%= @brother.mit_info.year%></h3>
-    					</div>
-    					<div class="span4 dke">
-    						<br><h3>Pledge class of <%= @brother.dke_info.p_class%></h3></td>
-    					</div>
-    				</div>
-    			</td>
-    		</tr>
-    	</table>
-    </div>
     <div class="span12"></div>
-	<%= form_for(@brother, options={url: "#{brother_path}#update"}) do |f|%>
+    <h2>Add Brother</h2>
+	<%= form_for(@brother, options={url: "#{brothers_path}#create"}) do |f|%>
   	<div class="edit">
   		<div class="span4">
   			<center><u><h3>Personal</h3></u></center>
@@ -77,7 +57,7 @@
 	  <% end %>
     	<div class='span10'></div>
 		<div class="span2">
-			 <%= f.submit "Save Changes", class: "btn btn-primary" %>
+			 <%= f.submit "Add Brother", class: "btn btn-primary" %>
 		</div>
 	</div>
 	<%end%>
