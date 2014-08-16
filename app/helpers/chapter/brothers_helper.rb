@@ -58,7 +58,7 @@ module Chapter::BrothersHelper
       out += select_tag("year_little#{tag}", options_for_select(brother_list), class: "year_select")
       out += "<div class='btn sel_yr' id='little#{tag}'>Select</div>
               <div class='btn clear hidden' id='little#{tag}'>Clear</div><br>".html_safe
-      out += select_tag("user_brother[dke_info][little_id][#{tag}]", [], class: "hidden", id: "select_little#{tag}") + "</div>".html_safe
+      out += select_tag("user_brother[dke_info][little_ids][#{tag}]", [], class: "hidden", id: "select_little#{tag}") + "</div>".html_safe
     else
       year_options = options_for_select(brother_list, brother_list[little.brother.mit_info.year].to_s)
       little_options = options_for_select(brother_list[little.brother.mit_info.year], selected: little.id)
@@ -66,7 +66,7 @@ module Chapter::BrothersHelper
       out += select_tag("year_little#{tag}", year_options, class: "year_select")
       out += "<div class='btn sel_yr' id='little#{tag}'>Select</div>
               <div class='btn clear' id='little#{tag}'>Clear</div><br>".html_safe
-      out += select_tag("user_brother[dke_info][little_id][#{tag}]", little_options, id: "select_little#{tag}") + "</div>".html_safe
+      out += select_tag("user_brother[dke_info][little_ids][#{tag}]", little_options, id: "select_little#{tag}") + "</div>".html_safe
     end
   end
   

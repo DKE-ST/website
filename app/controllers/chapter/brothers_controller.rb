@@ -2,6 +2,10 @@ class Chapter::BrothersController < ApplicationController
   skip_before_filter :logged_in, only: [:index, :show]
   before_action :correct_user, only: [:edit, :update]
   
+  def new
+    @brother = User::Brother.new
+  end
+  
   def index
     @brothers = User::Brother.get_indexes
   end
@@ -10,8 +14,15 @@ class Chapter::BrothersController < ApplicationController
     @brother = User::Brother.find(params[:id])
   end
   
-  def new
-    @brother = User::Brother.new
+  def create
+    @brother = User::Brother.new(params)
+    if @brother.valid?
+      @brother.save
+      flash[:success] = "Information updated"
+      redirect_to "#{brothers_url}/#{@brother.id}"
+    else
+      render 'new'
+    end
   end
   
   def edit
@@ -31,7 +42,7 @@ class Chapter::BrothersController < ApplicationController
  private
   
   def correct_user
-    unless @me.admin?("broporn") || @me.is_brother?(params[:id])
+    unless @me.is_brother?(params[:id])
       flash[:error] = "You do not have acess to this page"
       redirect_to brother_url
     end

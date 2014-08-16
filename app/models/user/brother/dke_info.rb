@@ -5,25 +5,24 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   belongs_to :residence, class_name: "Chapter::Residence"
   has_many :positions, class_name: "Chapter::Position"
   
+  def initialize(params = {})
+    littles = params.delete(:little_ids)
+    super(params)
+    assign_littles(littles)
+  end
+  
   def update_attributes(params)
-    if params[:little_id]
-      little_ids = params.delete(:little_id).split(",")
-      little_ids.each do | little |
-        unless little == "null"
-          brother = User::Brother::DkeInfo.find(little)
-          if brother.big_id != self.id
-            brother.big_id = self.id
-            brother.save
-          end
-        end
-      end
-      self.littles.each do | little |
-        if little_ids.find_index(little.id.to_s).nil?
-          little.big_id = nil
-          little.save
-        end
-      end
-    end
+    assign_littles(params.delete(:little_ids))
     return super(params)
+  end
+  
+  def assign_littles(little_array)
+    if little_array
+      littles = []
+      little_array.split(",").each do | element |
+        littles << element.to_i unless element == "null"
+      end
+      self.little_ids = littles
+    end
   end
 end

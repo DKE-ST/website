@@ -15,6 +15,7 @@ class CurrentUser < User
   
   #Returns bool whether brother_id matches id
   def is_brother?(id)
+    return true if self.admin?("broporn")
     return false if self.brother.nil?
     return self.brother.id == id
   end

@@ -5,13 +5,13 @@
 		<img class="pic" src="<%= @brother.pic_path(root_path) %>"/>
 		<span class="visible-phone">
 			<h2><%= @brother.full_name%></h2>
-			<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary pull-right") if @me.admin?("broporn")%>
+			<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary pull-right") if @me.is_brother?(@brother.id)%>
 		</span>
     </div>
     <div class="span8 hidden-phone" align="left">
     	<h2>
     		<%= @brother.full_name%>
-    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary btn-edit pull-right") if @me.admin?("broporn")%>
+    		<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary btn-edit pull-right") if @me.is_brother?(@brother.id)%>
     	</h2>
     	<table>
     		<tr>
@@ -36,34 +36,34 @@
     	</ul>
     	<div class="tab-content">
     		<div class="tab-pane info span11 active" id="personal">
-				<% unless @brother.hometown==""%><p><b>Hometown:</b> <%= @brother.hometown%><%end%>
-				<% unless @brother.email== "" || !@me.group?("dkebro")%><br><b>Email Address:</b> <%= @brother.email%><%end%>
-				<% unless @brother.phone=="" || !@me.group?("dkebro")%><br><b>Phone Number:</b> <%= @brother.phone%><%end%>
-				<% unless @brother.activities==""%><p><b>Activities:</b> <%= @brother.activities%><%end%>
-				<% unless @brother.hobbies==""%><br><b>Hobbies:</b> <%= @brother.hobbies%><%end%>
-				<% unless @brother.quote==""%><p><b>Favorite Quote:</b> <%= @brother.quote%><%end%>
-				<% unless @brother.movie==""%><br><b>Favorite Movie:</b> <%= @brother.movie%><%end%>
-				<% unless @brother.pro_team==""%><br><b>Favorite Pro Team:</b> <%= @brother.pro_team%><%end%>
-				<% unless @brother.college_team==""%><br><b>Favorite College Team:</b>  <%= @brother.college_team%><%end%>
-				<% unless @brother.bio==""%><P><b>Bio:</b>  <%= @brother.bio%><%end%>
+				<% unless @brother.hometown.blank?%><p><b>Hometown:</b> <%= @brother.hometown%><%end%>
+				<% unless @brother.email.blank? || !@me.group?("dkebro")%><br><b>Email Address:</b> <%= @brother.email%><%end%>
+				<% unless @brother.phone.blank? || !@me.group?("dkebro")%><br><b>Phone Number:</b> <%= @brother.phone%><%end%>
+				<% unless @brother.activities.blank?%><p><b>Activities:</b> <%= @brother.activities%><%end%>
+				<% unless @brother.hobbies.blank?%><br><b>Hobbies:</b> <%= @brother.hobbies%><%end%>
+				<% unless @brother.quote.blank?%><p><b>Favorite Quote:</b> <%= @brother.quote%><%end%>
+				<% unless @brother.movie.blank?%><br><b>Favorite Movie:</b> <%= @brother.movie%><%end%>
+				<% unless @brother.pro_team.blank?%><br><b>Favorite Pro Team:</b> <%= @brother.pro_team%><%end%>
+				<% unless @brother.college_team.blank?%><br><b>Favorite College Team:</b>  <%= @brother.college_team%><%end%>
+				<% unless @brother.bio.blank?%><P><b>Bio:</b>  <%= @brother.bio%><%end%>
 			</div>
 			<div class="tab-pane info span11" id="mit_info">
-				<% unless @brother.mit_info.majors==""%><p><b>Majors:</b> <%= @brother.mit_info.majors%><%end%>
-       			<% unless @brother.mit_info.minors==""%><br><b>Minors:</b> <%= @brother.mit_info.minors%><%end%>
-       			<% unless @brother.mit_info.concentration==""%><br><b>Concentration:</b> <%= @brother.mit_info.concentration%><%end%>
-				<% unless @brother.mit_info.extracurriculars==""%><br><b>Extracurricular Activities:</b> <%= @brother.mit_info.extracurriculars%><%end%>
-       			<% unless @brother.mit_info.interests==""%><br><b>Interests:</b> <%= @brother.mit_info.interests%><%end%>
-       			<% unless @brother.mit_info.urops==""%><br><b>UROPs:</b> <%= @brother.mit_info.urops%><%end%>
-       			<% unless @brother.mit_info.internships==""%><br><b>Internships:</b> <%= @brother.mit_info.internships%><%end%>
-       			<% unless @brother.mit_info.fav_classes==""%><br><b>Favorite MIT Classes:</b> <%= @brother.mit_info.fav_classes%><%end%>
+				<% unless @brother.mit_info.majors.blank?%><p><b>Majors:</b> <%= @brother.mit_info.majors%><%end%>
+       			<% unless @brother.mit_info.minors.blank?%><br><b>Minors:</b> <%= @brother.mit_info.minors%><%end%>
+       			<% unless @brother.mit_info.concentration.blank?%><br><b>Concentration:</b> <%= @brother.mit_info.concentration%><%end%>
+				<% unless @brother.mit_info.extracurriculars.blank?%><br><b>Extracurricular Activities:</b> <%= @brother.mit_info.extracurriculars%><%end%>
+       			<% unless @brother.mit_info.interests.blank?%><br><b>Interests:</b> <%= @brother.mit_info.interests%><%end%>
+       			<% unless @brother.mit_info.urops.blank?%><br><b>UROPs:</b> <%= @brother.mit_info.urops%><%end%>
+       			<% unless @brother.mit_info.internships.blank?%><br><b>Internships:</b> <%= @brother.mit_info.internships%><%end%>
+       			<% unless @brother.mit_info.fav_classes.blank?%><br><b>Favorite MIT Classes:</b> <%= @brother.mit_info.fav_classes%><%end%>
       		</div>
       		<div class="tab-pane info span11" id="dke_info">
-            	<% unless @brother.dke_info.p_name=="" || !@me.group?("dkebro")%><p><b>Pledge Name:</b> <%= @brother.dke_info.p_name%><%end%>
-       			<% unless @brother.dke_info.project==""%><br><b>Pledge Project:</b> <%= @brother.dke_info.project%><%end%>
+            	<% unless @brother.dke_info.p_name.blank? || !@me.group?("dkebro")%><p><b>Pledge Name:</b> <%= @brother.dke_info.p_name%><%end%>
+       			<% unless @brother.dke_info.project.blank?%><br><b>Pledge Project:</b> <%= @brother.dke_info.project%><%end%>
        			<% unless @brother.dke_info.big.nil?%><br><b>Big Brother:</b> <%= big_link(@brother.dke_info.big) %><%end%>
        			<% unless @brother.dke_info.littles.length == 0 %><br><b>Little Brothers:</b> <%= little_links(@brother.dke_info.littles)%><%end%>
        			<% unless @brother.dke_info.positions.length == 0 %><br><b>Current Positions:</b> <%= get_positions(@brother.dke_info.positions)%><%end%>
-       			<% unless @brother.dke_info.past_pos==""%><br><b>Positions Held:</b> <%= @brother.dke_info.past_pos%><%end%>
+       			<% unless @brother.dke_info.past_pos.blank?%><br><b>Positions Held:</b> <%= @brother.dke_info.past_pos%><%end%>
        			<% unless @brother.dke_info.residence.nil?%><br><b>Residence:</b> <%= room_link(@brother.dke_info.residence) %><%end%>
       		</div>
      	</div>
