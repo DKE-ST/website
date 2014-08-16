@@ -4,6 +4,17 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   has_many :littles, class_name: "User::Brother::DkeInfo", foreign_key: "big_id"
   belongs_to :residence, class_name: "Chapter::Residence"
   has_many :positions, class_name: "Chapter::Position"
+  #id  int(11)
+  #brother_id  int(11)
+  #p_name  text
+  #project   text
+  #past_pos  text
+  #big_id  int(11)
+  #residence_id  int(11)
+  #p_class   int(4)
+  validates :p_class, presence: true, format: {with: /[\d]{4}/}
+  #created_at  datetime
+  #updated_at  datetime
   
   def initialize(params = {})
     littles = params.delete(:little_ids)

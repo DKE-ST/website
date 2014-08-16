@@ -11,6 +11,7 @@ class User::Brother::MitInfo < ActiveRecord::Base
   #internships   text
   #fav_classes   text
   #year  int(4)
+  validates :year, presence: true, format: {with: /[\d]{4}/}
   #created_at  datetime
   #updated_at  datetime  
 end

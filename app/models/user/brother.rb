@@ -1,7 +1,6 @@
 class User::Brother < ActiveRecord::Base
   belongs_to :user
   has_one :mit_info, dependent: :destroy 
-  accepts_nested_attributes_for :mit_info, allow_destroy: true
   has_one :dke_info 
   #id  int(11)
   #user_id   int(11)

@@ -17,7 +17,7 @@ class CurrentUser < User
   def is_brother?(id)
     return true if self.admin?("broporn")
     return false if self.brother.nil?
-    return self.brother.id == id
+    return self.brother.id.to_s == id.to_s
   end
   
   #Returns whether user meets admin group requirement
