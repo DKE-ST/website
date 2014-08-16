@@ -1,5 +1,5 @@
-class Chapter::BrothersController < ApplicationController
-  #skip_before_filter :logged_in, only: [:index, :show]
+class Chapter::BrothersController < AuthenticationController
+  skip_before_filter :logged_in, only: [:index, :show]
   before_action :correct_user, only: [:edit, :update]
   
   def new
