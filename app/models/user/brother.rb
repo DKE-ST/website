@@ -34,6 +34,13 @@ class User::Brother < ActiveRecord::Base
     end
   end
   
+  #Override of method to destroy assicoated classes
+  def destroy
+    self.mit_info.destroy
+    self.dke_info.destroy
+    return super
+  end
+  
   #Override method for update attributes, so mit_info and dke_info are updated as well
   def update_attributes(params)
     return super(brother_params(params)) &&

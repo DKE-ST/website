@@ -1,7 +1,7 @@
 module UsersHelper
   
   #################Index.html.erb########################
-  
+  #Filter select options for index page
   def group_select_filter
     group_options = User.uniq.pluck(:group)
     return select_tag("filter[group]", options_for_select([""] + group_options), class: "filter_select")
@@ -22,7 +22,7 @@ module UsersHelper
   end
   
   ######################Edit.html.erb#########################
-  
+  #Helpers for fields on edit page
   def active_kerberos(user)
     return !user.mit_ldap.nil?
   end
@@ -33,7 +33,7 @@ module UsersHelper
     return out
   end
   
-  #Generates select boxes for big brother information
+  #Generates select boxes for brother information
   #@param f_dke: form object for user::brother::dke_info
   #@param dke_info: dke_info instance for selected user
   def brother_info_select(user, f)

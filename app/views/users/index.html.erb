@@ -48,7 +48,7 @@
 						<td><%= user[:admin]%></td>
 						<td>
 						  <%= link_to("<button>Edit</button>".html_safe, "#{users_path}/#{user[:id]}/edit", method: :get)%>
-						  <%= button_tag("Delete", class: "delete_btn")%>
+						  <%= button_tag("Delete", class: "usr_delete", id: user[:id])%>
 						</td>
 					</tr>
 				   <% end %>

@@ -17,6 +17,53 @@ $( document ).on( 'click', '.filter_btn',function() {
 	});
 });
 
+$( document ).on( 'click', '.usr_delete',function() {
+	var id = this.id;
+	var element = this.parentElement.parentElement;
+	$('<div></div>').appendTo('body')
+    .html('<div><h6>Would you like to delete the corresponding brother information (if applicable)?</h6></div>')
+    .dialog({
+        modal: true,
+        title: 'Delete message',
+        zIndex: 10000,
+        autoOpen: true,
+        width: 'auto',
+        resizable: false,
+        buttons: {
+            Yes: function () {
+            	$(this).dialog("close");
+            	$.ajax({
+					url: 'users/' + id,
+					type: "DELETE",
+					data: {all: true},
+					success: function(data, textStatus, jqXHR) {
+						element.remove();
+						alert(data);
+					}
+				});
+            },
+            No: function () {
+            	$(this).dialog("close");
+            	$.ajax({
+					url: 'users/' + id,
+					type: "DELETE",
+					data: {all: false},
+					success: function(data, textStatus, jqXHR) {
+						element.remove();
+						alert(data);
+					}
+				});
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
+        },
+        close: function (event, ui) {
+            $(this).remove();
+        }
+    });
+});
+
 $( document ).on( 'click', '.usr_sel_yr',function() {
 	var brothers = $("#year_" + this.id).val();
 	if (brothers == "new") {

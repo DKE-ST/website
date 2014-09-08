@@ -13,6 +13,12 @@ class UsersController < AuthenticationController
     @user = User.find(params[:id])
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy(params[:all]=='true')
+    render :text => "User deleted"
+  end
+  
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params)
