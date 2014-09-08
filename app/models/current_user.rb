@@ -30,8 +30,13 @@ class CurrentUser < User
   #Returns whether user meets group requirement
   def group?(group)
     return false if self.group.nil?
+    if ['dkeactive', 'dkealum'].include? self.group
+      dke_group = 'dkebro'
+    else
+      dke_group = self.group
+    end
     list = ["dkeaffil", "dkepledge", "dkebro"]
-    return list.index(self.group) >= list.index(group)
+    return list.index(dke_group) >= list.index(group)
   end
   
 end

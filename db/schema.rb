@@ -112,12 +112,14 @@ ActiveRecord::Schema.define(version: 20140809152441) do
 
   create_table "users", force: true do |t|
     t.string   "uname",      limit: 8,  null: false
+    t.string   "mit_id",     limit: 9
     t.string   "group",      limit: 9,  null: false
     t.string   "chicken",    limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["mit_id"], name: "index_users_on_mit_id", unique: true, using: :btree
   add_index "users", ["uname"], name: "index_users_on_uname", unique: true, using: :btree
 
 end

@@ -33,7 +33,7 @@ class Chapter::BrothersController < AuthenticationController
     @brother = User::Brother.find(params[:id])
     if @brother.update_attributes(params)
       flash[:success] = "Information updated"
-      redirect_to "#{brothers_url}/#{@brother.id}"
+      redirect_to brother_url
     else
       render 'edit'
     end

@@ -1,0 +1,60 @@
+<% provide(:title , "User Management")%>
+
+<div class="row">
+	<div class="span12">
+		<h2>
+			User Management
+			<div class="btn-group pull-right">
+				<!--<= link_to "Add User" , "#{users_path}/new"  , :class => "btn"%>
+				<= link_to "Add Pledge Class" , "#{add_pledges_path}"  , :class => "btn"%>-->
+			</div>
+		</h2>
+		<div class="row">
+			<div class="span12">
+				<table class="table table-striped table-hover table-condensed">
+				  <thead>
+				  <tr>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>Username</th>
+					<th>Primary Group</th>
+					<th>MIT Class</th>
+					<th>In House</th>
+					<th>Admin</th>
+					<th>Actions</th>
+				   </tr>
+				  </thead>
+				  <tbody>
+				   <tr class="filter-header">
+				   	  <th style="background-color:#000041;"></th>
+					  <th style="background-color:#000041;"></th>
+					  <th style="background-color:#000041;"></th>
+					  <th style="background-color:#000041;"><%= group_select_filter%></th>
+					  <th style="background-color:#000041;"><%= class_select_filter%></th>
+					  <th style="background-color:#000041;"><%= house_select_filter%></th>
+					  <th style="background-color:#000041;"><%= admin_select_filter%></th>
+					  <th style="background-color:#000041;"><%= button_tag("Filter", class: "filter_btn")%></th>
+				    </tr>
+				   </tbody>
+				   <tbody id="user_body">
+				   <% @users.each do | user | %>
+				    <tr>
+				    	<td><%= user[:last_name]%></td>
+					    <td><%= user[:first_name]%></td>
+					    <td><%= user[:uname]%></td>
+						<td><%= user[:group]%></td>
+						<td><%= user[:class]%></td>
+						<td><%= user[:residence]%></td>
+						<td><%= user[:admin]%></td>
+						<td>
+						  <%= link_to("<button>Edit</button>".html_safe, "#{users_path}/#{user[:id]}/edit", method: :get)%>
+						  <%= button_tag("Delete", class: "delete_btn")%>
+						</td>
+					</tr>
+				   <% end %>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

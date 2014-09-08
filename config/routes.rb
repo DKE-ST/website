@@ -8,6 +8,9 @@ DKESite::Application.routes.draw do
   match '/loggedout' , to: 'application#loggedout' , via: :get
   
   
+  match '/users/filter', to: 'users#filter' , via: :post
+  resources :users
+  
   scope module: 'chapter' do
     resources :brothers
     

@@ -14,7 +14,12 @@ class Transfer < ActiveRecord::Base
   def self.personal
     self.table_name = "brothers_personal"
     Transfer.select("*").each do | usr |
-      x = User.new(uname: usr.uname, group: "dkebro")
+      x = User.new(uname: usr.uname, group: "dkeactive")
+      begin
+        x.group = 'dkealum' unless User::MitLdap.find(usr.uname).student?
+      rescue
+        x.group = 'dkealum'
+      end
       x.save
       attrs = usr.attributes
       attrs.delete("id")

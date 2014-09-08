@@ -12,3 +12,8 @@
  *= require jquery-ui
  *= require_tree .
  */
+
+.hidden
+{
+  display: none
+}
