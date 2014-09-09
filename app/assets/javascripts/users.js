@@ -33,24 +33,30 @@ $( document ).on( 'click', '.usr_delete',function() {
             Yes: function () {
             	$(this).dialog("close");
             	$.ajax({
-					url: 'users/' + id,
+					url: '/users/' + id,
 					type: "DELETE",
 					data: {all: true},
 					success: function(data, textStatus, jqXHR) {
 						element.remove();
 						alert(data);
+						if (document.URL.search("edit") != -1) {
+							window.location.replace("/users");
+						}
 					}
 				});
             },
             No: function () {
             	$(this).dialog("close");
             	$.ajax({
-					url: 'users/' + id,
+					url: '/users/' + id,
 					type: "DELETE",
 					data: {all: false},
 					success: function(data, textStatus, jqXHR) {
 						element.remove();
 						alert(data);
+						if (document.URL.search("edit") != -1) {
+							window.location.replace("/users");
+						}
 					}
 				});
             },
