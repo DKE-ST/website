@@ -7,12 +7,25 @@ $( document ).on( 'click', '.filter_btn',function() {
 				house: $("#filter_house").val(),
 				admin: $("#filter_admin").val()};
 	$.ajax({
-		url: 'users/filter',
+		url: '/users/filter',
 		type: "POST",
 		data: data,
 		success: function(data, textStatus, jqXHR) {
 			var usr_tbl = $("#user_body");
 			usr_tbl.html(data);
+		}
+	});
+});
+
+$( document ).on( 'click', '.krb_chk',function() {
+	var data = {uname: $("#user_uname").val()};
+	$("#krb_field").html("Loading...");
+	$.ajax({
+		url: '/users/kerberos',
+		type: "POST",
+		data: data,
+		success: function(data, textStatus, jqXHR) {
+			$("#krb_field").html(data);
 		}
 	});
 });

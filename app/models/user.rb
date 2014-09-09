@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   #chicken   varchar(10)
   #created_at  datetime 
   #updated_at  datetime
+  attr_accessor :password, :brother_id
+  
+  def valid?(params = {})
+    return false if self.mit_ldap.nil? && self.password.blank?
+    return super(params)
+  end
   
   #Override of destroy to delete associated models as well
   def destroy(all = false)
@@ -19,37 +25,54 @@ class User < ActiveRecord::Base
   end  
   
   #Override to update shadow and brother information as well
-  def update_attributes(params)
-    usr_params = user_params(params)
-    if usr_params.include?(:password) #checks for password in params
-      passwd = usr_params.delete(:password) #stores and removes password
-      if passwd.empty? #If empty delete
+  def save
+    return false unless super
+    unless self.password.nil? #checks for password in attributes
+      if self.password.empty? #If empty delete
         self.shadow.destroy unless self.shadow.nil?
-      elsif passwd != "~" #If ~ it remains unchanged
+      elsif self.password != "~" #If ~ it remains unchanged
         if self.shadow.nil?  #if shadow is nil, create instance of model
-          self.add_passwd(passwd)
+          self.add_passwd(self.password)
         else
-          self.shadow.ch_passwd(passwd)
+          self.shadow.ch_passwd(self.password)
         end
       end
     end
     #If params includes brother 
-    if usr_params.include?(:brother)
-      brother_id = usr_params.delete(:brother)
-      if brother_id == 'null' || brother_id != self.brother.id
+    unless self.brother_id.nil?
+      begin
+        bro_id = self.brother.id
+      rescue
+        bro_id = nil
+      end
+      if self.brother_id == 'null' || self.brother_id != bro_id
         #Delete old reference if brother_id is null or not the same as before
         if self.brother
           self.brother.user_id = nil
           self.brother.save
         end
       end
-      if brother_id != self.brother.id #Update brother info if brother id has changed
-        brother = User::Brother.find(brother_id)
+      if self.brother_id != bro_id #Update brother info if brother id has changed
+        brother = User::Brother.find(self.brother_id)
         brother.user_id = self.id
         brother.save
       end
     end
-    super(usr_params)
+    return true
+  end
+  
+  #Override to store shadow and brother information as well
+  def initialize(params = nil)
+    if params.nil?
+      super
+    else
+      super(user_params(params))
+    end
+  end
+  
+  #Override to update shadow and brother information as well
+  def update_attributes(params)
+    super(user_params(params))
   end
   
   #Adds shadow property for a user
@@ -111,6 +134,6 @@ class User < ActiveRecord::Base
  private
   
   def user_params(params)
-    return params.require(:user).permit(:uname, :group, :chicken, :password, :brother)
+    return params.require(:user).permit(:uname, :group, :chicken, :password, :brother_id)
   end
 end

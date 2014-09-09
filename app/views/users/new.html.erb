@@ -1,0 +1,37 @@
+<% provide(:title , "User Management - #{@user.uname}")%>
+<% javascript 'users' %>
+
+<div class="row">
+	<div class="span12">
+		<h2>User Management - <%= @user.uname%></h2>
+	</div>
+	<div class="span8 offset2">
+	  <%= form_for @user do |f| %>
+		<div class="row usr-edit">
+			<div class="span4">
+		 		Username: <%= f.text_field :uname %>
+		 	</div>
+		 	<div class="span4">
+		 		<span class="krb_chk btn">Check Kerberos</span>:
+		 		<span id="krb_field"></span>
+		 	</div>
+		 	<div class="span8">
+		 		Password: <%= get_passwd_field(@user, f)%>
+		 	</div>
+		 	<div class="span4">
+		 		Group: <%= f.select :group, options_for_select(['dkealum','dkeactive','dkepledge','dkeaffil'], selected=@user.group)%><br>
+		 	</div>
+		 	<div class="span4">
+		 		Admin: <%= f.select :chicken, options_for_select(['','broporn','brochicken'], selected=@user.chicken)%><br>
+		 	</div>
+		 	<div class="span6 offset2">
+		 		<u><b>Brother Information</b></u><br>
+		 		<%= brother_info_select(@user, f)%>
+		 	</div>
+		 	<div class="span4 offset4">
+		 		<%= f.submit("Add User", class: "btn btn-primary")%>
+		 	</div>
+		</div>
+	  <% end %>
+	</div>
+</div>
