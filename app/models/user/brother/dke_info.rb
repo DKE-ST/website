@@ -36,4 +36,8 @@ class User::Brother::DkeInfo < ActiveRecord::Base
       self.little_ids = littles
     end
   end
+  
+  def self.cur_p_class
+    return Date.current.year + 3 + ((Date.current.month > 7)?1:0)
+  end
 end

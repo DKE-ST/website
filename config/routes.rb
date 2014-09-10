@@ -7,9 +7,13 @@ DKESite::Application.routes.draw do
   match '/success' , to: 'application#success' , via: :get
   match '/loggedout' , to: 'application#loggedout' , via: :get
   
-  match '/users/add_pledges' , to: 'users#add_pledges' , via: :get
-  match '/users/kerberos', to: 'users#kerberos' , via: :post
-  match '/users/filter', to: 'users#filter' , via: :post
+  #User Management Paths
+  scope '/users' do
+    match '/add_pledges' , to: 'users#add_pledges' , via: :get
+    match '/query' , to: 'users#query' , via: :post
+    match '/kerberos', to: 'users#kerberos' , via: :post
+    match '/filter', to: 'users#filter' , via: :post
+  end
   resources :users
   
   scope module: 'chapter' do
