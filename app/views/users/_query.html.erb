@@ -1,0 +1,20 @@
+<table class="table table-condensed table-striped">
+  <tr>
+	<th>Username</th>
+	<th>First Name</th>
+	<th>Last Name</th>
+	<th>Year</th>
+	<th></th>
+  </tr>
+  <% @results.each do | user | %>
+	<tr>
+	  <td><%= user[1]["uid"][0] unless user[1]["uid"].blank? %></td>
+	  <td><%= user[1]["givenName"][0] unless user[1]["givenName"].blank? %></td>
+	  <td><%= user[1]["sn"][0] unless user[1]["sn"].blank? %></td>
+	  <td><%= user[1]["mitDirStudentYear"][0] unless user[1]["mitDirStudentYear"].blank? %></td>
+	  <td>
+	    <%= button_tag("Add", class: "pledge_add", id: user[1]["uid"][0])%>
+	  </td>
+	</tr>
+  <% end %>
+</table>

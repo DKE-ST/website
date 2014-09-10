@@ -57,10 +57,22 @@ class UsersController < AuthenticationController
     render text: result
   end
   
+  def query
+    @results = User::MitLdap.query(query_params(params))
+    @results.each do | user |
+      puts user[1]
+    end
+    render partial: 'query', object: @results
+  end
+  
  private
  
   def filter_params(params)
     return params.permit("group", "year", "house", "admin")
+  end
+  
+  def query_params(params)
+    return params.require(:query).permit(:uname, :first, :last)
   end
   
 end

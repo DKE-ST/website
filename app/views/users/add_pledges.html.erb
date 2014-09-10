@@ -1,0 +1,17 @@
+<% provide(:title , "Add Pledge Class")%>
+
+<div class="row">
+	<h2>Pledge Class of <%= User::Brother::DkeInfo.cur_p_class%></h2>
+	<div class="span6">
+		<%= form_tag query_url, class: "query", method: :post do%>
+			First Name:<%= text_field_tag("query[first]", "", class: "query_text")%>
+			Last Name:<%= text_field_tag("query[last]", "", class: "query_text")%><br>
+			Username: <%= text_field_tag("query[uname]", "", class: "query_text")%>
+			<%= submit_tag("Search", class: "btn", id: "query_submit")%>
+		<% end %>
+		<hr>
+		<h4>Search Results</h4>
+		<div id="query_results"></div>
+	</div>
+	<div class="span6"></div>  
+</div>

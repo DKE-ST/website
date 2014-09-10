@@ -139,3 +139,20 @@ $( document ).on( 'click', '.usr_sel_yr',function() {
 		$(".clear#" + this.id).removeClass("hidden");
 	}
 });
+
+$( document ).on('submit', '.query', function( event ) {
+	var form = $(".query");
+	var button = $("#query_submit");
+	button.val("Searching...");
+	$.ajax({
+		url: form[0].action,
+		type: "POST",
+		data: form.serialize(),
+		success: function(data, textStatus, jqXHR) {
+			var res_out = $("#query_results");
+			res_out.html(data);
+			button.val("Search");
+		}
+	});
+	event.preventDefault();
+});
