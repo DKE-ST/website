@@ -10,7 +10,13 @@ class User::MitLdap < ActiveLdap::Base
       return []
     else
       attrs = ["uid", "givenName", "sn", "mitDirStudentYear"]
-      return User::MitLdap.search(filter: search_filter, attributes: attrs)
+      results = []
+      User::MitLdap.search(filter: search_filter, attributes: attrs).each do | user |
+        unless User.exists?(uname: user[1]["uid"][0])
+          results << user[1]
+        end
+      end
+      return results
     end
   end
   

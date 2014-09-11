@@ -1,7 +1,17 @@
 class UsersController < AuthenticationController
   
   def add_pledges
-    
+  end
+  
+  def create_pledges
+    if params.include? :user
+      User.create_pledges(params.require(:user))
+      flash[:success] = "Users created"
+      redirect_to users_path
+    else
+      flash[:error] = "No users to add"
+      render "add_pledges"
+    end
   end
   
   def index
@@ -59,9 +69,6 @@ class UsersController < AuthenticationController
   
   def query
     @results = User::MitLdap.query(query_params(params))
-    @results.each do | user |
-      puts user[1]
-    end
     render partial: 'query', object: @results
   end
   

@@ -131,6 +131,25 @@ class User < ActiveRecord::Base
     return user_list
   end
   
+  def self.create_pledges(params)
+    params.each do | dummy, username |
+      unless User.exists?(uname: username)
+        usr_info = User::MitLdap.find(username)
+        bro = User::Brother.new
+        bro.first_name = usr_info.givenName
+        bro.last_name = usr_info.sn
+        bro.mit_info.year = usr_info.year
+        bro.dke_info.p_class = User::Brother::DkeInfo.cur_p_class
+        bro.save
+        user = User.new
+        user.uname = username
+        user.group = "dkepledge"
+        user.brother_id = bro.id
+        user.save
+      end
+    end
+  end
+  
  private
   
   def user_params(params)

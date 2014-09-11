@@ -156,3 +156,16 @@ $( document ).on('submit', '.query', function( event ) {
 	});
 	event.preventDefault();
 });
+
+$( document ).on( 'click', '.pledge_add',function() {
+	this.innerHTML = "Remove";
+	this.className = "pledge_remove";
+	var element = this.parentElement.parentElement;
+	$("#new_class").append(element.outerHTML);
+	element.remove();
+});
+
+$( document ).on( 'click', '.pledge_remove',function( event ) {
+	this.parentElement.parentElement.remove();
+	event.preventDefault();
+});

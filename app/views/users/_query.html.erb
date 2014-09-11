@@ -8,12 +8,13 @@
   </tr>
   <% @results.each do | user | %>
 	<tr>
-	  <td><%= user[1]["uid"][0] unless user[1]["uid"].blank? %></td>
-	  <td><%= user[1]["givenName"][0] unless user[1]["givenName"].blank? %></td>
-	  <td><%= user[1]["sn"][0] unless user[1]["sn"].blank? %></td>
-	  <td><%= user[1]["mitDirStudentYear"][0] unless user[1]["mitDirStudentYear"].blank? %></td>
+	  <td><%= user["uid"][0] unless user["uid"].blank? %></td>
+	  <td><%= user["givenName"][0] unless user["givenName"].blank? %></td>
+	  <td><%= user["sn"][0] unless user["sn"].blank? %></td>
+	  <td><%= user["mitDirStudentYear"][0] unless user["mitDirStudentYear"].blank? %></td>
 	  <td>
-	    <%= button_tag("Add", class: "pledge_add", id: user[1]["uid"][0])%>
+	  	<%= hidden_field_tag("user[#{user['uid'][0]}]", user["uid"][0])%>
+	    <%= button_tag("Add", class: "pledge_add")%>
 	  </td>
 	</tr>
   <% end %>

@@ -10,6 +10,7 @@ DKESite::Application.routes.draw do
   #User Management Paths
   scope '/users' do
     match '/add_pledges' , to: 'users#add_pledges' , via: :get
+    match '/add_pledges' , to: 'users#create_pledges' , via: :post
     match '/query' , to: 'users#query' , via: :post
     match '/kerberos', to: 'users#kerberos' , via: :post
     match '/filter', to: 'users#filter' , via: :post
