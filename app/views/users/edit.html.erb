@@ -21,7 +21,7 @@
 		 		Group: <%= f.select :group, options_for_select(['dkealum','dkeactive','dkepledge','dkeaffil'], selected=@user.group)%><br>
 		 	</div>
 		 	<div class="span4">
-		 		Admin: <%= f.select :chicken, options_for_select(['','broporn','brochicken'], selected=@user.chicken)%><br>
+		 		Admin: <%= f.select :chicken, options_for_select(['','broweb','broporn','brochicken'], selected=@user.chicken)%><br>
 		 	</div>
 		 	<div class="span6 offset2">
 		 		<u><b>Brother Information</b></u><br>
@@ -29,7 +29,7 @@
 		 	</div>
 		 	<div class="span4 offset4">
 		 		<%= f.submit("Save", class: "btn btn-primary")%>
-		 		<div id='<%= @user.id%>' class="btn btn-primary usr_delete">Delete</div>
+		 		<div id='<%= @user.id%>' class="btn usr_delete">Delete</div>
 		 	</div>
 		</div>
 	  <% end %>

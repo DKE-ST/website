@@ -22,8 +22,8 @@ class CurrentUser < User
   
   #Returns whether user meets admin group requirement
   def admin?(level)
-    return false if self.chicken.nil?
-    list = ["broporn", "brochicken"]
+    return false if self.chicken.blank?
+    list = ["broweb", "broporn", "brochicken"]
     return list.index(self.chicken) >= list.index(level)
   end
   

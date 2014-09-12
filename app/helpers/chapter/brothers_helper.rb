@@ -2,6 +2,14 @@ module Chapter::BrothersHelper
   
   ############ edit.html.erb ###################
   
+  def brother_info_delete
+    return link_to("Delete" , 
+            brother_path , 
+            method: :delete, 
+            data: { confirm: "Are you sure you would like to delete #{@brother.full_name}?" },
+            :class => "btn")
+  end
+  
   #Generates select boxes for big brother information
   #@param f_dke: form object for user::brother::dke_info
   #@param dke_info: dke_info instance for selected user

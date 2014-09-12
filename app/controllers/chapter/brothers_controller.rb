@@ -1,18 +1,7 @@
 class Chapter::BrothersController < AuthenticationController
   skip_before_filter :logged_in, only: [:index, :show]
   before_action :correct_user, only: [:edit, :update]
-  
-  def new
-    @brother = User::Brother.new
-  end
-  
-  def index
-    @brothers = User::Brother.get_indexes
-  end
-  
-  def show
-    @brother = User::Brother.find(params[:id])
-  end
+  before_action :permissions, only: [:destroy]
   
   def create
     @brother = User::Brother.new(params)
@@ -25,7 +14,26 @@ class Chapter::BrothersController < AuthenticationController
     end
   end
   
+  def destroy
+    @brother = User::Brother.find(params[:id])
+    @brother.destroy
+    flash[:success] = "Brother Information for #{@brother.full_name} deleted"
+    redirect_to brothers_path
+  end
+  
   def edit
+    @brother = User::Brother.find(params[:id])
+  end
+  
+  def index
+    @brothers = User::Brother.get_indexes
+  end
+  
+  def new
+    @brother = User::Brother.new
+  end
+  
+  def show
     @brother = User::Brother.find(params[:id])
   end
   
@@ -43,6 +51,13 @@ class Chapter::BrothersController < AuthenticationController
   
   def correct_user
     unless @me.is_brother?(params[:id])
+      flash[:error] = "You do not have acess to this page"
+      redirect_to brother_url
+    end
+  end
+  
+  def permissions
+    unless @me.admin?("broweb")
       flash[:error] = "You do not have acess to this page"
       redirect_to brother_url
     end

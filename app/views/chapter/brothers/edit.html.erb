@@ -79,6 +79,7 @@
     	<div class='span10'></div>
 		<div class="span2">
 			 <%= f.submit "Save Changes", class: "btn btn-primary" %>
+			 <%= brother_info_delete if @me.admin?("broweb")%>
 		</div>
 	</div>
 	<%end%>
