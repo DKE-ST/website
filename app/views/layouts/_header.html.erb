@@ -32,6 +32,8 @@
 						<a class="visible-desktop"><%= get_name()%></a>
 						<a class="hidden-desktop dropdown-toggle" data-toggle="dropdown" href="#"><%= get_name()%></a>
 						<ul class="dropdown-menu">
+							<%= render 'layouts/navbar/brochicken' if @me.admin?("brochicken")%>
+							<%= render 'layouts/navbar/broporn' if @me.admin?("broporn")%>
 							<li><%= link_to 'Logout' , "#{root_url}logout"%></li>
 						</ul>
 					</li>
