@@ -1,6 +1,10 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+/**
+ * Event handler for when the filter button is clicked (index.html.erb)
+ * --Makes AJAX call to filter users
+ */
 $( document ).on( 'click', '.filter_btn',function() {
 	var data = {group: $("#filter_group").val(),
 				year: $("#filter_class").val(),
@@ -17,6 +21,11 @@ $( document ).on( 'click', '.filter_btn',function() {
 	});
 });
 
+/**
+ * Event handler for check kerberos button (edit.html.erb)
+ * --Makes AJAX call to check if username has a valid kerberos
+ *   associated with it
+ */
 $( document ).on( 'click', '.krb_chk',function() {
 	var data = {uname: $("#user_uname").val()};
 	$("#krb_field").html("Loading...");
@@ -30,6 +39,10 @@ $( document ).on( 'click', '.krb_chk',function() {
 	});
 });
 
+/**
+ * Event handler for removing users via AJAX call
+ * --Used in index.html.erb & edit.html.erb
+ */
 $( document ).on( 'click', '.usr_delete',function() {
 	var id = this.id;
 	var element = this.parentElement.parentElement;
@@ -83,6 +96,10 @@ $( document ).on( 'click', '.usr_delete',function() {
     });
 });
 
+/**
+ * Event handler for selecting brother info to associate with a user
+ * --Used in edit.html.erb
+ */
 $( document ).on( 'click', '.usr_sel_yr',function() {
 	var brothers = $("#year_" + this.id).val();
 	if (brothers == "new") {
@@ -140,6 +157,11 @@ $( document ).on( 'click', '.usr_sel_yr',function() {
 	}
 });
 
+/**
+ * Event handler for querying mit ldap directory for user info
+ * --Used in add_pledges.html.erb
+ * --NOTE: This is the form we shoul be using for ajax calls.  Pulls fields and url form the form
+ */
 $( document ).on('submit', '.query', function( event ) {
 	var form = $(".query");
 	var button = $("#query_submit");
@@ -157,6 +179,10 @@ $( document ).on('submit', '.query', function( event ) {
 	event.preventDefault();
 });
 
+/**
+ * Event handler for adding pledge to the new_users form
+ * --Used in add_pledges.html.erb
+ */
 $( document ).on( 'click', '.pledge_add',function() {
 	this.innerHTML = "Remove";
 	this.className = "pledge_remove";
@@ -165,6 +191,10 @@ $( document ).on( 'click', '.pledge_add',function() {
 	element.remove();
 });
 
+/**
+ * Event handler for removing user info from the new_users form
+ * --Used in add_pledges.html.erb
+ */
 $( document ).on( 'click', '.pledge_remove',function( event ) {
 	this.parentElement.parentElement.remove();
 	event.preventDefault();

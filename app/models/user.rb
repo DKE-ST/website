@@ -8,11 +8,25 @@ class User < ActiveRecord::Base
   #chicken   varchar(10)
   #created_at  datetime 
   #updated_at  datetime
+  
+  ##Fields used for saving fields stored in other database tables
   attr_accessor :password, :brother_id
   
-  def valid?(params = {})
-    return false if self.mit_ldap.nil? && self.password.blank?
-    return super(params)
+  #Override to store shadow and brother information as well
+  def initialize(params = nil)
+    if params.nil?
+      super
+    else
+      super(user_params(params))
+    end
+  end
+  
+  #Adds shadow property for a user
+  #NOTE: This property is used by apache for storing non-ldap user's passwords
+  def add_passwd(password)
+    return false unless self.shadow.nil?
+    passwd = User::Shadow.get_hash(self.uname, password)
+    return self.create_shadow(uname: self.uname, passwd: passwd)
   end
   
   #Override of destroy to delete associated models as well
@@ -22,7 +36,21 @@ class User < ActiveRecord::Base
     end
     self.shadow.destroy if self.shadow
     return super()
-  end  
+  end
+  
+  #Returns mit ldap entry if one exists for a user
+  def mit_ldap
+    #return nil if true
+    return @ldap if @ldap
+    return nil unless @ldap.nil?
+    begin
+      @ldap = User::MitLdap.find(uname)
+      return @ldap
+    rescue
+      @ldap = false
+      return nil
+    end
+  end
   
   #Override to update shadow and brother information as well
   def save
@@ -61,43 +89,22 @@ class User < ActiveRecord::Base
     return true
   end
   
-  #Override to store shadow and brother information as well
-  def initialize(params = nil)
-    if params.nil?
-      super
-    else
-      super(user_params(params))
-    end
-  end
-  
   #Override to update shadow and brother information as well
   def update_attributes(params)
     super(user_params(params))
   end
   
-  #Adds shadow property for a user
-  #NOTE: This property is used by apache for storing non-ldap user's passwords
-  def add_passwd(password)
-    return false unless self.shadow.nil?
-    passwd = User::Shadow.get_hash(self.uname, password)
-    return self.create_shadow(uname: self.uname, passwd: passwd)
-  end
-  
-  #Returns mit ldap entry if one exists for a user
-  def mit_ldap
-    #return nil if true
-    return @ldap if @ldap
-    return nil unless @ldap.nil?
-    begin
-      @ldap = User::MitLdap.find(uname)
-      return @ldap
-    rescue
-      @ldap = false
-      return nil
-    end
+  #Override of valid? to check if password requirements are met:
+  #--Either a supplied password or a mit kerberos entry
+  def valid?(params = {})
+    return false if self.mit_ldap.nil? && self.password.blank?
+    return super(params)
   end
   
   ################Static Methods ######################
+  #Returns list of users filtered by params
+  #@param params: fields to filter users by
+  #@return list of hashes with user information
   def self.list(params = {})
     user_list = []
     users = self
@@ -131,6 +138,8 @@ class User < ActiveRecord::Base
     return user_list
   end
   
+  #Creates user and brother model instances for a given uername
+  #@param params: hash of usernames - ex. {dummy1: username1, dummy2: username2}
   def self.create_pledges(params)
     params.each do | dummy, username |
       unless User.exists?(uname: username)

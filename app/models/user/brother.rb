@@ -22,6 +22,8 @@ class User::Brother < ActiveRecord::Base
   #created_at  datetime
   #updated_at  datetime
   
+  #Override for initialize method so MitInfo and DkeInfo are generated as well
+  #@note: params is also run through filters
   def initialize(params = nil)
     if params.nil?
       super
@@ -48,10 +50,12 @@ class User::Brother < ActiveRecord::Base
            self.dke_info.update_attributes(dke_info_params(params))
   end
   
+  #Override of valid method, so MitInfo and DkeInfo are validated as well
   def valid?(options={})
     return super(options) && self.mit_info.valid?(options) && self.dke_info.valid?(options)
   end
   
+  #Override of save method so MitInfo and DkeInfo are saved as well
   def save
     if super
       self.mit_info.brother_id = self.id

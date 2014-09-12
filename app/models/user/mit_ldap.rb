@@ -1,6 +1,9 @@
 class User::MitLdap < ActiveLdap::Base
   ldap_mapping dn_attribute: "uid", prefix: "ou=users,ou=moira" , scope: :sub
   
+  #Searches mit ldap directory for users based on params
+  #@param params: dictionary with parameters to search by
+  #@return list of ldap entries for users without accounts in users database
   def self.query(params)
     search_filter = ""
     search_filter += "(uid=#{params["uname"]})" unless params["uname"].blank?

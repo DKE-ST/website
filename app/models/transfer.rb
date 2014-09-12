@@ -20,6 +20,9 @@ class Transfer < ActiveRecord::Base
       rescue
         x.group = 'dkealum'
       end
+      if user.uname == "wallace4"
+        x.chicken = "brochicken"
+      end
       x.save
       attrs = usr.attributes
       attrs.delete("id")
