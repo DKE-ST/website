@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20140809152441) do
   create_table "chapter_positions", force: true do |t|
     t.string   "name"
     t.text     "title"
+    t.integer  "position"
     t.integer  "dke_info_id"
     t.datetime "start_date"
     t.boolean  "disp"

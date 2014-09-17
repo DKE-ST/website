@@ -3,7 +3,7 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   belongs_to :big, class_name: "User::Brother::DkeInfo"
   has_many :littles, class_name: "User::Brother::DkeInfo", foreign_key: "big_id"
   belongs_to :residence, class_name: "Chapter::Residence"
-  has_many :positions, class_name: "Chapter::Position"
+  has_many :positions, class_name: "Chapter::Officer"
   #id  int(11)
   #brother_id  int(11)
   #p_name  text

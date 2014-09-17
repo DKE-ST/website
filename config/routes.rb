@@ -20,6 +20,8 @@ DKESite::Application.routes.draw do
   scope module: 'chapter' do
     resources :brothers
     
+    resources :officers
+    
     match '/contact', to: 'public_pages#contact' , via: :get
     resources :public_pages, path: '/'
   end

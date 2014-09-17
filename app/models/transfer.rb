@@ -1,3 +1,6 @@
+class TmpDB < ActiveRecord::Base
+end
+
 class Transfer < ActiveRecord::Base
   #This class was used for the orginal transfer from the old database format
   establish_connection "site_old"
@@ -14,20 +17,23 @@ class Transfer < ActiveRecord::Base
   def self.personal
     self.table_name = "brothers_personal"
     Transfer.select("*").each do | usr |
-      x = User.new(uname: usr.uname, group: "dkeactive")
+      TmpDB.table_name = User.table_name
+      x = TmpDB.new(uname: usr.uname, group: "dkeactive")
       begin
         x.group = 'dkealum' unless User::MitLdap.find(usr.uname).student?
       rescue
         x.group = 'dkealum'
       end
-      if user.uname == "wallace4"
+      if x.uname == "wallace4"
         x.chicken = "brochicken"
       end
       x.save
       attrs = usr.attributes
       attrs.delete("id")
       attrs.delete("uname")
-      x.create_brother(attrs)
+      attrs[:user_id] = x.id
+      TmpDB.table_name = User::Brother.table_name
+      TmpDB.new(attrs).save
     end
   end
   
