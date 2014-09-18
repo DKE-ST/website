@@ -96,9 +96,9 @@ class Transfer < ActiveRecord::Base
       attrs = {pname: pg.pname, title: pg.title, content: pg.content}
       page = Chapter::PublicPage.new(attrs)
       if pg.user != "broporn"
-        page.position = Chapter::Position.find_by(name: pg.user)
+        page.position = Chapter::Officer.find_by(name: pg.user)
       else
-        page.position = Chapter::Position.find_by(name: "broweb")
+        page.position = Chapter::Officer.find_by(name: "broweb")
       end
       page.save
     end

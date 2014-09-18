@@ -4,6 +4,10 @@ class Chapter::OfficersController < AuthenticationController
     @officers = Chapter::Officer.list_all
   end
   
+  def edit
+    @officer = Chapter::Officer.find(params[:id])
+  end
+  
   def update_contacts
      if Chapter::Officer.update_contacts(update_contacts_params(params))
        flash[:success] = "Contacts Updated"
