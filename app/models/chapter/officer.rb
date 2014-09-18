@@ -4,7 +4,7 @@ class Chapter::Officer < ActiveRecord::Base
   
   def self.list_all
     officers = []
-    position_map =  self.select("id, position, name, dke_info_id, contact, disp, title")
+    position_map =  self.select("id, position, name, dke_info_id, contact, disp, title").order(:position)
     position_map.each do | pos |
       begin
         name = pos.dke_info.brother.full_name

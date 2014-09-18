@@ -16,7 +16,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require fixedHeader.js
-//= require jquery-sortable.js
 //= require ckeditor/init
 //= require_tree .
 
