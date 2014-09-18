@@ -11,18 +11,23 @@
 		</h3>
 	</div>
 	<div class="span12">
-	  <div class="row">
+	  <%= form_tag update_contacts_url, class: "update_contacts", method: :post do%>
+	   <div class="row">
 		<ul id="sortable" class="ui-sortable">
 		  <% @officers.each do | officer |%>
-			<li class="ui-sortable-handle span6">
+			<li class="ui-sortable-handle span6" id="<%= officer[:id]%>">
 				<b><%= link_to officer[:title], "#{officers_path}/#{officer[:id]}/edit"%>:</b>
 				<%= "#{officer[:full_name]} '#{officer[:year]}"%>
 				<br><b>Contact For:</b> <%= officer[:contact]%>
-				<br><b>Displayed:</b> <%= officer[:disp]?"Yes":"No"%>
+				<br><b>Displayed:</b>&nbsp;
+				<%= hidden_field_tag("officer[#{officer[:id]}][position]")%>
+				<%= radio_button_tag("officer[#{officer[:id]}][disp]", "1", officer[:disp], {disabled: officer[:contact].blank?}) %>Yes&nbsp;
+				<%= radio_button_tag("officer[#{officer[:id]}][disp]", "0", !officer[:disp], {disabled: officer[:contact].blank?}) %>No
 			</li>
-		  <% end%>
+		  <% end %>
 		</ul>
-	  </div>
-	  <%= button_to "Save Order", root_path, class: "pull-right btn btn-primary"%>
+	   </div>
+	   <%= submit_tag "Update Changes", class: "pull-right btn btn-primary"%>
+	  <% end %>
 	</div>
 </div>

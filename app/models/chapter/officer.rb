@@ -2,6 +2,17 @@ class Chapter::Officer < ActiveRecord::Base
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   has_many :public_pages
   
+  def self.update_contacts(params)
+    params.each do | id, fields |
+      if id =~ /\A\d+\z/
+        unless self.find(id).update_attributes(params.require(id).permit(:disp, :position))
+          return false
+        end
+      end
+    end
+    return true
+  end
+  
   def self.list_all
     officers = []
     position_map =  self.select("id, position, name, dke_info_id, contact, disp, title").order(:position)
@@ -27,9 +38,9 @@ class Chapter::Officer < ActiveRecord::Base
   
   def self.contact_info
     officers = Hash.new
-    position_map =  Chapter::Position.select("*")
+    position_map =  self.where(disp: 1).order(:position)
     position_map.each do |pos|
-      if pos.disp && pos.dke_info
+      if pos.dke_info
         name = pos.dke_info.brother.full_name
         year = pos.dke_info.brother.mit_info.year.to_s[2..3]
         if pos.email.nil?

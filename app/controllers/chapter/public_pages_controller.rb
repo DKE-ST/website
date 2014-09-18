@@ -22,7 +22,7 @@ class Chapter::PublicPagesController < ApplicationController
   end
   
   def contact
-    @officers = Chapter::Position.contact_info
+    @officers = Chapter::Officer.contact_info
   end
   
  private

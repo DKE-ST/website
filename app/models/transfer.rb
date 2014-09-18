@@ -9,7 +9,7 @@ class Transfer < ActiveRecord::Base
     Transfer.personal
     Transfer.mit
     Transfer.dke
-    Transfer.positions
+    Transfer.officers
     Transfer.residence
     Transfer.public_pages
   end
@@ -62,11 +62,11 @@ class Transfer < ActiveRecord::Base
     end
   end
   
-  def self.positions
+  def self.officers
     self.table_name = "positions"
     Transfer.select("*").each do | pos |
       attrs = {name: pos.position, title: pos.name, start_date: pos.start_date, contact: pos.contact, disp: pos.disp}
-      position = Chapter::Position.new(attrs)
+      position = Chapter::Officer.new(attrs)
       brother = User.find_by(uname: pos.uname).brother.dke_info
       position.dke_info = brother
       position.save
