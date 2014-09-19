@@ -8,7 +8,7 @@ class Chapter::BrothersController < AuthenticationController
     if @brother.valid?
       @brother.save
       flash[:success] = "Information updated"
-      redirect_to "#{brothers_url}/#{@brother.id}"
+      check_redirect(params[:user_brother][:dke_info], "#{brothers_path}/#{@brother.id}")
     else
       render 'new'
     end
@@ -31,6 +31,8 @@ class Chapter::BrothersController < AuthenticationController
   
   def new
     @brother = User::Brother.new
+    @brother.dke_info.big_id = params[:big_id]
+    @brother.dke_info.little_ids = [params[:little_id]]
   end
   
   def show
@@ -41,7 +43,7 @@ class Chapter::BrothersController < AuthenticationController
     @brother = User::Brother.find(params[:id])
     if @brother.update_attributes(params)
       flash[:success] = "Information updated"
-      redirect_to brother_url
+      check_redirect(params[:user_brother][:dke_info], brother_url)
     else
       render 'edit'
     end
@@ -60,6 +62,16 @@ class Chapter::BrothersController < AuthenticationController
     unless @me.admin?("broweb")
       flash[:error] = "You do not have acess to this page"
       redirect_to brother_url
+    end
+  end
+  
+  def check_redirect(params, redirect_path)
+    if params[:big_id] == "new"
+      redirect_to new_brother_path + "?little_id=" + @brother.dke_info.id.to_s
+    elsif params[:little_ids].include?("new")
+      redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s
+    else
+      redirect_to brother_path
     end
   end
   

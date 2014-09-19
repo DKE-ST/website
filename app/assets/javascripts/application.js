@@ -24,3 +24,9 @@ $('.dropdown-toggle').dropdown();
     $('.dropdown-menu').find('form').click(function (e) {
         e.stopPropagation();
  });
+ 
+function ready() {
+	$(".chosen-select").chosen({allow_single_deselect: true });
+}
+$(document).ready(ready);
+$(document).on('page:load', ready);

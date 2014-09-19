@@ -99,6 +99,7 @@ class User::Brother < ActiveRecord::Base
   #Static method to return name to dke_info map for use in brother creation/editing
   def self.name_dke_info_id_map
     brothers = Hash.new
+    brothers[""] = [["","null"],["New Brother", "new"]]
     class_map = User::Brother::MitInfo.select("year, brother_id").order("year DESC")
     class_map.each do | bro |
       brothers[bro.year] = Array.new([]) if !brothers.include? bro.year
@@ -107,7 +108,6 @@ class User::Brother < ActiveRecord::Base
     brothers.each do |key, value|
       value.sort!
     end
-    brothers["New Brother"] = "new"
     return brothers
   end
   

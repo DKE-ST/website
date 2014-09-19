@@ -31,7 +31,7 @@ class User::Brother::DkeInfo < ActiveRecord::Base
     if little_array
       littles = []
       little_array.split(",").each do | element |
-        littles << element.to_i unless element == "null"
+        littles << element.to_i unless element == "null" || element == "new"
       end
       self.little_ids = littles
     end

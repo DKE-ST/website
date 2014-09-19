@@ -41,13 +41,14 @@
 	       		<div>Pledge Name: <%= f_dke.text_field :p_name%></div>
 	   			<div>Pledge Project: <%= f_dke.text_field :project%></div>
 	   			
-	   			<div class="bl-label">Big Brother:</div>
-	   			<div class="big-field"><%= big_select(f_dke, @brother.dke_info)%></div>
+	   			<div class="bl-label">Big Brother: <%= big_select(f_dke, @brother.dke_info)%></div>
 	   			
 	   			<!-- This is used in javascript for adding little brothers -->
 	   			<div id='template' class='hidden'><%= little_select(nil,"__n")%></div>
 	   			
 	   			<span id="little_span"><%= little_select_div(@brother.dke_info)%></span>
+	   			
+	   			<br>
 	   			
 	   			<div class='btn add_little', id="<%= little_num(@brother.dke_info)%>">Add Another Little Brother</div>
 	   			
