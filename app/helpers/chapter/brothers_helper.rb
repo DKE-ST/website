@@ -18,9 +18,9 @@ module Chapter::BrothersHelper
   def big_select(f_dke, dke_info)
     big = (dke_info.nil?)?nil:dke_info.big
     brother_list = User::Brother.name_dke_info_id_map
+    brother_list[""] << ["New Brother", "new"]
     big_options = grouped_options_for_select(brother_list, selected=dke_info.big_id)
     return f_dke.select(:big_id, big_options, {}, class:"chosen-select")
-
   end
   
   #Return length of littles array if dke_info is not nil, otherwise 0
@@ -50,6 +50,7 @@ module Chapter::BrothersHelper
   #@param tag: string (should only have values: __n, or integer >= 0
   def little_select(little_id, tag)
     brother_list = User::Brother.name_dke_info_id_map
+    brother_list[""] << ["New Brother", "new"]
     out = '<div class="bl-label">Little Brother: '.html_safe
     name = "user_brother[dke_info][little_ids][#{tag}]"
     if little_id.nil?

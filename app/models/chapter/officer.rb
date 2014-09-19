@@ -2,6 +2,22 @@ class Chapter::Officer < ActiveRecord::Base
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   has_many :public_pages
   
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :title, presence: true, uniqueness: { case_sensitive: false }
+  
+  def valid?(params)
+    if super(params)
+      if self.disp && self.contact.empty?
+        self.errors.add(:contact, "can't be blank and displayed")
+        return false
+      else
+        return true
+      end
+    else
+      return false
+    end
+  end
+  
   def self.update_contacts(params)
     params.each do | id, fields |
       if id =~ /\A\d+\z/

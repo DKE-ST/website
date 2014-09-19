@@ -39,6 +39,7 @@ module UsersHelper
   def brother_info_select(user, f)
     bro = user.brother
     brother_list = User::Brother.name_brother_id_map
+    brother_list[""] << ["New Brother", "new"]
     if bro.nil?
       brother_options = grouped_options_for_select(brother_list)
     else
