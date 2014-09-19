@@ -10,6 +10,8 @@ module Chapter::BrothersHelper
             :class => "btn")
   end
   
+  ############ edit.html.erb & new.html.erb ###################
+  
   #Generates select boxes for big brother information
   #@param f_dke: form object for user::brother::dke_info
   #@param dke_info: dke_info instance for selected user
@@ -31,15 +33,13 @@ module Chapter::BrothersHelper
   #Generates div for all little brothers for a given user
   #@param dke_info: dke_info instance for selected user
   def little_select_div(dke_info)
-    puts "--------------------------------------------"
-    puts dke_info.little_ids.to_s
-    littles = (dke_info.nil?)?[]:dke_info.little_ids
-    if littles.length == 0
+    little_ids = (dke_info.nil?)?[]:dke_info.little_ids
+    if little_ids.length == 0
       return little_select(nil,"0")
     else
       out = "".html_safe
-      for i in 0..(littles.length-1)
-        out += little_select(littles[i], i.to_s)
+      for i in 0..(little_ids.length-1)
+        out += little_select(little_ids[i], i.to_s)
       end
       return out
     end
@@ -47,7 +47,7 @@ module Chapter::BrothersHelper
   
   #Generates select boxes for little brother information
   #@param little: dke_info instance for little brother
-  #@param tag: string (should only have values: __n, or positive integer
+  #@param tag: string (should only have values: __n, or integer >= 0
   def little_select(little_id, tag)
     brother_list = User::Brother.name_dke_info_id_map
     out = '<div class="bl-label">Little Brother: '.html_safe

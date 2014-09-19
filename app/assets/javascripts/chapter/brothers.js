@@ -1,7 +1,9 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-
+/**
+ * Event handler for button click to add another little brother select box
+ */
 $( document ).on( 'click', '.add_little',function() {
 	var clone = $("#template")[0].innerHTML.split("__n").join(this.id);
 	$("#little_span").append(clone);

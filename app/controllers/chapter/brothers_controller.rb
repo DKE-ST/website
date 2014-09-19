@@ -50,6 +50,16 @@ class Chapter::BrothersController < AuthenticationController
   end
   
  private
+ 
+  def check_redirect(params, redirect_path)
+    if params[:big_id] == "new"
+      redirect_to new_brother_path + "?little_id=" + @brother.dke_info.id.to_s
+    elsif params[:little_ids].include?("new")
+      redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s
+    else
+      redirect_to brother_path
+    end
+  end
   
   def correct_user
     unless @me.is_brother?(params[:id])
@@ -62,16 +72,6 @@ class Chapter::BrothersController < AuthenticationController
     unless @me.admin?("broweb")
       flash[:error] = "You do not have acess to this page"
       redirect_to brother_url
-    end
-  end
-  
-  def check_redirect(params, redirect_path)
-    if params[:big_id] == "new"
-      redirect_to new_brother_path + "?little_id=" + @brother.dke_info.id.to_s
-    elsif params[:little_ids].include?("new")
-      redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s
-    else
-      redirect_to brother_path
     end
   end
   
