@@ -8,6 +8,7 @@
   		<div class="span4">
   			<center><u><h3>Personal</h3></u></center>
   			<%= render_errors(@brother)%>
+  			<%= f.hidden_field :user_id%>
   			<div>Profile Picture:<%= f.file_field :picture%></div>
   			<div>First Name: <%= f.text_field :first_name %></div>
   			<div>Last Name: <%= f.text_field :last_name %></div>

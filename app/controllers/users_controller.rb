@@ -4,7 +4,7 @@ class UsersController < AuthenticationController
     @user = User.new(params)
     if @user.valid?
       @user.save
-      redirect_to users_path
+      check_redirect(params, users_path)
     else
       render "new"
     end
@@ -25,7 +25,7 @@ class UsersController < AuthenticationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params)
-      redirect_to users_path
+      check_redirect(params, users_path)
     else
       render 'edit'
     end
@@ -75,6 +75,14 @@ class UsersController < AuthenticationController
   end
   
  private
+ 
+  def check_redirect(params, redirect_path)
+    if params[:user][:brother_id] == "new"
+      redirect_to new_brother_url + "?user_id=" + @user.id.to_s
+    else
+      redirect_to redirect_path
+    end
+  end
  
   def filter_params(params)
     return params.permit("group", "year", "house", "admin")

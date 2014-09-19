@@ -31,6 +31,7 @@ class Chapter::BrothersController < AuthenticationController
   
   def new
     @brother = User::Brother.new
+    @brother.user_id = params[:user_id]
     @brother.dke_info.big_id = params[:big_id]
     @brother.dke_info.little_ids = [params[:little_id]]
   end
@@ -57,7 +58,7 @@ class Chapter::BrothersController < AuthenticationController
     elsif params[:little_ids].include?("new")
       redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s
     else
-      redirect_to brother_path
+      redirect_to redirect_path
     end
   end
   

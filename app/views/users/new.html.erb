@@ -6,6 +6,7 @@
 		<h2>User Management - <%= @user.uname%></h2>
 	</div>
 	<div class="span8 offset2">
+	  <%= render_errors(@user)%>
 	  <%= form_for @user do |f| %>
 		<div class="row usr-edit">
 			<div class="span4">

@@ -132,7 +132,7 @@ class User::Brother < ActiveRecord::Base
  private
   #Only allows valid brother parameters through
   def brother_params(params)
-    return params.require(:user_brother).permit(:first_name, :last_name, :hometown, :email, :phone, :quote, :bio)
+    return params.require(:user_brother).permit(:user_id, :first_name, :last_name, :hometown, :email, :phone, :quote, :bio)
   end
   
   #Only allows valid mit_info parameters through

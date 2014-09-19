@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_one :brother
   #id      int(11) 
   #uname   varchar(8)
+  validates :uname, presence: true, length: {maximum: 8}
   #mit_id  varchar(9)
   #group   varchar(9)
   #chicken   varchar(10)
@@ -67,7 +68,7 @@ class User < ActiveRecord::Base
       end
     end
     #If params includes brother 
-    unless self.brother_id.nil?
+    unless self.brother_id == "null" || self.brother_id = "new"
       begin
         bro_id = self.brother.id
       rescue
@@ -97,8 +98,16 @@ class User < ActiveRecord::Base
   #Override of valid? to check if password requirements are met:
   #--Either a supplied password or a mit kerberos entry
   def valid?(params = {})
-    return false if self.mit_ldap.nil? && self.password.blank?
-    return super(params)
+    if super(params)
+      if self.mit_ldap.nil? && self.password.blank?
+        self.errors.add(:password, "can't be blank if kerberos is invalid")
+        return false 
+      end
+      return true
+    else
+      return false
+    end
+    
   end
   
   ################Static Methods ######################
