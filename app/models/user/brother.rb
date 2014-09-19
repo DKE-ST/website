@@ -117,8 +117,10 @@ class User::Brother < ActiveRecord::Base
     brothers[""] = [["","null"],["New Brother", "new"]]
     class_map = User::Brother::MitInfo.select("year, brother_id").order("year DESC")
     class_map.each do | bro |
-      brothers[bro.year] = Array.new([]) if !brothers.include? bro.year
-      brothers[bro.year] << [bro.brother.full_name, bro.brother_id]
+      unless bro.brother.user_id
+        brothers[bro.year] = Array.new([]) if !brothers.include? bro.year
+        brothers[bro.year] << [bro.brother.full_name, bro.brother_id]
+      end
     end
     brothers.each do |key, value|
       value.sort!
