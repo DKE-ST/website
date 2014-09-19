@@ -40,19 +40,11 @@ module UsersHelper
     bro = user.brother
     brother_list = User::Brother.name_brother_id_map
     if bro.nil?
-      out = select_tag("year_brother", options_for_select(brother_list), class: "year_select")
-      out += '<div class="btn usr_sel_yr" id="brother">Select</div>
-              <div class="btn clear hidden" id="brother">Clear</div><br>'.html_safe
-      out += f.select(:brother_id, [], {}, {class: "hidden", id: "select_brother"})
+      brother_options = grouped_options_for_select(brother_list)
     else
-      year_options = options_for_select(brother_list, brother_list[bro.mit_info.year].to_s)
-      brother_options = options_for_select(brother_list[bro.mit_info.year], selected: bro.id)
-      out = select_tag("year_brother", year_options, class: "year_select")
-      out += '<div class="btn usr_sel_yr" id="brother">Select</div>
-              <div class="btn clear" id="brother">Clear</div><br>'.html_safe
-      out += f.select(:brother_id, brother_options, {}, {id: "select_brother"})
+      brother_options = grouped_options_for_select(brother_list, selected: bro.id)
     end
-    return out
+    return f.select(:brother_id, brother_options, {}, class:"chosen-select")
   end
   
 end
