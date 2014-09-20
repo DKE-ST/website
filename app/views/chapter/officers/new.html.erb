@@ -6,14 +6,17 @@
 	</div>
 	<div class="span6 offset4" align="left">
 	  <%= render_errors(@officer)%>
-	  <%= form_for(@officer, options={url: "#{positions_path}#create"}) do |pos| %>
-		Position: <%= pos.text_field :position%><br>
-		Position Name: <%= pos.text_field :name%><br>
-		Current Holder: <%= pos.select( :uname, options_for_select(@brothers, selected: @officer.uname))%><br>
+	  <%= form_for(@officer, options={url: "#{officers_path}#create"}) do |pos| %>
+		Name: <%= pos.text_field :name%><br>
+		Title: <%= pos.text_field :title%><br>
+		Current Holder: <%= officer_select(pos, @officer.dke_info_id)%><br>
+		<!--Exec: 
+		  <= pos.radio_button( :exec, 1, checked: ("checked" if @officer.exec))%>Yes
+		  <= pos.radio_button( :exec, 0, checked: ("checked" unless @officer.exec))%>No<br>--></br>
 		Display on contacts Page: 
-		  <%= pos.radio_button :disp, 1%>Yes
-		  <%= pos.radio_button :disp, 0, checked: "checked"%>No<br><br>
-		Contact For: <%= pos.text_field :contact%><br>
+		  <%= pos.radio_button( :disp, 1, checked: @officer.disp)%>Yes
+		  <%= pos.radio_button( :disp, 0, checked: !@officer.disp)%>No<br><br>
+		Contact For: <%= pos.text_area :contact%><br>
 		
 		<%= pos.submit "Add Position", class: "btn btn-primary" %>
 	  <%end%>

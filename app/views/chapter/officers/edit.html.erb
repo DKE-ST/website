@@ -19,9 +19,8 @@
 		Contact For: <%= pos.text_area :contact%><br>
 		
 		<%= pos.submit "Save Changes", class: "btn btn-primary" %>
-		<!--< unless @officer.exec%>
-		  <= link_to("Delete Position" , position_path , method: :delete, data: { confirm: "Are you sure you would like to delete #{@officer.name}?" }, :class => "btn")%>
-	  	<end%>-->
+		<%= link_to("Delete Position" , officer_path , method: :delete, 
+					data: { confirm: "Are you sure you would like to delete #{@officer.title}?" }, :class => "btn")%>
 	  <%end%>
 	</div>
 </div>

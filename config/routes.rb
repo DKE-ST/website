@@ -21,6 +21,8 @@ DKESite::Application.routes.draw do
     resources :brothers
     
     scope '/officers'  do
+      match '/mass_update', to: 'officers#mass_edit', via: :get
+      match '/mass_update', to: 'officers#mass_update', via: :post
       match '/update_contacts', to: 'officers#update_contacts', via: :post
     end
     resources :officers

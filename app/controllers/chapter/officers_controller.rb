@@ -1,11 +1,45 @@
 class Chapter::OfficersController < AuthenticationController
   
-  def index
-    @officers = Chapter::Officer.list_all
+  def create
+    @officer = Chapter::Officer.new(officer_params(params))
+    if @officer.valid?
+      @officer.save
+      flash[:success] = "Officer created"
+      redirect_to officers_path
+    else
+      render 'new'
+    end
+  end
+  
+  def destroy
+    @officer = Chapter::Officer.find(params[:id])
+    @officer.destroy
+    flash[:success] = "Officer destroyed"
+    redirect_to officers_path
   end
   
   def edit
     @officer = Chapter::Officer.find(params[:id])
+  end
+  
+  def index
+    @officers = Chapter::Officer.list_all
+  end
+  
+  def mass_edit
+    @officers = Chapter::Officer.select("id, name, title, position, dke_info_id").order("position")
+    @brothers = User::Brother.name_dke_info_id_map
+  end
+  
+  def mass_update
+    Chapter::Officer.mass_update(params.require(:officers))
+    flash[:success] = "Officers updated"
+    redirect_to officers_path
+    
+  end
+  
+  def new
+    @officer = Chapter::Officer.new
   end
   
   def update

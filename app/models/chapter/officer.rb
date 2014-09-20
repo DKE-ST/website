@@ -5,7 +5,12 @@ class Chapter::Officer < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   
-  def valid?(params)
+  def initialize(params = {})
+    super(params)
+    self.position = Chapter::Officer.maximum("position") + 1
+  end
+  
+  def valid?(params = {})
     if super(params)
       if self.disp && self.contact.empty?
         self.errors.add(:contact, "can't be blank and displayed")
@@ -15,6 +20,12 @@ class Chapter::Officer < ActiveRecord::Base
       end
     else
       return false
+    end
+  end
+  
+  def self.mass_update(params)
+    params.each do | id, dke_info_id |
+      self.find(id).update_attributes({dke_info_id: dke_info_id})
     end
   end
   
