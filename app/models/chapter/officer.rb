@@ -70,7 +70,7 @@ class Chapter::Officer < ActiveRecord::Base
       if pos.dke_info
         name = pos.dke_info.brother.full_name
         year = pos.dke_info.brother.mit_info.year.to_s[2..3]
-        if pos.email.nil?
+        if pos.email.blank?
           email = "#{pos.dke_info.brother.user.uname}@mit.edu"
         else
           email = pos.email

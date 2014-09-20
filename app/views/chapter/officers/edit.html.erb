@@ -9,7 +9,8 @@
 	  <%= form_for(@officer, options={url: "#{officer_path}#update"}) do |pos| %>
 		Name: <%= pos.text_field :name%><br>
 		Title: <%= pos.text_field :title%><br>
-		Current Holder: <%= officer_select(pos, @officer.dke_info_id)%><br>
+		Current Holder: <%= officer_select(pos, @officer.dke_info_id)%><br><br>
+		Email: <%= pos.text_field :email%>
 		<!--Exec: 
 		  <= pos.radio_button( :exec, 1, checked: ("checked" if @officer.exec))%>Yes
 		  <= pos.radio_button( :exec, 0, checked: ("checked" unless @officer.exec))%>No<br>--></br>
