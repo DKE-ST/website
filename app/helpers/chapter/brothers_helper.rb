@@ -2,6 +2,7 @@ module Chapter::BrothersHelper
   
   ############ edit.html.erb ###################
   
+  #Returns button for deleting a user
   def brother_info_delete
     return link_to("Delete" , 
             brother_path , 

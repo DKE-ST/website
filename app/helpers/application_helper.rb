@@ -1,17 +1,9 @@
 module ApplicationHelper
   
-  def javascript(*files)
-    content_for(:head) { javascript_include_tag(*files) }
-  end
-  
-  def stylesheet(*files)
-    content_for(:head) { stylesheet_link_tag(*files) }
-  end
-
-  #Not used yet.  
-  def render_errors(user)
-    return nil if user.nil?
-    provide(@target = user)
+  #Renders errors in form validation 
+  def render_errors(form)
+    return nil if form.nil?
+    provide(@target = form)
     return (render "shared/error_messages").html_safe
   end
   

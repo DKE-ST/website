@@ -16,17 +16,21 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   #created_at  datetime
   #updated_at  datetime
   
+  #override of init method to call assign_littles function
   def initialize(params = {})
     littles = params.delete(:little_ids)
     super(params)
     assign_littles(littles)
   end
   
+  #override of update_attributes method to call assign_littles function
   def update_attributes(params)
     assign_littles(params.delete(:little_ids))
     return super(params)
   end
   
+  #Takes list of little borther ids and removes and not valid ids before assigning 
+  # them to self.little_ids
   def assign_littles(little_array)
     if little_array
       littles = []
@@ -37,6 +41,10 @@ class User::Brother::DkeInfo < ActiveRecord::Base
     end
   end
   
+  #################Static Methods####################
+  
+  #Returns the year for the current pledge class
+  #@return integer
   def self.cur_p_class
     return Date.current.year + 3 + ((Date.current.month > 7)?1:0)
   end

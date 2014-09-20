@@ -1,14 +1,18 @@
 class Chapter::PublicPagesController < ApplicationController
   before_action :correct_user , only: [:edit,:update]
   
+  def contact
+    @officers = Chapter::Officer.contact_info
+  end
+  
+  def edit
+    @content = Chapter::PublicPage.find_by(pname: params[:id])
+  end
+  
   def home
   end
   
   def show
-    @content = Chapter::PublicPage.find_by(pname: params[:id])
-  end
-  
-  def edit
     @content = Chapter::PublicPage.find_by(pname: params[:id])
   end
   
@@ -19,10 +23,6 @@ class Chapter::PublicPagesController < ApplicationController
     else
       render "edit"
     end
-  end
-  
-  def contact
-    @officers = Chapter::Officer.contact_info
   end
   
  private

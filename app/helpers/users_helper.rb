@@ -23,10 +23,17 @@ module UsersHelper
   
   ######################Edit.html.erb#########################
   #Helpers for fields on edit page
+  
+  #Returns whether user instance has an active mit kerberos account associated with it
+  #@param user: instance of User
+  #@return boolean
   def active_kerberos(user)
     return !user.mit_ldap.nil?
   end
   
+  #Returns password field for user
+  #@param user: instance of User
+  #@return password form field
   def get_passwd_field(user, f)
     val = (user.shadow.nil?)?"":"~"
     out = f.password_field(:password, value: val)
