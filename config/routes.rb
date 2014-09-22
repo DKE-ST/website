@@ -20,6 +20,10 @@ DKESite::Application.routes.draw do
   scope module: 'chapter' do
     resources :brothers
     
+    match '/house', to: 'residences#house', via: :get
+    match '/tour', to: 'residences#tour', via: :get
+    resources :residences
+    
     scope '/officers'  do
       match '/mass_update', to: 'officers#mass_edit', via: :get
       match '/mass_update', to: 'officers#mass_update', via: :post

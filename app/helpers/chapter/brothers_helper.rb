@@ -86,7 +86,7 @@ module Chapter::BrothersHelper
   
   #Returns link to residence information
   def room_link(room)
-      return link_to(room.name, "#TODO")
+      return link_to(room.name, "#{residences_path}/#{room.id}")
   end
   
   #Returns positions user holds

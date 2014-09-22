@@ -76,7 +76,7 @@ class Transfer < ActiveRecord::Base
   def self.residence
     self.table_name = "house_rooms"
     Transfer.select("*").each do | rooms |
-      attrs = {name: rooms.name, capacity: rooms.capacity, floor: rooms.floor}
+      attrs = {name: rooms.name, capacity: rooms.capacity, floor: rooms.floor, id: rooms.id}
       rm = Chapter::Residence.new(attrs)
       rm.save
       for i in 0..4
@@ -94,11 +94,11 @@ class Transfer < ActiveRecord::Base
     self.table_name = "chapter_public"
     Transfer.select("*").each do | pg |
       attrs = {pname: pg.pname, title: pg.title, content: pg.content}
-      page = Chapter::PublicPage.new(attrs)
+      page = Chapter::PublicPage.new(attrs, true)
       if pg.user != "broporn"
-        page.position = Chapter::Officer.find_by(name: pg.user)
+        page.officer = Chapter::Officer.find_by(name: pg.user)
       else
-        page.position = Chapter::Officer.find_by(name: "broweb")
+        page.officer = Chapter::Officer.find_by(name: "broweb")
       end
       page.save
     end

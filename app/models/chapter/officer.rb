@@ -6,11 +6,13 @@ class Chapter::Officer < ActiveRecord::Base
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   
   #Override of original init method
+  #@param params: dictionary of attributes
+  #@param transfer: boolean, should only be true when used in Transfer model
   #@note: the purpose of this override is to automatically set position
   #@return boolean
-  def initialize(params = {})
+  def initialize(params = {}, transfer = false)
     super(params)
-    self.position = Chapter::Officer.maximum("position") + 1
+    self.position = Chapter::Officer.maximum("position") + 1 unless transfer
   end
   
   #Override of valid? method to check that contact and disp are set correctly

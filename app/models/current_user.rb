@@ -39,4 +39,13 @@ class CurrentUser < User
     return list.index(dke_group) >= list.index(group)
   end
   
+  #Returns whether user holds position
+  def officer?(title)
+    return false if self.brother.nil?
+    self.brother.dke_info.positions.each do | pos |
+      return true if pos.name == title
+    end
+    return false
+  end
+  
 end

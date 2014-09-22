@@ -1,0 +1,10 @@
+<% provide(:title , "The House: #{@room.name}")%>
+
+<div class="row house">
+	<h2><%= @room.name%></h2>
+	<%= image_tag("house_img/#{@room.id}.jpg", :alt => "")%><br>
+	<% if @room.capacity > 0%>
+	  <b>Current Resident(s):</b>
+	  <%= get_occupants(@room)%>
+	<% end%>
+</div>
