@@ -74,7 +74,7 @@ class User::Brother < ActiveRecord::Base
   #Returns absolute path for brother image
   #@note: if no image exists a default image is returned
   def pic_path(root_path)
-    path =  "#{root_path}assets/brothers_img/#{self.first_name.downcase}_#{self.last_name.downcase}.jpg"
+    path =  "#{root_path}assets/brothers_img/#{self.first_name.downcase.gsub('/','_')}_#{self.last_name.downcase.gsub('/','_')}.jpg"
     if File.exists?("public#{path}")
       return path
     else

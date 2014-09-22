@@ -1,5 +1,4 @@
 <% provide(:title , "Edit Brother Information: #{@brother.full_name}")%>
-<% javascript 'brothers' %>
 
 <div class="row me">
 	<div class="span4">
@@ -80,7 +79,7 @@
     	<div class='span10'></div>
 		<div class="span2">
 			 <%= f.submit "Save Changes", class: "btn btn-primary" %>
-			 <%= brother_info_delete if @me.admin?("broweb")%>
+			 <%= brother_info_delete if @me.admin?("broporn")%>
 		</div>
 	</div>
 	<%end%>
