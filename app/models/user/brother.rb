@@ -33,6 +33,7 @@ class User::Brother < ActiveRecord::Base
       super(brother_params(params))
       self.mit_info = User::Brother::MitInfo.new(mit_info_params(params))
       self.dke_info = User::Brother::DkeInfo.new(dke_info_params(params))
+      self.upload_picture(params.require(:user_brother)) if params.require(:user_brother).include? "picture"
     end
   end
   
@@ -45,6 +46,7 @@ class User::Brother < ActiveRecord::Base
   
   #Override method for update attributes, so mit_info and dke_info are updated as well
   def update_attributes(params)
+    self.upload_picture(params.require(:user_brother)) if params.require(:user_brother).include? "picture"
     return super(brother_params(params)) &&
            self.mit_info.update_attributes(mit_info_params(params)) &&
            self.dke_info.update_attributes(dke_info_params(params))
@@ -73,13 +75,24 @@ class User::Brother < ActiveRecord::Base
   
   #Returns absolute path for brother image
   #@note: if no image exists a default image is returned
-  def pic_path(root_path)
+  def pic_path(root_path, write = false)
     path =  "#{root_path}assets/brothers_img/#{self.first_name.downcase.gsub('/','_')}_#{self.last_name.downcase.gsub('/','_')}.jpg"
-    if File.exists?("public#{path}")
+    if File.exists?("public#{path}") || write
       return path
     else
       return "#{root_path}assets/brothers_img/no_pic.jpg"
     end
+  end
+  
+  def upload_picture(params)
+    uploaded_io=params[:picture]
+    if uploaded_io.content_type =~ /image/
+      File.open(pic_path(Rails.root.join("public/").to_s, true), "wb") do |file|
+        file.write(uploaded_io.read)
+      end
+      return true
+    end
+    return false
   end
   
   #Method to return brother index information by year
