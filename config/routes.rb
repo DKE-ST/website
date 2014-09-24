@@ -22,6 +22,10 @@ DKESite::Application.routes.draw do
     
     match '/house', to: 'residences#house', via: :get
     match '/tour', to: 'residences#tour', via: :get
+    scope '/residences' do 
+      match '/room_picks', to: 'residences#room_picks', via: :get
+      match '/room_picks', to: 'residences#mass_update', via: :post
+    end
     resources :residences
     
     scope '/officers'  do

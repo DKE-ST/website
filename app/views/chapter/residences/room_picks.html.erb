@@ -1,0 +1,29 @@
+<% provide(:title , "Room Picks")%>
+
+<div class="row">
+  <div class="span12">
+	<h2>Room Picks</h2>
+  </div>
+  <%= form_tag room_picks_url, method: :post do%>
+    <% @residences.each do | type, room_list | %>
+      <div class="span4">
+	  	<h4><%= type%></h4>
+	  	<table class="table table-condensed table-striped">
+	  	  <tr>
+	  	  	<th>Name</th>
+	  	  	<th>Occupants</th>
+	  	  </tr>
+	  	  <% room_list.each do | room |%>
+	  	    <tr>
+	  	      <td><%= room[:name]%></td>
+	  	      <td><%= occupant_fields(room[:capacity].to_i, room[:occupants_ids], room[:id])%></td>
+	  	    </tr>
+	  	  <% end %>
+	  	</table>
+      </div>
+    <% end %>
+    <div class="span4">
+  	  <%= submit_tag "Update Rooms", class: "btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

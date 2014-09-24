@@ -1,0 +1,35 @@
+<% provide(:title , "Residences")%>
+
+<div class="row">
+  <div class="span12">
+	<h2>
+		Residences
+		<div class="btn-group pull-right">
+			<%= link_to "Room Picks" , "#{room_picks_path}"  , :class => "btn"%>
+		</div>
+	</h2>
+	<table class="row">
+	 <% @residences.each do | type, room_list | %>
+	  <%= "<tr>".html_safe if counter(0)%2 == 0 %>
+	  <td class="span6 room-list">
+	  	<h4><%= type%></h4>
+	  	<table class="table table-condensed table-striped">
+	  	  <tr>
+	  	  	<th>Name</th>
+	  	  	<th>Capacity</th>
+	  	  	<th>Occupants</th>
+	  	  </tr>
+	  	  <% room_list.each do | room |%>
+	  	    <tr>
+	  	      <td><%= link_to room[:name], "#{residences_path}/#{room[:id]}/edit"%></td>
+	  	      <td><%= room[:capacity]%></td>
+	  	      <td><%= room[:occupants]%></td>
+	  	    </tr>
+	  	  <% end %>
+	  	</table>
+	  </td>
+	  <%= "</tr>".html_safe if counter(1)%2 == 0 %>
+	 <% end %>
+	</table>
+  </div>
+</div>

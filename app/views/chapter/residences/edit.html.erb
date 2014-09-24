@@ -1,0 +1,28 @@
+<% provide(:title , "Edit Residence: #{@room.name}")%>
+
+<div class="row house">
+  <div class="span6">
+	<h2><%= @room.name%></h2>
+	<%= image_tag(@room.pic_path(root_path), :alt => "")%><br>
+	<% if @room.capacity > 0%>
+	  <b>Current Resident(s):</b>
+	  <%= @room.occupant_names%>
+	<% end%>
+  </div>
+  <div class="span5 offset1 house-edit">
+  	<h3>Edit</h3>
+  	<%= render_errors(@room)%>
+  	<%= form_for(@room, {url: residence_path}) do | f |%>
+  	  Picture: <%= f.file_field :picture%><br>
+  	  Name: <%= f.text_field :name%><br>
+  	  Floor: <%= f.number_field :floor%><br>
+  	  Capacity: <%= f.number_field :capacity%><br>
+  	  <% if @room.capacity > 0%>
+  	    Occupants: <div><%= occupant_fields(@room.capacity, @room.occupant_ids)%></div>
+  	  <% end%>
+  	  <br>
+  	  
+  	  <%= f.submit("Update Room", class: "btn btn-primary")%>
+  	<% end%>
+  </div>
+</div>
