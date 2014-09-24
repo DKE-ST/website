@@ -10,10 +10,17 @@ class AuthenticationController < ApplicationController
     end
   end
   
+  def brochicken_permissions
+    unless @me.admin?("brochicken")
+      flash[:error] = "You do not have acess to this page"
+      redirect_to root_url
+    end
+  end
+  
   def broporn_permissions
     unless @me.admin?("broporn")
       flash[:error] = "You do not have acess to this page"
-      redirect_to brother_url
+      redirect_to root_url
     end
   end
   

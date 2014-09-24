@@ -1,4 +1,5 @@
 class UsersController < AuthenticationController
+  before_action :brochicken_permissions
   
   def create
     @user = User.new(params)
