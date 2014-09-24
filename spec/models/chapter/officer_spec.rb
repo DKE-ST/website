@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Chapter::Position, :type => :model do
+RSpec.describe Chapter::Officer, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
