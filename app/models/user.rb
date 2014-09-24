@@ -3,8 +3,9 @@ class User < ActiveRecord::Base
   has_one :brother
   #id      int(11) 
   #uname   varchar(8)
-  validates :uname, presence: true, length: {maximum: 8}
+  validates :uname, presence: true, uniqueness: true, length: {maximum: 8}
   #mit_id  varchar(9)
+  validates :mit_id, uniqueness: true, length: {maximum: 9}
   #group   varchar(9)
   #chicken   varchar(10)
   #created_at  datetime 

@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140809152441) do
 
-  create_table "chapter_positions", force: true do |t|
+  create_table "chapter_officers", force: true do |t|
     t.string   "name"
     t.text     "title"
     t.integer  "position"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140809152441) do
 
   create_table "chapter_public_pages", force: true do |t|
     t.string   "pname"
-    t.integer  "position_id"
+    t.integer  "officer_id"
     t.string   "title"
     t.text     "content"
     t.datetime "created_at"
