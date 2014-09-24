@@ -62,13 +62,6 @@ class Chapter::OfficersController < AuthenticationController
   
  private
  
- def beta_sigma
-   unless @me.officer?("beta") || @me.officer?("sigma") || @me.admin?("brochicken")
-      flash[:error] = "You do not have acess to this page"
-      redirect_to root_url
-    end
- end
- 
  def officer_params(params)
    return params.require(:chapter_officer).permit(:name, :title, :dke_info_id, :disp, :contact, :email)
  end

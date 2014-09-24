@@ -1,7 +1,7 @@
 class Chapter::BrothersController < AuthenticationController
   skip_before_filter :logged_in, only: [:index, :show]
   before_action :correct_user, only: [:edit, :update]
-  before_action :permissions, only: [:destroy]
+  before_action :broporn_permissions, only: [:destroy]
   
   def create
     @brother = User::Brother.new(params)
@@ -64,13 +64,6 @@ class Chapter::BrothersController < AuthenticationController
   
   def correct_user
     unless @me.is_brother?(params[:id])
-      flash[:error] = "You do not have acess to this page"
-      redirect_to brother_url
-    end
-  end
-  
-  def permissions
-    unless @me.admin?("broweb")
       flash[:error] = "You do not have acess to this page"
       redirect_to brother_url
     end

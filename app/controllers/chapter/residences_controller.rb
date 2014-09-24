@@ -1,7 +1,17 @@
-class Chapter::ResidencesController < ApplicationController
+class Chapter::ResidencesController < AuthenticationController
+  before_action :beta_sigma, only: [:room_picks, :mass_update]
+  before_action :broporn_permissions, only: [:index, :edit, :update]
+  skip_before_filter :logged_in, only: [:house, :tour, :show]
   
-  def room_picks
-    @residences = Chapter::Residence.list_all("capacity >= 1 && floor > 2")
+  def edit
+    @room = Chapter::Residence.find(params[:id])
+  end
+  
+  def house
+  end
+  
+  def index
+    @residences = Chapter::Residence.list_all
   end
   
   def mass_update
@@ -9,22 +19,15 @@ class Chapter::ResidencesController < ApplicationController
     redirect_to residences_path
   end
   
-  def house
-  end
-  
-  def tour
-  end
-  
-  def index
-    @residences = Chapter::Residence.list_all
+  def room_picks
+    @residences = Chapter::Residence.list_all("capacity >= 1 && floor > 2")
   end
   
   def show
     @room = Chapter::Residence.find(params[:id])
   end
   
-  def edit
-    @room = Chapter::Residence.find(params[:id])
+  def tour
   end
   
   def update
