@@ -16,7 +16,7 @@ class Chapter::Residence < ActiveRecord::Base
     if soft_params.include? "occupants"
       occ = []
       soft_params[:occupants].each do | no, id |
-        occ << id if no.to_i < self.capacity
+        occ << id if no.to_i < self.capacity && id != "null"
       end
       self.occupant_ids = occ
     end
