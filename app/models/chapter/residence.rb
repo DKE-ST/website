@@ -7,6 +7,7 @@ class Chapter::Residence < ActiveRecord::Base
   #created_at  datetime
   #updated_at  datetime
   
+  #Ocerride of update attributes to handle uploading image, and adding occupants
   def update_attributes(params)
     return false unless super(residence_params(params))
     soft_params = params.require(:chapter_residence)
@@ -23,6 +24,7 @@ class Chapter::Residence < ActiveRecord::Base
     return true
   end
   
+  #Retruns occupant names for those associated with this room
   def occupant_names
     out = []
     self.occupants.each do | occupant |
@@ -31,6 +33,9 @@ class Chapter::Residence < ActiveRecord::Base
     return out.join(", ")
   end
   
+  #Returns picture path relative to root_path
+  #@param root_path: string of root path for web app
+  #@param write: set to true if writing to path
   def pic_path(root_path, write = false)
     path =  "#{root_path}assets/house_img/#{self.id}.jpg"
     if File.exists?("public#{path}") || write
@@ -40,6 +45,7 @@ class Chapter::Residence < ActiveRecord::Base
     end
   end
   
+  #Validates uploaded file as an image, then writes it to pic_path
   def upload_picture(params)
     uploaded_io=params[:picture]
     if uploaded_io.content_type =~ /image/
@@ -51,6 +57,9 @@ class Chapter::Residence < ActiveRecord::Base
     return false
   end
   
+  #################Static Methods##########################
+  
+  #Updates room occupants based on params
   def self.room_picks(params)
     params.require(:chapter_residence).each do | room_no, occupants |
       if self.exists?(room_no)
@@ -65,6 +74,8 @@ class Chapter::Residence < ActiveRecord::Base
     return true
   end
   
+  #Returns a hash of lists where each element in the list corresponds to a room.
+  #--The hash keys are the floor the room is on
   def self.list_all(where = nil)
     out = Hash.new
     if where

@@ -1,5 +1,13 @@
 module Chapter::ResidencesHelper
   
+  #Method for keeping trach of when to insert <tr> and </tr> tags in index.html.erb
+  def counter(inc)
+    @counter = 0 if @counter.nil?
+    @counter += inc
+    return @counter
+  end
+  
+  #Returns a string containing all of the occupants of room
   def get_occupants(room)
     results = []
     room.occupants.each do | occupant |
@@ -8,14 +16,11 @@ module Chapter::ResidencesHelper
     return results.join(", ").html_safe
   end
   
-  def counter(inc)
-    @counter = 0 if @counter.nil?
-    @counter += inc
-    return @counter
-  end
-  
-  def occupant_fields(capacity, occupant_ids, name = nil)
-    name = "occupants" if name.nil?
+  #Returns occuupan select fields for a given room
+  #@param capacity: int
+  #@param occupant_ids: array (ex. [id1, id2, ...])
+  #@param name: (optional) string, default: "occupant"
+  def occupant_fields(capacity, occupant_ids, name = "occupants")
     brother_list = User::Brother.name_dke_info_id_map
     out = "".html_safe
     for i in 0..capacity-1

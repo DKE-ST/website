@@ -73,7 +73,9 @@ class User::Brother < ActiveRecord::Base
     return "#{self.first_name} #{self.last_name}"
   end
   
-  #Returns absolute path for brother image
+  #Returns picture path relative to root_path
+  #@param root_path: string of root path for web app
+  #@param write: set to true if writing to path
   #@note: if no image exists a default image is returned
   def pic_path(root_path, write = false)
     path =  "#{root_path}assets/brothers_img/#{self.first_name.downcase.gsub('/','_')}_#{self.last_name.downcase.gsub('/','_')}.jpg"
@@ -84,6 +86,7 @@ class User::Brother < ActiveRecord::Base
     end
   end
   
+  #Validates uploaded file as an image, then writes it to pic_path
   def upload_picture(params)
     uploaded_io=params[:picture]
     if uploaded_io.content_type =~ /image/
