@@ -43,6 +43,8 @@ gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
 gem 'rspec-rails'
+gem 'factory_girl_rails'
+gem 'faker'
 end
 
 group :doc do
