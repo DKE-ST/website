@@ -22,10 +22,6 @@ RSpec.describe User, :type => :model do
     FactoryGirl.build(:user, mit_id: "911234567").should_not be_valid
   end
   
-  it "is invalid without a password or valid kerbaros" do 
-    FactoryGirl.build(:user, password: nil).should_not be_valid
-  end
-  
   it "should create a shadow if password is present when saving" do
     user = FactoryGirl.create(:user)
     user.save
