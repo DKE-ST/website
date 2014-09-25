@@ -9,7 +9,7 @@ class User::Brother < ActiveRecord::Base
   #last_name   text
   validates :last_name, presence: true
   #phone   varchar(10)
-  validates :phone, format: {with: /(^$|[\d]{10})/}, length: { maximum: 10 }
+  validates :phone, format: {with: /\A\d*\z/}, length: { maximum: 10 }
   #email   text
   #bio   text
   #activities  text (depricated:replaced by MitInfo.extracurriculars)
