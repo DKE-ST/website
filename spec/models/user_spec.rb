@@ -32,9 +32,9 @@ RSpec.describe User, :type => :model do
     user.shadow.should be_valid
   end
   
-  it "should have a mit_ldap entry for a valid kerberos" do
-    krb = User::MitLdap.first
-    user = FactoryGirl.create(:user, uname: krb.uid)
-    user.mit_ldap.should == krb
-  end
+  it "should have a mit_ldap entry for a valid kerberos (time consuming to run)"# do
+  #  krb = User::MitLdap.first
+  #  user = FactoryGirl.create(:user, uname: krb.uid)
+  #  user.mit_ldap.should == krb
+  #end
 end
