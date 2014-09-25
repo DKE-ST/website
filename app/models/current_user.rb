@@ -10,7 +10,7 @@ class CurrentUser < User
   
   #Returns bool whether the current user is logged in
   def valid_user?
-    return !self.uname.nil?
+    return self.group?("dkeaffil")
   end
   
   #Returns bool whether brother_id matches id

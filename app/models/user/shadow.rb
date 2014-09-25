@@ -13,11 +13,6 @@ class User::Shadow < ActiveRecord::Base
     return self.save
   end
   
-  #Removes password database entry
-  def rm_passwd
-    return self.destroy
-  end
-  
   #Calls system function to get a user's password hash
   def self.get_hash(uname, password)
     passwd = `htpasswd -nb #{uname} '#{password}'`
