@@ -1,7 +1,17 @@
 class Chapter::Officer < ActiveRecord::Base
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   has_many :public_pages
-  
+  #id  int(11)
+  #name  varchar(255)
+  #title   text
+  #position  int(11)
+  #dke_info_id   int(11)
+  #start_date  datetime 
+  #disp  tinyint(1) 
+  #contact   text
+  #email   varchar(255)
+  #created_at  datetime 
+  #updated_at  datetime    
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :title, presence: true, uniqueness: { case_sensitive: false }
   
@@ -10,9 +20,10 @@ class Chapter::Officer < ActiveRecord::Base
   #@param transfer: boolean, should only be true when used in Transfer model
   #@note: the purpose of this override is to automatically set position
   #@return boolean
-  def initialize(params = {}, transfer = false)
+  def initialize(params = {})
     super(params)
-    self.position = Chapter::Officer.maximum("position") + 1 unless transfer
+    position = Chapter::Officer.maximum("position")
+    self.position = (position.nil?)?1:position + 1
   end
   
   #Override of valid? method to check that contact and disp are set correctly
