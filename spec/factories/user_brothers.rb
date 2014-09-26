@@ -17,4 +17,15 @@ FactoryGirl.define do
     f.dke_info {FactoryGirl.build(:user_brother_dke_info)}
     f.mit_info {FactoryGirl.build(:user_brother_mit_info)}
   end
+  
+  factory :user_brother_full, parent: :user_brother do | f |
+    f.dke_info {FactoryGirl.attributes_for(:user_brother_dke_info)}
+    f.mit_info {FactoryGirl.attributes_for(:user_brother_mit_info)}
+  end
+  
+  factory :invalid_user_brother, parent: :user_brother do | f |
+    f.first_name nil
+    f.dke_info {FactoryGirl.attributes_for(:user_brother_dke_info)}
+    f.mit_info {FactoryGirl.attributes_for(:user_brother_mit_info)}
+  end
 end

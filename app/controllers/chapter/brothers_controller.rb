@@ -55,8 +55,8 @@ class Chapter::BrothersController < AuthenticationController
   def check_redirect(params, redirect_path)
     if params[:big_id] == "new"
       redirect_to new_brother_path + "?little_id=" + @brother.dke_info.id.to_s
-    elsif params[:little_ids].include?("new")
-      redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s
+    elsif !params[:little_ids].nil?
+      redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s if params[:little_ids].include?("new")
     else
       redirect_to redirect_path
     end
