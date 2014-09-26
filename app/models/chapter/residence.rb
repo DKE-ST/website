@@ -2,6 +2,7 @@ class Chapter::Residence < ActiveRecord::Base
   has_many :occupants, class_name: "User::Brother::DkeInfo"
   #id  int(11)
   #name  varchar(255)
+  validates :name, presence: true, uniqueness: true
   #floor   int(1)
   #capacity  int(1)
   #created_at  datetime
