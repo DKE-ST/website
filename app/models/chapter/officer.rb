@@ -3,8 +3,11 @@ class Chapter::Officer < ActiveRecord::Base
   has_many :public_pages
   #id  int(11)
   #name  varchar(255)
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   #title   text
+  validates :title, presence: true, uniqueness: { case_sensitive: false }
   #position  int(11)
+  validates :position, presence: true
   #dke_info_id   int(11)
   #start_date  datetime 
   #disp  tinyint(1) 
@@ -12,8 +15,6 @@ class Chapter::Officer < ActiveRecord::Base
   #email   varchar(255)
   #created_at  datetime 
   #updated_at  datetime    
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :title, presence: true, uniqueness: { case_sensitive: false }
   
   #Override of original init method
   #@param params: dictionary of attributes
@@ -30,7 +31,7 @@ class Chapter::Officer < ActiveRecord::Base
   #@return boolean
   def valid?(params = {})
     if super(params)
-      if self.disp && self.contact.empty?
+      if self.disp && self.contact.blank?
         self.errors.add(:contact, "can't be blank and displayed")
         return false
       else

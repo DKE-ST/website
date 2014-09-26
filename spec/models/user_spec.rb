@@ -24,7 +24,7 @@ RSpec.describe User, :type => :model do
   
   it "should create a shadow if password is present when saving" do
     user = FactoryGirl.create(:user)
-    user.save
+    user.add_passwd(user.password)
     user.shadow.should be_valid
   end
   
