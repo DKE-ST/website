@@ -33,7 +33,7 @@ RSpec.describe Chapter::OfficersController, :type => :controller do
       response.should render_template :edit
     end
     
-    it "redirects to index view when not authenticated" do
+    it "redirects to home page when not authenticated" do
       request.session[:uname] = nil
       get :edit, id: FactoryGirl.create(:chapter_officer)
       response.should redirect_to root_url
@@ -110,6 +110,28 @@ RSpec.describe Chapter::OfficersController, :type => :controller do
         post :create, chapter_officer: FactoryGirl.attributes_for(:invalid_chapter_officer)
         response.should render_template :new
       end
+    end
+  end
+  
+  describe "GET #mass_edit" do
+    it "when authenticated renders the :mass_edit view" do
+      request.session[:uname] = "river"
+      get :mass_edit
+      response.should render_template :mass_edit
+    end
+    
+    it "redirects to home page when not authenticated" do
+      request.session[:uname] = nil
+      get :mass_edit
+      response.should redirect_to root_url
+    end
+  end
+  
+  describe "POST #mass_update" do
+    it "redirects to home page when not authenticated" do
+      request.session[:uname] = nil
+      post :mass_update
+      response.should redirect_to root_url
     end
   end
   
