@@ -4,7 +4,7 @@
 	<div class="span12" align="left">
 		<h2>
 			<%= @content.title%>
-			<%= link_to("Edit" , edit_public_page_path , :class => "btn btn-primary pull-right") if @content.can_edit(@me)%>
+			<%= link_to("Edit" , edit_public_page_path , :class => "btn btn-primary pull-right") if @content.can_edit?(@me)%>
 		</h2>
 		<p><%= @content.content.html_safe%></p>
 	</div>	

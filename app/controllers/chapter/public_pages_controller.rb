@@ -33,7 +33,7 @@ class Chapter::PublicPagesController < ApplicationController
   
   def correct_user
     page = Chapter::PublicPage.find_by(pname: params[:id])
-    unless page.can_edit(@me)
+    unless page.can_edit?(@me)
       flash[:error] = "You do not have acess to this page"
       redirect_to "#{root_url}#{params[:id]}"
     end

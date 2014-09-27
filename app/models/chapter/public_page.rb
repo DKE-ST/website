@@ -15,8 +15,9 @@ class Chapter::PublicPage < ActiveRecord::Base
   #Determines of logged in user has the ability to edit this page
   #@param user: instance of CurrentUser
   #@return boolean
-  def can_edit(user)
+  def can_edit?(user)
     return false if user.nil?
+    return true if user.admin?("brochicken")
     return false if user.brother.nil?
     return self.officer.dke_info.brother.id == user.brother.id
   end
