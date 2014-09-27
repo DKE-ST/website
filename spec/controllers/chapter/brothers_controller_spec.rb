@@ -6,7 +6,7 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
   end
   
   after :all do
-    User.first.destroy
+    User.destroy_all
   end
   
   describe "GET #index" do

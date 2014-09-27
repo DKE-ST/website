@@ -7,4 +7,9 @@ FactoryGirl.define do
     f.contact   {Faker::Lorem.sentence}
     f.email   {Faker::Internet.email}
   end
+  
+  factory :invalid_chapter_officer, parent: :chapter_officer do |f|
+    f.name nil
+    f.title nil
+  end
 end
