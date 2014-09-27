@@ -6,7 +6,7 @@ RSpec.describe Chapter::PublicPagesController, :type => :controller do
   end
   
   after :all do 
-    User.first.destroy
+    User.destroy_all
   end
   
   it "GET #contact renders the :contact view" do
