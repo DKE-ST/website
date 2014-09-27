@@ -9,14 +9,14 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
     User.first.destroy
   end
   
-  describe "GET index" do
+  describe "GET #index" do
     it "renders the :index view" do
       get :index
       response.should render_template :index
     end
   end
   
-  describe "GET show" do
+  describe "GET #show" do
     it "assigns the requested brother to @brother" do
       brother = FactoryGirl.create(:user_brother)
       get :show, id: brother
@@ -29,7 +29,7 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
     end
   end
   
-  describe "GET edit" do
+  describe "GET #edit" do
     it "renders the :edit view" do
       request.session[:uname] = "river"
       get :edit, id: FactoryGirl.create(:user_brother)
@@ -50,7 +50,7 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
     end
   end
   
-  describe "GET new" do
+  describe "GET #new" do
     it "when not logged in redirects to root_path" do 
       request.session[:uname] = nil
       get :new
@@ -69,7 +69,7 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
     end
   end
   
-  describe "POST create" do
+  describe "POST #create" do
     context "when not logged in" do
       before :each do
         request.session[:uname] = nil
@@ -129,7 +129,7 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
     end
   end
   
-  describe "PUT update" do
+  describe "PUT #update" do
     before :each do
       @brother = FactoryGirl.create(:user_brother, first_name: "Hoban", last_name: "Washbourne")
       request.session[:uname] = "river"
@@ -199,7 +199,7 @@ RSpec.describe Chapter::BrothersController, :type => :controller do
     end
   end
   
-  describe "DELETE destroy" do
+  describe "DELETE #destroy" do
     before :each do
       @brother = FactoryGirl.create(:user_brother)
       request.session[:uname] = "river"

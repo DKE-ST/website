@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :chapter_officers, :class => 'Chapter::Officer' do |f|
+  factory :chapter_officer, :class => 'Chapter::Officer' do |f|
     f.name  {Faker::Lorem.word}
     f.title   {Faker::Lorem.sentence}
     f.position  {Faker::Number.number(2)}
