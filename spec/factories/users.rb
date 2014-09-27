@@ -9,4 +9,8 @@ FactoryGirl.define do
     f.chicken {["","broporn","brochicken"][(Random.rand * 3).floor]}
     f.password {Faker::Internet.password}
   end
+  
+  factory :invalid_user, parent: :user do |f|
+    f.uname nil
+  end
 end

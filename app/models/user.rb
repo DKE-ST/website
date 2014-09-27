@@ -172,6 +172,6 @@ class User < ActiveRecord::Base
  private
   
   def user_params(params)
-    return params.require(:user).permit(:uname, :group, :chicken, :password, :brother_id)
+    return params.require(:user).permit(:uname, :group, :chicken, :mit_id, :password, :brother_id)
   end
 end
