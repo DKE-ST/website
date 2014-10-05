@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   #uname   varchar(8)
   validates :uname, presence: true, uniqueness: true, length: {maximum: 8}
   #mit_id  varchar(9)
-  validates :mit_id, uniqueness: true, length: {maximum: 9}
+  validates :mit_id, uniqueness: true, length: {maximum: 9}, format: {with: /\A\d*\z/}
   #group   varchar(9)
   #chicken   varchar(10)
   #created_at  datetime 
