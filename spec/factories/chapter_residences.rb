@@ -4,4 +4,8 @@ FactoryGirl.define do
     f.floor   {Faker::Number.digit}
     f.capacity  {Faker::Number.digit}
   end
+  
+  factory :invalid_chapter_residence, parent: :chapter_residence do |f|
+    f.name nil
+  end
 end
