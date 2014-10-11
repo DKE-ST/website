@@ -5,9 +5,13 @@ module Epsilon
     #date  date
     #time  time
     #e_type  varchar(8)
+    validates :e_type, presence: true
     #value   float
+    validates :value, presence: true
     #comment   text
     #created_at  datetime
     #updated_at  datetime 
   end
+  
+  
 end

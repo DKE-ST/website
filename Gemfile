@@ -42,9 +42,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
-gem 'rspec-rails'
-gem 'factory_girl_rails'
-gem 'faker'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :doc do
@@ -63,3 +63,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+################ Plugins for Website ##############
+
+gem 'epsilon', path: 'plugins/epsilon'
