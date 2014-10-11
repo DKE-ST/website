@@ -34,9 +34,6 @@ DKESite::Application.routes.draw do
       match '/update_contacts', to: 'officers#update_contacts', via: :post
     end
     resources :officers
-    
-    match '/contact', to: 'public_pages#contact' , via: :get
-    resources :public_pages, path: '/'
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
