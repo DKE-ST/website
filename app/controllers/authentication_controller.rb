@@ -3,8 +3,12 @@ class AuthenticationController < ApplicationController
   
  private
   
-  def beta_sigma
-   unless @me.officer?("beta") || @me.officer?("sigma") || @me.admin?("brochicken")
+  def holds?(positions)
+    auth = @me.admin?("brochicken")
+    positions.each do | pos |
+      auth = true if @me.officer?(pos)
+    end
+    unless auth
       flash[:error] = "You do not have acess to this page"
       redirect_to root_url
     end

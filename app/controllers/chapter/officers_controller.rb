@@ -1,5 +1,5 @@
 class Chapter::OfficersController < AuthenticationController
-  before_action :beta_sigma
+  before_action ->{holds?(["beta", "sigma"])}
   
   def create
     @officer = Chapter::Officer.new(officer_params(params))
