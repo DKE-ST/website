@@ -10,7 +10,7 @@
      		</button>
      		<div id="mainNavBar" class="nav-collapse collapse">
      			<ul class="nav">
-     				<li class="nav-item"><%= link_to 'Home' , root_path %></li>
+     				<li class="nav-item"><%= link_to 'Home' , main_app.root_path %></li>
      				<%= render 'layouts/navbar/public' unless @me.valid_user?%>
      				<%= render 'layouts/navbar/private' if @me.valid_user?%>
      			</ul>
@@ -19,7 +19,7 @@
 				   	<li class="nav-item dropdown">
 				   		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
 				   		<ul class="dropdown-menu">
-				   			<%= form_tag("#{root_url(:protocol => 'https')}login", method: "post") do%>
+				   			<%= form_tag("#{main_app.root_url(:protocol => 'https')}login", method: "post") do%>
 				   				<input style="margin-top: 8px" name="httpd_username" type="text" placeholder="Username" />
 				   				<input style="margin-top: 8px" name="httpd_password" type="password" placeholder="Passsword" />
 				   				<input class="btn" name="login" type="submit" value="Login" />
@@ -34,7 +34,7 @@
 						<ul class="dropdown-menu">
 							<%= render 'layouts/navbar/brochicken' if @me.admin?("brochicken")%>
 							<%= render 'layouts/navbar/broporn' if @me.admin?("broporn")%>
-							<li><%= link_to 'Logout' , "#{root_url}logout"%></li>
+							<li><%= link_to 'Logout' , "#{main_app.root_url}logout"%></li>
 						</ul>
 					</li>
 					<% end %>
