@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 $(document).ready( function() {
 	$( "#sortable" ).sortable({ tolerance: "pointer" });
-	$( "#sortable" ).disableSelection();
+	//$( "#sortable" ).disableSelection();
 });
 
 $( document ).on('submit', '.update_contacts', function( event ) {
