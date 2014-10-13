@@ -9,7 +9,7 @@ module Epsilon
   def self.list(params = {})
     brother_list = []
     brothers = self
-    brothers = brothers.where(meal_plan: params["meal_plan"]) unless params["meal_plan"].blank?
+    brothers = brothers.where(meal_plan: params["meal_plan"] == "true") unless params["meal_plan"].blank?
     brothers.select("*").each do | dkeinfo |
       entry = {id: dkeinfo.id,
                meal_plan: dkeinfo.meal_plan,

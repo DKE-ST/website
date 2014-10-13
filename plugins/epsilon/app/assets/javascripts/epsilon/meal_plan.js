@@ -19,3 +19,17 @@ $( document ).on( 'click', '.meal_plan_filter_btn',function() {
 		}
 	});
 });
+
+$( document ).on( 'click', '.meal_plan_toggle',function() {
+	var data = {id: this.value};
+	var cells = this.parentNode.parentNode.children;
+	var field = cells[cells.length-2];
+	$.ajax({
+		url: '/meal_plan/toggle',
+		type: "POST",
+		data: data,
+		success: function(data, textStatus, jqXHR) {
+			field.innerHTML = data;
+		}
+	});
+});

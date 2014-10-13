@@ -10,6 +10,13 @@ module Epsilon
       render partial: 'filter', object: @brothers
     end
     
+    def toggle
+      @brother = Epsilon::MealPlan.find(params[:id])
+      @brother.meal_plan = !@brother.meal_plan
+      @brother.save
+      render text: @brother.meal_plan
+    end
+    
    private
    
     def filter_params(params)

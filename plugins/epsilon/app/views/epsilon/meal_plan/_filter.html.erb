@@ -5,6 +5,6 @@
 	<td><%= user[:year]%></td>
 	<td><%= user[:residence]%></td>
 	<td><%= user[:meal_plan]%></td>
-	<td></td>
+	<td><%= button_tag("Toggle Meal Plan", class: "meal_plan_toggle", value: user[:id])%></td>
   </tr>
 <% end %>
