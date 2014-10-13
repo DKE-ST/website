@@ -5,7 +5,7 @@
  * Event handler for when the filter button is clicked (index.html.erb)
  * --Makes AJAX call to filter users
  */
-$( document ).on( 'click', '.filter_btn',function() {
+$( document ).on( 'click', '.user_filter_btn',function() {
 	var data = {group: $("#filter_group").val(),
 				year: $("#filter_class").val(),
 				house: $("#filter_house").val(),
