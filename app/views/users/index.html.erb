@@ -37,21 +37,7 @@
 				    </tr>
 				   </tbody>
 				   <tbody id="user_body">
-				   <% @users.each do | user | %>
-				    <tr>
-				    	<td><%= user[:last_name]%></td>
-					    <td><%= user[:first_name]%></td>
-					    <td><%= user[:uname]%></td>
-						<td><%= user[:group]%></td>
-						<td><%= user[:class]%></td>
-						<td><%= user[:residence]%></td>
-						<td><%= user[:admin]%></td>
-						<td>
-						  <%= link_to("<button>Edit</button>".html_safe, "#{users_path}/#{user[:id]}/edit", method: :get)%>
-						  <%= button_tag("Delete", class: "usr_delete", id: user[:id])%>
-						</td>
-					</tr>
-				   <% end %>
+				   <%= render "filter"%>
 				  </tbody>
 				</table>
 			</div>
