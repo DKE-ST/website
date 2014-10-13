@@ -12,14 +12,14 @@ module Epsilon
     brothers = brothers.where(meal_plan: params["meal_plan"] == "true") unless params["meal_plan"].blank?
     brothers.select("*").each do | dkeinfo |
       entry = {id: dkeinfo.id,
-               meal_plan: dkeinfo.meal_plan,
                first_name: dkeinfo.brother.first_name,
                last_name: dkeinfo.brother.last_name,
                year: dkeinfo.brother.mit_info.year,
+               meal_plan: dkeinfo.meal_plan,
                residence: !dkeinfo.residence.nil?}
       
-      default_check = (entry[:year] > MealPlan.cur_p_class - 4) || !entry[:residence].blank?
-      class_check = default_check || (entry[:year].to_i == params["year"].to_i)
+      default_check = (entry[:year] > MealPlan.cur_p_class - 4) || !entry[:residence].blank? || entry[:meal_plan]
+      class_check = (default_check && params["year"].blank?) || (entry[:year].to_i == params["year"].to_i)
       house_check = params["house"].blank? || (entry[:residence].blank? ^ (params["house"] == "True"))
       brother_list << entry if class_check && house_check
     end
