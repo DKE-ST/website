@@ -39,11 +39,13 @@
     			</div>
     		</nav>
 		</footer>-->
+		<div class="footer">
+			<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+			<script type="text/javascript">
+				tables = document.getElementsByClassName("table")
+				new FixedHeader( tables[0] );
+				new FixedHeader( tables[1] );
+			</script>
+		</div>
 	</body>
-	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-	<script type="text/javascript">
-		tables = document.getElementsByClassName("table")
-		new FixedHeader( tables[0] );
-		new FixedHeader( tables[1] );
-	</script>
 </html>
