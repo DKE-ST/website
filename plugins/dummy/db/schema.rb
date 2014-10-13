@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011195555) do
+ActiveRecord::Schema.define(version: 20141012072105) do
 
   create_table "chapter_officers", force: true do |t|
     t.string   "name"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20141011195555) do
     t.integer  "p_class"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "meal_plan",    default: false
   end
 
   create_table "user_brother_mit_infos", force: true do |t|
