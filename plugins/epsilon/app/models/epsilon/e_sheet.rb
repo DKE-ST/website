@@ -63,7 +63,7 @@ module Epsilon
         for j in 0..((i<5)?1:0)
           dinner = Epsilon::ESheet.new(date: start_date + i)
           dinner.e_type = "t_dinner"
-          dinner.time = "6:00"
+          dinner.time = "6:00PM"
           dinner.value = 1.5
           dinner.save
         end

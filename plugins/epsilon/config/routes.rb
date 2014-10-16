@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     match "/meal_plan/toggle", to: "meal_plan#toggle", via: :post
     
     match "/schedule", to: "epsilon#meal_schedule", via: :get
+    match "/schedule/:id", to: "epsilon#meal_template", via: :get
   end
   
 end
