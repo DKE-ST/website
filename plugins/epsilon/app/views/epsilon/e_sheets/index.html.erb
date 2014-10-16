@@ -21,7 +21,7 @@
 			<td style='vertical-align:middle'><%= meals[i].e_type[2..-1].humanize%></td>
 			<td style='vertical-align:middle'><%= meals[i].time%></td>
 			<td style='vertical-align:middle'><%= meals[i].value%></td>
-			<td style='vertical-align:middle'><%= link_to "Edit", "#{main_app.schedule_path}/#{meals[i].id}", class: "btn"%></td>
+			<td style='vertical-align:middle'><%= link_to "Edit", "#{main_app.e_sheets_path}/#{meals[i].id}", class: "btn"%></td>
 		  </tr>
 		 <% end %>
 		<% end%>
