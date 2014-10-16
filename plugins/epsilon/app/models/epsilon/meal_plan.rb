@@ -3,6 +3,20 @@ module Epsilon
     #meal_plan tinyint(1)
     
     ################Static Methods ######################
+    #Override of default find_by method to simplify querying a meal_plan_user by mit_id number
+    def self.find_by(params)
+      if params.include? :mit_id
+        usr = User.find_by(params)
+        begin
+          return Epsilon::MealPlan.find(usr.brother.dke_info.id)
+        rescue
+          return nil
+        end 
+      else
+        return super(params)
+      end
+    end
+    
     #Returns list of users filtered by params
     #@param params: fields to filter users by
     #@return list of hashes with user information
@@ -25,15 +39,6 @@ module Epsilon
       end
       brother_list.sort_by!{ |a| [a[:year], a[:last_name], a[:first_name]]}
       return brother_list
-    end
-    
-    def self.meal_plan_list
-      brothers = Array.new([])
-      MealPlan.where(meal_plan: 1).each do | user |
-        brothers << [user.brother.full_name, user.id]
-      end
-      brothers.sort!
-      return brothers
     end
     
   end

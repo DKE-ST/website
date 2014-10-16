@@ -1,0 +1,26 @@
+<% provide(:title , "Weekly Schedule")%>
+
+<div class="row">
+  <div class="span8" align="left">
+  	<h3>Weekly Schedule</h3>
+	<table class="table table-striped table-hover table-condensed">
+	  <thead></thead>
+	  <tbody>
+		<% @meals_schedule.each do |day , meals|%>
+		  <tr>
+			<td style='vertical-align:middle'><%= day.strftime("%A")%></td>
+			<td style='vertical-align:middle'>
+			  <% meals.each do | meal |%>
+			  	<%= meal.e_type[2..-1].humanize%>:
+			  	<%= meal.time%>,
+			  	Value: <%= meal.value%>
+			  	<%= button_to "Edit", meal.id%>
+			  	<br>
+			  <%end%>
+			</td>
+		  </tr>
+		<% end%>
+	  </tbody>
+	</table>
+  </div>
+</div>
