@@ -2,7 +2,10 @@
 
 <div class="row">
   <div class="span6 offset3" align="left">
-  	<h3>Weekly Schedule</h3>
+  	<h3>
+  		Weekly Schedule
+  		<%= link_to "Add Meal", main_app.new_e_sheet_path, class: "btn pull-right"%>
+  	</h3>
 	<table class="table table-striped table-condensed">
 	  <thead>
 	  	<th>Day</th>
@@ -21,7 +24,11 @@
 			<td style='vertical-align:middle'><%= meals[i].e_type[2..-1].humanize%></td>
 			<td style='vertical-align:middle'><%= meals[i].time%></td>
 			<td style='vertical-align:middle'><%= meals[i].value%></td>
-			<td style='vertical-align:middle'><%= link_to "Edit", "#{main_app.e_sheets_path}/#{meals[i].id}", class: "btn"%></td>
+			<td style='vertical-align:middle'>
+				<%= link_to "Edit", "#{main_app.e_sheets_path}/#{meals[i].id}", class: "btn"%>
+				<%= link_to("Delete" , "#{main_app.e_sheets_path}/#{meals[i].id}" , method: :delete,
+  	  						data: { confirm: "Are you sure you would like to delete this meal?" }, :class => "btn")%>
+			</td>
 		  </tr>
 		 <% end %>
 		<% end%>
