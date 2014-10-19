@@ -1,4 +1,5 @@
 class Epsilon::ESheet < ActiveRecord::Base
+  belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   #id  int(11)
   #dke_info_id   int(11)
   #date  date
@@ -37,6 +38,47 @@ class Epsilon::ESheet < ActiveRecord::Base
     return meals
   end
   
+  def self.get_all_meals
+    meals = []
+    working = self.where(e_type: ["lunch","dinner"])
+    week = working.minimum("date")
+    return meals if week.nil?
+    week -= week.days_to_week_start
+    max = working.maximum("date")
+    while week < max
+      meals << [week,self.get_week(week)]
+      week += 7
+    end
+    meals.sort_by!{ |a| [max-a[0]]}
+    return meals
+  end
+  
+  def self.get_others
+    return self.where(e_type: "entry").order(:date)
+  end
+  
+  def self.e_count
+    return self.find_by(e_type: "total").value
+  end
+  
+  def self.track_progress
+    needed = self.e_count
+    day = Date.current + 1
+    mon = day - day.days_to_week_start
+    e_count = []
+    Epsilon::MealPlan.list({"meal_plan" => true}).each do | brother |
+      tot = 0
+      self.where("dke_info_id = ? AND date < ?", brother[:id], mon).each do | e |
+        puts e.value
+        tot += e.value
+      end
+      rem = needed - tot
+      e_count << [brother[:first_name], brother[:last_name], tot, [rem,0].max]
+    end
+    e_count.sort_by!{ |a| [a[2], a[1], a[0]]}
+    return e_count
+  end
+  
   def self.weekly_schedule
     date = Date.new(0,1,5)
     meals = {}
@@ -50,6 +92,9 @@ class Epsilon::ESheet < ActiveRecord::Base
   
   def self.gen_template_schedule
     start_date = Date.new(0,1,5)
+    unless self.exists?(e_type: "total")
+      self.new(time: "12:00AM", value: 16, e_type: "total").save
+    end
     return false if self.exists?(e_type: ["t_lunch","t_dinner"], date: start_date..start_date+5)
     for i in 0..5
       if i < 5

@@ -6,13 +6,13 @@
   </div>
   <div class="span12">
   	<%= render_errors(@element)%>
-  	<%= form_for(@element, options={url: "#{epsilon_path}#update"}) do |f|%>
+  	<%= form_for(@element, options={url: "#{main_app.epsilon_path}#update"}) do |f|%>
   	  Date: <%= f.text_field :date%><br>
-  	  Server: <%= f.select( :uname, options_for_select(@brothers, selected: @element.uname))%><br>
+  	  Server: <%= f.select( :dke_info_id, options_for_select(@brothers, selected: @element.dke_info_id))%><br>
   	  E Value: <%= f.text_field :value%><br>
   	  Comment: <%= f.text_area :comment%><br>
   	  <%= f.submit("Save Changes" , :class => "btn")%>
-  	  <%= link_to("Delete Meal" , epsilon_path , method: :delete,
+  	  <%= link_to("Delete Meal" , main_app.epsilon_path , method: :delete,
   	  data: { confirm: "Are you sure you would like to delete this meal?" }, :class => "btn")%>
   	<% end %>
   </div>

@@ -1,4 +1,5 @@
 class Epsilon::ESheetsController < AuthenticationController
+  before_action ->{holds?(["epsilon"])}
   
   def create
     @meal_template = Epsilon::ESheet.new(meal_template_params(params))

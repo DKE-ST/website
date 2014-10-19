@@ -6,11 +6,11 @@
   </div>
   <div class="span12">
   	<%= render_errors(@element)%>
-  	<%= form_for(@element, options={url: "#{epsilon_index_path}#create"}) do |f|%>
+  	<%= form_for(@element, options={url: "#{main_app.epsilon_index_path}#create"}) do |f|%>
   	  Date: <%= f.text_field :date%><br>
   	  Meal Type: <%= f.select( :e_type, options_for_select([["Lunch","lunch"],["Dinner","dinner"]], selected: @element.e_type))%><br>
   	  Time: <%= f.text_field :time%><br>
-  	  Server: <%= f.select( :uname, options_for_select(@brothers, selected: @element.uname))%><br>
+  	  Server: <%= f.select( :dke_info_id, options_for_select(@brothers, selected: @element.dke_info_id))%><br>
   	  E Value: <%= f.text_field :value%><br>
   	  Comment: <%= f.text_area :comment%><br>
   	  <%= f.submit("Add Meal", :class => "btn")%>

@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     match "/meal_plan/filter", to: "meal_plan#filter", via: :post
     match "/meal_plan/toggle", to: "meal_plan#toggle", via: :post
     
-    resources :e_sheets, path: "/schedule"
+    scope "/epsilon" do
+      match "/new_meal", to: "epsilon#new_meal", via: :get
+      match "/new_week", to: "epsilon#new_week", via: :patch
+      resources :e_sheets, path: "/schedule"
+    end
+    resources :epsilon
   end
   
 end

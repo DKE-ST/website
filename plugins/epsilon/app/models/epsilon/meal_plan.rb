@@ -17,13 +17,21 @@ module Epsilon
       end
     end
     
+    def self.list_dropdown(params = {})
+      out = [["",""]]
+      self.list(params).each do | brother |
+        out << ["#{brother[:first_name]} #{brother[:last_name]}", brother[:id]]
+      end
+      return out
+    end
+    
     #Returns list of users filtered by params
     #@param params: fields to filter users by
     #@return list of hashes with user information
     def self.list(params = {})
       brother_list = []
       brothers = self
-      brothers = brothers.where(meal_plan: params["meal_plan"] == "true") unless params["meal_plan"].blank?
+      brothers = brothers.where(meal_plan: params["meal_plan"].to_s == "true") unless params["meal_plan"].blank?
       brothers.select("*").each do | dkeinfo |
         entry = {id: dkeinfo.id,
                  first_name: dkeinfo.brother.first_name,
