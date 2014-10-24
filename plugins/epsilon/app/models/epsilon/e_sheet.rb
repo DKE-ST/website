@@ -4,7 +4,7 @@ class Epsilon::ESheet < ActiveRecord::Base
   #dke_info_id   int(11)
   validates :dke_info_id, presence: {message: "-- Server can't be blank"}, if: "e_type == 'entry'"
   #date  date
-  validates :date, format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}
+  validates :date, format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}, unless: "e_type == 'total'"
   #time  time
   validates :time, format: {with: /\A(0?[1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}, if: "e_type != 'entry'"
   #e_type  varchar(8)
@@ -62,6 +62,17 @@ class Epsilon::ESheet < ActiveRecord::Base
   
   def self.e_count
     return self.find_by(e_type: "total").value
+  end
+  
+  def self.update_e_count(value)
+    e_count = self.find_by(e_type: "total")
+    e_count.value = value
+    if e_count.valid?
+      e_count.save
+      return true
+    else
+      return false
+    end
   end
   
   def self.track_progress

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     scope "/epsilon" do
       match "/new_meal", to: "epsilon#new_meal", via: :get
       match "/new_week", to: "epsilon#new_week", via: :patch
+      match "/update_e_count", to: "epsilon#update_e_count", via: :patch
       resources :e_sheets, path: "/schedule"
     end
     resources :epsilon

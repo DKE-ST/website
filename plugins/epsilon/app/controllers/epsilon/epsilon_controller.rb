@@ -78,6 +78,11 @@ class Epsilon::EpsilonController < AuthenticationController
     end
   end
   
+  def update_e_count
+    Epsilon::ESheet.update_e_count(params[:e_count])
+    redirect_to epsilon_index_path
+  end
+  
  private
   
   def e_sheet_params(params)
