@@ -2,14 +2,17 @@ class Epsilon::ESheet < ActiveRecord::Base
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   #id  int(11)
   #dke_info_id   int(11)
+  validates :dke_info_id, presence: {message: "-- Server can't be blank"}, if: "e_type == 'entry'"
   #date  date
+  validates :date, format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}
   #time  time
-  validates :time, format: {with: /\A(0?[1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}
+  validates :time, format: {with: /\A(0?[1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}, if: "e_type != 'entry'"
   #e_type  varchar(8)
   validates :e_type, presence: true
   #value   float
   validates :value, presence: true, numericality: true
   #comment   text
+  validates :comment, presence: true, if: "e_type == 'entry'"
   #created_at  datetime
   #updated_at  datetime
   

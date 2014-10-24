@@ -2,7 +2,19 @@ class Epsilon::EpsilonController < AuthenticationController
   before_action ->{holds?(["epsilon"])}
   
   def create
-    
+    @element = Epsilon::ESheet.new(e_sheet_params(params))
+    if @element.valid?
+      @element.save
+      flash[:success] = "#{@element.e_type.humanize} Created"
+      redirect_to epsilon_index_path
+    else
+      @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+      if @element.e_type == "entry"
+        render "new"
+      else
+        render "new_meal"
+      end
+    end
   end
   
   def destroy
@@ -51,10 +63,25 @@ class Epsilon::EpsilonController < AuthenticationController
     end
   end
   
+  def update
+    @element = Epsilon::ESheet.find(params[:id])
+    if @element.update_attributes(e_sheet_params(params))
+      flash[:success] = "#{@element.e_type.humanize} Upddated"
+      redirect_to epsilon_index_path
+    else
+      @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+      if @element.e_type == "entry"
+        render "edit_other"
+      else
+        render "edit_meal"
+      end
+    end
+  end
+  
  private
   
   def e_sheet_params(params)
-    return params.require(:e_sheet)
+    return params.require(:e_sheet).permit(:e_type, :date, :time, :dke_info_id, :value, :comment)
   end
   
 end
