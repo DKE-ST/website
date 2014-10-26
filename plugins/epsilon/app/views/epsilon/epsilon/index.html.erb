@@ -34,7 +34,7 @@
   	  Meal Management
   	  <%= link_to "Add Meal" , main_app.new_meal_path , :class => "btn"%>
   	  <%= link_to "Add Week" , main_app.new_week_path , method: :patch, :class => "btn"%>
-  	  <%= link_to "Edit Template", main_app.e_sheets_path, class: "btn"%>
+  	  <%= link_to "Edit Template", main_app.e_templates_path, class: "btn"%>
   	</h2>
   	<% @meals.each do | week , breakdown |%>
   	  <h3>Week of <%= week.strftime("%B %e, %Y")%></h3>

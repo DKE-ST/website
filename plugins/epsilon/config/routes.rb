@@ -9,9 +9,11 @@ Rails.application.routes.draw do
       match "/new_meal", to: "epsilon#new_meal", via: :get
       match "/new_week", to: "epsilon#new_week", via: :patch
       match "/update_e_count", to: "epsilon#update_e_count", via: :patch
-      resources :e_sheets, path: "/schedule"
+      resources :e_templates, path: "/schedule"
     end
     resources :epsilon
+    
+    match "/e_sheet", to: "e_sheets#e_sheet", via: :get
   end
   
 end

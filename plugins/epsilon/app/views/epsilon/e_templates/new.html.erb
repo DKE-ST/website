@@ -4,7 +4,7 @@
   <div class="span6 offset3" align="left">
   	<h2>Add Meal</h2><br>
   	<%= render_errors(@meal_template)%>
-  	<%= form_for(@meal_template, options={url: "#{main_app.e_sheets_path}#create"}) do |f|%>
+  	<%= form_for(@meal_template, options={url: "#{main_app.e_templates_path}#create"}) do |f|%>
   	  Date: <%= day_select(f, @meal_template)%><br>
   	  Meal Type: <%= f.select( :e_type, options_for_select([["Lunch","t_lunch"],["Dinner","t_dinner"]], selected: @meal_template.e_type))%><br>
   	  Time: <%= f.text_field :time%><br>
