@@ -16,7 +16,7 @@
   <div class="span8" align="left">
   	<h2>E Sheet</h2>
   	<h3>Week of <%= get_e_week.strftime("%B %e, %Y")%></h3>
-	<table class="table table-striped table-hover table-condensed">
+	<table class="table table-striped table-condensed">
 	  <thead></thead>
 	  <tbody>
 		<% @week_meals.each do |day , meals|%>
@@ -40,7 +40,7 @@
   </div>
   <div class="span4">
   	<h3>E Count</h3>
-  	<table class="table table-striped table-hover table-condensed">
+  	<table class="table table-striped table-condensed">
   	  <thead>
   	  	<th>Name</th>
   	  	<th>Current E Count</th>
@@ -67,7 +67,7 @@
 			<script type="text/javascript">
 			  var tim = 0;
 			  function reload () {
-				tim = setTimeout("alert('Timeout');location.reload(true);",30000);
+				tim = setTimeout("location.reload(true);",30000);
 			  }
 				
 			  function canceltimer() {
@@ -75,10 +75,7 @@
 				reload();  // and restart it
 			  }
 			  $(document).ready( function() {
-			    $('.dropdown-menu').find('form').click(function (e) {
-			       e.stopPropagation();
-				});
-				reload()
+			    reload()
 			  });
 			</script>
 		</div>
