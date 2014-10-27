@@ -4,7 +4,7 @@ class Epsilon::ESheet < ActiveRecord::Base
   #dke_info_id   int(11)
   validates :dke_info_id, presence: {message: "-- Server can't be blank"}, if: "e_type == 'entry'"
   #date  date
-  validates :date, format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}, unless: "e_type == 'total'"
+  validates :date, format: {with: /\A20\d{2}-(0[1-9]|1[0-2])-([0-2]\d|3[01])\z/}, unless: "e_type =~ /t_.*|total/"
   #time  time
   validates :time, format: {with: /\A(0?[1-9]|1[0-2]):[0-5]\d(AM|PM)\z/}, if: "e_type != 'entry'"
   #e_type  varchar(8)
@@ -72,6 +72,36 @@ class Epsilon::ESheet < ActiveRecord::Base
       return true
     else
       return false
+    end
+  end
+  
+  def self.sign_up(params, user)
+    delay = [-900,300]
+    meal = self.find(params[:id])
+    if params[:action]=="add"
+      if Time.now - 900 > Time.parse(meal.time, meal.date)
+        return [false, "It is too late to sign up to serve this meal.  Please Contact the Epsilon"]
+      elsif meal.dke_info.nil?
+        meal.dke_info_id = user.brother.dke_info.id
+        meal.save
+        return [true, nil]
+      elsif meal.dke_info.brother_id == user.brother.id
+        return [false, "You already signed up to serve this meal"]
+      else
+        return [false, "Another brother has already signed up"]
+      end
+   else
+      if Time.now + 300 > Time.parse(meal.time, meal.date)
+        return [false, "It is too late to unsign up to serve this meal.  Please Contact the Epsilon"]
+      elsif meal.dke_info.nil?
+        return [false, "No one is signed up for this meal"]
+      elsif meal.dke_info.brother_id != user.brother.id
+        return [false, "You cannot unsign up another brother"]
+      else
+        meal.dke_info_id = nil
+        meal.save
+        return [true, nil]
+      end   
     end
   end
   

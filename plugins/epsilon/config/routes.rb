@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
     resources :epsilon
     
-    match "/e_sheet", to: "e_sheets#e_sheet", via: :get
+    match "/e_sheet", to: "e_sheets#auth_sheet", via: :get
+    match "/e_sheet", to: "e_sheets#auth_sign_up", via: :patch
+    
+    match "/public_sheet", to: "e_sheets#public_sheet", via: :get
+    match "/public_sheet", to: "e_sheets#public_sign_up", via: :patch
   end
   
 end

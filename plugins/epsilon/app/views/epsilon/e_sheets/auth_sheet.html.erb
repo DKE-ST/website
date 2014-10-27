@@ -13,28 +13,16 @@
 			<% meals.each do | int_meals |%>
 			 <td style='vertical-align:middle'>
 			  <% int_meals.each do | meal |%>
-				<%= form_tag(e_sheet_path, :class => "e_sheet", method: :patch) do%>
+				<%= form_tag(main_app.e_sheet_path, :class => "e_sheet", method: :patch) do%>
 				  <%= hidden_field_tag( "meal[id]", meal.id)%>
 				  <%= "#{meal.e_type.humanize} #{meal.time} ::"%>
-				  <%= get_server(meal.uname, meal.time, meal.date)%>
+				  <%= get_server(meal)%>
 				<% end %>
 			  <%end%>
 			 </td>
 			<% end %>
 		  </tr>
 		<% end%>
-	  </tbody>
-	</table>
-	<h2>Menu</h2>
-	<table class="table table-striped">
-	  <tbody>
-	  	<% @menu.each do | day |%>
-	  	  <tr>
-	  	  	<td><h4><%= day.day.humanize%></h4></td>
-	  	  	<td><%= "Lunch: #{day.lunch}" unless day.lunch.empty?%></td>
-	  	  	<td><%= "Dinner: #{day.dinner}" unless day.dinner.empty?%></td>
-	  	  </tr>
-	  	<% end %>
 	  </tbody>
 	</table>
   </div>
@@ -49,7 +37,7 @@
 	  <tbody>
 		<% @e_count.each do | user |%>
 		  <tr>
-			<td><%= user[0]%></td>
+			<td><%= "#{user[0]} #{user[1]}"%></td>
 			<td><%= user[2]%></td>
 			<td><%= user[3]%></td>
 		  </tr>

@@ -1,4 +1,4 @@
-class Epsilon::ETemplatesController < ApplicationController
+class Epsilon::ETemplatesController < AuthenticationController
   before_action ->{holds?(["epsilon"])}
   
   def create
