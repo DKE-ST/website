@@ -2,7 +2,7 @@
 <html>
 	<head>
 	  <title><%= gen_title("E Sheet")%></title>
-	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 	  <%= csrf_meta_tags %>
 	  <%= render 'layouts/shim' %>
 	</head>
@@ -60,7 +60,16 @@
 </div>
 
 		<div class="footer">
-			<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+			<%= javascript_include_tag "jquery", "data-turbolinks-track" => true %>
+			<%= javascript_include_tag "jquery.plugin", "data-turbolinks-track" => true %>
+			<%= javascript_include_tag "jquery.keypad", "data-turbolinks-track" => true %>
+			<%= javascript_include_tag "epsilon/e_sheets", "data-turbolinks-track" => true %>
+			<script type="text/javascript">
+				$('.dropdown-toggle').dropdown();
+				    $('.dropdown-menu').find('form').click(function (e) {
+				        e.stopPropagation();
+				 });
+			</script>
 		</div>
 	</body>
 </html>
