@@ -8,20 +8,31 @@ module Epsilon
     
     def get_server(meal)
       if meal.dke_info.nil?
-        time = Time.now - 900 < Time.parse(meal.time, meal.date)
-        return "Meal Missed" unless time
-        return button_tag("Sign Up" , name: "meal[action]" , value: "add")
-      else 
-        time = Time.now + 300 < Time.parse(meal.time, meal.date)
-        name = meal.dke_info.brother.full_name
-        begin
-          check = meal.dke_info_id == @me.brother.dke_info.id
-        rescue
-          check = true
+        time = Time.now + Epsilon::ESheet.delays[0] < Time.parse(meal.time, meal.date)
+        if !time
+          return "Meal Missed"
+        elsif @me.brother.nil?
+          out = hidden_field_tag("meal[action]", "add")
+          out += password_field_tag("mit_id", "", class: "add_mit_id")
+          return out
+        else
+          return button_tag("Sign Up" , name: "meal[action]" , value: "add")
         end
-        return name unless time && check
-        drop = button_tag("Drop" , name: "meal[action]" , value: "drop")
-        return "#{name} #{drop}".html_safe
+      else 
+        time = Time.now + Epsilon::ESheet.delays[1] < Time.parse(meal.time, meal.date)
+        name = meal.dke_info.brother.full_name
+        if !time
+          return name
+        elsif @me.brother.nil?
+          out = hidden_field_tag("meal[action]", "drop")
+          out += password_field_tag("mit_id", "", class: "drop_mit_id")
+          return "#{name} #{out}".html_safe
+        elsif meal.dke_info_id != @me.brother.dke_info.id
+          return name
+        else
+          drop = button_tag("Drop" , name: "meal[action]" , value: "drop")
+          return "#{name} #{drop}".html_safe
+        end
       end
     end
     

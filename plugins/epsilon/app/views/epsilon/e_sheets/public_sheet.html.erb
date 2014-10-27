@@ -13,9 +13,8 @@
 			<% meals.each do | int_meals |%>
 			 <td style='vertical-align:middle'>
 			  <% int_meals.each do | meal |%>
-				<%= form_tag(main_app.public_sheet_path, :class => "e_sheet public_e_sheet keypad-trigger", method: :patch) do%>
+				<%= form_tag(main_app.public_sheet_path, :class => "e_sheet public_e_sheet keypad-trigger", method: :patch, id: "Meal_#{meal.id}") do%>
 				  <%= hidden_field_tag( "meal[id]", meal.id)%>
-				  <%= text_field_tag("mit_id")%>
 				  <%= "#{meal.e_type.humanize} #{meal.time} ::"%>
 				  <%= get_server(meal)%>
 				<% end %>

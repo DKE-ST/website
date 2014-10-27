@@ -75,11 +75,14 @@ class Epsilon::ESheet < ActiveRecord::Base
     end
   end
   
+  def self.delays
+    return [-900,300]
+  end
+  
   def self.sign_up(params, user)
-    delay = [-900,300]
     meal = self.find(params[:id])
     if params[:action]=="add"
-      if Time.now - 900 > Time.parse(meal.time, meal.date)
+      if Time.now + self.delays[0] > Time.parse(meal.time, meal.date)
         return [false, "It is too late to sign up to serve this meal.  Please Contact the Epsilon"]
       elsif meal.dke_info.nil?
         meal.dke_info_id = user.brother.dke_info.id
@@ -91,7 +94,7 @@ class Epsilon::ESheet < ActiveRecord::Base
         return [false, "Another brother has already signed up"]
       end
    else
-      if Time.now + 300 > Time.parse(meal.time, meal.date)
+      if Time.now + self.delays[1] > Time.parse(meal.time, meal.date)
         return [false, "It is too late to unsign up to serve this meal.  Please Contact the Epsilon"]
       elsif meal.dke_info.nil?
         return [false, "No one is signed up for this meal"]
