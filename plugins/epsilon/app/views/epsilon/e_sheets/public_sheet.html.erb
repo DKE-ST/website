@@ -6,7 +6,7 @@
 	  <%= csrf_meta_tags %>
 	  <%= render 'layouts/shim' %>
 	</head>
-	<body>
+	<body onmousemove = "canceltimer()"; onclick = "canceltimer()">
 		<div class="container">
 			<% flash.each do |key, value| %>
  				<div class="alert alert-<%= key %>"><%= value %></div>
@@ -65,10 +65,21 @@
 			<%= javascript_include_tag "jquery.keypad", "data-turbolinks-track" => true %>
 			<%= javascript_include_tag "epsilon/e_sheets", "data-turbolinks-track" => true %>
 			<script type="text/javascript">
-				$('.dropdown-toggle').dropdown();
-				    $('.dropdown-menu').find('form').click(function (e) {
-				        e.stopPropagation();
-				 });
+			  var tim = 0;
+			  function reload () {
+				tim = setTimeout("alert('Timeout');location.reload(true);",30000);
+			  }
+				
+			  function canceltimer() {
+				window.clearTimeout(tim);  // cancel the timer on each mousemove/click
+				reload();  // and restart it
+			  }
+			  $(document).ready( function() {
+			    $('.dropdown-menu').find('form').click(function (e) {
+			       e.stopPropagation();
+				});
+				reload()
+			  });
 			</script>
 		</div>
 	</body>
