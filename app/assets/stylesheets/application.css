@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require jquery-ui
+ *= require jquery.keypad
  *= require chosen
  *= require_tree .
  */

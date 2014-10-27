@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.plugin
+//= require jquery.keypad
 //= require chosen-jquery
 //= require turbolinks
 //= require bootstrap
