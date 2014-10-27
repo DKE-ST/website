@@ -17,6 +17,7 @@ class Epsilon::ESheetsController < AuthenticationController
   def public_sheet
     @week_meals = Epsilon::ESheet.get_week
     @e_count = Epsilon::ESheet.track_progress
+    render layout: false
   end
   
   def public_sign_up
