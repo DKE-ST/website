@@ -161,6 +161,7 @@ class Epsilon::ESheet < ActiveRecord::Base
         dinner.save
       end
     end
+    #TODO: Add Total element
     return true
   end
   

@@ -45,7 +45,7 @@ module UsersHelper
   #@param dke_info: dke_info instance for selected user
   def brother_info_select(user, f)
     bro = user.brother
-    brother_list = User::Brother.name_brother_id_map
+    brother_list = User::Brother.name_brother_id_map((bro.nil?)?nil:bro.id)
     brother_list[""] << ["New Brother", "new"]
     if bro.nil?
       brother_options = grouped_options_for_select(brother_list)

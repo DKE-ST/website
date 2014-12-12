@@ -128,12 +128,12 @@ class User::Brother < ActiveRecord::Base
   end
   
   #Static method to return name to brother_id map for use in user creation/editing
-  def self.name_brother_id_map
+  def self.name_brother_id_map(self_id)
     brothers = Hash.new
     brothers[""] = [["","null"]]
     class_map = User::Brother::MitInfo.select("year, brother_id").order("year DESC")
     class_map.each do | bro |
-      if bro.brother.user.nil?
+      if bro.brother.user.nil? || self_id == bro.brother_id
         brothers[bro.year] = Array.new([]) if !brothers.include? bro.year
         brothers[bro.year] << [bro.brother.full_name, bro.brother_id]
       end

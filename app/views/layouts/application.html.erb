@@ -3,6 +3,7 @@
 	<head>
 	  <title><%= gen_title(yield(:title))%></title>
 	  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	  <%= csrf_meta_tags %>
 	  <%= render 'layouts/shim' %>
 	</head>
@@ -40,7 +41,6 @@
     		</nav>
 		</footer>-->
 		<div class="footer">
-			<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 			<script type="text/javascript">
 				tables = document.getElementsByClassName("table")
 				new FixedHeader( tables[0] );

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   #uname   varchar(8)
   validates :uname, presence: true, uniqueness: true, length: {maximum: 8}
   #mit_id  varchar(9)
-  validates :mit_id, uniqueness: true, length: {maximum: 9}, format: {with: /\A\d*\z/}
+  #validates :mit_id, uniqueness: true, length: {maximum: 9}, format: {with: /\A\d*\z/}
   #group   varchar(9)
   #chicken   varchar(10)
   #created_at  datetime 
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
       end
     end
     #If params includes brother 
-    unless self.brother_id == "null" || self.brother_id = "new"
+    unless self.brother_id == "new"
       begin
         bro_id = self.brother.id
       rescue
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
           self.brother.save
         end
       end
-      if self.brother_id != bro_id #Update brother info if brother id has changed
+      if self.brother_id != bro_id && self.brother_id != 'null' #Update brother info if brother id has changed
         brother = User::Brother.find(self.brother_id)
         brother.user_id = self.id
         brother.save
