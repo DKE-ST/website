@@ -4,8 +4,12 @@ class User < ActiveRecord::Base
   #id      int(11) 
   #uname   varchar(8)
   validates :uname, presence: true, uniqueness: true, length: {maximum: 8}
+  #status  int(11)
+  ## Status codes ##
+  ## 0: First time user
+  ## 1: Nominal
   #mit_id  varchar(9)
-  #validates :mit_id, uniqueness: true, length: {maximum: 9}, format: {with: /\A\d*\z/}
+  validates :mit_id, uniqueness: true, allow_blank: true, length: {maximum: 9}, format: {with: /\A\d*\z/}
   #group   varchar(9)
   #chicken   varchar(10)
   #created_at  datetime 
