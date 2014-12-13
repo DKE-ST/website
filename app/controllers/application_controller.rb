@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_filter :authenticate
+  before_filter :check_status
   
   #Stores user associated with a session cookie for use in other pages and controllers
   def authenticate
@@ -15,6 +16,7 @@ class ApplicationController < ActionController::Base
   #NOTE: This page should only be reached if the login atempt was successful.
   def success
     authenticate_or_request_with_http_basic do | username, password |
+      session[:redirect] = false
       session[:expires] = Time.now
       session[:uname] = username
       redirect_to root_url
@@ -25,6 +27,18 @@ class ApplicationController < ActionController::Base
   def loggedout
     session[:uname] = nil
     redirect_to root_url
+  end
+  
+  def check_status
+    if session[:redirect]
+      session[:redirect] = false
+      return true
+    end
+    if @me.status == 0 && @me.group?("dkepledge")
+      session[:redirect] = true
+      flash[:notice] = "<h4>Welcome to the DKE Server.  Please update your information for the website.</h4>".html_safe
+      redirect_to "#{main_app.brothers_path}/#{@me.brother.id}/edit"
+    end
   end
   
 end

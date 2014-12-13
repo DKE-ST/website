@@ -10,6 +10,9 @@ class Chapter::PublicPagesController < ApplicationController
   end
   
   def home
+    #if @me.group?("dkepledge")
+    #  render "chapter/home"
+    #end
   end
   
   def show

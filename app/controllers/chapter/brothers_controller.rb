@@ -1,5 +1,6 @@
 class Chapter::BrothersController < AuthenticationController
-  skip_before_filter :logged_in, only: [:index, :show]
+  skip_before_action :logged_in, only: [:index, :show]
+  skip_before_action :check_status, only: [:update]
   before_action :correct_user, only: [:edit, :update]
   before_action :broporn_permissions, only: [:destroy]
   
@@ -44,6 +45,10 @@ class Chapter::BrothersController < AuthenticationController
     @brother = User::Brother.find(params[:id])
     if @brother.update_attributes(params)
       flash[:success] = "Information updated"
+      if @me.status == 0
+        @me.status = 1
+        @me.save!
+      end
       check_redirect(params[:user_brother][:dke_info], brother_url)
     else
       render 'edit'
@@ -56,7 +61,11 @@ class Chapter::BrothersController < AuthenticationController
     if params[:big_id] == "new"
       redirect_to new_brother_path + "?little_id=" + @brother.dke_info.id.to_s
     elsif !params[:little_ids].nil?
-      redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s if params[:little_ids].include?("new")
+      if params[:little_ids].include?("new")
+        redirect_to new_brother_path + "?big_id=" + @brother.dke_info.id.to_s
+      else
+        redirect_to redirect_path
+      end
     else
       redirect_to redirect_path
     end

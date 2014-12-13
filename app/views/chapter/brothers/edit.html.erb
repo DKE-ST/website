@@ -52,7 +52,6 @@
        		<div>Favorite MIT Classes: <%= f_mit.text_field :fav_classes%></div>
        		<%end%>
       	</div>
-	  <% if @me.group?("dkepledge") %>
       	<div class="span4">
       		<center><u><h3>DKE</h3></u></center>
       		<%= fields_for("user_brother[dke_info]", @brother.dke_info) do |f_dke|%>
@@ -75,7 +74,6 @@
 	   			<div>Positions Held: <%= f_dke.text_field :past_pos%></div>
    	  		<%end%>
     	</div>
-	  <% end %>
     	<div class='span10'></div>
 		<div class="span2">
 			 <%= f.submit "Save Changes", class: "btn btn-primary" %>
