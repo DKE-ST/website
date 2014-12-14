@@ -49,4 +49,13 @@ class CurrentUser < User
     return false
   end
   
+  #Returns list of positions held by user
+  def positions
+    begin
+      return self.brother.dke_info.positions
+    rescue
+      return []
+    end
+  end
+  
 end

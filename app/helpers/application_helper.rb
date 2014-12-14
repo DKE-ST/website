@@ -27,6 +27,17 @@ module ApplicationHelper
     end
   end
   
-  
+  def gen_officer_submenus
+    out = "".html_safe
+    @me.positions.each do | pos |
+      if File.exists?("app/views/layouts/navbar/officer/_#{pos.name}.html.erb")
+        out += "<li id='gen_sub' class='dropdown-submenu'><a>".html_safe + pos.title + "</a>".html_safe
+        out += "<ul class='dropdown-menu'>".html_safe
+        out += render("layouts/navbar/officer/#{pos.name}").html_safe
+        out += "</ul></li>".html_safe
+      end
+    end
+    return out
+  end
   
 end

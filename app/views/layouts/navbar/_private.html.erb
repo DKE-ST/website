@@ -8,11 +8,7 @@
 				<%= render 'layouts/navbar/public'%>
 			</ul>
 		</li>
-		<li id="gen_sub" class="dropdown-submenu"><a>President</a>
-			<ul class="dropdown-menu">
-				<%= render 'layouts/navbar/officer/beta'%>
-			</ul>
-		</li>
+		<%= gen_officer_submenus%>
 <!--		< if @me.is? "kappa" %>
 		  <li id="gen_sub" class="dropdown-submenu"><a>Treasurer</a>
 			<ul class="dropdown-menu">
