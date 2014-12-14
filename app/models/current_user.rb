@@ -51,6 +51,7 @@ class CurrentUser < User
   
   #Returns list of positions held by user
   def positions
+    return Chapter::Officer.select("*") if self.admin?("brochicken")
     begin
       return self.brother.dke_info.positions
     rescue
