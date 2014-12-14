@@ -1,6 +1,6 @@
 class Chapter::ResidencesController < AuthenticationController
   before_action ->{holds?(["beta", "sigma"])}, only: [:room_picks, :mass_update]
-  before_action :broporn_permissions, only: [:index, :edit, :update]
+  before_action :brochicken_permissions, only: [:index, :edit, :update]
   skip_before_filter :logged_in, only: [:house, :tour, :show]
   
   def edit
