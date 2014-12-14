@@ -3,7 +3,7 @@ end
 
 class Transfer < ActiveRecord::Base
   #This class was used for the orginal transfer from the old database format
-  establish_connection "site_old"
+  establish_connection "old_site"
   
   def self.transfer_all
     Transfer.personal
@@ -12,6 +12,8 @@ class Transfer < ActiveRecord::Base
     Transfer.officers
     Transfer.residence
     Transfer.public_pages
+    Transfer.bro_pics
+    Transfer.room_pics
   end
   
   def self.personal
@@ -101,6 +103,30 @@ class Transfer < ActiveRecord::Base
         page.officer = Chapter::Officer.find_by(name: "broweb")
       end
       page.save
+    end
+  end
+  
+  def self.bro_pics
+    files = []
+    root = Rails.root.join("public/assets/brothers_img/").to_s
+    Dir.foreach(root) do | file |
+      unless ["..", ".", "no_pic.jpg", "index.html"].include? file
+        new_file = file[0..-5] + "_" + DateTime.now.to_s + ".jpg"
+        File.rename(root+file, root+new_file)
+        File.symlink(root + new_file, root + file)
+      end
+    end
+  end
+  
+  def self.room_pics
+    files = []
+    root = Rails.root.join("public/assets/house_img/").to_s
+    Dir.foreach(root) do | file |
+      unless ["..", ".", "index.html"].include? file
+        new_file = file[0..-5] + "_" + DateTime.now.to_s + ".jpg"
+        File.rename(root+file, root+new_file)
+        File.symlink(root + new_file, root + file)
+      end
     end
   end
 end

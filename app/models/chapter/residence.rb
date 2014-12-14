@@ -37,12 +37,14 @@ class Chapter::Residence < ActiveRecord::Base
   #Returns picture path relative to root_path
   #@param root_path: string of root path for web app
   #@param write: set to true if writing to path
-  def pic_path(root_path, write = false)
-    path =  "#{root_path}assets/house_img/#{self.id}.jpg"
-    if File.exists?("public#{path}") || write
-      return path
+  def pic_path(root_path, write = false, tag = false)
+    path =  "#{root_path}assets/house_img/#{self.id}"
+    if tag
+      return path + "_" + DateTime.now.to_s + ".jpg"
+    elsif File.exists?("public#{path}.jpg") || write
+      return path + ".jpg"
     else
-      return path
+      return path + ".jpg"
     end
   end
   
@@ -50,9 +52,11 @@ class Chapter::Residence < ActiveRecord::Base
   def upload_picture(params)
     uploaded_io=params[:picture]
     if uploaded_io.content_type =~ /image/
-      File.open(pic_path(Rails.root.join("public/").to_s, true), "wb") do |file|
+      File.open(pic_path(Rails.root.join("public/").to_s, true, true), "wb") do |file|
         file.write(uploaded_io.read)
       end
+      File.unlink(pic_path(Rails.root.join("public/").to_s, true)) if File.exists?(pic_path(Rails.root.join("public/").to_s, true))
+      File.symlink(pic_path(Rails.root.join("public/").to_s, true, true), pic_path(Rails.root.join("public/").to_s, true))
       return true
     end
     return false
