@@ -8,9 +8,15 @@
 	<%= form_tag mass_update_url, method: :post do%>
 	  <% @officers.each do |pos|%>
 	    <br><%= "#{pos.title} (#{pos.name})"%>:
-	  	<%= select_tag( "officers[#{pos.id}]", grouped_options_for_select(@brothers, selected: pos.dke_info_id))%>
+	  	<%= select_tag( "officers[#{pos.id}]", grouped_options_for_select(@brothers, selected: pos.dke_info_id), class:"chosen-select")%>
 	  <%end%>
-	  <br><%= submit_tag "Update Positions", class: "btn btn-primary"%>
+	  <br><%= submit_tag "Update Positions", class: "btn btn-primary chosen-container"%>
 	<%end%>
 	</div>
-</div>	
+</div>
+
+<script>
+	$( document ).ready(function() {
+		$(".chosen-select").chosen({allow_single_deselect: true });
+	});
+</script>
