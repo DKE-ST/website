@@ -9,30 +9,12 @@
 			</ul>
 		</li>
 		<%= gen_officer_submenus%>
-<!--		< if @me.is? "kappa" %>
-		  <li id="gen_sub" class="dropdown-submenu"><a>Treasurer</a>
-			<ul class="dropdown-menu">
-				<li><= link_to "Meal Plan Management" , meal_plan_path%></li>
-		  	</ul>
-		  </li>
-		< end %>
-		< @me.positions.each do | pos |%>
-		  <li id="gen_sub" class="dropdown-submenu"><a><= pos.name%></a>
-			<ul class="dropdown-menu">
-			  < if pos.position == "epsilon" %>
-				<li><= link_to "E Controller", epsilon_index_path %></li>
-			  < end %>
-			  <li><= link_to "Award Points" , "#{house_points_path}/#{pos.position}/new"%></li>
-			  <li><= link_to "Update Points" , "#{house_points_path}/#{pos.position}"%></li>
-		  	</ul>
-		  </li>
-		< end%>
-		<li><= link_to "E Sheet", e_sheet_path%></li>
-		< if @me.brother?%>
+		<li><%= link_to "E Sheet", main_app.e_sheet_path%></li>
+<!--		< if @me.brother?%>
 		  <li><= link_to "Points Breakdown", house_points_path%></li>
 		< end %>
-		<li><= link_to "Summer Housing Applications", summer_housing_index_path%></li>
-        <!--<li><a href="#TODO">Calendar</a></li>-->
+		<li><= link_to "Summer Housing Applications", summer_housing_index_path%></li>-->
+        <li><a href="#TODO">Calendar</a></li>
 	  <% else %>
 		<%= render 'layouts/navbar/public'%>
 	  <% end %>
