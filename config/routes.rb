@@ -15,6 +15,7 @@ DKESite::Application.routes.draw do
     match '/kerberos', to: 'users#kerberos' , via: :post
     match '/filter', to: 'users#filter' , via: :post
   end
+  match '/users' , to: 'users#update_groups', via: :put
   resources :users
   
   scope module: 'chapter' do

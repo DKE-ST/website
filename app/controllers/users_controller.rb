@@ -32,6 +32,23 @@ class UsersController < AuthenticationController
     end
   end
   
+  def update_groups
+    groups = groups_params(params)
+    if groups.include? "users"
+      groups[:users].each do | user_id, tag|
+        if tag == "on" && User.exists?(user_id)
+          user = User.find(user_id)
+          user.group = groups[:primary]
+          user.save
+        end
+      end
+      flash[:success] = "Primary Groups successfully updated"
+    else
+      flash[:error] = "No users to update"
+    end
+    redirect_to users_path  
+  end
+  
   #######Adding a pledge class ###################
   
   def add_pledges
@@ -83,6 +100,10 @@ class UsersController < AuthenticationController
     else
       redirect_to redirect_path
     end
+  end
+  
+  def groups_params(params)
+    return params.require("group")
   end
  
   def filter_params(params)

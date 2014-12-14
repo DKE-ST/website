@@ -1,5 +1,6 @@
 <% @users.each do | user | %>
   <tr>
+  	<td><input type="checkbox" name="group[users][<%= user[:id]%>]"></td>
 	<td><%= user[:last_name]%></td>
     <td><%= user[:first_name]%></td>
     <td><%= user[:uname]%></td>

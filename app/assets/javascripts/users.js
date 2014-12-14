@@ -5,7 +5,8 @@
  * Event handler for when the filter button is clicked (index.html.erb)
  * --Makes AJAX call to filter users
  */
-$( document ).on( 'click', '.user_filter_btn',function() {
+$( document ).on( 'click', '.user_filter_btn',function(e) {
+	e.preventDefault();
 	var data = {group: $("#filter_group").val(),
 				year: $("#filter_class").val(),
 				house: $("#filter_house").val(),
@@ -43,7 +44,8 @@ $( document ).on( 'click', '.krb_chk',function() {
  * Event handler for removing users via AJAX call
  * --Used in index.html.erb & edit.html.erb
  */
-$( document ).on( 'click', '.usr_delete',function() {
+$( document ).on( 'click', '.usr_delete',function(e) {
+	e.preventDefault();
 	var id = this.id;
 	var element = this.parentElement.parentElement;
 	$('<div></div>').appendTo('body')
@@ -94,67 +96,6 @@ $( document ).on( 'click', '.usr_delete',function() {
             $(this).remove();
         }
     });
-});
-
-/**
- * Event handler for selecting brother info to associate with a user
- * --Used in edit.html.erb
- */
-$( document ).on( 'click', '.usr_sel_yr',function() {
-	var brothers = $("#year_" + this.id).val();
-	if (brothers == "new") {
-		var assoc_msg = "NOTE: You will have to associate the brother information with the username once the entry is created.";
-		$('<div></div>').appendTo('body')
-	    .html('<div><h6>Would you like to save any changes?</h6></div>')
-	    .dialog({
-	        modal: true,
-	        title: 'Delete message',
-	        zIndex: 10000,
-	        autoOpen: true,
-	        width: 'auto',
-	        resizable: false,
-	        buttons: {
-	            Yes: function () {
-	            	$(this).dialog("close");
-	            	form = $("form");
-	            	$.ajax({
-	            		url: form[0].action,
-	            		type: "POST",
-	            		data: form.serialize(),
-	            		success: function(data, textStatus, jqXHR) {
-	            			if (data.search(/User Management -/) > -1) {
-	            				window.document.write(data);
-	            				window.document.close();
-	            			} else {
-		            			alert("User Information Saved.<br>" + assoc_msg);
-		            			window.location.replace("/brothers/new");
-	            			}
-	            		}
-	            	});
-	            },
-	            No: function () {
-	            	$(this).dialog("close");
-	            	alert(assoc_msg);
-	                window.location.replace("/brothers/new");
-	            },
-	            Cancel: function () {
-	                $(this).dialog("close");
-	            }
-	        },
-	        close: function (event, ui) {
-	            $(this).remove();
-	        }
-	    });
-	} else {
-		brothers = jQuery.parseJSON(brothers);
-		var big_selector = $("#select_" + this.id);
-		big_selector.html("");
-		for (var i in brothers) {
-			big_selector.append(new Option(brothers[i][0], brothers[i][1]));
-		}
-		big_selector.removeClass("hidden");
-		$(".clear#" + this.id).removeClass("hidden");
-	}
 });
 
 /**

@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
       end
     end
     #If params includes brother 
-    unless self.brother_id == "new"
+    unless self.brother_id == "new" || self.brother_id.blank?
       begin
         bro_id = self.brother.id
       rescue
