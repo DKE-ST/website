@@ -40,4 +40,20 @@ module ApplicationHelper
     return out
   end
   
+  def gen_officer_links
+    out = "".html_safe
+    @me.positions.each do | pos |
+      if File.exists?("app/views/layouts/navbar/officer/_#{pos.name}.html.erb")
+        out += "<div class='accordion-group'><div class='accordion-heading'>".html_safe
+        out += "<a class='accordion-toggle' data-toggle='collapse' data-parent='#linkAccordian' href='#collapse".html_safe + pos.name
+        out += "'>".html_safe + pos.title + "</a></div>".html_safe
+        out += "<div id='collapse".html_safe + pos.name + "' class='accordion-body collapse'>".html_safe
+        out += "<div class='accordion-inner'><ul>".html_safe
+        out += render("layouts/navbar/officer/#{pos.name}").html_safe
+        out += "</ul></div></div></div>".html_safe
+      end
+    end
+    return out
+  end
+  
 end

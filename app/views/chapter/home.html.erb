@@ -1,0 +1,43 @@
+<div class="row">
+	<div class="span3">
+		<h3>Links</h3>
+		<div class="accordion" id="linkAccordian">
+		  <div class="accordion-group">
+		  	<div class="accordion-heading">
+		  	  <a class="accordion-toggle" data-toggle="collapse" data-parent="#linkAccordian" href="#collapseGen">
+		  	  	General
+		  	  </a>
+		  	</div>
+		  	<div id="collapseGen" class="accordion-body collapse in">
+		  	  <div class="accordion-inner">
+		  	  	<ul>
+		  	  	  <li><%= link_to "Edit Profile", "#{main_app.brothers_path}/#{@me.brother.id}/edit"%></li>
+		  	  	  <li><%= link_to "E Sheet", main_app.e_sheet_path%></li>
+		  	  	  <li><a href="#TODO">Calendar</a></li>
+		  	  	</ul>
+		  	  </div>
+		  	</div>
+		  </div>
+		  <%= gen_officer_links %>
+		</div>
+	</div>
+	<div class="span6 hidden-phone" align="center">
+		<%= image_tag("dke_crest.gif", :alt => "")%><br><br>
+		<h1 class="title">
+			&Delta;&epsilon;&lambda;&tau;&alpha; 
+			&Kappa;&alpha;&pi;&pi;&alpha; 
+			&Epsilon;&psi;&iota;&lambda;&omicron;&nu;
+			<br>
+			Delta Kappa Epsilon
+		</h1>
+		<h2 class="title">
+			&Sigma;&iota;&gamma;&mu;&alpha; 
+			&Tau;&alpha;&omicron;&upsilon;
+			<br>
+			Sigma Tau
+		</h2>
+	</div>
+	<div class="span3">
+		
+	</div>
+</div>
