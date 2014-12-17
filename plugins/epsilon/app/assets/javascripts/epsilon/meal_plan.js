@@ -10,7 +10,7 @@ $( document ).on( 'click', '.meal_plan_filter_btn',function() {
 				house: $("#filter_house").val(),
 				meal_plan: $("#filter_meal_plan").val()};
 	$.ajax({
-		url: '/meal_plan/filter',
+		url: this.id,
 		type: "POST",
 		data: data,
 		success: function(data, textStatus, jqXHR) {
@@ -25,7 +25,7 @@ $( document ).on( 'click', '.meal_plan_toggle',function() {
 	var cells = this.parentNode.parentNode.children;
 	var field = cells[cells.length-2];
 	$.ajax({
-		url: '/meal_plan/toggle',
+		url: this.id,
 		type: "POST",
 		data: data,
 		success: function(data, textStatus, jqXHR) {

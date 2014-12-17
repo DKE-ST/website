@@ -12,7 +12,7 @@ $( document ).on( 'click', '.user_filter_btn',function(e) {
 				house: $("#filter_house").val(),
 				admin: $("#filter_admin").val()};
 	$.ajax({
-		url: '/users/filter',
+		url: this.id,
 		type: "POST",
 		data: data,
 		success: function(data, textStatus, jqXHR) {

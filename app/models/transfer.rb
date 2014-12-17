@@ -12,6 +12,7 @@ class Transfer < ActiveRecord::Base
     Transfer.officers
     Transfer.residence
     Transfer.public_pages
+    Epsilon::ESheet.gen_template_schedule
     Transfer.bro_pics
     Transfer.room_pics
   end
