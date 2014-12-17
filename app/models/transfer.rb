@@ -3,7 +3,7 @@ end
 
 class Transfer < ActiveRecord::Base
   #This class was used for the orginal transfer from the old database format
-  establish_connection "old_site"
+  establish_connection "site_old"
   
   def self.transfer_all
     Transfer.personal
