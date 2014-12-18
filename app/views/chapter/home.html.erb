@@ -1,6 +1,33 @@
 <div class="row">
 	<div class="span3">
-		
+		<h3>Some Title</h3>
+		<div class="accordion" id="statusAccordian">
+		 <%if @me.brother.dke_info.meal_plan %>
+		  <div class="accordion-group">
+		  	<div class="accordion-heading">
+		  	  <a class="accordion-toggle" data-toggle="collapse" data-parent="#statusAccordian" href="#collapseGen">
+		  	  	<b>E's &nbsp;<%= @me.brother.dke_info.e_status%>/<%= Epsilon::ESheet.e_count%></b>
+		  	  </a>
+		  	</div>
+		  	<div id="collapseGen" class="accordion-body collapse">
+		  	  <div class="accordion-inner">
+		  	  	<ul>
+		  	  	  <% @me.brother.dke_info.e_served.order(date: :desc).each do | meal |%>
+		  	  	    <li><%= meal.date.strftime("%m/%e/%y")%>:
+		  	  	    <% if meal.e_type == "entry"%>
+		  	  	      <%= meal.comment%> --
+		  	  	    <% else %>
+		  	  	      <%= meal.e_type%> --
+		  	  	    <% end %>
+		  	  	    <%= meal.value%>
+		  	  	    </li>
+		  	  	  <% end %>
+		  	  	</ul>
+		  	  </div>
+		  	</div>
+		  </div>
+		 <% end %>
+		</div>
 	</div>
 	<div class="span6 hidden-phone" align="center">
 		<%= image_tag("dke_crest.gif", :alt => "")%><br><br>

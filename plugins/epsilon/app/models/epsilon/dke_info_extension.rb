@@ -2,6 +2,17 @@ User::Brother::DkeInfo.class_eval do
   #meal_plan tinyint(1)
   has_many :e_served, class_name: "Epsilon::ESheet"
   
+  def e_status
+    day = Date.current + 1
+    mon = day - day.days_to_week_start
+    tot = 0
+    self.e_served.where("date < ?", mon).each do | e |
+      puts e.value
+      tot += e.value
+    end
+    return tot
+  end
+  
   ################Static Methods ######################
   #Override of default find_by method to simplify querying a meal_plan_user by mit_id number
   def self.find_by(params)
