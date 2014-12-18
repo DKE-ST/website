@@ -8,7 +8,7 @@ class Epsilon::EpsilonController < AuthenticationController
       flash[:success] = "#{@element.e_type.humanize} Created"
       redirect_to epsilon_index_path
     else
-      @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+      @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
       if @element.e_type == "entry"
         render "new"
       else
@@ -32,12 +32,12 @@ class Epsilon::EpsilonController < AuthenticationController
   
   def new
     @element = Epsilon::ESheet.new(date: Date.current)
-    @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+    @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
   end
   
   def new_meal
     @element = Epsilon::ESheet.new(date: Date.current)
-    @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+    @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
   end
   
   def new_week
@@ -52,7 +52,7 @@ class Epsilon::EpsilonController < AuthenticationController
   
   def show
     @element = Epsilon::ESheet.find(params[:id])
-    @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+    @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
     case @element.e_type
     when "entry"
       render "edit_other"
@@ -69,7 +69,7 @@ class Epsilon::EpsilonController < AuthenticationController
       flash[:success] = "#{@element.e_type.humanize} Upddated"
       redirect_to epsilon_index_path
     else
-      @brothers = Epsilon::MealPlan.list_dropdown({"meal_plan" => true})
+      @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
       if @element.e_type == "entry"
         render "edit_other"
       else

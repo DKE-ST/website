@@ -113,7 +113,7 @@ class Epsilon::ESheet < ActiveRecord::Base
     day = Date.current + 1
     mon = day - day.days_to_week_start
     e_count = []
-    Epsilon::MealPlan.list({"meal_plan" => true}).each do | brother |
+    User::Brother::DkeInfo.list({"meal_plan" => true}).each do | brother |
       tot = 0
       self.where("dke_info_id = ? AND date < ?", brother[:id], mon).each do | e |
         puts e.value
