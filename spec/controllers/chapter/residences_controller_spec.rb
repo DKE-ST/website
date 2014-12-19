@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Chapter::ResidencesController, :type => :controller do
   before :all do
-    FactoryGirl.create(:user, uname: "simon", group: "dkeactive", chicken: "broporn")
+    FactoryGirl.create(:user, uname: "jayne", group: "dkeactive", chicken: "")
+    FactoryGirl.create(:user, uname: "simon", group: "dkeactive", chicken: "brochicken")
     user = FactoryGirl.create(:user, uname: "river", group: "dkeactive", chicken: "")
     FactoryGirl.create(:user_brother, user_id: user.id)
     FactoryGirl.create(:chapter_officer, name: "beta", dke_info_id: user.brother.dke_info.id)
@@ -34,7 +35,7 @@ RSpec.describe Chapter::ResidencesController, :type => :controller do
       response.should render_template :index
     end
     
-    it "redirects to home page if not broporn" do
+    it "redirects to home page if not brochicken" do
       request.session[:uname] = "river"
       get :index
       response.should redirect_to root_path
@@ -76,7 +77,7 @@ RSpec.describe Chapter::ResidencesController, :type => :controller do
     end
     
     it "should redirect to home page for anyone else" do
-      request.session[:uname] = "simon"
+      request.session[:uname] = "jayne"
       get :room_picks
       response.should redirect_to root_path
     end

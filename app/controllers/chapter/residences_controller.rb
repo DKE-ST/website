@@ -16,7 +16,7 @@ class Chapter::ResidencesController < AuthenticationController
   
   def mass_update
     Chapter::Residence.room_picks(params)
-    redirect_to residences_path
+    redirect_to root_path
   end
   
   def room_picks

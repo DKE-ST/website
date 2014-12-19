@@ -66,6 +66,7 @@ class Chapter::Residence < ActiveRecord::Base
   
   #Updates room occupants based on params
   def self.room_picks(params)
+    return false unless params.include? :chapter_residence
     params.require(:chapter_residence).each do | room_no, occupants |
       if self.exists?(room_no)
         room = self.find(room_no)

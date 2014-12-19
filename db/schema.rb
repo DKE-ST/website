@@ -112,9 +112,10 @@ ActiveRecord::Schema.define(version: 20140809152441) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "uname",      limit: 8,  null: false
+    t.string   "uname",      limit: 8,              null: false
+    t.integer  "status",                default: 0
     t.string   "mit_id",     limit: 9
-    t.string   "group",      limit: 9,  null: false
+    t.string   "group",      limit: 9,              null: false
     t.string   "chicken",    limit: 10
     t.datetime "created_at"
     t.datetime "updated_at"
