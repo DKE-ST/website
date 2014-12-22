@@ -12,6 +12,9 @@ end
 unless File.symlink?("../../app/assets/stylesheets/#{self.name}")
   File.symlink("../../../plugins/#{self.name}/app/assets/stylesheets/#{self.name}", "../../app/assets/stylesheets/#{self.name}")
 end
+unless File.symlink?("../../spec/plugins/#{self.name}")
+  File.symlink("../../../plugins/#{self.name}/spec", "../../spec/plugins/#{self.name}")
+end
 
 gem_group :development, :test do
   gem 'rspec-rails'
