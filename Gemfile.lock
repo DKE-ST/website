@@ -5,6 +5,13 @@ PATH
       mysql2
       rails (~> 4.0.5)
 
+PATH
+  remote: plugins/house_points
+  specs:
+    house_points (0.0.1)
+      mysql2
+      rails (~> 4.0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -190,6 +197,7 @@ DEPENDENCIES
   epsilon!
   factory_girl_rails
   faker
+  house_points!
   jbuilder (~> 1.2)
   jquery-keypad-rails
   jquery-rails

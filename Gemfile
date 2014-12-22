@@ -68,3 +68,4 @@ end
 ################ Plugins for Website ##############
 
 gem 'epsilon', path: 'plugins/epsilon'
+gem 'house_points', path: 'plugins/house_points'
