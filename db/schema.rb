@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809152441) do
+ActiveRecord::Schema.define(version: 20141012072105) do
 
   create_table "chapter_officers", force: true do |t|
     t.string   "name"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20140809152441) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "epsilon_e_sheets", force: true do |t|
+    t.integer  "dke_info_id"
+    t.date     "date"
+    t.string   "time",        limit: 8
+    t.string   "e_type",      limit: 8
+    t.float    "value"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_brother_dke_infos", force: true do |t|
     t.integer  "brother_id"
     t.text     "p_name"
@@ -69,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140809152441) do
     t.integer  "p_class"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "meal_plan",    default: false
   end
 
   create_table "user_brother_mit_infos", force: true do |t|

@@ -1,5 +1,13 @@
 == README
 
+---------------
+Adding a Plugin
+---------------
+
+1) cd plugins
+2) ./newPlugin.sh PLUGIN_NAME
+3) Add plugin to Gemfile (ex. gem "PLUGIN_NAME", path: 'PATH') 
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
