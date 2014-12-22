@@ -21,10 +21,9 @@ end
 
 inside("lib/#{self.name}") do
   run "tail -n 2 engine.rb >> end.rb"
-  File.open("engine.rb", "w+") do | f |
-    name = self.original_name.slice(0,1).capitalize + self.original_name.slice(1..-1)
-    f.write("module #{name}
-  class Engine < ::Rails::Engine\n")
+  File.open("engine.rb", "r+") do | f |
+    name = /module (.+)\n/.match(f.readline)[1]
+    f.readline
     f.write("    isolate_namespace #{name}\n\n")
     f.write("    config.generators do |g|
       g.test_framework :rspec, :fixture => false
