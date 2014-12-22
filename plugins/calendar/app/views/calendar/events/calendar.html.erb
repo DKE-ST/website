@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="span12">
+		<div id="calendar" class="cal"></div>
+	</div>
+</div>
+<script>
+	$(document).ready(function() {
+	    $('#calendar').fullCalendar({
+	        header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			eventLimit: true,
+			eventSources: [{url: '<%= main_app.events_path%>'}]
+	    })
+	});
+</script>
