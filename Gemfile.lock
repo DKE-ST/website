@@ -5,6 +5,7 @@ PATH
       fullcalendar-rails
       momentjs-rails
       mysql2
+      nokogiri
       rails (~> 4.0.5)
 
 PATH

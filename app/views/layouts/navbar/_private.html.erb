@@ -14,7 +14,7 @@
 		  <li><= link_to "Points Breakdown", house_points_path%></li>
 		< end %>
 		<li><= link_to "Summer Housing Applications", summer_housing_index_path%></li>-->
-        <li><a href="#TODO">Calendar</a></li>
+        <li><%= link_to "Calendar", main_app.calendar_path%></li>
 	  <% else %>
 		<%= render 'layouts/navbar/public'%>
 	  <% end %>
