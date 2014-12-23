@@ -66,6 +66,10 @@ end
 # gem 'debugger', group: [:development, :test]
 
 ################ Plugins for Website ##############
+gem 'momentjs-rails'
+gem 'fullcalendar-rails'
+gem 'nokogiri'
+gem 'calendar', path: 'plugins/calendar'
 
 gem 'epsilon', path: 'plugins/epsilon'
-gem 'house_points', path: 'plugins/house_points'
+#gem 'house_points', path: 'plugins/house_points'

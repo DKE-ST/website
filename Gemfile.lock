@@ -1,14 +1,16 @@
 PATH
-  remote: plugins/epsilon
+  remote: plugins/calendar
   specs:
-    epsilon (0.0.1)
+    calendar (0.0.1)
+      fullcalendar-rails
+      momentjs-rails
       mysql2
       rails (~> 4.0.5)
 
 PATH
-  remote: plugins/house_points
+  remote: plugins/epsilon
   specs:
-    house_points (0.0.1)
+    epsilon (0.0.1)
       mysql2
       rails (~> 4.0.5)
 
@@ -86,6 +88,9 @@ GEM
       i18n (~> 0.5)
     fast_gettext (0.9.0)
     fssm (0.2.10)
+    fullcalendar-rails (2.2.3.0)
+      jquery-rails (>= 3.1.1, < 5.0.0)
+      momentjs-rails (~> 2.8, >= 2.8.3)
     gettext (3.1.4)
       locale (>= 2.0.5)
       text
@@ -108,10 +113,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.5.3)
     minitest (4.7.5)
+    momentjs-rails (2.8.3)
+      railties (>= 3.1)
     multi_json (1.10.1)
     mysql2 (0.3.17)
     net-ldap (0.10.1)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
@@ -192,18 +202,21 @@ PLATFORMS
 DEPENDENCIES
   activeldap
   bootstrap-sass (~> 2.2.2)
+  calendar!
   chosen-rails
   ckeditor
   epsilon!
   factory_girl_rails
   faker
-  house_points!
+  fullcalendar-rails
   jbuilder (~> 1.2)
   jquery-keypad-rails
   jquery-rails
   jquery-ui-rails
+  momentjs-rails
   mysql2
   net-ldap
+  nokogiri
   paperclip
   rails (= 4.0.5)
   rspec-rails

@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "mysql2"
   
+  s.add_dependency 'nokogiri'
   s.add_dependency 'momentjs-rails'
   s.add_dependency 'fullcalendar-rails'
 end
