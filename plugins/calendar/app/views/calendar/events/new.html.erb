@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="span6 offset3">
+  	<h2>New Event</h2>
+  	<%= render_errors(@event)%>
+  	<%= form_for(@event, options={url: "#{main_app.events_path}#create"}) do |f|%>
+  	  Title: <%= f.text_field :title%><br>
+  	  Start: <%= f.text_field :start, class: "datetimepicker", value: formatDateTime(@event.start)%><br>
+  	  End: <%= f.text_field :end, class: "datetimepicker", value: formatDateTime(@event.end)%><br>
+  	  Description: <%= f.text_area :desc%><br>
+  	  <%= f.submit("Add Event", :class => "btn")%>
+  	<% end %>
+  </div>
+</div>
+<script>
+  $('.datetimepicker').datetimepicker({
+  	step: 15,
+  	formatTime: "g:i A",
+  	todayButton: true});
+</script>
