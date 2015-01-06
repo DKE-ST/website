@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012072105) do
+ActiveRecord::Schema.define(version: 20141223184518) do
+
+  create_table "calendar_events", force: true do |t|
+    t.string   "title"
+    t.text     "desc"
+    t.integer  "officer_id"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chapter_officers", force: true do |t|
     t.string   "name"
@@ -80,7 +90,7 @@ ActiveRecord::Schema.define(version: 20141012072105) do
     t.integer  "p_class"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "meal_plan",    default: false
+    t.boolean  "meal_plan",    default: false, null: false
   end
 
   create_table "user_brother_mit_infos", force: true do |t|
@@ -125,7 +135,7 @@ ActiveRecord::Schema.define(version: 20141012072105) do
 
   create_table "users", force: true do |t|
     t.string   "uname",      limit: 8,              null: false
-    t.integer  "status",                default: 0
+    t.integer  "status",                default: 0, null: false
     t.string   "mit_id",     limit: 9
     t.string   "group",      limit: 9,              null: false
     t.string   "chicken",    limit: 10

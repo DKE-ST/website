@@ -10,7 +10,8 @@ module Calendar
     end
     
     def index
-      
+      @dke_events = Calendar::Event.get_events(event_filter_params(params))
+      render json: @dke_events
     end
     
    private

@@ -4,9 +4,8 @@ class CreateCalendarEvents < ActiveRecord::Migration
       t.string :title
       t.text :desc
       t.belongs_to :officer
-      t.date :date
-      t.time :start
-      t.time :end
+      t.datetime :start
+      t.datetime :end
       t.timestamps
     end
   end
