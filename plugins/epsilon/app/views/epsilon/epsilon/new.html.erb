@@ -9,7 +9,7 @@
   	<%= form_for(@element, options={url: "#{main_app.epsilon_index_path}#create"}) do |f|%>
   	  <%= f.hidden_field :e_type, value: "entry"%>
   	  <%= f.hidden_field :time, value: Time.current.getlocal.strftime("%l:%M%p")%>
-  	  Date: <%= f.text_field :date%><br>
+  	  Date: <%= f.text_field :date, class: "datepicker"%><br>
   	  Server: <%= f.select( :dke_info_id, options_for_select(@brothers, selected: @element.dke_info_id))%><br>
   	  E Value: <%= f.text_field :value%><br>
   	  Comment: <%= f.text_area :comment%><br>
@@ -17,3 +17,6 @@
   	<% end %>
   </div>
 </div>
+<script>
+ 	$( ".datepicker" ).datepicker();
+</script>

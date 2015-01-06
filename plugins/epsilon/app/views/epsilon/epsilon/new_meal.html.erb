@@ -7,7 +7,7 @@
   <div class="span12">
   	<%= render_errors(@element)%>
   	<%= form_for(@element, options={url: "#{main_app.epsilon_index_path}#create"}) do |f|%>
-  	  Date: <%= f.text_field :date%><br>
+  	  Date: <%= f.text_field :date, class: "datepicker"%><br>
   	  Meal Type: <%= f.select( :e_type, options_for_select([["Lunch","lunch"],["Dinner","dinner"]], selected: @element.e_type))%><br>
   	  Time: <%= f.text_field :time%><br>
   	  Server: <%= f.select( :dke_info_id, options_for_select(@brothers, selected: @element.dke_info_id))%><br>
@@ -17,3 +17,6 @@
   	<% end %>
   </div>
 </div>
+<script>
+ 	$( ".datepicker" ).datepicker();
+</script>

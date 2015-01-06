@@ -32,3 +32,10 @@ function ready() {
 }
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+$.datepicker.setDefaults({
+	changeMonth: true,
+	changeYear: true,
+	showButtonPanel: true,
+	dateFormat: "yy-mm-dd"
+});
