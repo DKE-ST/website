@@ -33,6 +33,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-keypad-rails'
+gem 'jquery-datetimepicker-rails'
 gem 'chosen-rails'
 
 

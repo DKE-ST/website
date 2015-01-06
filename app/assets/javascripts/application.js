@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require jquery.plugin
 //= require jquery.keypad
+//= require jquery.datetimepicker
 //= require chosen-jquery
 //= require turbolinks
 //= require bootstrap

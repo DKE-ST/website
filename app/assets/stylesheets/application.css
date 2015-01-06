@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery-ui
  *= require jquery.keypad
+ *= require jquery.datetimepicker
  *= require chosen
  *= require_tree .
  */
