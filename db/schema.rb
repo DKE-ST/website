@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 20141223184518) do
   create_table "calendar_events", force: true do |t|
     t.string   "title"
     t.text     "desc"
-    t.integer  "officer_id"
+    t.integer  "brother_id"
+    t.string   "color"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at"

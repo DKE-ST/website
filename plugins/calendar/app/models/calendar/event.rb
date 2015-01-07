@@ -1,12 +1,15 @@
 class Calendar::Event < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  belongs_to :officer, class_name: "Chapter::Officer"
+  belongs_to :brother, class_name: "User::Brother"
   #id  int(11)
   #title   varchar(255)
   validates :title, presence: true
   #desc  text
   validates :desc, presence: true
-  #officer_id  int(11)
+  #brother_id  int(11)
+  validates :brother_id, presence: true
+  #color   varchar(255)
+  validates :color, presence: true
   #start   datetime
   validates :start, presence: true
   #end   datetime
@@ -25,7 +28,7 @@ class Calendar::Event < ActiveRecord::Base
         allDay: false,
         start: event.start,
         end: event.end,
-        color: "red",
+        color: event.color,
         url: "#{event.events_path}/#{event.id}"
       }
     end
@@ -35,7 +38,9 @@ class Calendar::Event < ActiveRecord::Base
  private
  
   def start_before_end
-    errors.add(:end, " must be after Start") if self.end <= self.start
+    unless self.end.nil? || self.start.nil?
+      errors.add(:end, " must be after Start") if self.end <= self.start
+    end
   end
   
 end

@@ -1,6 +1,9 @@
 <div class="row">
   <div class="span6 offset3">
-  	<h2><%= @event.title%></h2>
+  	<h2>
+  	  <%= @event.title%>
+  	  <%= link_to "Edit Event", main_app.edit_event_path, class: "btn pull-right" if @me.is_brother?(@event.brother_id)%>
+  	</h2>
   	<b>Starts:</b> <%= @event.start.strftime("%l:%M%p %B %e, %Y")%><br>
   	<b>End:</b> <%= @event.end.strftime("%l:%M%p %B %e, %Y")%><br><br>
   	-<%= @event.desc%>

@@ -6,6 +6,7 @@
   	  Title: <%= f.text_field :title%><br>
   	  Start: <%= f.text_field :start, class: "datetimepicker", value: formatDateTime(@event.start)%><br>
   	  End: <%= f.text_field :end, class: "datetimepicker", value: formatDateTime(@event.end)%><br>
+  	  Color: <%= f.color_field :color%><br>
   	  Description: <%= f.text_area :desc%><br>
   	  <%= f.submit("Add Event", :class => "btn")%>
   	<% end %>
