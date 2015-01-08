@@ -9,7 +9,6 @@ module HousePoints
 
     config.to_prepare do
       Dir.glob(HousePoints::Engine.root + 'app/*/house_points/*_extension.rb').each do |c|
-        puts c
         require_dependency(c)
       end
     end
