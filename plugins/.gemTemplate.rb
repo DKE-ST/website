@@ -33,7 +33,7 @@ inside("lib/#{self.name}") do
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end\n\n")
     f.write("    config.to_prepare do
-      Dir.glob(Epsilon::Engine.root + 'app/*/#{self.name}/*_extension.rb').each do |c|
+      Dir.glob(#{name}::Engine.root + 'app/*/#{self.name}/*_extension.rb').each do |c|
         require_dependency(c)
       end
     end\n\n") 

@@ -8,7 +8,8 @@ module HousePoints
     end
 
     config.to_prepare do
-      Dir.glob(Epsilon::Engine.root + 'app/*/house_points/*_extension.rb').each do |c|
+      Dir.glob(HousePoints::Engine.root + 'app/*/house_points/*_extension.rb').each do |c|
+        puts c
         require_dependency(c)
       end
     end

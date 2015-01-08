@@ -8,7 +8,7 @@ module Calendar
     end
 
     config.to_prepare do
-      Dir.glob(Epsilon::Engine.root + 'app/*/calendar/*_extension.rb').each do |c|
+      Dir.glob(Calendar::Engine.root + 'app/*/calendar/*_extension.rb').each do |c|
         require_dependency(c)
       end
     end
