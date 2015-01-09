@@ -5,6 +5,7 @@ class CreateChapterOfficers < ActiveRecord::Migration
       t.text :title
       t.integer :position
       t.belongs_to :dke_info
+      t.boolean :assign_points
       t.datetime :start_date
       t.boolean :disp
       t.text :contact

@@ -63,7 +63,7 @@ class Chapter::OfficersController < AuthenticationController
  private
  
  def officer_params(params)
-   return params.require(:chapter_officer).permit(:name, :title, :dke_info_id, :disp, :contact, :email)
+   return params.require(:chapter_officer).permit(:name, :title, :dke_info_id, :assign_points, :disp, :contact, :email)
  end
  
   def update_contacts_params(params)

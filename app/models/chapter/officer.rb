@@ -9,6 +9,7 @@ class Chapter::Officer < ActiveRecord::Base
   #position  int(11)
   validates :position, presence: true
   #dke_info_id   int(11)
+  #assign_points  tinyint(1) 
   #start_date  datetime 
   #disp  tinyint(1) 
   #contact   text
