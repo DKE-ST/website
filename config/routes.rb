@@ -34,7 +34,10 @@ DKESite::Application.routes.draw do
       match '/mass_update', to: 'officers#mass_update', via: :post
       match '/update_contacts', to: 'officers#update_contacts', via: :post
     end
-    resources :officers
+    
+    resources :officers do
+      resources :house_points, shallow: true
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

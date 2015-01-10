@@ -1,0 +1,16 @@
+<% provide(:title , "New Point Entry")%>
+
+<div class="row">
+	<div class="span6 offset3" align="left" style="font-weight:bold;">
+	  <h2>New Point Entry -- <%= @officer.title%></h2>
+	  <%= render_errors(@entry)%>
+	  <%= form_for(@entry, options={url: "#{officer_house_points_path}#create"}) do |pos| %>
+		
+		Name: <%= pos.select( :dke_info_id, grouped_options_for_select(@brothers, selected: @entry.dke_info_id), {}, class:"chosen-select")%><br><br>
+		Points: <%= pos.text_field :value %><br>
+		Comment/Reason: <%= pos.text_field :comment %><br>
+		
+		<%= pos.submit "Create Entry", class: "btn btn-primary" %>
+	  <%end%>
+	</div>
+</div>

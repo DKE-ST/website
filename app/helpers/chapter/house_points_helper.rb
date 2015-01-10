@@ -1,0 +1,2 @@
+module Chapter::HousePointsHelper
+end

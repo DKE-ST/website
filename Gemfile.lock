@@ -15,13 +15,6 @@ PATH
       mysql2
       rails (~> 4.0.5)
 
-PATH
-  remote: plugins/house_points
-  specs:
-    house_points (0.0.1)
-      mysql2
-      rails (~> 4.0.5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -218,7 +211,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fullcalendar-rails
-  house_points!
   jbuilder (~> 1.2)
   jquery-datetimepicker-rails
   jquery-keypad-rails
