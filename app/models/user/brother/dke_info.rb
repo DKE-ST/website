@@ -3,7 +3,7 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   belongs_to :big, class_name: "User::Brother::DkeInfo"
   has_many :littles, class_name: "User::Brother::DkeInfo", foreign_key: "big_id"
   belongs_to :residence, class_name: "Chapter::Residence"
-  has_many :point_entries, class_name: "Chapter::HousePoint"
+  has_many :house_points, class_name: "Chapter::HousePoint"
   has_many :positions, class_name: "Chapter::Officer"
   #id  int(11)
   #brother_id  int(11)
@@ -41,6 +41,10 @@ class User::Brother::DkeInfo < ActiveRecord::Base
       self.little_ids = littles
     end
   end
+  
+  ###############House Point Methods#################
+  
+  
   
   #################Static Methods####################
   

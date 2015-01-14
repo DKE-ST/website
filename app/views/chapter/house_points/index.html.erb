@@ -2,7 +2,39 @@
 
 <div class="row">
 	<div class="span12" align="left" style="font-weight:bold;">
-	  <h2>House Points -- <%= @officer.title%></h2>
-	  
+	  <h2>
+	  	House Points -- <%= @officer.title%>
+	  	<%= link_to "Add Point Entry", new_officer_house_point_path, class: "btn pull-right"%>
+	  </h2>
 	</div>
+	<table class="table table-striped">
+	  <tr>
+	  	<th>Name</th>
+	  	<th>Year</th>
+	  	<th>Total</th>
+	  	<th>Entries</th>
+	  </tr>
+	  <% @officer_breakdown.each do |brother, entries| %>
+	   <tr>
+	  	<td><h4><%= "#{brother[:first]} #{brother[:last]}"%></h4></td>
+	  	<td><%= brother[:year]%></td>
+	  	<td><%= brother_total(entries)%></td>
+	  	<td>
+	  	  <table class="table table-condensed">
+	  	  	<% entries.each do | entry |%>
+	  	  	  <tr>
+	  	  	  	<td><%= entry.value%></td>
+	  	  	  	<td><%= entry.comment%></td>
+	  	  	  	<td>
+	  	  	  	  <%= link_to "Edit", edit_house_point_path(entry.id), class: "btn"%>
+	  	  	  	  <%= link_to("Delete" , house_point_path(entry.id) , method: :delete, 
+						data: { confirm: delete_text(brother, entry) }, :class => "btn")%>
+	  	  	  	</td>
+	  	  	  </tr>
+	  	  	<% end %>
+	  	  </table>
+	  	</td>
+	   </tr>
+	  <% end %>
+	</table>
 </div>

@@ -44,6 +44,23 @@ class Chapter::Officer < ActiveRecord::Base
     end
   end
   
+  ########################House Point Methods#########################
+  
+  def point_entry_breakdown
+    officer_breakdown = Hash.new
+    self.point_entries.each do | entry |
+      year = entry.dke_info.brother.mit_info.year
+      last_name = entry.dke_info.brother.last_name
+      first_name = entry.dke_info.brother.first_name
+      if officer_breakdown.include?({year: year, first: first_name, last: last_name})
+        officer_breakdown[{year: year, first: first_name, last: last_name}] << entry
+      else
+        officer_breakdown[{year: year, first: first_name, last: last_name}] = [entry]
+      end
+    end
+    return officer_breakdown.sort_by {|a, b| [a[:year], a[:last]]}
+  end
+  
   ##########################Static Methods############################
   
   #generates list of contact information based on the value of disp
