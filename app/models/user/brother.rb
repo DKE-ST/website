@@ -117,12 +117,13 @@ class User::Brother < ActiveRecord::Base
   end
   
   #Static method to return name to dke_info map for use in brother creation/editing
-  def self.name_dke_info_id_map(years_back = Float::INFINITY)
+  def self.name_dke_info_id_map(only_active_house = false)
     brothers = Hash.new
     brothers[""] = [["","null"]]
     class_map = User::Brother::MitInfo.select("year, brother_id").order("year DESC")
     class_map.each do | bro |
-      if bro.year > User::Brother::DkeInfo.cur_p_class - years_back
+      filter = bro.year > User::Brother::DkeInfo.cur_p_class - 4 || bro.brother.dke_info.residence
+      if filter || !only_active_house
         brothers[bro.year] = Array.new([]) if !brothers.include? bro.year
         brothers[bro.year] << [bro.brother.full_name, bro.brother.dke_info.id]
       end

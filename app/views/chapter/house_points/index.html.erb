@@ -4,7 +4,7 @@
 	<div class="span12" align="left" style="font-weight:bold;">
 	  <h2>
 	  	House Points -- <%= @officer.title%>
-	  	<%= link_to "Add Point Entry", new_officer_house_point_path, class: "btn pull-right"%>
+	  	<%= link_to("Add Point Entry", new_officer_house_point_path, class: "btn pull-right") if @me.officer?(@officer.name)%>
 	  </h2>
 	</div>
 	<table class="table table-striped">
@@ -26,9 +26,11 @@
 	  	  	  	<td><%= entry.value%></td>
 	  	  	  	<td><%= entry.comment%></td>
 	  	  	  	<td>
+	  	  	  	 <% if @me.officer?(@officer.name) %>
 	  	  	  	  <%= link_to "Edit", edit_house_point_path(entry.id), class: "btn"%>
 	  	  	  	  <%= link_to("Delete" , house_point_path(entry.id) , method: :delete, 
 						data: { confirm: delete_text(brother, entry) }, :class => "btn")%>
+				 <% end %>
 	  	  	  	</td>
 	  	  	  </tr>
 	  	  	<% end %>

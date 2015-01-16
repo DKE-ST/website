@@ -1,0 +1,29 @@
+<% provide(:title , "House Points Breakdown")%>
+
+<div class="row">
+	<div class="span12" align="left" style="font-weight:bold;">
+	  <h2>
+	  	House Points Breakdown
+	  </h2>
+	</div>
+	<table class="table table-striped table-condensed">
+	  <tr>
+	  	<th>Name</th>
+	  	<th>Year</th>
+	  	<th>Total</th>
+	  	<% @officers.each do | off |%>
+	  	  <th><%= link_to off.name.humanize, officer_house_points_path(off.id)%></th>
+	  	<% end %>
+	  </tr>
+	  <% @breakdown.each do | brother | %>
+	   <tr>
+	  	<td><%= brother[:name]%></td>
+	  	<td><%= brother[:year]%></td>
+	  	<td><%= brother[:total]%></td>
+	  	<% @officers.each do | off |%>
+	  	  <td><%= brother[:points][off.name]%></td>
+	  	<% end %>
+	   </tr>
+	  <% end %>
+	</table>
+</div>

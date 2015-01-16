@@ -44,6 +44,17 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   
   ###############House Point Methods#################
   
+  def house_point_total_breakdown
+    breakdown = Hash.new
+    Chapter::Officer.where(assign_points: true).each do | officer |
+      breakdown[officer.name] = 0
+    end
+    self.house_points.each do | entry |
+      breakdown[entry.officer.name] += entry.value
+    end
+    return breakdown
+  end
+  
   def house_point_total
     total = 100
     self.house_points.each do | entry |

@@ -35,6 +35,7 @@ DKESite::Application.routes.draw do
       match '/update_contacts', to: 'officers#update_contacts', via: :post
     end
     
+    match '/point_breakdown', to: 'house_points#full_breakdown', via: :get
     resources :officers do
       resources :house_points, shallow: true
     end
