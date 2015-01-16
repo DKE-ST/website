@@ -11,7 +11,7 @@
 		<%= gen_officer_submenus%>
 		<li><%= link_to "E Sheet", main_app.e_sheet_path%></li>
 		<% if @me.group? "dkebro"%>
-		  <li><%= link_to "Points Breakdown", point_breakdown_path%></li>
+		  <li><%= link_to "Points Breakdown", main_app.point_breakdown_path%></li>
 		<% end %>
 		<!--<li><= link_to "Summer Housing Applications", summer_housing_index_path%></li>-->
         <li><%= link_to "Calendar", main_app.calendar_path%></li>

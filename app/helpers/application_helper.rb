@@ -27,6 +27,11 @@ module ApplicationHelper
     end
   end
   
+  def gen_point_url(name)
+    off = Chapter::Officer.find_by(name: name)
+    return main_app.officer_house_points_path(off)
+  end
+  
   def gen_officer_submenus
     out = "".html_safe
     @me.positions.each do | pos |
