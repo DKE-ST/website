@@ -44,7 +44,13 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   
   ###############House Point Methods#################
   
-  
+  def house_point_total
+    total = 100
+    self.house_points.each do | entry |
+      total += entry.value
+    end
+    return total
+  end
   
   #################Static Methods####################
   
