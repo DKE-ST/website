@@ -2,14 +2,39 @@
 	<div class="span3">
 		<h3>Some Title</h3>
 		<div class="accordion" id="statusAccordian">
+		 <%if @me.brother.dke_info.has_house_points? %>
+		  <div class="accordion-group">
+		  	<div class="accordion-heading">
+		  	  <a class="accordion-toggle" data-toggle="collapse" data-parent="#statusAccordian" href="#collapseHP">
+		  	  	<b>House Points &nbsp;<%= @me.brother.dke_info.house_point_total%></b>
+		  	  </a>
+		  	</div>
+		  	<div id="collapseHP" class="accordion-body collapse">
+		  	  <div class="accordion-inner">
+		  	   <% @me.brother.dke_info.house_point_breakdown.each do | pos, entries |%>
+		  	    <% if entries.length > 0 %>
+		  	  	 <u><b><%= pos.humanize%></b></u><br>
+		  	  	 <ul>
+		  	  	  <% entries.each do | entry |%>
+		  	  	   <li>
+		  	  	    <%= entry.value%>: <%= entry.comment%>
+		  	  	   </li>
+		  	  	  <% end%>
+		  	  	 </ul>
+		  	    <% end %>
+		  	   <% end %>
+		  	  </div>
+		  	</div>
+		  </div>
+		 <% end %>
 		 <%if @me.brother.dke_info.meal_plan %>
 		  <div class="accordion-group">
 		  	<div class="accordion-heading">
-		  	  <a class="accordion-toggle" data-toggle="collapse" data-parent="#statusAccordian" href="#collapseGen">
+		  	  <a class="accordion-toggle" data-toggle="collapse" data-parent="#statusAccordian" href="#collapseE">
 		  	  	<b>E's &nbsp;<%= @me.brother.dke_info.e_status%>/<%= Epsilon::ESheet.e_count%></b>
 		  	  </a>
 		  	</div>
-		  	<div id="collapseGen" class="accordion-body collapse">
+		  	<div id="collapseE" class="accordion-body collapse">
 		  	  <div class="accordion-inner">
 		  	  	<ul>
 		  	  	  <% @me.brother.dke_info.e_served.order(date: :desc).each do | meal |%>
