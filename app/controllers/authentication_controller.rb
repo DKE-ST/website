@@ -4,7 +4,7 @@ class AuthenticationController < ApplicationController
  private
   
   def holds?(positions)
-    auth = @me.admin?("brochicken")
+    auth = false
     positions.each do | pos |
       auth = true if @me.officer?(pos)
     end
