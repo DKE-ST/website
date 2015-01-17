@@ -1,6 +1,9 @@
 class UsersController < AuthenticationController
   before_action :brochicken_permissions
   
+  skip_before_action :brochicken_permissions, only: [:ch_passwd, :set_passwd]
+  skip_before_action :checks, only: [:set_passwd]
+  
   def create
     @user = User.new(params)
     if @user.valid?
@@ -47,6 +50,23 @@ class UsersController < AuthenticationController
       flash[:error] = "No users to update"
     end
     redirect_to users_path  
+  end
+  
+  ##############Change Password############
+  
+  def ch_passwd
+    
+  end
+  
+  def set_passwd
+    error = @me.shadow.ch_passwd(params[:password1], params[:password2])
+    if error != 0
+      @me.errors.add(:password, error)
+      render "ch_passwd"
+    else
+      flash[:success] = "Password successfully updated"
+      redirect_to main_app.root_path
+    end
   end
   
   #######Adding a pledge class ###################

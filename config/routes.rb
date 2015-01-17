@@ -7,6 +7,10 @@ DKESite::Application.routes.draw do
   match '/success' , to: 'application#success' , via: :get
   match '/loggedout' , to: 'application#loggedout' , via: :get
   
+  #Changing Password paths
+  match 'ch_passwd' , to: 'users#ch_passwd' , via: :get
+  match 'ch_passwd' , to: 'users#set_passwd' , via: :patch
+  
   #User Management Paths
   scope '/users' do
     match '/add_pledges' , to: 'users#add_pledges' , via: :get

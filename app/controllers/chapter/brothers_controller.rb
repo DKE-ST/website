@@ -1,6 +1,6 @@
 class Chapter::BrothersController < AuthenticationController
   skip_before_action :logged_in, only: [:index, :show]
-  skip_before_action :check_status, only: [:update]
+  skip_before_action :checks, only: [:update]
   before_action :correct_user, only: [:edit, :update]
   before_action :broporn_permissions, only: [:destroy]
   

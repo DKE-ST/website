@@ -1,0 +1,14 @@
+<% provide(:title , "Change Password")%>
+
+
+<div class="row">
+	<div class="span12" align="left">
+		<h1>Change Password</h1>
+		<%= render_errors(@me)%>
+		<%= form_for(@me, options={url: ch_passwd_path, method: :patch}) do %>
+			<p>Password:<br><%= password_field_tag :password1%>
+			<br>Re-enter Password:<br><%= password_field_tag :password2%>
+			<br><%= submit_tag "Change Password", class: "btn btn-primary" %>
+		<%end%>
+	</div>
+</div>
