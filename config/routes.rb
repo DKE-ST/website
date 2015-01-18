@@ -46,6 +46,10 @@ DKESite::Application.routes.draw do
     end
   end
   
+  namespace :backup do
+    resources :house_point_tables
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

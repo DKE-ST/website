@@ -18,4 +18,17 @@ class Backup::HousePointTable < Backup
     return true
   end
   
+  def restore
+    Backup::HousePointTable.clear_and_backup
+    Backup::HousePoint.set_table_id(self.id)
+    Backup::HousePoint.restore_all
+    self.destroy
+  end
+  
+  def destroy
+    Backup::HousePoint.set_table_id(self.id)
+    Backup::HousePoint.destroy_all
+    super
+  end
+  
 end
