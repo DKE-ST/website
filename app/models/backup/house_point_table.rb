@@ -6,6 +6,7 @@ class Backup::HousePointTable < Backup
   #updated_at  datetime
   
   def self.clear_and_backup
+    return false if Chapter::HousePoint.count == 0
     entry = self.new
     entry.start_date = Chapter::HousePoint.minimum("created_at")
     entry.end_date = Chapter::HousePoint.maximum("updated_at")
@@ -14,6 +15,7 @@ class Backup::HousePointTable < Backup
     origin = "#{Rails.configuration.database_configuration[Rails.env]['database']}.#{Chapter::HousePoint.table_name}"
     Backup::HousePoint.connection.execute("CREATE TABLE #{table_name} AS SELECT * from #{origin}")
     Chapter::HousePoint.destroy_all
+    return true
   end
   
 end

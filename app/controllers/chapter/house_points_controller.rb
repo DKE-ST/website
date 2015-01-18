@@ -2,6 +2,16 @@ class Chapter::HousePointsController < AuthenticationController
   before_action :assigns_points, only: :index
   before_action :officer_permission, only: [:new, :create]
   before_action :entry_permission, only: [:edit, :update, :destroy]
+  before_action ->{holds?(["beta"])}, only: :backup_and_clear
+  
+  def backup_and_clear
+    if Backup::HousePointTable.clear_and_backup
+      flash[:success] = "House Points entries cleared"
+    else
+      flash[:error] = "House Points table is currently empty"
+    end
+    redirect_to officer_house_points_path(1)
+  end
   
   def full_breakdown
     @officers = Chapter::Officer.where(assign_points: true).order(position: :asc)

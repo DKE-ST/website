@@ -40,6 +40,7 @@ DKESite::Application.routes.draw do
     end
     
     match '/point_breakdown', to: 'house_points#full_breakdown', via: :get
+    match 'house_points/reset', to: 'house_points#backup_and_clear', via: :post
     resources :officers do
       resources :house_points, shallow: true
     end
