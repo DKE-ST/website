@@ -13,8 +13,10 @@ class Transfer < ActiveRecord::Base
     Transfer.residence
     Transfer.public_pages
     Epsilon::ESheet.gen_template_schedule
-    Transfer.bro_pics
-    Transfer.room_pics
+    Transfer.e_sheets
+    Transfer.house_points
+    #Transfer.bro_pics
+    #Transfer.room_pics
   end
   
   def self.personal
@@ -28,6 +30,7 @@ class Transfer < ActiveRecord::Base
         x.group = 'dkealum'
       end
       if x.uname == "wallace4"
+        x.status = 1
         x.chicken = "brochicken"
       end
       x.save
@@ -68,7 +71,12 @@ class Transfer < ActiveRecord::Base
   def self.officers
     self.table_name = "positions"
     Transfer.select("*").each do | pos |
-      attrs = {name: pos.position, title: pos.name, start_date: pos.start_date, contact: pos.contact, disp: pos.disp}
+      attrs = {name: pos.position,
+               title: pos.name,
+               start_date: pos.start_date,
+               contact: pos.contact,
+               assign_points: pos.award_points,
+               disp: pos.disp}
       position = Chapter::Officer.new(attrs)
       brother = User.find_by(uname: pos.uname).brother.dke_info
       position.dke_info = brother
@@ -104,6 +112,37 @@ class Transfer < ActiveRecord::Base
         page.officer = Chapter::Officer.find_by(name: "broweb")
       end
       page.save
+    end
+  end
+  
+  def self.house_points
+    self.table_name = "house_points"
+    Transfer.select("*").each do | entry |
+      attrs = {date: entry.date,
+               value: entry.value,
+               comment: entry.comment}
+      point = Chapter::HousePoint.new(attrs)
+      if User.exists?(uname: entry.uname)
+        point.dke_info = User.find_by(uname: entry.uname).brother.dke_info
+        point.officer = Chapter::Officer.find_by(name: entry.position)
+        point.save
+      end
+    end
+  end
+  
+  def self.e_sheets
+    self.table_name = "e_sheets"
+    Transfer.select("*").each do | entry |
+      attrs = {e_type: entry.e_type,
+               date: entry.date,
+               time: entry.time,
+               value: entry.value,
+               comment: entry.comment}
+      meal = Epsilon::ESheet.new(attrs)
+      unless entry.uname.blank?
+        meal.dke_info = User.find_by(uname: entry.uname).brother.dke_info
+      end
+      meal.save
     end
   end
   

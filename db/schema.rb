@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150110014829) do
     t.text     "title"
     t.integer  "position"
     t.integer  "dke_info_id"
-    t.boolean  "assign_points", default: false, null: false
+    t.boolean  "assign_points"
     t.datetime "start_date"
     t.boolean  "disp"
     t.text     "contact"
@@ -92,16 +92,6 @@ ActiveRecord::Schema.define(version: 20150110014829) do
     t.datetime "updated_at"
   end
 
-  create_table "house_points_entries", force: true do |t|
-    t.integer  "dke_info_id"
-    t.integer  "officer_id"
-    t.float    "value"
-    t.string   "comment"
-    t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "user_brother_dke_infos", force: true do |t|
     t.integer  "brother_id"
     t.text     "p_name"
@@ -112,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150110014829) do
     t.integer  "p_class"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "meal_plan",    default: false, null: false
+    t.boolean  "meal_plan",    default: false
   end
 
   create_table "user_brother_mit_infos", force: true do |t|
@@ -157,7 +147,7 @@ ActiveRecord::Schema.define(version: 20150110014829) do
 
   create_table "users", force: true do |t|
     t.string   "uname",      limit: 8,              null: false
-    t.integer  "status",                default: 0, null: false
+    t.integer  "status",                default: 0
     t.string   "mit_id",     limit: 9
     t.string   "group",      limit: 9,              null: false
     t.string   "chicken",    limit: 10
