@@ -1,4 +1,5 @@
 class Backup::HousePointTablesController < AuthenticationController
+  before_action ->{holds?(["beta"])}
   
   def index
     @tables = Backup::HousePointTable.select("*")
