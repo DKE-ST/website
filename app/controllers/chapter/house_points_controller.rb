@@ -23,7 +23,7 @@ class Chapter::HousePointsController < AuthenticationController
           yr = dke_info.p_class - User::Brother::DkeInfo.cur_p_class + 3
           @breakdown << {id: dke_info.brother_id,
                         name: brother[0],
-                        year: dke_info.p_class,
+                        year: dke_info.brother.mit_info.year,
                         y_order: (yr > 0)?(4 - yr):yr,
                         total: dke_info.house_point_total,
                         points: dke_info.house_point_total_breakdown}
