@@ -1,6 +1,7 @@
 class Backup::HousePoint < Backup
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   belongs_to :officer, class_name: "Chapter::Officer"
+  self.primary_key = "id"
   #id  int(11)
   #dke_info_id   int(11)
   #officer_id  int(11)
@@ -55,6 +56,22 @@ class Backup::HousePoint < Backup
   end
   
   def self.restore_all
+    #Check for unknown officers
+    self.select("officer_id").distinct.each do |off|
+      if off.officer.nil?
+        self.where(officer_id: off.officer_id).each do | entry |
+          entry.destroy
+        end
+      end
+    end
+    #Check for unknown brothers
+    self.select("dke_info_id").distinct.each do | bro |
+      if bro.dke_info.nil?
+        self.where(dke_info_id: bro.dke_info_id).each do | entry |
+          entry.destroy
+        end
+      end
+    end
     origin = "#{Rails.configuration.database_configuration[Rails.env]['database']}.#{Chapter::HousePoint.table_name}"
     Backup::HousePoint.connection.execute("INSERT INTO #{origin} SELECT * from #{self.table_name}")
   end
