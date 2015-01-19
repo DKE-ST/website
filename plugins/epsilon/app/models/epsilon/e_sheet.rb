@@ -79,6 +79,10 @@ class Epsilon::ESheet < ActiveRecord::Base
     return [-900,300]
   end
   
+  def self.destroy_all
+    self.connection.execute("TRUNCATE #{self.table_name}")
+  end
+  
   def self.sign_up(params, user)
     meal = self.find(params[:id])
     if params[:action]=="add"

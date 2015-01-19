@@ -12,4 +12,8 @@ class Chapter::HousePoint < ActiveRecord::Base
   validates :comment, presence: true
   #date  date
   
+  def self.destroy_all
+    self.connection.execute("TRUNCATE #{self.table_name}")
+  end
+  
 end
