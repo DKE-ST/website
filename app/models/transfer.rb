@@ -140,7 +140,10 @@ class Transfer < ActiveRecord::Base
                comment: entry.comment}
       meal = Epsilon::ESheet.new(attrs)
       unless entry.uname.blank?
-        meal.dke_info = User.find_by(uname: entry.uname).brother.dke_info
+        bro = User.find_by(uname: entry.uname).brother.dke_info
+        bro.meal_plan = 1
+        bro.save
+        meal.dke_info = bro
       end
       meal.save
     end
