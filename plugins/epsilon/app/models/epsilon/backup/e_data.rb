@@ -25,17 +25,12 @@ class Epsilon::Backup::EData < Backup
       if per.dke_info
         breakdown[per.dke_info_id] = {name: per.dke_info.brother.full_name,
                                       year: per.dke_info.brother.mit_info.year,
-                                      points: Hash.new}
+                                      points: []}
       end
     end
-    self.select("*").order(officer_id: :asc).each do | entry |
+    self.select("*").order(date: :asc).each do | entry |
       if breakdown.include? entry.dke_info_id
-        officer = self.officers[entry.officer_id]
-        if breakdown[entry.dke_info_id][:points].include? officer
-          breakdown[entry.dke_info_id][:points][officer] << entry
-        else
-          breakdown[entry.dke_info_id][:points][officer] = [entry]
-        end
+        breakdown[entry.dke_info_id][:points] << entry
       end
     end
     out = []

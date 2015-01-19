@@ -6,7 +6,7 @@ class Epsilon::Backup::EDataTable < Backup
   #updated_at  datetime
   
   def self.clear_and_backup
-    return false if Epsilon::ESheet.count == 0
+    return false if Epsilon::ESheet.select("dke_info_id").distinct.count == 0
     entry = self.new
     entry.start_date = Epsilon::ESheet.minimum("created_at")
     entry.end_date = Epsilon::ESheet.maximum("updated_at")
@@ -30,7 +30,7 @@ class Epsilon::Backup::EDataTable < Backup
     Epsilon::Backup::EData.set_table_id(self.id)
     Epsilon::Backup::EData.destroy_all
     super
-    return ture
+    return true
   end
   
 end

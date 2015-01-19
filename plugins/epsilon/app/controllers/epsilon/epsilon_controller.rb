@@ -1,6 +1,16 @@
 class Epsilon::EpsilonController < AuthenticationController
   before_action ->{holds?(["epsilon"])}
   
+  def backup_and_clear
+    if Epsilon::Backup::EDataTable.clear_and_backup
+      Epsilon::ESheet.gen_template_schedule
+      flash[:success] = "New semester started"
+    else
+      flash[:error] = "No data to backup"
+    end
+    redirect_to epsilon_index_path
+  end
+  
   def create
     @element = Epsilon::ESheet.new(e_sheet_params(params))
     if @element.valid?
