@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="span3">
+	  <% unless @me.uname == "dkealum" %>
 		<h3>Some Title</h3>
 		<div class="accordion" id="statusAccordian">
 		 <%if @me.brother.dke_info.has_house_points? %>
@@ -53,6 +54,7 @@
 		  </div>
 		 <% end %>
 		</div>
+	  <% end %>
 	</div>
 	<div class="span6 hidden-phone" align="center">
 		<%= image_tag("dke_crest.gif", :alt => "")%><br><br>
@@ -82,7 +84,9 @@
 		  	<div id="collapseGen" class="accordion-body collapse in">
 		  	  <div class="accordion-inner">
 		  	  	<ul>
+		  	  	 <% unless @me.uname == "dkealum"%>
 		  	  	  <li><%= link_to "Edit Profile", "#{main_app.brothers_path}/#{@me.brother.id}/edit"%></li>
+		  	  	 <% end %>
 		  	  	  <li><%= link_to "E Sheet", main_app.e_sheet_path%></li>
 		  	  	  <% if @me.group? "dkebro"%>
 				    <li><%= link_to "Points Breakdown", point_breakdown_path%></li>

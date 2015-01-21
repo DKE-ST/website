@@ -34,7 +34,7 @@
 						<ul class="dropdown-menu">
 							<%= render 'layouts/navbar/brochicken' if @me.admin?("brochicken")%>
 							<%= render 'layouts/navbar/broporn' if @me.admin?("broporn")%>
-							<li><%= link_to "Change Password", main_app.ch_passwd_path if @me.mit_ldap.nil?%></li>
+							<li><%= link_to "Change Password", main_app.ch_passwd_path if @me.mit_ldap.nil? && @me.uname != "dkealum"%></li>
 							<li><%= link_to 'Logout' , "#{main_app.root_url}logout"%></li>
 						</ul>
 					</li>

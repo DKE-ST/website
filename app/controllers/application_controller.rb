@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   end
   
   def check_passwd_age
-    if @me.shadow
+    if @me.shadow && @me.uname != "dkealum"
       if Date.today - @me.shadow.updated_at.to_date > 365
         session[:redirect] = true
         flash[:notice] = "<h4>It has been over a year since you previously set you password.  Please set a new different password.</h4>".html_safe
