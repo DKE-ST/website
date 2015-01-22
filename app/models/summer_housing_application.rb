@@ -36,4 +36,8 @@ class SummerHousingApplication < ActiveRecord::Base
   #finding: string
   #lived_before: boolean
   #car: boolean
+  
+  def self.display?
+    return Chapter::PublicPage.find_by(pname: "summer_housing").title == "true"
+  end
 end

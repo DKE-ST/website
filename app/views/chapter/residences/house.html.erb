@@ -10,5 +10,8 @@
 		<p>Work began on the DKE house in the fall of 1924. &nbsp; After 2 years of construction, the Sigma Tau chapter
 			took posession of the new chapter house on Memorial Drive, where we have been located since.  </p>
 		<br><h2><%= link_to "Tour the House", tour_path%></h2>
+		<% if SummerHousingApplication.display?%>
+		  <br><h2><%= link_to "Summer Housing at DKE", summer_housing_path%></h2>
+		<% end %>
 	</div>
 </div>

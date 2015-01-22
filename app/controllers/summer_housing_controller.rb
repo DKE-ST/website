@@ -1,6 +1,11 @@
 class SummerHousingController < AuthenticationController
   skip_before_action :logged_in, only: [:summer_housing, :new, :create]
-  before_action -> {holds?(["s_psi"])}, only: [:destroy, :update]
+  before_action :display?, only: [:new, :create]
+  before_action -> {holds?(["s_psi"])}, only: [:destroy, :update, :summer_housing_edit]
+  
+  def summer_housing_edit
+    @content = Chapter::PublicPage.find_by(pname: "summer_housing")
+  end
   
   def summer_housing
     @content = Chapter::PublicPage.find_by(pname: "summer_housing")
@@ -53,6 +58,13 @@ class SummerHousingController < AuthenticationController
   
   def summer_app_filter(params)
     return params.require(:summer_housing_application).permit(:first_name, :last_name, :sex, :age, :email, :phone, :school, :year, :dke_brother, :q1, :q2, :q3, :q4, :q5, :q6, :q7, :q8, :room_pref, :finding, :lived_before, :car)
+  end
+  
+  def display?
+    unless SummerHousingApplication.display?
+      flash[:warning] = "Summer Housing Application is not currently open"
+      redirect_to root_url
+    end
   end
   
 end

@@ -4,8 +4,8 @@
 	<div class="span12" align="left">
 	  <%= form_for(@content, options={url: "#{public_page_path}#update"}) do | f |%>
 	    <b>Title:</b><%= f.text_field :title%>
-	  	<%= f.cktext_area :content%>
-	  	<%= f.submit("Update Page", :class => "btn btn-primary")%>
+	  	<%= f.cktext_area :content%><br>
+	  	<%= f.submit("Update Page", :class => "btn btn-primary pull-right")%>
 	  <% end %>
 	</div>	
 </div>

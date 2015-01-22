@@ -1,0 +1,13 @@
+<% provide(:title , @content.title)%>
+
+<div class="row house">
+	<div class="span12" align="left">
+	  <%= form_for(@content, options={url: "#{public_page_path(@content.pname)}#update"}) do | f |%>
+	  	<%= f.cktext_area :content%><br>
+	  	<b>Display public links:</b>
+	  	<%= f.radio_button( :title, "true", checked: @content.title == "true")%>&nbsp;Yes
+		<%= f.radio_button( :title, "false", checked: @content.title == "false")%>&nbsp;No<br>
+	  	<%= f.submit("Update Page", :class => "btn btn-primary pull-right")%>
+	  <% end %>
+	</div>	
+</div>
