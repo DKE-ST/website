@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150118212327) do
+ActiveRecord::Schema.define(version: 20150122042547) do
 
   create_table "calendar_events", force: true do |t|
     t.string   "title"
@@ -88,6 +88,32 @@ ActiveRecord::Schema.define(version: 20150118212327) do
     t.string   "e_type",      limit: 8
     t.float    "value"
     t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "summer_housing_applications", force: true do |t|
+    t.text     "first_name"
+    t.text     "last_name"
+    t.string   "sex"
+    t.integer  "age"
+    t.string   "email"
+    t.integer  "phone"
+    t.string   "school"
+    t.string   "dke_brother"
+    t.text     "q1"
+    t.text     "q2"
+    t.text     "q3"
+    t.text     "q4"
+    t.text     "q5"
+    t.text     "q6"
+    t.text     "q7"
+    t.text     "q8"
+    t.integer  "room_pref"
+    t.string   "finding"
+    t.boolean  "lived_before"
+    t.boolean  "car"
+    t.boolean  "contacted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
