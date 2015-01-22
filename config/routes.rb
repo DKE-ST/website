@@ -22,6 +22,9 @@ DKESite::Application.routes.draw do
   match '/users' , to: 'users#update_groups', via: :put
   resources :users
   
+  match 'summer_housing', to: 'summer_housing#summer_housing', via: :get
+  resources :summer_housing, path: "/summer_housing_application", as: "summer_apps"
+  
   scope module: 'chapter' do
     resources :brothers
     

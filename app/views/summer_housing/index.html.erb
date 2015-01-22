@@ -1,0 +1,41 @@
+<% provide(:title , "Summer Housing Applicants")%>
+
+<div class="row">
+	<div class="span12" align="left">
+		<h3>Summer Housing Applicants</h3>
+		<table class="table table-striped table-hover">
+			<thead><tr>
+				<th><%= link_to("Date Applied" , summer_apps_path(sorting: "created_at",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
+				<th><%= link_to("Name" , summer_apps_path(sorting: "last_name",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
+				<th><%= link_to("School" , summer_apps_path(sorting: "school",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
+				<th>Email</th>
+				<th>Brother</th>
+				<% if @me.officer?("s_psi")%>
+					<th><%= link_to("Emailed" , summer_apps_path(sorting: "contacted",asc: (params[:asc]=="ASC")?"DESC":"ASC"))%></th>
+					<th></th>
+				<%end%>
+			</tr></thead>
+			<tbody>
+			  <% @boarders.each do | boarder |%>
+				<tr>
+				  <td><%= boarder.created_at.strftime("%B %e, %Y")%></td>
+				  <td><%= link_to "#{boarder.first_name} #{boarder.last_name}", summer_app_path(boarder.id)%></td>
+				  <td><%= boarder.school%></td>
+				  <td><%= boarder.email%></td>
+				  <td><%= boarder.dke_brother%></td>
+				  <% if @me.officer?("s_psi")%>
+				  	<td style="text-align:center">
+				  	  <%= (boarder.contacted)?"Yes":"No"%>&nbsp;
+				  	  <%= link_to("Toggle Emailed" , summer_app_path(boarder.id) , method: :patch, :class => "btn")%>
+				  	</td>
+				  	<td>
+				      <%= link_to("Delete" , summer_app_path(boarder.id) , method: :delete, 
+				  	  data: { confirm: "Are you sure you would like to delete this application?" }, :class => "btn")%>
+				  	</td>
+				  <% end %>
+				</tr>
+			  <% end%>
+			</tbody>
+		</table>
+	</div>
+</div>

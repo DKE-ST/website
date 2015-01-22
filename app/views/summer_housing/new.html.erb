@@ -1,0 +1,115 @@
+<% provide(:title , 'Summer Housing Applicaiton')%>
+
+<div class="row">
+	<div class="span12" align="left">
+		<h3>Summer Housing Form</h3>
+	</div>
+	<div class="span6 visible-phone">
+		<%= image_tag("dke_house.jpg", :alt => "")%>
+	</div>
+	<div class="span6" align="left">
+		If you are interested in Summer housing at Delta Kappa Epsilon, please provide answers to all questions.
+		One or two sentences is fine.<br>&nbsp;
+		
+		<%= form_for(@boarder, options={url: summer_apps_path}) do | app |%>
+		<%= render_errors(@boarder)%>
+		<table class="table table-striped table-hover">
+		  <tr>
+  		    <td class="span3">First name:</td>
+  		    <td><%= app.text_field :first_name%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>Last name:</td>
+  		    <td><%= app.text_field :last_name%></td>
+  		  </tr>
+  		  <tr>
+  		  	<td>Sex:</td>
+  		  	<td>
+  		  		<%= app.radio_button( :sex, "male", checked: @boarder.sex == "male")%>&nbsp;Male
+		  		<%= app.radio_button( :sex, "female", checked: @boarder.sex == "female")%>&nbsp;Female
+  		  	</td>
+  		  </tr>
+  		  <tr>
+  		  	<td>Age:</td>
+  		  	<td><%= app.number_field :age%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>Email:</td>
+  		    <td><%= app.text_field :email%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>Phone:</td>
+  		    <td><%= app.text_field :phone%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>School:</td>
+  		    <td><%= app.text_field :school%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>School Year:</td>
+  		    <td><%= app.select( :year, options_for_select([["Freshmen",1],["Sophomore",2],["Junior",3],["Senior",4],["Other",0]], selected: @boarder.year))%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>If you are a brother of DKE, please select your chapter:</td>
+  		    <td><%= app.select( :dke_brother, options_for_select(@chapter_roles, selected: @boarder.dke_brother))%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>What kind of work are you going to be doing this summer, and where is the company located?</td>
+  		    <td><%= app.text_area :q1%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>How would you describe your social preferences? e.g. outgoing, laid back, etc</td>
+  		    <td><%= app.text_area :q2%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>How do you normally spend your weekdays?</td>
+  		    <td><%= app.text_area :q3%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>What's something you would normally do on a weekend?</td>
+  		    <td><%= app.text_area :q4%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>How would you describe your ideal place to live for the summer?</td>
+  		    <td><%= app.text_area :q5%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>Do you know anyone else who is living or is considering living at DKE this summer?
+  		    	If so, who are they, and would you like to live in the same room with them?</td>
+  		    <td><%= app.text_area :q6%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>If you have stayed in a fraternity over the summer before, at which one(s) have you stayed?</td>
+  		    <td><%= app.text_area :q7%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>If there is anything else you would like us to know about you, please put it here.</td>
+  		    <td><%= app.text_area :q8%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>What is your room size preference?</td>
+  		    <td><%= app.select( :room_pref, options_for_select([["Double",2],["Triple",3],["Quad",4]], selected: @boarder.room_pref))%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>How did you find out about housing at DKE?</td>
+  		    <td><%= app.select( :finding, options_for_select(["Friend","Email","IFC Website","Web Search","Other"], selected: @boarder.finding))%></td>
+  		  </tr>
+  		  <tr>
+  		    <td>Have you lived at DKE before?</td>
+  		    <td><%= app.select( :lived_before, options_for_select([["No",false],["Yes",true]], selected: @boarder.lived_before))%></td>
+  		  </tr>
+		  <tr>
+  		    <td>Will you have a car this summer?</td>
+  		    <td><%= app.select( :car, options_for_select([["No",false],["Yes",true]], selected: @boarder.car))%></td>
+  		  </tr>
+  		  <tr>
+  		  	<td></td>
+  		  	<td><%= app.submit "Submit", class: "btn btn-primary" %></td>
+  		  </tr>
+		</table>
+		<% end%>
+	</div>
+	<div class="span6 hidden-phone">
+		<%= image_tag("dke_house.jpg", :alt => "")%>
+	</div>
+</div>

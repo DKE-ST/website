@@ -6,8 +6,9 @@ class CreateSummerHousingApplications < ActiveRecord::Migration
       t.string :sex
       t.integer :age
       t.string :email
-      t.integer :phone
+      t.string :phone
       t.string :school
+      t.integer :year
       t.string :dke_brother
       t.text :q1
       t.text :q2
