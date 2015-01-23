@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-module Epsilon
-  RSpec.describe Backup::EDataTablesController, :type => :controller do
+RSpec.describe Epsilon::Backup::EDataTablesController, :type => :controller do
 
-  end
 end
