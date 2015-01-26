@@ -3,10 +3,7 @@
 	<head>
 	  <title><%= gen_title("E Sheet")%></title>
 	  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-	  <%= javascript_include_tag "jquery", "data-turbolinks-track" => true %>
-	  <%= javascript_include_tag "jquery.plugin", "data-turbolinks-track" => true %>
-	  <%= javascript_include_tag "jquery.keypad", "data-turbolinks-track" => true %>
-	  <%= javascript_include_tag "epsilon/e_sheets", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	  <%= csrf_meta_tags %>
 	  <%= render 'layouts/shim' %>
 	</head>
