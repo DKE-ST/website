@@ -21,7 +21,7 @@ class Epsilon::ESheetsController < AuthenticationController
   end
   
   def public_sign_up
-    user = User.find_by(mit_id: params[:mit_id])
+    user = User::Brother::MitInfo.find_by(mit_id: params[:mit_id]).brother.user
     if params[:mit_id].nil? || user.nil?
       flash[:error] = "Invalid ID number"
     else
