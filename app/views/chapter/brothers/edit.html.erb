@@ -2,7 +2,7 @@
 
 <div class="row me">
 	<div class="span4">
-		<%= image_tag(@brother.pic_path(root_path))%>
+		<%= image_tag(@brother.pic_path(root_path), class: "pic")%>
 		<h2 class="visible-phone"><%= @brother.full_name%></h2>
     </div>
     <div class="span8 hidden-phone" align="left">

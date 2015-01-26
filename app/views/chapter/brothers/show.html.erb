@@ -2,7 +2,7 @@
 
 <div class="row me">
 	<div class="span4">
-		<%= image_tag(@brother.pic_path(root_path))%>
+		<%= image_tag(@brother.pic_path(root_path), class: "pic")%>
 		<span class="visible-phone">
 			<h2><%= @brother.full_name%></h2>
 			<%= link_to("Edit" , "#{brothers_path}/#{@brother.id}/edit" , :class => "btn btn-primary pull-right") if @me.is_brother?(@brother.id)%>
