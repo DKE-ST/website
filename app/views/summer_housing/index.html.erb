@@ -24,11 +24,11 @@
 				  <td><%= boarder.email%></td>
 				  <td><%= boarder.dke_brother%></td>
 				  <% if @me.officer?("s_psi")%>
-				  	<td style="text-align:center">
-				  	  <%= (boarder.contacted)?"Yes":"No"%>&nbsp;
-				  	  <%= link_to("Toggle Emailed" , summer_app_path(boarder.id) , method: :patch, :class => "btn")%>
+				  	<td id="contact_status" style="text-align:center">
+				  	  <%= (boarder.contacted)?"Yes":"No"%>
 				  	</td>
 				  	<td>
+				  	  <%= button_tag("Toggle Emailed", class: "contact_toggle btn" , id: summer_app_path(boarder.id))%>
 				      <%= link_to("Delete" , summer_app_path(boarder.id) , method: :delete, 
 				  	  data: { confirm: "Are you sure you would like to delete this application?" }, :class => "btn")%>
 				  	</td>

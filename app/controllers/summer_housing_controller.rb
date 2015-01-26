@@ -50,8 +50,9 @@ class SummerHousingController < AuthenticationController
     @boarder = SummerHousingApplication.find(params[:id])
     @boarder.contacted = !@boarder.contacted
     @boarder.save
-    flash[:success] = "Boarder had been updated."
-    redirect_to summer_apps_path
+    #flash[:success] = "Boarder had been updated."
+    #redirect_to summer_apps_path
+    render text: (@boarder.contacted)?"Yes":"No"
   end
   
  private
