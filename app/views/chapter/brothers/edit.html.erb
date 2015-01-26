@@ -32,8 +32,8 @@
   			<div>First Name: <%= f.text_field :first_name %></div>
   			<div>Last Name: <%= f.text_field :last_name %></div>
   			<div>Hometown: <%= f.text_field :hometown %></div>
-  			<div>Phone Number: <%= f.text_field :phone %></div>
-  			<div>Email Address: <%= f.text_field :email %></div>			
+  			<div>Phone Number: <%= f.text_field :phone, placeholder:"For brothers only"%></div>
+  			<div>Email Address: <%= f.text_field :email, placeholder:"For brothers only"%></div>
 		    <div>Favorite Quote: <%= f.text_field :quote %></div>
 		    <div>Bio: <%= f.text_area :bio %></div>
   		</div>
@@ -42,6 +42,7 @@
       		<%= fields_for("user_brother[mit_info]", @brother.mit_info) do |f_mit|%>
       		<%= render_errors(@brother.mit_info)%>
       		<div>Class of: <%= f_mit.text_field :year%></div>
+      		<div>MIT ID: <%= f_mit.text_field :mit_id, placeholder:"For internal use only"%></div>
        		<div>Majors: <%= f_mit.text_field :majors%></div>
        		<div>Minors: <%= f_mit.text_field :minors%></div>
        		<div>Concentration: <%= f_mit.text_field :concentration%></div>

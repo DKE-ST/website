@@ -2,6 +2,8 @@ class User::Brother::MitInfo < ActiveRecord::Base
   belongs_to :brother
   #id  int(11)
   #brother_id  int(11)
+  #mit_id  varchar(9)
+  validates :mit_id, uniqueness: true, allow_blank: true, length: {maximum: 9}, format: {with: /\A\d*\z/}
   #majors  text
   #minors  text
   #concentration   text

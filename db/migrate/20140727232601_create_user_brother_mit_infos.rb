@@ -2,6 +2,7 @@ class CreateUserBrotherMitInfos < ActiveRecord::Migration
   def change
     create_table :user_brother_mit_infos do |t|
       t.belongs_to :brother
+      t.string :mit_id, limit: 9
       t.text :majors
       t.text :minors
       t.text :concentration

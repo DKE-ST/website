@@ -3,7 +3,6 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :uname, limit: 8, null: false
       t.integer :status, default: 0
-      t.string :mit_id, limit: 9
       t.string :group, limit: 9, null: false
       t.string :chicken, limit: 10
       t.timestamps

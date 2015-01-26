@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20150122042547) do
 
   create_table "user_brother_mit_infos", force: true do |t|
     t.integer  "brother_id"
+    t.string   "mit_id",     limit: 9
     t.text     "majors"
     t.text     "minors"
     t.text     "concentration"
@@ -175,7 +176,6 @@ ActiveRecord::Schema.define(version: 20150122042547) do
   create_table "users", force: true do |t|
     t.string   "uname",      limit: 8,              null: false
     t.integer  "status",                default: 0
-    t.string   "mit_id",     limit: 9
     t.string   "group",      limit: 9,              null: false
     t.string   "chicken",    limit: 10
     t.datetime "created_at"

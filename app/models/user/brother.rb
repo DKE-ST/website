@@ -159,8 +159,9 @@ class User::Brother < ActiveRecord::Base
   
   #Only allows valid mit_info parameters through
   def mit_info_params(params)
-    return params.require(:user_brother).require(:mit_info).permit(:year, :majors, :minors, :concentration, :extracurriculars,
-                                                                   :interests, :urops, :internships, :fav_classes)
+    return params.require(:user_brother).require(:mit_info).permit(:year, :mit_id, :majors, :minors, :concentration,
+                                                                   :extracurriculars, :interests, :urops,
+                                                                   :internships, :fav_classes)
   end
   
   #Only allows valid dke_info parameters through
