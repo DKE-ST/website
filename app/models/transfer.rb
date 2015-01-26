@@ -15,8 +15,8 @@ class Transfer < ActiveRecord::Base
     Epsilon::ESheet.gen_template_schedule
     Transfer.e_sheets
     Transfer.house_points
-    #Transfer.bro_pics
-    #Transfer.room_pics
+    Transfer.bro_pics
+    Transfer.room_pics
   end
   
   def self.personal
