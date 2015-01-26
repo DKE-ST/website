@@ -42,7 +42,7 @@ class CurrentUser < User
   #Returns whether user holds position
   def officer?(title)
     return false if self.brother.nil?
-    #return true if self.admin?("brochicken")
+    return true if self.admin?("brochicken")
     self.brother.dke_info.positions.each do | pos |
       return true if pos.name == title
     end
@@ -51,7 +51,7 @@ class CurrentUser < User
   
   #Returns list of positions held by user
   def positions
-    #return Chapter::Officer.select("*") if self.admin?("brochicken")
+    return Chapter::Officer.select("*") if self.admin?("brochicken")
     begin
       return self.brother.dke_info.positions
     rescue
