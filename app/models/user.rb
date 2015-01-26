@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
         if self.shadow.nil?  #if shadow is nil, create instance of model
           self.add_passwd(self.password)
         else
-          self.shadow.ch_passwd(self.password)
+          self.shadow.ch_passwd(self.password, self.password)
         end
       end
     end
