@@ -84,7 +84,7 @@ class User::Brother < ActiveRecord::Base
     elsif File.exists?("public#{path}.jpg") || write
       return path + ".jpg"
     else
-      return "#{root_path}assets/brothers_img/no_pic.jpg"
+      return "brothers_img/no_pic.jpg"
     end
   end
   
