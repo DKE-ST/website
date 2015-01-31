@@ -48,6 +48,11 @@ DKESite::Application.routes.draw do
     resources :officers do
       resources :house_points, shallow: true
     end
+    
+    #Bibles Controller
+    match 'add_bible' , to: 'bibles#add_bible' , via: :get
+    match 'add_bible' , to: 'bibles#new_bible' , via: :post
+    match 'upload_bible' , to: 'bibles#upload_bible' , via: :post
   end
   
   namespace :backup do
