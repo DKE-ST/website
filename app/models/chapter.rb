@@ -9,8 +9,8 @@ module Chapter
     roles = wikipg.css('table').css('tr')
     roles.each do | chapter |
       info = chapter.text.split("\n")
-      if info[3] == "Yes"
-        chapters << "#{info[1]} - #{info[0]}"
+      if info[4] == "Yes"
+        chapters << "#{info[2]} - #{info[1]}"
       end
     end
     return chapters
