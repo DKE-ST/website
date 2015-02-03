@@ -28,11 +28,11 @@ class Chapter::BiblesController < AuthenticationController
  private
  
  def new_bible_params
-   return params.require(:bible).permit(:class_num,:year,:semester)
+   return params.require(:chapter_bible).permit(:class_num,:year,:semester)
  end
  
  def uploaded_file
-   return params.require(:bible).permit(:material)
+   return params.require(:chapter_bible).permit(:material)
  end
   
 end
