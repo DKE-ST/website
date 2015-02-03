@@ -30,7 +30,7 @@ class Chapter::Bible
       return false
     else
       
-      Dir.chdir(Bible.tmp_loc)
+      Dir.chdir(self.tmp_loc)
       `mkdir "#{self.class_num}"` unless File.directory?(self.class_num)
       Dir.chdir(self.class_num)
       
