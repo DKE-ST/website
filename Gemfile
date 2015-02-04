@@ -73,3 +73,4 @@ gem 'nokogiri'
 
 gem 'calendar', path: 'plugins/calendar'
 gem 'epsilon', path: 'plugins/epsilon'
+gem 'server_mgt' , path: 'plugins/server_mgt'

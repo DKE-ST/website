@@ -15,6 +15,13 @@ PATH
       mysql2
       rails (~> 4.0.5)
 
+PATH
+  remote: plugins/server_mgt
+  specs:
+    server_mgt (0.0.1)
+      mysql2
+      rails (~> 4.0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -225,5 +232,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.2)
   sdoc
+  server_mgt!
   turbolinks
   uglifier (>= 1.3.0)
