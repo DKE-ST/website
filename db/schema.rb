@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20150122042547) do
 
   create_table "user_brother_mit_infos", force: true do |t|
     t.integer  "brother_id"
-    t.string   "mit_id",     limit: 9
+    t.string   "mit_id",           limit: 9
     t.text     "majors"
     t.text     "minors"
     t.text     "concentration"
@@ -182,7 +182,6 @@ ActiveRecord::Schema.define(version: 20150122042547) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["mit_id"], name: "index_users_on_mit_id", unique: true, using: :btree
   add_index "users", ["uname"], name: "index_users_on_uname", unique: true, using: :btree
 
 end
