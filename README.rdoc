@@ -1,4 +1,15 @@
 == README
+---------------
+Installing Locally
+---------------
+1)$ git clone REPOSITORY_URL 
+2)$ cd website/config
+3)$ mv database.yml.tmp database.yml
+4)Make sure you have mysql installed and configured
+5)Enter your mysql username and password into all 5 locations in database.yml
+6)$ bundle install
+
+
 
 ---------------
 Adding a Plugin

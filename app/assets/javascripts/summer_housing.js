@@ -3,12 +3,13 @@
 
 $( document ).on( 'click', '.contact_toggle',function() {
 	//var data = {id: this.value};
+	var contactStatus = this.parentElement.previousElementSibling;
 	$.ajax({
 		url: this.id,
 		type: "PUT",
 		//data: data,
 		success: function(result, textStatus, jqXHR) {
-			$("#contact_status").html(result);
+			contactStatus.innerHTML = result;
 		}
 	});
 });
