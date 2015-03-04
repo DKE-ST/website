@@ -15,7 +15,8 @@ module ApplicationHelper
   
   #Returns page title based on user's login status and parameter page_title
   def gen_title(page_title)
-    if @me.nil?
+    puts @me.valid_user?
+    if !@me.valid_user?
       site_title="Delta Kappa Epsilon - Sigma Tau"
     else
       site_title="DKE Server"
