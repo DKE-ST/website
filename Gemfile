@@ -73,3 +73,4 @@ gem 'nokogiri'
 
 gem 'calendar', path: 'plugins/calendar'
 gem 'epsilon', path: 'plugins/epsilon'
+gem 'survey_poll' , path: 'plugins/survey_poll'
