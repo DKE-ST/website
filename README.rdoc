@@ -2,12 +2,12 @@
 ---------------
 Installing Locally
 ---------------
-1.<tt>$ git clone REPOSITORY_URL</tt>
-2.<tt>$ cd website/config</tt>
-3.<tt>$ mv database.yml.tmp database.yml</tt>
-4.Make sure you have mysql installed and configured
-5.Enter your mysql username and password into all 5 locations in database.yml
-6.<tt>$ bundle install</tt>
+1. <tt>$ git clone REPOSITORY_URL</tt>
+2. <tt>$ cd website/config</tt>
+3. <tt>$ mv database.yml.tmp database.yml</tt>
+4. Make sure you have mysql installed and configured
+5. Enter your mysql username and password into all 5 locations in database.yml
+6. <tt>$ bundle install</tt>
 
 
 
@@ -15,8 +15,8 @@ Installing Locally
 Adding a Plugin
 ---------------
 
-1.<tt>$ cd plugins</tt>
-2.<tt>$ ./newPlugin.sh PLUGIN_NAME</tt>
+1. <tt>$ cd plugins</tt>
+2. <tt>$ ./newPlugin.sh PLUGIN_NAME</tt>
 3. Add plugin to Gemfile (ex. gem "PLUGIN_NAME", path: 'PATH') 
 
 This README would normally document whatever steps are necessary to get the
