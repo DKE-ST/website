@@ -1,0 +1,17 @@
+<% provide(:title , "Surveys")%>
+
+<div class="row">
+  <div class="span6 offset3" align="left">
+  	<h3>Surveys</h3>
+	<table class="table">
+	  <tbody>
+	   <% @surveys.each do | survey |%>
+		<tr>
+		  <td><%= link_to survey.title, main_app.survey_path(survey.id)%></td>
+		  <td><%= survey.description%></td>
+		</tr>
+	   <% end%>
+	  </tbody>
+	</table>
+  </div>
+</div>

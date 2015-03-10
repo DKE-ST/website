@@ -1,0 +1,17 @@
+<% provide(:title , "Survey - #{@survey.title}")%>
+
+<div class="row">
+ <div class="span12">
+ 	<h2><%= @survey.title%></h2>
+ </div>
+ <%= form_tag(main_app.survey_path, method: "PUT") do%>
+  <% @survey.questions.order(position: :asc).each do | question |%>
+  <div class="span10 offset1" align="left">
+  	<%= render partial: "survey_poll/questions/#{question.qtype}", locals: {question: question}%>
+  </div>
+  <% end %>
+  <div class="span4 offset8">
+    <%= submit_tag "Submit", class: "btn btn-primary"%>
+  </div>
+ <% end %>
+</div>

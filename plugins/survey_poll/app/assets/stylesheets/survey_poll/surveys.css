@@ -1,0 +1,16 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.rank {
+	width: 38px;
+}
+
+input, textarea {
+	width: 80%;
+}
+
+label {
+	display: inline-block;
+}
