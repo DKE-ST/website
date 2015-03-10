@@ -1,5 +1,5 @@
 <h4><%= question.question%></h4>
 <% JSON.load(question.option).each do | opt |%>
-  <%= number_field_tag("#{question.id}[#{opt}]", nil, class: "rank")%>
-  <%= label_tag("#{question.id}_#{opt}", opt)%><br>
+  <%= number_field_tag("questions[#{question.id}][#{opt}]", nil, class: "rank")%>
+  <%= label_tag("questions_#{question.id}_#{opt}", opt)%><br>
 <% end %>

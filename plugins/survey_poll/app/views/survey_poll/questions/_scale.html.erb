@@ -1,5 +1,5 @@
 <h4><%= question.question%></h4>
 <% for opt in question.option.to_i..question.option2.to_i%>
-  <%= radio_button_tag(question.id, opt)%>
-  <%= label_tag("#{question.id}_#{opt}", opt)%>
+  <%= radio_button_tag("questions[#{question.id}]", opt)%>
+  <%= label_tag("questions_#{question.id}_#{opt}", opt)%>
 <% end %>
