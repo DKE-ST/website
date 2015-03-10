@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122042547) do
+ActiveRecord::Schema.define(version: 20150309174154) do
 
   create_table "calendar_events", force: true do |t|
     t.string   "title"
@@ -119,6 +119,33 @@ ActiveRecord::Schema.define(version: 20150122042547) do
     t.datetime "updated_at"
   end
 
+  create_table "survey_poll_questions", force: true do |t|
+    t.text     "question"
+    t.integer  "position"
+    t.integer  "survey_id"
+    t.string   "type"
+    t.text     "option"
+    t.text     "option2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_poll_responses", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "brother_id"
+    t.text     "response"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_poll_surveys", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "officer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_brother_dke_infos", force: true do |t|
     t.integer  "brother_id"
     t.text     "p_name"
@@ -134,7 +161,7 @@ ActiveRecord::Schema.define(version: 20150122042547) do
 
   create_table "user_brother_mit_infos", force: true do |t|
     t.integer  "brother_id"
-    t.string   "mit_id",           limit: 9
+    t.string   "mit_id",           limit: 9, null: false
     t.text     "majors"
     t.text     "minors"
     t.text     "concentration"
