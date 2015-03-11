@@ -10,4 +10,8 @@ class SurveyPoll::Survey < ActiveRecord::Base
   validates :officer_id, presence: true
   #created_at  datetime
   #updated_at  datetime
+  
+  def resp_exists?(brother_id)
+    return SurveyPoll::Response.exists?(brother_id: brother_id, question_id: self.question_ids)
+  end
 end

@@ -7,4 +7,16 @@ class SurveyPoll::Response < ActiveRecord::Base
   #response  text
   #created_at  datetime
   #updated_at  datetime
+  
+  def initialize(params = nil)
+    super
+    unless params.nil?
+      case self.question.qtype
+      when /checkbox/
+        self.response = JSON.dump(params[:response].keys)
+      when /grid|ranking/
+        self.response = JSON.dump(params[:response])
+      end
+    end
+  end
 end
