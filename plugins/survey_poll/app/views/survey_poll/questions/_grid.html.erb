@@ -13,7 +13,7 @@
     <tr>
       <td><b><%= row%></b></td>
       <% JSON.load(question.option2).each do | col |%>
-       <td><%= radio_button_tag("questions[#{question.id}][#{row}]", col)%></td>
+       <td><%= radio_button_tag("questions[#{question.id}][#{row}]", col, nil, required: true)%></td>
       <% end %>
     </tr>
    <% end %>

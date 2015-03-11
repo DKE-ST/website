@@ -1,5 +1,5 @@
 <h4><%= question.question%></h4>
 <% JSON.load(question.option).each do | opt |%>
-  <%= radio_button_tag("questions[#{question.id}]", opt)%>
+  <%= radio_button_tag("questions[#{question.id}]", opt, nil, required: true)%>
   <%= label_tag("questions_#{question.id}_#{opt}", opt)%><br>
 <% end %>

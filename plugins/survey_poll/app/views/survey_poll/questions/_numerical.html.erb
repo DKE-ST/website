@@ -1,2 +1,2 @@
 <h4><%= question.question%></h4>
-<%= number_field_tag("questions[#{question.id}]")%>
+<%= number_field_tag("questions[#{question.id}]", nil, required: true)%>
