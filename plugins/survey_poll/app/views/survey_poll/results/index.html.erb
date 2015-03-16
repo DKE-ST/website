@@ -7,14 +7,16 @@
 	  <thrad>
 	  	<th>Title</th>
 	  	<th>Description</th>
+	  	<th>Responses</th>
 	  	<th>Author</th>
 	  	<th></th>
 	  </thrad>
 	  <tbody>
 	   <% @surveys.each do | survey |%>
 		<tr>
-		  <td><%= link_to survey.title, main_app.survey_path(survey.id)%></td>
+		  <td><%= link_to survey.title, main_app.result_path(survey.id)%></td>
 		  <td><%= survey.description%></td>
+		  <td><%= survey.responses%></td>
 		  <td><%= survey.officer.title%></td>
 		</tr>
 	   <% end%>

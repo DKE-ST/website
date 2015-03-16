@@ -14,4 +14,8 @@ class SurveyPoll::Survey < ActiveRecord::Base
   def resp_exists?(brother_id)
     return SurveyPoll::Response.exists?(brother_id: brother_id, question_id: self.question_ids)
   end
+  
+  def responses
+    return self.questions[0].responses.count
+  end
 end

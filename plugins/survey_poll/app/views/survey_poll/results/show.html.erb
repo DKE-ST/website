@@ -1,0 +1,29 @@
+<% provide(:title , "User Management")%>
+
+<div class="row">
+	<div class="span12">
+		<h2><%= @survey.title%> Responses</h2>
+		<table class="table table-striped table-hover table-condensed">
+		  <thead>
+		  <tr>
+			<th>Response #</th>
+			<th>Class</th>
+			<% @survey.questions.order(position: :asc).each do | question |%>
+			 <th><%= question.question%></th>
+			<% end %>
+		   </tr>
+		  </thead>
+		  <tbody>
+		   <% @results.each do | gb, responses |%>
+		    <tr>
+		     <td><%= responses[0].id%></td>
+		     <td><%= responses[0].brother.mit_info.year%></td>
+		     <% responses.each do | resp |%>
+		      <td><%= resp.response%></td>
+		     <% end %>
+		    </tr>
+		   <% end %>
+		   </tbody>
+		</table>
+	</div>
+</div>

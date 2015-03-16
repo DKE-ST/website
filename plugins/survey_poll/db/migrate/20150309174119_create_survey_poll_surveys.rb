@@ -4,6 +4,7 @@ class CreateSurveyPollSurveys < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.belongs_to :officer
+      t.boolean :display
       t.timestamps
     end
   end
