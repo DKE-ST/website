@@ -6,16 +6,13 @@ class SurveyPoll::ResultsController < AuthenticationController
   
   def show
     @survey = SurveyPoll::Survey.find(params[:id])
-    @results = {};
-    @survey.questions.order(position: :asc).each do | question |
-      question.responses.each do | resp |
-        if @results.include? resp.brother_id
-          @results[resp.brother_id] << resp
-        else
-          @results[resp.brother_id] = [resp]
-        end
-      end
-    end
+    @i=1
+  end
+  
+  def show_user
+    @survey = SurveyPoll::Survey.find(params[:id])
+    @brother = SurveyPoll::Response.find(params[:uid]).brother
+    @responses = @survey.responses[@brother.id]
   end
   
 end

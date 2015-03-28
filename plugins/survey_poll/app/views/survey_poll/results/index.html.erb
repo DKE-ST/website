@@ -16,7 +16,7 @@
 		<tr>
 		  <td><%= link_to survey.title, main_app.result_path(survey.id)%></td>
 		  <td><%= survey.description%></td>
-		  <td><%= survey.responses%></td>
+		  <td><%= survey.response_count%></td>
 		  <td><%= survey.officer.title%></td>
 		</tr>
 	   <% end%>
