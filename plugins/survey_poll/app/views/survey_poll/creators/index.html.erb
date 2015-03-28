@@ -1,0 +1,31 @@
+<% provide(:title , "Surveys")%>
+
+<div class="row">
+  <div class="span6 offset3" align="left">
+  	<h3>
+  	  Surveys
+  	  <%= link_to "New Survey", main_app.new_creator_path, class: "btn pull-right"%>
+  	</h3>
+	<table class="table">
+	  <thrad>
+	  	<th>Title</th>
+	  	<th>Description</th>
+	  	<th>Author</th>
+	  	<th></th>
+	  </thrad>
+	  <tbody>
+	   <% @surveys.each do | survey |%>
+		<tr>
+		  <td><%= link_to survey.title, main_app.creator_path(survey.id)%></td>
+		  <td><%= survey.description%></td>
+		  <td><%= survey.officer.title%></td>
+		  <td>
+		  	<%= link_to "Preview", main_app.creator_path(survey.id), class: "btn"%>
+		  	<%= link_to "Edit", main_app.edit_creator_path(survey.id), class: "btn btn-primary"%>
+		  </td>
+		</tr>
+	   <% end%>
+	  </tbody>
+	</table>
+  </div>
+</div>
