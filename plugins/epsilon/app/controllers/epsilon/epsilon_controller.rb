@@ -13,7 +13,12 @@ class Epsilon::EpsilonController < AuthenticationController
   
   def create
     @element = Epsilon::ESheet.new(e_sheet_params(params))
-    if @element.valid?
+    #Check if meal before week has been generated
+    first_of_week = @element.first_of_week?
+    if first_of_week
+      flash[:error] = "This week's meals have not been generated yet."
+    end
+    if @element.valid? && !first_of_week
       @element.save
       flash[:success] = "#{@element.e_type.humanize} Created"
       redirect_to epsilon_index_path
@@ -76,7 +81,7 @@ class Epsilon::EpsilonController < AuthenticationController
   def update
     @element = Epsilon::ESheet.find(params[:id])
     if @element.update_attributes(e_sheet_params(params))
-      flash[:success] = "#{@element.e_type.humanize} Upddated"
+      flash[:success] = "#{@element.e_type.humanize} Updated"
       redirect_to epsilon_index_path
     else
       @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})

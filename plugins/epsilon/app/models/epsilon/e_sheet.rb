@@ -16,7 +16,18 @@ class Epsilon::ESheet < ActiveRecord::Base
   #created_at  datetime
   #updated_at  datetime
   
-  def self.new_week(start_date = Date.current+2)
+  def first_of_week?
+    return false if self.e_type == 'entry'
+    date = self.date - self.date.days_to_week_start
+    return false if Epsilon::ESheet.where(date: date..date+5, e_type: ["lunch", "dinner"]).count > 0
+    if date < Date.today - Date.today.days_to_week_start
+      return false
+    else
+      return true
+    end
+  end
+  
+  def self.new_week(start_date = Date.today+2)
     start_date -= start_date.days_to_week_start
     return false if self.exists?(e_type: ["lunch","dinner"], date: start_date..start_date+5)
     self.weekly_schedule.each do | date, meals |
@@ -30,7 +41,7 @@ class Epsilon::ESheet < ActiveRecord::Base
     return true
   end
   
-  def self.get_week(date = Date.current+1)
+  def self.get_week(date = Date.today+1)
     date -= date.days_to_week_start
     meals = {}
     for i in 0..5
@@ -48,7 +59,7 @@ class Epsilon::ESheet < ActiveRecord::Base
     return meals if week.nil?
     week -= week.days_to_week_start
     max = working.maximum("date")
-    while week < max
+    while week <= max
       meals << [week,self.get_week(week)]
       week += 7
     end
@@ -125,7 +136,7 @@ class Epsilon::ESheet < ActiveRecord::Base
       end
       rem = needed - tot
       e_count << [brother[:first_name], brother[:last_name], tot, [rem,0].max]
-    end
+     end
     e_count.sort_by!{ |a| [a[2], a[1], a[0]]}
     return e_count
   end
@@ -157,15 +168,12 @@ class Epsilon::ESheet < ActiveRecord::Base
           lunch.save
         end
       end
-      for j in 0..((i<5)?1:0)
-        dinner = self.new(date: start_date + i)
-        dinner.e_type = "t_dinner"
-        dinner.time = "6:00PM"
-        dinner.value = (i<5)?1.5:3
-        dinner.save
-      end
+      dinner = self.new(date: start_date + i)
+      dinner.e_type = "t_dinner"
+      dinner.time = "6:00PM"
+      dinner.value = 3
+      dinner.save
     end
-    #TODO: Add Total element
     return true
   end
   

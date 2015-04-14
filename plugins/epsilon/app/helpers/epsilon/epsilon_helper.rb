@@ -1,6 +1,11 @@
 module Epsilon
   module EpsilonHelper
     
+    def server_select(f_meal, brothers, dke_info_id = nil)
+      options = grouped_options_for_select(brothers, selected=dke_info_id)
+      return f_meal.select(:dke_info_id, options, {}, class:"chosen-select")
+    end
+    
     def get_serv(meal)
       if meal.dke_info.nil?
         time = Time.now - 900 < Time.parse(meal.time, meal.date)

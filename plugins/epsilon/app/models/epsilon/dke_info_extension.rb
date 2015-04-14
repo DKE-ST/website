@@ -29,11 +29,16 @@ User::Brother::DkeInfo.class_eval do
   end
   
   def self.list_dropdown(params = {})
-    out = [["",""]]
+    brothers = Hash.new
+    brothers[""] = [["","null"]]
     self.list(params).each do | brother |
-      out << ["#{brother[:first_name]} #{brother[:last_name]}", brother[:id]]
+      brothers[brother[:year]] = Array.new([]) if !brothers.include? brother[:year]
+      brothers[brother[:year]] << ["#{brother[:first_name]} #{brother[:last_name]}", brother[:id]]
     end
-    return out
+    brothers.each do |key, value|
+      value.sort!
+    end
+    return brothers
   end
   
   #Returns list of users filtered by params
