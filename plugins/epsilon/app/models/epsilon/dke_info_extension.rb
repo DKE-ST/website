@@ -3,7 +3,7 @@ User::Brother::DkeInfo.class_eval do
   has_many :e_served, class_name: "Epsilon::ESheet"
   
   def e_status
-    day = Date.current + 1
+    day = Date.today + 1
     mon = day - day.days_to_week_start
     tot = 0
     self.e_served.where("date < ?", mon).each do | e |

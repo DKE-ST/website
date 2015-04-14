@@ -46,12 +46,12 @@ class Epsilon::EpsilonController < AuthenticationController
   end
   
   def new
-    @element = Epsilon::ESheet.new(date: Date.current)
+    @element = Epsilon::ESheet.new(date: Date.today)
     @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
   end
   
   def new_meal
-    @element = Epsilon::ESheet.new(date: Date.current)
+    @element = Epsilon::ESheet.new(date: Date.today)
     @brothers = User::Brother::DkeInfo.list_dropdown({"meal_plan" => true})
   end
   

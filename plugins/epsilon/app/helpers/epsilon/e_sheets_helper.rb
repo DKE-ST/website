@@ -2,7 +2,7 @@ module Epsilon
   module ESheetsHelper
     
     def get_e_week
-      day = Date.current + 1
+      day = Date.today + 1
       return day - day.days_to_week_start
     end
     

@@ -125,7 +125,7 @@ class Epsilon::ESheet < ActiveRecord::Base
   
   def self.track_progress
     needed = self.e_count
-    day = Date.current + 1
+    day = Date.today + 1
     mon = day - day.days_to_week_start
     e_count = []
     User::Brother::DkeInfo.list({"meal_plan" => true}).each do | brother |

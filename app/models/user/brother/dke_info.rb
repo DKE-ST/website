@@ -85,6 +85,6 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   #Returns the year for the current pledge class
   #@return integer
   def self.cur_p_class
-    return Date.current.year + 3 + ((Date.current.month > 7)?1:0)
+    return Date.today.year + 3 + ((Date.today.month > 7)?1:0)
   end
 end

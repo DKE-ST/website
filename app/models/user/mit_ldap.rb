@@ -36,7 +36,7 @@ class User::MitLdap < ActiveLdap::Base
   #Returns graduation class from ldap elements
   def year
     if self.mitDirStudentYear
-      Date.current.year + 4 - self.mitDirStudentYear.to_i + ((Date.current.month > 6)?1:0)
+      Date.today.year + 4 - self.mitDirStudentYear.to_i + ((Date.today.month > 6)?1:0)
     else
       nil
     end
