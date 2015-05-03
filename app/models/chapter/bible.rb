@@ -45,6 +45,7 @@ class Chapter::Bible
       `unzip "#{self.class_num}.zip" -d "#{dir_name}"`
       `rm "#{self.class_num}.zip"`
       rm_redundant_dir(dir_name)
+      rm_hidden(dir_name)
       Dir.chdir(Rails.root.to_s)
       return true
     end
@@ -64,6 +65,21 @@ class Chapter::Bible
       end
       Dir.rmdir("#{dir_name}/#{entries[0]}")
       rm_redundant_dir(dir_name)
+    end
+  end
+  
+  ###### Used to recursively remove hidden folders
+  
+  def rm_hidden(dir_name)
+    entries = Dir.entries(dir_name)
+    entries.delete(".")
+    entries.delete("..")
+    entries.each do |file|
+      if file =~ /\A([.]+.*)\z/
+        `rm -rf "#{dir_name}/"#{file}`
+      elsif File.directory?("#{dir_name}/#{file}")
+        rm_hidden("#{dir_name}/#{file}")
+      end
     end
   end
   
