@@ -56,6 +56,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  #Returns boolean value of whether user is currently a student
+  def student?
+    return false if @ldap.nil?
+    return @ldap.student?
+  end
+  
   #Override to update shadow and brother information as well
   def save
     return false unless super

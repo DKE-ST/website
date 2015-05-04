@@ -59,11 +59,16 @@ class UsersController < AuthenticationController
   end
   
   def set_passwd
-    error = @me.shadow.ch_passwd(params[:password1], params[:password2])
+    error = User::Shadow.check_passwd(params[:password1], params[:password2], @me.shadow)
     if error != 0
       @me.errors.add(:password, error)
       render "ch_passwd"
     else
+      if @me.shadow.nil?
+        @me.add_passwd(params[:password1])
+      else
+        @me.shadow.ch_passwd(params[:password1])
+      end
       flash[:success] = "Password successfully updated"
       redirect_to main_app.root_path
     end

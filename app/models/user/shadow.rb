@@ -6,7 +6,22 @@ class User::Shadow < ActiveRecord::Base
   
   #Changes user's password
   #ATTENTION: password cannot contain the following symbols "'`
-  def ch_passwd(password1, password2)
+  def ch_passwd(password)
+    passwd = User::Shadow.get_hash(self.uname, password1)
+    self.passwd = passwd
+    self.save
+    return true
+  end
+  
+  #Verifies if their current password matches the hash in the database
+  def verify(passwd)
+    /[$]apr1[$](.+)[$].+/ =~ self.passwd
+    newhash = `openssl passwd -apr1 -salt #{Regexp.last_match(1)} '#{passwd}'`[0..-2]
+    return newhash == self.passwd
+  end
+  
+  #Validate passwords
+  def self.check_passwd(password1, password2, shadow = nil)
     if password1.blank?
       return "cannot be blank"
     elsif password1.length < 8
@@ -15,20 +30,13 @@ class User::Shadow < ActiveRecord::Base
       return  "do not match"
     elsif password1 =~ /"|'|`|~/
       return "cannot contain the following characters: \" ' `"
-    elsif self.verify(password1)
+    elsif shadow.nil?
+      return 0
+    elsif shadow.verify(password1)  #Only checked is a password entry already exists
       return "cannot be the same as your current one"
+    else
+      return 0
     end
-    passwd = User::Shadow.get_hash(self.uname, password1)
-    self.passwd = passwd
-    self.save
-    return 0
-  end
-  
-  #Verifies if their current password matches the hash in the database
-  def verify(passwd)
-    /[$]apr1[$](.+)[$].+/ =~ self.passwd
-    newhash = `openssl passwd -apr1 -salt #{Regexp.last_match(1)} '#{passwd}'`[0..-2]
-    return newhash == self.passwd
   end
   
   #Calls system function to get a user's password hash
