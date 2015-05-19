@@ -1,6 +1,6 @@
 class Chapter::Officer < ActiveRecord::Base
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
-  has_many :point_entries, class_name: "Chapter::HousePoint"
+  has_many :point_entries, class_name: "Chapter::HousePoint", dependent: :destroy 
   has_many :public_pages
   #id  int(11)
   #name  varchar(255)

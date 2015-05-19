@@ -3,7 +3,7 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   belongs_to :big, class_name: "User::Brother::DkeInfo"
   has_many :littles, class_name: "User::Brother::DkeInfo", foreign_key: "big_id"
   belongs_to :residence, class_name: "Chapter::Residence"
-  has_many :house_points, class_name: "Chapter::HousePoint"
+  has_many :house_points, class_name: "Chapter::HousePoint", dependent: :destroy
   has_many :positions, class_name: "Chapter::Officer"
   #id  int(11)
   #brother_id  int(11)
@@ -28,6 +28,17 @@ class User::Brother::DkeInfo < ActiveRecord::Base
   def update_attributes(params)
     assign_littles(params.delete(:little_ids))
     return super(params)
+  end
+  
+  #Override of method to destroy assicoated classes
+  def destroy
+    self.littles.each do | little|
+      little.big_id = nil;
+    end
+    self.positions.each do | pos |
+      pos.dke_info_id = nil;
+    end
+    return super
   end
   
   #Takes list of little borther ids and removes and not valid ids before assigning 

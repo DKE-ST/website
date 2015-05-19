@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :shadow
+  has_one :shadow, dependent: :destroy 
   has_one :brother
   #id      int(11) 
   #uname   varchar(8)
@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
     if all
       self.brother.destroy if self.brother
     end
-    self.shadow.destroy if self.shadow
     return super()
   end
   

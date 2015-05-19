@@ -1,6 +1,6 @@
 User::Brother::DkeInfo.class_eval do
   #meal_plan tinyint(1)
-  has_many :e_served, class_name: "Epsilon::ESheet"
+  has_many :e_served, class_name: "Epsilon::ESheet", dependent: :destroy 
   
   def e_status
     day = Date.today + 1

@@ -36,13 +36,7 @@ class User::Brother < ActiveRecord::Base
       self.upload_picture(params.require(:user_brother)) if params.require(:user_brother).include? "picture"
     end
   end
-  
-  #Override of method to destroy assicoated classes
-  def destroy
-    self.mit_info.destroy
-    self.dke_info.destroy
-    return super
-  end
+ 
   
   #Override method for update attributes, so mit_info and dke_info are updated as well
   def update_attributes(params)
