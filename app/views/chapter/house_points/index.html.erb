@@ -29,6 +29,7 @@
 	  	  	  <tr>
 	  	  	  	<td><%= entry.value%></td>
 	  	  	  	<td><%= entry.comment%></td>
+	  	  	  	<td>Last Modified: <%= humanize(entry.updated_at)%></td>
 	  	  	  	<td>
 	  	  	  	 <% if @me.officer?(@officer.name) %>
 	  	  	  	  <%= link_to "Edit", edit_house_point_path(entry.id), class: "btn"%>

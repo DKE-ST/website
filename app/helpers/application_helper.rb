@@ -1,5 +1,10 @@
 module ApplicationHelper
   
+  #Humanize dates
+  def humanize(date)
+    return date.strftime("%B %e, %Y")
+  end
+  
   #Renders errors in form validation 
   def render_errors(form)
     return nil if form.nil?

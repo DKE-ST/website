@@ -1,5 +1,9 @@
 module Chapter::HousePointsHelper
   
+  def humanize(date)
+    return date.strftime("%m/%e/%y")
+  end
+  
   def brother_total(entries)
     total = 0
     entries.each do | entry |
