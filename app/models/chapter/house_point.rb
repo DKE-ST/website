@@ -3,7 +3,7 @@ class Chapter::HousePoint < ActiveRecord::Base
   belongs_to :officer, class_name: "Chapter::Officer"
   #id  int(11)
   #dke_info_id   int(11)
-  validates :dke_info_id, presence: true
+  validates :dke_info_id, presence: true, format: {with: /\A[1-9]\d*\z/, message: " -- Name can't be blank"}
   #officer_id  int(11)
   validates :officer_id, presence: true
   #value   float
