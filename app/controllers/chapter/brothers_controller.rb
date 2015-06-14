@@ -46,8 +46,7 @@ class Chapter::BrothersController < AuthenticationController
     if @brother.update_attributes(params)
       flash[:success] = "Information updated"
       if @me.status == 0
-        @me.status = 1
-        @me.save!
+        @me.set_status(1)
       end
       check_redirect(params[:user_brother][:dke_info], brother_url)
     else
