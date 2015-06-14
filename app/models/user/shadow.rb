@@ -7,7 +7,7 @@ class User::Shadow < ActiveRecord::Base
   #Changes user's password
   #ATTENTION: password cannot contain the following symbols "'`
   def ch_passwd(password)
-    passwd = User::Shadow.get_hash(self.uname, password1)
+    passwd = User::Shadow.get_hash(self.uname, password)
     self.passwd = passwd
     self.save
     return true
