@@ -8,7 +8,7 @@ Installing Locally
 4. Make sure you have mysql installed and configured
 5. Enter your mysql username and password into all 5 locations in database.yml
 6. <tt>$ bundle install</tt>
-
+7. <tt>$ mysql -u root -p dke_website < ../db/dke_website.sql</tt>
 
 
 ---------------
