@@ -3,12 +3,15 @@
 Installing Locally
 ---------------
 1. <tt>$ git clone REPOSITORY_URL</tt>
-2. <tt>$ cd website/config</tt>
-3. <tt>$ mv database.yml.tmp database.yml</tt>
+2. <tt>$ cd website</tt>
+3. <tt>$ cp config/database.yml.tmp config/database.yml</tt>
 4. Make sure you have mysql installed and configured
 5. Enter your mysql username and password into all 5 locations in database.yml
 6. <tt>$ bundle install</tt>
-7. <tt>$ mysql -u root -p dke_website < ../db/dke_website.sql</tt>
+7. <tt>$ rake db:create:all</tt>
+8. <tt>$ mysql -u root -p dke_website_dev < db/dke_website.sql</tt>
+9. <tt>$ rake db:migrate</tt>
+
 
 
 ---------------
