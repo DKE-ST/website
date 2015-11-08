@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   
   #Returns mit ldap entry if one exists for a user
   def mit_ldap
+    return nil if true
     return nil if Rails.env.test?
     return @ldap if @ldap
     return nil unless @ldap.nil?

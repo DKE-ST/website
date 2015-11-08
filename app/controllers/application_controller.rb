@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :authenticate
+  before_action :set_paper_trail_whodunnit
   before_action :checks
   
   #Stores user associated with a session cookie for use in other pages and controllers
@@ -57,6 +58,10 @@ class ApplicationController < ActionController::Base
         redirect_to main_app.ch_passwd_path
       end
     end
+  end
+  
+  def user_for_paper_trail
+    return @me.id
   end
   
 end

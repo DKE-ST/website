@@ -1,4 +1,5 @@
 class User::Brother::MitInfo < ActiveRecord::Base
+  has_paper_trail
   belongs_to :brother
   #id  int(11)
   #brother_id  int(11)

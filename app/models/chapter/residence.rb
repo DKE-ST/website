@@ -1,4 +1,5 @@
 class Chapter::Residence < ActiveRecord::Base
+  has_paper_trail
   has_many :occupants, class_name: "User::Brother::DkeInfo"
   #id  int(11)
   #name  varchar(255)

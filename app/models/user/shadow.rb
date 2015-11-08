@@ -1,4 +1,5 @@
 class User::Shadow < ActiveRecord::Base
+  has_paper_trail
   belongs_to :user
   #uname   varchar(8)
   #user_id int(11)

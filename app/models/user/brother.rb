@@ -1,4 +1,5 @@
 class User::Brother < ActiveRecord::Base
+  has_paper_trail
   belongs_to :user
   has_one :mit_info, dependent: :destroy 
   has_one :dke_info, dependent: :destroy 

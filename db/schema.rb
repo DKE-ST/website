@@ -11,30 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519081031) do
-
-  create_table "audits", force: true do |t|
-    t.integer  "auditable_id"
-    t.string   "auditable_type"
-    t.integer  "associated_id"
-    t.string   "associated_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "username"
-    t.string   "action"
-    t.text     "audited_changes"
-    t.integer  "version",         default: 0
-    t.string   "comment"
-    t.string   "remote_address"
-    t.string   "request_uuid"
-    t.datetime "created_at"
-  end
-
-  add_index "audits", ["associated_id", "associated_type"], name: "associated_index", using: :btree
-  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
-  add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
-  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-  add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
+ActiveRecord::Schema.define(version: 20151030232833) do
 
   create_table "calendar_events", force: true do |t|
     t.string   "title"
@@ -142,34 +119,6 @@ ActiveRecord::Schema.define(version: 20150519081031) do
     t.datetime "updated_at"
   end
 
-  create_table "survey_poll_questions", force: true do |t|
-    t.text     "question"
-    t.integer  "position"
-    t.integer  "survey_id"
-    t.string   "qtype"
-    t.text     "option"
-    t.text     "option2"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "survey_poll_responses", force: true do |t|
-    t.integer  "question_id"
-    t.integer  "brother_id"
-    t.text     "response"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "survey_poll_surveys", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "officer_id"
-    t.boolean  "display",     null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "user_brother_dke_infos", force: true do |t|
     t.integer  "brother_id"
     t.text     "p_name"
@@ -185,7 +134,7 @@ ActiveRecord::Schema.define(version: 20150519081031) do
 
   create_table "user_brother_mit_infos", force: true do |t|
     t.integer  "brother_id"
-    t.string   "mit_id",           limit: 9, null: false
+    t.string   "mit_id",           limit: 9
     t.text     "majors"
     t.text     "minors"
     t.text     "concentration"
@@ -234,5 +183,17 @@ ActiveRecord::Schema.define(version: 20150519081031) do
   end
 
   add_index "users", ["uname"], name: "index_users_on_uname", unique: true, using: :btree
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",                         null: false
+    t.integer  "item_id",                           null: false
+    t.string   "event",                             null: false
+    t.string   "whodunnit"
+    t.text     "object",         limit: 2147483647
+    t.datetime "created_at"
+    t.text     "object_changes", limit: 2147483647
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
