@@ -18,9 +18,9 @@
 	      	<%= link_to("Restore" , main_app.backup_e_data_table_path(data.id) , method: :patch,
 		  	  	data: { confirm: "Are you sure you like to restore all these entries?." },
 		  	   	class: "btn btn-default") %>
-	      	<%= link_to("Delete" , main_app.backup_e_data_table_path(data.id) , method: :delete,
+	      	<!--<%= link_to("Delete" , main_app.backup_e_data_table_path(data.id) , method: :delete,
 		  	  	data: { confirm: "Are you sure you like to delete all these entries? \n NOTE: This action can NOT be undone." },
-		  	   	class: "btn btn-default") %>
+		  	   	class: "btn btn-default") %>-->
 	      </td>
 	    </tr>
 	   <% end %>
