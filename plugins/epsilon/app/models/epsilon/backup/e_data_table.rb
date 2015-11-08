@@ -1,4 +1,5 @@
 class Epsilon::Backup::EDataTable < Backup
+  has_paper_trail
   #id  int(11)
   #start_date  date
   #end_date  date

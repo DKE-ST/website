@@ -1,4 +1,5 @@
 class Epsilon::ESheet < ActiveRecord::Base
+  has_paper_trail
   belongs_to :dke_info, class_name: "User::Brother::DkeInfo"
   #id  int(11)
   #dke_info_id   int(11)
