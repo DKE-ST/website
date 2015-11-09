@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
         if self.shadow.nil?  #if shadow is nil, create instance of model
           self.add_passwd(self.password)
         else
-          self.shadow.ch_passwd(self.password, self.password)
+          self.shadow.ch_passwd(self.password)
         end
       end
     end
@@ -114,7 +114,7 @@ class User < ActiveRecord::Base
   #--Either a supplied password or a mit kerberos entry
   def valid?(params = {})
     if super(params)
-      if self.mit_ldap.nil? && self.shadow.blank?
+      if self.mit_ldap.nil? && self.password.blank?
         self.errors.add(:password, "can't be blank if kerberos is invalid")
         return false 
       end
