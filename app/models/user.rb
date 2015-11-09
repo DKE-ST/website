@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_paper_trail
   has_one :shadow, dependent: :destroy 
   has_one :brother
   #id      int(11) 
