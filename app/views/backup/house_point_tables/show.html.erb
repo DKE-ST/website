@@ -5,9 +5,9 @@
 	  <h2>
 	  	House Points Breakdown: <%= humanize(@table.start_date)%> - <%= humanize(@table.end_date)%>
 	  	
-      	<%= link_to("Delete" , backup_house_point_table_path , method: :delete,
+      	<!--<%= link_to("Delete" , backup_house_point_table_path , method: :delete,
 	  	  	data: { confirm: "Are you sure you like to delete all these entries? \n NOTE: This action can NOT be undone." },
-	  	   	class: "btn btn-default pull-right") %>
+	  	   	class: "btn btn-default pull-right") %>-->
 	  	
 	  	<%= link_to("Restore" , backup_house_point_table_path , method: :patch,
 	  	  	data: { confirm: "Are you sure you like to restore all these entries?." },

@@ -15,6 +15,8 @@ class CreateUserBrotherMitInfos < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :user_brother_mit_infos, :mit_id, unique: true
     execute 'ALTER TABLE `user_brother_mit_infos` CHANGE `year` `year` INT( 4 )'
   end
 end

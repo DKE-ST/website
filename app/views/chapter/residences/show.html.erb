@@ -2,7 +2,7 @@
 
 <div class="row house">
 	<h2><%= @room.name%></h2>
-	<%= image_tag(@room.pic_path(root_path), :alt => "")%><br>
+	<%= image_tag(@room.pic_path(root_path), :alt => "", class: "room")%><br>
 	<% if @room.capacity > 0%>
 	  <b>Current Resident(s):</b>
 	  <%= get_occupants(@room)%>

@@ -99,6 +99,11 @@ class User < ActiveRecord::Base
     return true
   end
   
+  def set_status(status_no)
+    self.status = status_no
+    self.save!
+  end
+  
   #Override to update shadow and brother information as well
   def update_attributes(params)
     super(user_params(params))
@@ -108,7 +113,7 @@ class User < ActiveRecord::Base
   #--Either a supplied password or a mit kerberos entry
   def valid?(params = {})
     if super(params)
-      if self.mit_ldap.nil? && self.password.blank?
+      if self.mit_ldap.nil? && self.shadow.blank?
         self.errors.add(:password, "can't be blank if kerberos is invalid")
         return false 
       end
