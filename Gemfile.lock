@@ -13,6 +13,7 @@ PATH
   specs:
     epsilon (0.0.1)
       mysql2
+      paper_trail (~> 4.0.0)
       rails (~> 4.0.5)
 
 GEM

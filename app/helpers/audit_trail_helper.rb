@@ -1,0 +1,2 @@
+module AuditTrailHelper
+end
