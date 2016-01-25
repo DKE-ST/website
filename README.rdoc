@@ -15,6 +15,16 @@ Installing Locally
 11. <tt>$ rake db:migrate</tt>
 
 
+---------------
+Login in and out
+---------------
+login:
+	1. type localhost:3000/success as url
+	2. enter username and leave password blank
+
+logout:
+	1. type localhost:3000/loggedout as url
+
 
 ---------------
 Adding a Plugin
