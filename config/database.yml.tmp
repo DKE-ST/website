@@ -54,12 +54,3 @@ backup_production:
   pool: 5
   username: root
   password: 
-
-############### Old Site Database ##################
-site_old:
-  adapter: mysql2
-  encoding: utf8
-  database: dke_website_old
-  pool: 5
-  username: root
-  password: 
