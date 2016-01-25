@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.5'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.10'
 
 # Use ldap for getting data on mit students
 gem 'net-ldap'
