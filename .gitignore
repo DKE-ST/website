@@ -24,3 +24,5 @@ doc/
 .idea
 .secret
 public/assets/*
+
+Gemfile.lock
