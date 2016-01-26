@@ -31,7 +31,7 @@ Adding a Plugin
 ---------------
 
 1. <tt>$ cd plugins</tt>
-2. <tt>$ ./newPlugin.sh PLUGIN_NAME</tt>
+2. <tt>$ ./newPlugin.sh PLUGIN_NAME</tt> (Confirmed to work on Linux, may work on other UNIX based systems as well)
 3. Add plugin to Gemfile (ex. gem "PLUGIN_NAME", path: 'PATH') 
 
 This README would normally document whatever steps are necessary to get the
