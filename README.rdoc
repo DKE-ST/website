@@ -25,6 +25,8 @@ login:
 logout:
 	1. type localhost:3000/loggedout as url
 
+fuck seve
+
 
 ---------------
 Adding a Plugin
