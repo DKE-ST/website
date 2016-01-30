@@ -1,26 +1,25 @@
-<div class="row">
-	<div class="span6 offset3" align="center">
-		<%= image_tag("dke_crest.gif", :alt => "")%><br><br>
-		<h1 class="title">
-			&Delta;&epsilon;&lambda;&tau;&alpha; 
-			&Kappa;&alpha;&pi;&pi;&alpha; 
-			&Epsilon;&psi;&iota;&lambda;&omicron;&nu;
-			<br>
-			Delta Kappa Epsilon
-		</h1>
-		<h2 class="title">
-			&Sigma;&iota;&gamma;&mu;&alpha; 
-			&Tau;&alpha;&omicron;&upsilon;
-			<br>
-			Sigma Tau
-		</h2>
-	</div>
-	<div class="span3 hidden-phone">
-		<br><br><br><br><br><br><br><br><br><br>
-	</div>
-	<div class="span3" align="center">
-	  <% if SummerHousingApplication.display?%>
-		<h1><%= link_to "DKE Summer Housing", summer_housing_path %></h1>
-	  <% end %>
-	</div>
-</div>
+<style>
+	body{
+		background-color: #ffffff;
+	}
+</style>
+
+<%= render 'layouts/about'%>
+<br>
+<%= render 'layouts/brother_info'%>
+<br>
+<%= render 'layouts/contacts'%>
+<br>
+<%= render 'layouts/letter'%>
+<br>
+<%= render 'layouts/rush'%>
+<br>
+<%= render 'layouts/summer_housing'%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+

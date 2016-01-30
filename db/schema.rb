@@ -148,8 +148,6 @@ ActiveRecord::Schema.define(version: 20151030232833) do
     t.datetime "updated_at"
   end
 
-  add_index "user_brother_mit_infos", ["mit_id"], name: "index_user_brother_mit_infos_on_mit_id", unique: true, using: :btree
-
   create_table "user_brothers", force: true do |t|
     t.integer  "user_id"
     t.text     "first_name"
