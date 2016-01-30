@@ -8,11 +8,7 @@
 	  <%= render 'layouts/shim' %>
 	</head>
 	<body class='<%= yield(:body_class) %>'>
-		<%= render 'layouts/header'%>
 		<div class="container">
-			<% flash.each do |key, value| %>
- 				<div class="alert alert-<%= key %>"><%= value %></div>
-			<% end %>
 			
 			<%= yield %>
 			<div>
@@ -22,25 +18,6 @@
 				<%= request.env if false && Rails.env.development? %>
 			</div>
 		</div>
-		<!--<footer class="navbar-inverse navbar-fixed-bottom">
-			<nav class="navbar-inner">
-    			<div class="container">
-    				<div id="mainNavBar" class="nav-collapse collapse">
-		     			<ul class="nav pull-left">
-		     				<li class="nav-item">
-		     					Delta Kappa Epsilon - Sigma Tau Chapter
-		     					<br>403 Memorial Drive
-		     					<br>Cambridge, MA 02139
-		     				</li>
-		     			</ul>
-						<ul class="nav pull-right">
-							<li class="nav-item">
-		     					Test
-		     				</li>
-		     			</ul>
-    			</div>
-    		</nav>
-		</footer>-->
 		<div class="footer">
 			<script type="text/javascript">
 				tables = document.getElementsByClassName("table")
