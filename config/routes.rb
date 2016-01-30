@@ -1,7 +1,10 @@
 DKESite::Application.routes.draw do
   #Home Page
   root 'chapter/public_pages#home'
-  
+
+  #Rush Page
+  get 'rush' => 'rush#index'
+
   #Used for authenticating users
   match '/login' , to: 'chapter/public_pages#home' , via: :post
   match '/success' , to: 'application#success' , via: :get

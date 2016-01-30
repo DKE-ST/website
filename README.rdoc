@@ -2,16 +2,28 @@
 ---------------
 Installing Locally
 ---------------
-1. <tt>$ git clone REPOSITORY_URL</tt>
-2. <tt>$ cd website</tt>
-3. <tt>$ cp config/database.yml.tmp config/database.yml</tt>
-4. Make sure you have mysql installed and configured
-5. Enter your mysql username and password into all 5 locations in database.yml
-6. <tt>$ bundle install</tt>
-7. <tt>$ rake db:create:all</tt>
-8. <tt>$ mysql -u root -p dke_website_dev < db/dke_website.sql</tt>
-9. <tt>$ rake db:migrate</tt>
+1. <tt>$ rbenv intall 2.1.5</tt>
+2. <tt>$ rbenv global 2.1.5</tt>
+3. <tt>$ git clone REPOSITORY_URL</tt>
+4. <tt>$ cd website</tt>
+5. <tt>$ cp config/database.yml.tmp config/database.yml</tt>
+6. Make sure you have mysql installed and configured
+7. Enter your mysql username and password into all 5 locations in database.yml (root and no password are fine)
+8. <tt>$ bundle install</tt>
+9. <tt>$ rake db:create:all</tt>
+10. <tt>$ mysql -u root -p dke_website_dev < db/dke_website.sql</tt> (root can be changed to the username above)
+11. <tt>$ rake db:migrate</tt>
 
+
+---------------
+Login in and out
+---------------
+login:
+	1. type localhost:3000/success as url
+	2. enter username and leave password blank
+
+logout:
+	1. type localhost:3000/loggedout as url
 
 
 ---------------
@@ -19,7 +31,7 @@ Adding a Plugin
 ---------------
 
 1. <tt>$ cd plugins</tt>
-2. <tt>$ ./newPlugin.sh PLUGIN_NAME</tt>
+2. <tt>$ ./newPlugin.sh PLUGIN_NAME</tt> (Confirmed to work on Linux, may work on other UNIX based systems as well)
 3. Add plugin to Gemfile (ex. gem "PLUGIN_NAME", path: 'PATH') 
 
 This README would normally document whatever steps are necessary to get the
