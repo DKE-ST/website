@@ -17,8 +17,8 @@ class Epsilon::Backup::EDataTable < Backup
       table_name = "#{Epsilon::Backup::EData.base_table_name}_#{entry.id}"
       origin = "#{Rails.configuration.database_configuration[Rails.env]['database']}.#{Epsilon::ESheet.table_name}"
       Epsilon::Backup::EData.connection.execute("CREATE TABLE #{table_name} AS SELECT * from #{origin}")
+      Epsilon::ESheet.connection.execute("TRUNCATE TABLE #{Epsilon::ESheet.table_name}")
     end
-    Epsilon::ESheet.connection.execute("TRUNCATE TABLE #{Epsilon::ESheet.table_name}")
     return mty
   end
   
