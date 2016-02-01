@@ -53,6 +53,7 @@ ul.nav li.dropdown:hover {
 }
 
 li.nav-item {
+  padding-top: 5px;
 }
 
 li.login {
@@ -217,6 +218,7 @@ div.profile_pg {
 #login_button{
   color: #003366;
   text-shadow: none;
+  padding-top:none
 }
 #login_button:hover{
   color: rgb(255,215,0);
@@ -232,6 +234,9 @@ div.profile_pg {
 
 .page_containers{
   padding-top: 50px;
+}
+#login_alignment{
+  padding-top: 0px;
 }
 
 
