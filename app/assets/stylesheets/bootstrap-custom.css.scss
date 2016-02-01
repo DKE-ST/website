@@ -194,6 +194,232 @@ div.profile_pg {
     background-color: #770F17;
 }
 
+
+/* CSS for Main Panel Partial */
+.main_panel {
+  /* Stretches main_panel Div Full Length of Browser Screen*/
+  position:relative;
+  left:0;
+  right:0;
+
+  /* Font Attributes */
+  font-family: Helvetica;
+  font-size: 1em;
+  color: rgb(33, 27, 117);
+
+  text-align: center;
+
+  /*main_panel Div Border*/
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-color: rgb(239, 72, 54);
+
+  padding-bottom: 1em;
+  
+}
+
+.main_panel .home_page_lion {
+  height: 12em;
+  width: auto;
+  padding-bottom: 3em;
+}
+
+.main_panel .home_page_title {
+  font-size: 3.25em;
+  padding-bottom: 0.35em;
+  word-spacing: .25em;
+}
+
+.main_panel .home_page_sub_title {
+  font-size: 2.25em;
+  word-spacing: .25em;
+}
+
+/* CSS for About Panel */
+.about {
+  /* Stretches main_panel Div Full Length of Browser Screen*/
+  position:relative;
+  left:0;
+  right:0;
+
+  background-color: rgb(239, 72, 54);
+
+  /* Font Attributes */
+  font-family: Helvetica;
+  font-size: 1em;
+  color: white;
+
+  /* About Div Border*/
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-color: rgb(239, 72, 54);
+
+  padding-top: 1em;
+
+}
+
+.about .title {
+  font-size: 2em;
+  padding-bottom: 0.35em;
+  word-spacing: .25em;
+  text-align: center;
+}
+
+.about .description {
+  text-align: justify;
+  /* About Div Padding */
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.about #founder {
+  text-align: right;
+  padding-right: 2em;
+  padding-bottom: 1em;
+}
+
+/* CSS for Gentlemen Panel */
+.gentlemen {
+  /* Stretches main_panel Div Full Length of Browser Screen*/
+  position:relative;
+  left:0;
+  right:0;
+  overflow: hidden;
+
+  height: 100%;
+
+  background-image: url(DKE_Gentlemen.jpeg);
+  background-size: 100%;
+
+
+  /* Font Attributes */
+  font-family: Helvetica;
+  font-size: 1em;
+  /*color: rgb(33, 27, 117);*/
+  color: white;
+
+  text-align: center;
+
+  /*main_panel Div Border*/
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-color: rgb(239, 72, 54);
+
+  padding-top: 1em;
+  padding-bottom: 30em;
+  
+}
+
+.gentlemen .title {
+  font-size: 2em;
+  padding-bottom: 0.35em;
+  word-spacing: .25em;
+  opacity: 1.0;
+}
+
+.gentlemen .sub_title {
+  font-size: 1.5em;
+  word-spacing: .25em;
+  opacity: 1.0;
+}
+
+/* CSS for Scholar Panel */
+.scholar {
+  /* Stretches main_panel Div Full Length of Browser Screen*/
+  position:relative;
+  left:0;
+  right:0;
+  overflow: hidden;
+
+  height: 100%;
+
+  background-image: url(DKE_scholar.jpg);
+  background-size: 100%;
+
+
+  /* Font Attributes */
+  font-family: Helvetica;
+  font-size: 1em;
+  /*color: rgb(33, 27, 117);*/
+  color: white;
+
+  text-align: center;
+
+  /*main_panel Div Border*/
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-color: rgb(239, 72, 54);
+
+  padding-top: 1em;
+  padding-bottom: 30em;
+  
+}
+
+.scholar .title {
+  font-size: 2em;
+  padding-bottom: 0.35em;
+  word-spacing: .25em;
+}
+
+.scholar .sub_title {
+  font-size: 1.5em;
+  word-spacing: .25em;
+}
+
+/* CSS for JGF Panel */
+.jgf {
+  /* Stretches main_panel Div Full Length of Browser Screen*/
+  position:relative;
+  left:0;
+  right:0;
+  overflow: hidden;
+
+  height: 100%;
+
+  background-image: url(Gent_line.JPG);
+  background-size: 100%;
+
+
+  /* Font Attributes */
+  font-family: Helvetica;
+  font-size: 1em;
+  /*color: rgb(33, 27, 117);*/
+  color: white;
+
+  text-align: center;
+
+  /*main_panel Div Border*/
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-color: rgb(239, 72, 54);
+
+  padding-top: 1em;
+  padding-bottom: 25em;
+  
+}
+
+.jgf .title {
+  font-size: 2em;
+  padding-bottom: 0.35em;
+  word-spacing: .25em;
+}
+
+.jgf .sub_title {
+  font-size: 1.5em;
+  word-spacing: .25em;
+}
+
 .headerElement {
   padding-right: 20px;
   line-height: 45px;
@@ -238,7 +464,4 @@ div.profile_pg {
 #login_alignment{
   padding-top: 0px;
 }
-
-
-
 
