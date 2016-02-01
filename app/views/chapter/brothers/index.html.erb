@@ -11,7 +11,25 @@
 					<% if (count)%col_num == 0 %>
 						<div class='span3'>
 					<%end%>
-					<%= link_to brother[0], "#{brothers_path}/#{brother[1]}"%><br>
+					<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+						<div class="flipper">
+							<div class="front">
+								<!-- front content -->
+
+                <%= image_tag(User::Brother.find(brother[1]).pic_path(root_path), class: "pic")%><br>
+								<%= link_to brother[0], "#{brothers_path}/#{brother[1]}"%><br>
+							</div>
+							<div class="back">
+								<!-- back content -->
+
+                <% unless User::Brother.find(brother[1]).mit_info.majors.blank?%><br><b>Majors:</b> <%User::Brother.find(brother[1]).mit_info.majors%><%end%>
+                <% unless User::Brother.find(brother[1]).hometown.blank?%><br><b>Hometown:</b> <%User::Brother.find(brother[1]).hometown%><%end%>
+                <% unless User::Brother.find(brother[1]).activities.blank?%><br><b>Activities:</b> <%User::Brother.find(brother[1]).activities%><%end%>
+                <% unless User::Brother.find(brother[1]).quote.blank?%><br><b>Favorite Quote:</b> <%User::Brother.find(brother[1]).quote%><%end%>
+                <% unless User::Brother.find(brother[1]).bio.blank?%><br><b>Bio:</b> <%User::Brother.find(brother[1]).bio%><%end%>
+							</div>
+						</div>
+					</div>
 					<% if (count+=1)%col_num == 0 || (count)==group.length%>
 						</div>
 					<%end%>
