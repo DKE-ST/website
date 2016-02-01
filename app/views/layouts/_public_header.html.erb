@@ -1,0 +1,31 @@
+<% provide @media_root = "/dke"%>
+
+<header id= "maybe1" class="navbar navbar-dke navbar-fixed-top">
+	<nav id="maybe2" class="navbar-inner">
+		<%= link_to href: "#top" do %>
+			<%= image_tag("dke_crest.gif", :alt => "", id: "crest_navbar")%>
+		<% end %>
+    	<div id = "public_head" class="container">
+     			<a class="headerElement" href="#about_container">About</a>
+     			<a class="headerElement" href="#brother_info_container">Brothers</a>
+     			<a class="headerElement" href="#contacts_container">Contact Us</a>
+     			<a class="headerElement" href="#letter_container">President's Letter</a>
+     			<a class="headerElement" href="#rush_container">Rush</a>
+     			<a class="headerElement" href="#summer_housing_container">Summer Housing</a>
+				<ul class="nav pull-right">
+				   	<li class="nav-item dropdown">
+				   		<a id="login_button" class="dropdown-toggle" data-toggle="dropdown" href="#">Login</a>
+				   		<ul class="dropdown-menu">
+				   			<%= form_tag("#{main_app.root_url(:protocol => 'https')}login", method: "post") do%>
+				   				<input style="margin-top: 8px" name="httpd_username" type="text" placeholder="Username" />
+				   				<input style="margin-top: 8px" name="httpd_password" type="password" placeholder="Password" />
+				   				<input class="btn" name="login" type="submit" value="Login" />
+				   			<% end%>                   			
+						</ul>
+					</li>
+     			</ul>
+     			
+     		</div>
+    	</div>
+    </nav>
+</header>
