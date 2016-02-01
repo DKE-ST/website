@@ -4,20 +4,39 @@
 	}
 </style>
 
+<%= render 'layouts/public_header'%>
+<span id = "#top"> </span>
 <%= render 'layouts/main_panel'%>
-<%= render 'layouts/about'%>
-<%= render 'layouts/gentlemen'%>
-<%= render 'layouts/scholar' %>
-<%= render 'layouts/jgf' %>
-<%= render 'layouts/brother_info'%>
 <br>
-<%= render 'layouts/contacts'%>
+<div class = "page_containers" id = "about_container">
+	<%= render 'layouts/about'%>
+	<%= render 'layouts/gentlemen'%>
+	<%= render 'layouts/scholar' %>
+	<%= render 'layouts/jgf' %>
+	<%= render 'layouts/brother_info'%>
+</div>
 <br>
-<%= render 'layouts/letter'%>
+<div class = "page_containers" id = "brother_info_container">
+	<%= render 'layouts/brother_info'%>
+</div>
 <br>
-<%= render 'layouts/rush'%>
+<div class = "page_containers" id = "contacts_container">
+	<%= render 'layouts/contacts'%>
+</div>
 <br>
-<%= render 'layouts/summer_housing'%>
+<div class = "page_containers" id = "letter_container">
+	<%= render 'layouts/letter'%>
+</div>
+<br>
+<div class = "page_containers" id = "rush_container">
+	<%= render 'layouts/rush'%>
+</div>
+<br>
+<div class = "page_containers" id = "summer_housing_container">
+	<%= render 'layouts/summer_housing'%>
+</div>
+<br>
+<br>
 <br>
 <br>
 <br>

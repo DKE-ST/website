@@ -53,7 +53,7 @@ ul.nav li.dropdown:hover {
 }
 
 li.nav-item {
-    padding-top: 5px;
+  padding-top: 5px;
 }
 
 li.login {
@@ -193,6 +193,7 @@ div.profile_pg {
     margin-left: 1.5%;
     background-color: #770F17;
 }
+
 
 /* CSS for Main Panel Partial */
 .main_panel {
@@ -417,5 +418,50 @@ div.profile_pg {
 .jgf .sub_title {
   font-size: 1.5em;
   word-spacing: .25em;
+}
+
+.headerElement {
+  padding-right: 20px;
+  line-height: 45px;
+  color: #003366;
+}
+.headerElement:hover{
+  text-decoration: none;
+}
+
+#public_head{
+  background-color: #f2f2f2;
+  background-image: none;
+}
+#maybe1{
+  background-color: #f2f2f2;
+  background-image: none;
+}
+#maybe2{
+  background-color: #f2f2f2;
+  background-image: none;
+}
+#login_button{
+  color: #003366;
+  text-shadow: none;
+  padding-top:none
+}
+#login_button:hover{
+  color: rgb(255,215,0);
+  background-color: #f2f2f2;
+}
+#crest_navbar{
+  height: 39px;
+  width: auto;
+  float: left;
+  padding-left: 20px;
+  padding-top: 3px
+}
+
+.page_containers{
+  padding-top: 50px;
+}
+#login_alignment{
+  padding-top: 0px;
 }
 
