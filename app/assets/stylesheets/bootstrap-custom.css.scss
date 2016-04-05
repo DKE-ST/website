@@ -375,6 +375,43 @@ div.profile_pg {
   word-spacing: .25em;
 }
 
+.brothers {
+  /* Stretches main_panel Div Full Length of Browser Screen*/
+  position:relative;
+  left:0;
+  right:0;
+  overflow: hidden;
+
+  height: 100%;
+
+  background-image: url(composite_pic.jpg);
+  background-size: 100%;
+
+
+  /* Font Attributes */
+  font-family: Helvetica;
+  font-size: 1em;
+  /*color: rgb(33, 27, 117);*/
+  color: black;
+
+  text-align: center;
+
+  /*main_panel Div Border*/
+  border-style: solid;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-color: rgb(239, 72, 54);
+
+  padding-top: 1em;
+  padding-bottom: 30em;
+
+}
+.brothers .title {
+  font-size: 2em;
+  padding-bottom: 0.35em;
+  word-spacing: .25em;
+}
 /* CSS for JGF Panel */
 .jgf {
   /* Stretches main_panel Div Full Length of Browser Screen*/
